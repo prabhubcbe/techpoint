@@ -1,0 +1,40 @@
+@import "../../../styles.scss";
+
+.HeadContainer {
+  z-index: 999;
+  width: 100%;
+  margin-top: 4.5rem;
+  height: 100px;
+  display: flex;
+  background-size: auto auto;
+  background-color: $Primary_Blue;
+  //   background-image: repeating-linear-gradient(
+  //       161deg,
+  //       transparent,
+  //       transparent 10px,
+  //       rgba(255, 255, 255, 0.05) 10px,
+  //       rgba(255, 255, 255, 0.05) 11px
+  //     ),
+  //     repeating-linear-gradient(
+  //       13deg,
+  //       transparent,
+  //       transparent 10px,
+  //       rgba(255, 255, 255, 0.05) 10px,
+  //       rgba(255, 255, 255, 0.05) 11px
+  //     );
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    height: 100%;
+    // padding: 15px 0 15px 0;
+    gap: 2%;
+    font-family: $Titillium_Bold;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 15px;
+    line-height: 30px;
+  }
+}

@@ -1,0 +1,351 @@
+<div class="component_container">
+  <div class="bg_GreenGradient padding_100">
+    <div class="Root_containerVariable pl-2">
+      <div class="title_container">
+        <a (click)="onPopState()">
+          <img src="../../../../assets/icons/back_employee.svg" />
+        </a>
+        <p>EMPLOYEE : {{ employeeDetails.user_name }}</p>
+      </div>
+      <div class="profile_container">
+        <div class="row">
+          <div class="col-9">
+            <!-- ****************************PROFILE CARD************************* -->
+            <mat-card class="profile_image_card">
+              <i class="fa-solid fa-user candidate_profile_icon"></i>
+              <div class="candidate_name_container">
+                <p class="name">{{ employeeDetails.user_name }}</p>
+                <p class="sprints">
+                  {{ employeeDetails?.sprintscompleted }} Sprints Latest
+                  {{ employeeDetails?.date | date : 'MMM d' }}</p>
+              </div>
+              <div class="details_container">
+                <div class="row">
+                  <div class="col-4">
+                    <p class="title_details">Department</p>
+                    <p class="result_details">
+                      {{
+                        employeeDetails?.department === ""
+                          ? "-"
+                          : employeeDetails?.department
+                      }}</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="title_details">Role</p>
+                    <p class="result_details">
+                      {{
+                        employeeDetails?.designation === null
+                        ? "-"
+                        : employeeDetails?.designation
+                      }}
+                    </p>
+                  </div>
+                  <!-- <div class="col-4">
+                    <p class="title_details">Status</p>
+                    <p class="result_details_status">Interview Stage 1</p>
+                  </div> -->
+                </div>
+              </div>
+            </mat-card>
+
+            <!-- **************************PROFILE AND NOTES CARD******************** -->
+            <mat-card class="profile_notes_container">
+              <mat-tab-group class="profile_note_tabs">
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <img src="../../../../assets/icons/userProfileBlack.svg" />
+                    <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
+                    <p class="tab_title1">Profile</p>
+                  </ng-template>
+                  <div class="mat_tab_content">
+                    <p class="highlight_txt">Highlights -</p>
+                    <p class="highlight_txt_points" *ngFor="let heighlight of employeeHighlights.profile_intelligence">
+                      <img
+                        src="../../../../assets/icons/dotsHighlight.svg"
+                      />{{ heighlight }}
+                    </p>
+                  </div>
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <img src="../../../../assets/icons/sticky-note.svg" />
+                    <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
+                    <p class="tab_title1">Notes</p>
+                  </ng-template>
+                  <div class="mat_tab_content"><p>content2</p></div>
+                </mat-tab>
+              </mat-tab-group>
+            </mat-card>
+            <!-- **************************SKILLS AND HUMAN SKILLS*************** -->
+            <mat-card class="Skills_container"
+              ><p>
+                Skills are human skills that aid to interact with your peers,
+                cohesively communicate your ideas, collaborate and shine at
+                work.
+              </p>
+            </mat-card>
+            <!-- *******************GRAPH****************************** -->
+            <mat-card class="graph_conatiner">
+              <app-radial-stacked-chart
+                        id="2"
+                        [data]="employeeDetails?.result_values"
+                        [svgHeight]="'500px'"
+                      ></app-radial-stacked-chart>
+            </mat-card>
+            <!-- ****************FULL REPORT******************************************* -->
+            <mat-card class="FULL_REPORT">
+              <div class="full_report_container">
+                <p class="full_report_title">FULL REPORT</p>
+                <p class="pt-1">
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                  diam
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                  diam
+                </p>
+                <div class="search_Btn">
+                  <button class="searchbtn">DOWNLOAD REPORT</button>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+
+          <div class="col-3">
+            <div class="options_container">
+              <div class="button_container">
+                <img src="../../../../assets/icons/shareProfile.svg" />
+                <p class="button_txt">Share</p>
+              </div>
+              <div class="button_container">
+                <img src="../../../../assets/icons/bookmark_employee.svg" />
+                <p class="button_txt">BOOKMARK</p>
+              </div>
+              <div class="button_container">
+                <img src="../../../../assets/icons/downloadProfile.svg" />
+                <p class="button_txt">DOWNLOAD REPORT</p>
+              </div>
+              <hr class="dotted_line" />
+              <div class="button_container">
+                <img src="../../../../assets/icons/messageProfile.svg" /><P
+                  class="button_txt"
+                  >SEND A MESSAGE</P
+                >
+              </div>
+              <div class="notes_container">
+                <div class="img_border">
+                  <img src="../../../../assets/icons/tasksProfile.svg" />
+                </div>
+                <P class="button_txt">SEND A NOTES</P>
+              </div>
+              <div class="notes_container">
+                <div class="img_border">
+                  <img src="../../../../assets/icons/addnotesProfile.svg" />
+                </div>
+                <P class="button_txt">SET A TASK</P>
+              </div>
+              <div class="notes_container">
+                <div class="img_border">
+                  <img
+                    src="../../../../assets/icons/convert_role_profile.svg"
+                  />
+                </div>
+                <P class="button_txt">CONVERT TO A ROLE</P>
+              </div>
+            </div>
+
+            <!-- ***********************Similar roles************** -->
+            <div class="roles_head">
+              <p>Roles</p>
+              <u><i>View More</i></u>
+            </div>
+
+            <div *ngFor="let role of employeeRoles | slice
+            : paginator.pageIndex * paginator.pageSize
+            : (paginator.pageIndex + 1) * paginator.pageSize
+          | slice : 0 : 5">
+              <div class="roles_card mb-2" >
+                <div class="container">
+                  <p class="role">ROLE</p>
+                  <h2 class="role_title">{{role?.role_name}} - Senior</h2>
+                  <mat-divider></mat-divider>
+                  <div class="role_actions">
+                    <p class="role_date"><i> Sep 15 2022</i></p>
+                    <img
+                      src="../../../../assets/icons/verticalMenuProfile.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="paginator_roles">
+              <p class="paginator-info">
+                Page {{ paginator.pageIndex + 1 }} of
+                {{ employeeRoles.length }}
+              </p>
+              <mat-paginator
+                #paginator
+                [length]="employeeRoles.length"
+                [pageSize]="6"
+                class="page1"
+                (page)="pageEvent = $event"
+              >
+              </mat-paginator>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-9">
+            <mat-card class="Bio_card">
+              <div class="row Bio_container">
+                <p class="bio_title">Bio</p>
+                <p class="bio_txt">
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                  diam
+                </p>
+                <p class="bio_txt">
+                  nonumy eirmod tempor invidunt ut labore et dolore aka lorem
+                  ispum
+                </p>
+                <p class="bio_txt">short text</p>
+              </div>
+              <mat-divider
+                style="border-right-width: 1.5px; border-color: black"
+              ></mat-divider>
+              <div class="row edu_hardskills_container">
+                <div class="col-6">
+                  <p class="edu_title">Education</p>
+                  <div class="row pb-3" *ngFor="let item of employeBio.education">
+                    <p class="university_title">{{item.university}}</p>
+                    <p class="mb-0">{{item.degree}}</p>
+                    <i class="">{{item.year}}</i>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <p class="edu_title">Hard Skills</p>
+                  <p class="hard_skills_txt" *ngFor="let item of employeBio.skills">{{item}}</p>
+                </div>
+              </div>
+              <mat-divider
+                style="border-right-width: 1.5px; border-color: black"
+              ></mat-divider>
+              <div class="row experience_conatiner">
+                <div class="row">
+                  <p class="Experience_header">Experience</p>
+                  <div class="col-4" *ngFor="let item of employeBio.experience">
+                    <p class="company_title">{{item.company_location}}</p>
+                    <p class="mb-0">{{ item.position }}</p>
+                    <i>{{item.years}}</i>
+                  </div>
+                </div>
+              </div>
+            </mat-card>
+
+            <div class="Suggested_tasks">
+              <div class="header_title">
+                <p>Suggested Tasks (16)</p>
+                <u><i>View All</i></u>
+              </div>
+              <div class="suggesions_cards_container">
+                <div class="row">
+                  <div class="col-4">
+                    <mat-card class="suggestion_card">
+                      <div class="container pt-3">
+                        <p class="sugestion_name">
+                          Certification on Brand Strategy, name of the task
+                          comes here in 1-2 lines
+                        </p>
+                        <mat-divider class="suggest_task_divider"></mat-divider>
+                        <b class="created_txt">CREATED</b>
+                        <div class="actions_container">
+                          <div class="actions">
+                            <div class="item1">
+                              <img
+                                class="user_icons"
+                                src="../../../../assets/icons/user.svg"
+                              />
+                              <p>Employee/Manager</p>
+                            </div>
+                            <div class="item2">
+                              <i>Sep 15 2022</i>
+                              <img
+                                src="../../../../assets/icons/editRole.svg"
+                              />
+                              <img src="../../../../assets/icons/Delete.svg" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </mat-card>
+                  </div>
+                  <div class="col-4">
+                    <mat-card class="suggestion_card">
+                      <div class="container pt-3">
+                        <p class="sugestion_name">
+                          Certification on Brand Strategy, name of the task
+                          comes here in 1-2 lines
+                        </p>
+                        <mat-divider class="suggest_task_divider"></mat-divider>
+                        <b class="created_txt">CREATED</b>
+                        <div class="actions_container">
+                          <div class="actions">
+                            <div class="item1">
+                              <img
+                                class="user_icons"
+                                src="../../../../assets/icons/user.svg"
+                              />
+                              <p>Employee/Manager</p>
+                            </div>
+                            <div class="item2">
+                              <i>Sep 15 2022</i>
+                              <img
+                                src="../../../../assets/icons/editRole.svg"
+                              />
+                              <img src="../../../../assets/icons/Delete.svg" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </mat-card>
+                  </div>
+                  <div class="col-4">
+                    <mat-card class="suggestion_card">
+                      <div class="container pt-3">
+                        <p class="sugestion_name">
+                          Certification on Brand Strategy, name of the task
+                          comes here in 1-2 lines
+                        </p>
+                        <mat-divider class="suggest_task_divider"></mat-divider>
+                        <b class="created_txt">CREATED</b>
+                        <div class="actions_container">
+                          <div class="actions">
+                            <div class="item1">
+                              <img
+                                class="user_icons"
+                                src="../../../../assets/icons/user.svg"
+                              />
+                              <p>Employee/Manager</p>
+                            </div>
+                            <div class="item2">
+                              <i>Sep 15 2022</i>
+                              <img
+                                src="../../../../assets/icons/editRole.svg"
+                              />
+                              <img src="../../../../assets/icons/Delete.svg" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

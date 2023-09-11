@@ -1,0 +1,649 @@
+@import "../../../assets/styles/variable.scss";
+
+// :root {
+//   --step--2: clamp(0.52rem, calc(0.45rem + 0.35vw), 0.72rem);
+//   --step--1: clamp(0.63rem, calc(0.53rem + 0.48vw), 0.9rem);
+//   --step-0: clamp(0.75rem, calc(0.62rem + 0.65vw), 1.13rem);
+//   --step-1: clamp(0.9rem, calc(0.72rem + 0.88vw), 1.41rem);
+//   --step-2: clamp(1.08rem, calc(0.84rem + 1.18vw), 1.76rem);
+//   --step-3: clamp(1.3rem, calc(0.98rem + 1.57vw), 2.2rem);
+//   --step-4: clamp(1.56rem, calc(1.14rem + 2.07vw), 2.75rem);
+//   --step-5: clamp(1.87rem, calc(1.32rem + 2.73vw), 3.43rem);
+// }
+
+.first_row {
+  margin-top: 30px;
+}
+
+.second_row {
+  margin-top: 25px;
+}
+
+.HomeTittleTxt {
+  font-size: 14px;
+  text-transform: uppercase;
+  padding-top: 14px;
+  font-weight: 700;
+}
+.promptInput {
+  // Search input field
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+
+  .input_Home:focus {
+    border-color: $Home_InputBorderColor; // Sets the border  color using the $Home_InputBorderColor variable.scss
+    box-shadow: 0 0 0 0.2rem $Home_InputBorderColor; // Sets the border color using $Home_InputBorderColor variable.scss
+  }
+  .input-button {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  /* Apply styles to the placeholder text of the .input_Home element */
+  .input_Home::-webkit-input-placeholder {
+    font-size: 14px;
+    // position: relative;
+  }
+  /* your-component.component.css */
+  .input_Home-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .input_Home {
+    padding: 0; /* Remove padding to make sure the span fits inside the input */
+  }
+
+  .promptTxtSpan {
+    position: absolute;
+    display: flex;
+    top: 5px;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none; /* Make sure the span does not interfere with input interactions */
+    padding: 8px; /* Adjust padding to create spacing around the text */
+
+    /* Default styles for b and p tags */
+    b {
+      font-weight: bold;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: $Titillium_Bold;
+      color: $Home_InputBorderColor;
+      padding-left: 20px;
+      padding-top: 1px;
+    }
+
+    p {
+      font-size: 14px;
+      padding-left: 3px;
+      color: #acacac;
+      font-family: $Titillium_Regular;
+      padding-top: 2px;
+    }
+
+    /* Media query for screens less than or equal to 768px */
+    @media (max-width: 1248px) {
+      b {
+        font-size: 12px;
+        padding-left: 15px;
+        padding-top: 0;
+      }
+
+      p {
+        font-size: 10px;
+        padding-left: 2px;
+        padding-top: 1px;
+      }
+    }
+
+    /* Media query for screens greater than 768px and less than or equal to 1024px */
+    @media (max-width: 1026px) {
+      b {
+        font-size: 12px;
+        padding-left: 18px;
+        padding-top: 1px;
+      }
+
+      p {
+        font-size: 10px;
+        padding-left: 2.5px;
+        padding-top: 2px;
+      }
+    }
+
+    @media (max-width: 756px) {
+      b {
+        font-size: 10px;
+        padding-left: 18px;
+        padding-top: 1px;
+      }
+
+      p {
+        font-size: 8px;
+        padding-left: 2.5px;
+        padding-top: 2px;
+      }
+    }
+    @media (max-width: 572px) {
+      b {
+        // font-size: 8px;
+        font-size: clamp(0.7rem, 2vw, 1rem);
+        padding-left: 10px;
+        padding-top: 1px;
+      }
+
+      p {
+        font-size: 6px;
+        padding-left: 1.5px;
+        padding-top: 2px;
+      }
+    }
+  }
+
+  .input_Home {
+    width: 100%;
+    padding: 12px;
+    border: 4px solid $Home_InputBorderColor; // Sets the border color color using the $Home_InputBorderColor variable.scss
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: $Titillium_Regular;
+    outline: none;
+  }
+}
+
+// ******************* Count cards stylings *******************
+@media (max-width: 992px) {
+  .first-row_3col {
+    margin-top: 15px;
+  }
+}
+@media (max-width: 767px) {
+  .first-row_2col {
+    margin-top: 15px;
+  }
+}
+.cards_container {
+  // container for the count cards and the graph cards
+  display: flex;
+  // flex-wrap: wrap;
+  padding: 15px;
+  gap: 10px;
+
+  .graph_card {
+    flex-grow: 1;
+    background-color: white;
+    width: 100%;
+    border-radius: 15px 15px 0px 0;
+  }
+  .employeeTeam_card {
+    background-color: $Primary_Blue; // Sets the  color using $Primary_Blue variable.scss
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+  }
+  .candidate_card {
+    background: $Primary_greenGradient; // Sets the  color using $Primary_greenGradient variable.scss
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.employee_card {
+  background: $Primary_RedGradient; // Sets the  color using $Primary_RedGradient variable.scss
+  width: 100%;
+  height: 150px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.gradient_bg {
+  background: $Count_Cards_Opacity_Gradient; // Sets the  color using $Count_Cards_Opacity_Gradient variable.scss
+  height: 100%;
+  width: 120px;
+}
+.count_container {
+  position: absolute;
+  text-align: center;
+  padding-top: 20px;
+}
+.count_Txt {
+  // font-size: 56px;
+  font-size: clamp(30px, 3vw, 56px);
+  font-family: $Titillium_Bold; // Sets the font using $Titillium_Bold variable.scss
+  color: white;
+  padding-top: 15px;
+}
+.count_EmployeesTxt {
+  // font-size: 18px;
+  font-size: clamp(18px, 3vw, 0.9rem);
+  color: white;
+  padding-top: 10px;
+}
+
+// *******************recent activity*******************
+.recent_ActivityCard {
+  // overflow: hidden;
+  border-radius: 15px;
+  width: 100%;
+  // margin-top: 20px;
+  // height: 350px;
+  background-color: $cards_Bg; // Sets the  color using $cards_Bg variable.scss
+  box-shadow: 6px 6px 18px rgba(136, 136, 136, 0.161);
+}
+
+@media (max-width: 992px) {
+  .recent_ActivityCard {
+    margin-top: 15px;
+  }
+}
+
+.recentActivetyContainer {
+  display: flex;
+  justify-content: center;
+}
+.recent_centerDiv {
+  padding-top: 4%;
+  width: 85%;
+}
+.recent_viewall {
+  display: flex;
+  justify-content: space-between;
+  // place-items: center;
+  i {
+    font-size: 11px;
+  }
+}
+.recent_heading {
+  font-size: 17px;
+  font-family: $Titillium_Bold; // Sets the font using $Titillium_Bold variable.scss
+  margin-bottom: 10px;
+  line-height: 17px;
+  padding-top: 8px;
+}
+
+.recent_flex_container {
+  display: flex;
+  align-content: flex-end;
+}
+.recent_flex_item2 {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.iconNotification {
+  background-color: #0f253a;
+  height: 20px;
+  width: 20px;
+}
+.msgsTxtTime {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: end;
+  width: 100%;
+  font-size: 10px;
+  white-space: nowrap;
+  overflow-wrap: anywhere;
+  font-style: italic;
+
+  // ****
+  // display: -webkit-box;
+  // -webkit-line-clamp: 1; /* Limit the number of visible lines to two */
+  // -webkit-box-orient: vertical;
+}
+.recent_activity_txt {
+  font-size: 12.5px;
+  line-height: 19px;
+  // *************
+  max-height: 38px; /* Set the maximum height for two lines of text */
+  overflow: hidden; /* Hide any content that overflows */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit the number of visible lines to two */
+  -webkit-box-orient: vertical;
+}
+.recent_activity_row {
+  padding-top: 12px;
+  padding-right: 0px;
+  padding-left: 12px;
+}
+
+.icon_col {
+  padding-left: 8px;
+}
+// *********************Top_Five_Roles/Candidates_Container******************
+.roles_header_card {
+  font-size: 0.95rem;
+  // font-family: $Titillium_Bold; // Sets the font using $Titillium_Bold variable.scss
+}
+.Top_Five_Container {
+  .Top_Five_Txt {
+    font-size: 22px;
+    font-family: $Titillium_Bold; // Sets the font using $Titillium_Bold variable.scss
+  }
+  .tittle_container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .Top_Five_Card_Container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    // padding-top: 20px;
+    // padding-bottom: 20px;
+    padding: 14px 30px 14px 10px;
+  }
+  .icon_name {
+    display: flex;
+    align-items: center;
+  }
+
+  .user_icon {
+    padding-left: 10px;
+  }
+  .user_Button {
+    background: $Primary_greenGradient; // Sets the  color using $Primary_greenGradient variable.scss
+  }
+  .user_name {
+    flex-grow: 1.5;
+    padding-left: 15px;
+    font-family: $Titillium_Bold; // Sets the font using $Titillium_Bold variable.scss
+    // font-size: 20px;
+    font-size: clamp(10px, 3vw, 20px);
+    padding-top: 5px;
+  }
+  .user_department {
+    flex-grow: 1;
+    font-family: $Titillium_Regular; // Sets the font using $Titillium_Regular variable.scss
+    // font-size: 17px;
+    font-size: clamp(8px, 3vw, 17px);
+    padding-top: 5px;
+    font-weight: 600;
+  }
+  .user_role {
+    flex-grow: 1;
+    font-family: $Titillium_Regular; // Sets the font using $Titillium_Regular variable.scss
+    // font-size: 17px;
+    font-size: clamp(8px, 3vw, 17px);
+    padding-top: 5px;
+    font-weight: 600;
+  }
+  .user_sendMsg_Btn {
+    flex-grow: 1;
+    padding-right: 20px;
+    text-align: end;
+  }
+
+  .sendMsg_btn {
+    background: $Primary_greenGradient; // Sets the  color using $Primary_greenGradient variable.scss
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    padding: 10px 25px 10px 25px;
+    font-size: 12px;
+  }
+  .Top_Five_cards {
+    background-color: $cards_Bg; // Sets the  color using $cards_Bg variable.scss
+    border-radius: 10px;
+    width: 100%;
+    // height: 65px;
+    box-shadow: 6px 6px 18px rgba(136, 136, 136, 0.161);
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+// ***********************recent Messages*******************
+.user_icon_green {
+  background: $Primary_greenGradient; // Sets the  color using $Primary_greenGradient variable.scss
+  width: 25px;
+  height: 25px;
+}
+.user_Name_msgs {
+  font-size: 14px;
+  font-family: $Titillium_Bold; // Sets the font using $Titillium_Bold variable.scss
+  margin: 0;
+  padding-left: 5px;
+}
+.user_note_msgs {
+  font-size: 12px;
+  padding-left: 5px;
+}
+.user_Time_msgs {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 95%;
+  font-size: 10px;
+  white-space: nowrap;
+  overflow-wrap: anywhere;
+  font-style: italic;
+}
+.user_profile_msgs {
+  font-size: 12px;
+}
+.user_icon_red {
+  background: $Primary_RedGradient; // Sets the  color using $Primary_RedGradient variable.scss
+  width: 25px;
+  height: 25px;
+}
+
+// ******************************Top_Five_ Employees card ************************
+
+.cards_container_recommend {
+  padding-top: 20px;
+}
+.recommend_card {
+  background: $Primary_RedGradient;
+  width: 100%;
+  height: 150px;
+  border-radius: 15px 15px 0 0;
+
+  overflow: hidden;
+}
+.recommend_card_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.candidate_profile_icon {
+  color: white;
+  font-size: 100px;
+  opacity: 0.2;
+}
+
+.candidateDummyImg {
+  // height: 100%;
+  // width: 100%;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  .candidate_image {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+.image_overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  // background: linear-gradient(#30757b, #000000);
+  // background: linear-gradient(
+  //   rgba(255, 0, 0, 0.3),
+  //   /* 50% opacity for the first color */ rgba(70, 0, 0, 0.9)
+  //     /* 80% opacity for the second color */
+  // );
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.25) 25%,
+    rgba(0, 0, 0, 0.75) 75%
+  );
+}
+
+// *****************ACTIONS INSIDE THE CARD*****************
+.actions_container {
+  display: flex;
+  position: absolute;
+  z-index: 2;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  padding-right: 20px;
+  padding-top: 10px;
+  gap: 5px;
+}
+// ******************checkbox****************
+.mat_checkbox_candidates {
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
+      [data-indeterminate="true"]
+    )
+    ~ .mdc-checkbox__background {
+    border-radius: 3px;
+    border: 1px solid white;
+    width: 20px;
+    height: 20px;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:focus:checked
+    ~ .mdc-checkbox__background {
+    background-color: white;
+    width: 20px;
+    height: 20px;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled
+    ~ .mdc-checkbox__background
+    .mdc-checkbox__checkmark {
+    color: $primary_checkBoxColor;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:checked
+    ~ .mdc-checkbox__background {
+    background-color: white;
+    border-color: $primary_checkBoxColor;
+    width: 20px;
+    height: 20px;
+  }
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__background {
+    top: calc((var(--mdc-checkbox-state-layer-size) - 20px) / 2);
+    left: calc((var(--mdc-checkbox-state-layer-size) - 20px) / 2);
+  }
+}
+// **********************VERTICAL BURGER MENU **********************
+.fav_icon {
+  height: 28px;
+  // margin-top: 3%;
+}
+.burger_icon {
+  height: 18px;
+  // margin-top: 4%;
+  margin-left: 2%;
+}
+// **********************CANDIDATES DETAILS************************
+.user_details_container {
+  position: absolute;
+  z-index: 4;
+  top: 100px;
+  color: white;
+  font-size: 24px;
+  height: 1.7rem;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 90%;
+}
+.sprint_contiainer {
+  position: absolute;
+  z-index: 5;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  color: white;
+  top: 125px;
+}
+// ********************GRAPH CARD**************
+.recommend_graph_card {
+  background: $cards_Bg;
+  width: 100%;
+  border-radius: 0 0 15px 15px;
+  .title_details {
+    text-transform: uppercase;
+    margin: 0px;
+    font-size: 10px;
+    font-weight: 600;
+    // line-height: 18px;
+    // letter-spacing: 0em;
+    text-align: left;
+    letter-spacing: 1px;
+  }
+  .result_details {
+    font-family: $Titillium_Bold;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    line-height: 16px;
+  }
+}
+.view_All {
+  cursor: pointer;
+}
+
+// **********************************************************************************
+
+.carousel {
+  display: flex;
+  flex-direction: row;
+}
+// .itm {
+// background-color: red;
+// height: 200px;
+// }
+
+// *********************owl carousel**********************
+:host ::ng-deep .owl-theme .owl-nav {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+:host ::ng-deep .owl-theme .owl-nav [class*="owl-"] {
+  background-color: $cards_Bg;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  color: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  border: 1px solid rgb(255, 255, 255);
+}
+// *****************
+/* your-component.component.css */
+
+/* my-component.component.css */

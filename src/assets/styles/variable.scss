@@ -1,0 +1,118 @@
+// ***********************Color***********************
+$Primary_Blue: #0f253a;
+$Primary_greenGradient: linear-gradient(180deg, #1e4b4f 0%, #0c141d 100%);
+$Primary_greenGrdientReverse: linear-gradient(180deg, #0c141d 0%, #1e4b4f 100%);
+$Primary_RedGradient: linear-gradient(180deg, #672024 0%, #410f12 100%);
+$Home_InputBorderColor: #2da9ba;
+$Count_Cards_Opacity_Gradient: linear-gradient(
+  0deg,
+  rgba(245, 241, 238, 0) 1%,
+  rgba(241, 237, 233, 0.502) 400.5%
+);
+$cards_Bg: #f4f2f0;
+$root_BgGradient: linear-gradient(180deg, #f5f1ee 0%, #e2dcd6 100%);
+$primary_checkBoxColor: #2e585b;
+// ***********************Font Family***********************
+$Titillium_Black: "Titillium_Black";
+$Titillium_Bold: "Titillium_Bold";
+$Titillium_Italic: "Titillium_Italic";
+$Titillium_Light: "Titillium_Light";
+$Titillium_Medium: "Titillium_Medium";
+$Titillium_Regular: "Titillium_Regular";
+$Titillium_Thin: "Titillium_Thin";
+$Titillium_Extra_Light: "Titillium_extra_light";
+// ***********************Font Size***********************
+.Fnt_Sze_12 {
+  font-size: 12px;
+}
+.Fnt_Sze_14 {
+  font-size: 14px;
+}
+.Fnt_Sze_18 {
+  font-size: 18px;
+}
+.Fnt_Sze_20 {
+  font-size: 20px;
+}
+.Fnt_Sze_22 {
+  font-size: 22px;
+}
+.Fnt_Sze_24 {
+  font-size: 24px;
+}
+
+// *********************SPACINGS************************
+
+.Root_containerVariable {
+  // margin-left: calc(2.5rem + 2vw); /* Adjust the values as needed */
+  // margin-right: calc(2.5rem + 2vw); /* Adjust the values as needed */
+  width: min(85%, 2000px);
+  margin-inline: auto;
+  // border: 3px solid hotpink;
+}
+
+// .Root_containerVariable {
+//   margin-left: 95px;
+//   margin-right: 95px;
+// }
+
+// :root {
+//   --default-margin: 95px;
+// }
+
+// .Root_containerVariable {
+//   margin-left: var(--default-margin);
+//   margin-right: var(--default-margin);
+// }
+
+// @media screen and (max-width: 768px) {
+//   /* For viewports with a maximum width of 768px (e.g., tablets and mobile devices) */
+//   .Root_containerVariable {
+//     --dynamic-margin: 20px;
+//     margin-left: var(--dynamic-margin);
+//     margin-right: var(--dynamic-margin);
+//   }
+// }
+
+// @media screen and (min-width: 769px) and (max-width: 1200px) {
+//   /* For viewports between 769px and 1200px (e.g., larger tablets and small laptops) */
+//   .Root_containerVariable {
+//     --dynamic-margin: 50px;
+//     margin-left: var(--dynamic-margin);
+//     margin-right: var(--dynamic-margin);
+//   }
+// }
+
+// @media screen and (min-width: 1201px) {
+//   /* For viewports larger than 1200px (e.g., desktops) */
+//   .Root_containerVariable {
+//     --dynamic-margin: 95px;
+//     margin-left: var(--dynamic-margin);
+//     margin-right: var(--dynamic-margin);
+//   }
+// }
+
+/* Default padding for larger screens */
+.padding_100 {
+  padding-top: 100px;
+}
+
+/* Media query for smaller screens */
+// @media (max-width: 979px) {
+//   .padding_100 {
+//     padding-top: 120px; /* Adjust this value as needed */
+//   }
+// }
+
+@media (max-width: 892px) {
+  .padding_100 {
+    padding-top: 140px; /* Adjust this value as needed */
+  }
+}
+
+/* Media query for even smaller screens */
+@media (max-width: 480px) {
+  .padding_100 {
+    padding-top: 200px; /* Adjust this value as needed */
+  }
+}

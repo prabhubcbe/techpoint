@@ -1,0 +1,59 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "../src/assets/styles/variable.scss";
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+
+@font-face {
+  font-family: "Titillium_Black";
+  src: url("../src/assets/fonts/Titillium_Web/TitilliumWeb-Black.ttf");
+}
+
+@font-face {
+  font-family: "Titillium_Bold";
+  src: url("../src/assets/fonts/Titillium_Web/TitilliumWeb-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Titillium_Italic";
+  src: url("../src/assets/fonts/Titillium_Web/TitilliumWeb-Italic.ttf");
+}
+
+@font-face {
+  font-family: "Titillium_Light";
+  src: url("../src/assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf");
+}
+
+@font-face {
+  font-family: "Titillium_extra_light";
+  src: url("../src/assets/fonts/Titillium_Web/TitilliumWeb-ExtraLightItalic.ttf");
+}
+
+@font-face {
+  font-family: "Titillium_Medium";
+  src: url("../src/assets/fonts/Titillium_Web/TitilliumWeb-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Titillium_Regular";
+  src: url("../src/assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf");
+}
+@font-face {
+  font-family: "Titillium_Thin";
+  src: url("../src/assets/fonts/Titillium_Web/TitilliumWeb-Black.ttf");
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  font-family: "Titillium_Regular" !important;
+  height: 100% !important;
+  margin: 0;
+  background-color: #e4ded8;
+  // background: linear-gradient(180deg, #f5f1ee 0%, #e2dcd6 100%) !important;
+}
+
+h2,
+span,
+table {
+  font-family: "Titillium_Regular" !important;
+}

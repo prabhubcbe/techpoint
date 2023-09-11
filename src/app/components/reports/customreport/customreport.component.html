@@ -1,0 +1,210 @@
+<div class="component_container">
+  <div class="bg_GreenGradient padding_100">
+    <div class="Root_containerVariable pl-2">
+      <div class="title_candidates">
+        <p>REPORTS : CUSTOM REPORTS</p>
+      </div>
+
+      <div class="header_container">
+        <div class="item1">
+          <img
+            class="back_btn"
+            src="../../../../assets/icons/backarrowwithBG.svg"
+          />
+          <p class="Analysis_txt">Custom Reports</p>
+        </div>
+      </div>
+      <p class="sub_title">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+        eirmod tempor invidunt ut labore
+      </p>
+    </div>
+  </div>
+
+  <!-- *******************HEADER******************** -->
+  <div class="Root_containerVariable">
+    <mat-card class="header_card">
+      <div class="header_container">
+        <div class="items1">
+          <p>Name of the Dashboard</p>
+          <img src="../../../../assets/icons/edit_customerepot.svg" alt="" />
+        </div>
+
+        <div class="items2">
+          <button class="share_btn" style="margin-right: 10px">
+            <img src="../../../../assets/icons/share_customereport_black.svg" />
+            SHARE
+          </button>
+
+          <mat-form-field
+            class="status_filter"
+            appearance="outline"
+            style="margin-right: 10px"
+          >
+            <mat-select placeholder="Actions" value="value">
+              <mat-option value="1">122222</mat-option>
+              <mat-option>122222</mat-option>
+              <mat-option>122222</mat-option>
+              <mat-option>122222</mat-option>
+              <mat-option>122222</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button class="add_Applicants_btn" style="margin-right: 10px">
+            <i class="fa-solid fa-circle-plus"></i>
+            ADD REPORT
+          </button>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- *************MAIN CONTAINER************* -->
+    <div class="row">
+      <div class="col-6">
+        <mat-card class="top_employees_card">
+          <p class="employee_title">Top Employees in each function</p>
+          <div class="employees_card_header">
+            <div>
+              <mat-form-field class="status_filter" appearance="outline">
+                <mat-select placeholder="Function : All" value="value">
+                  <mat-option value="1">122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="period_filter" appearance="outline">
+                <mat-select placeholder="Period : Q1| Jan - Mar" value="value">
+                  <mat-option value="1">122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="download_add_container">
+              <div class="img_bg">
+                <img
+                  class="download_report"
+                  src="../../../../assets/icons/download_prereport.svg"
+                  alt="arrow"
+                />
+              </div>
+              <button class="add_btn_employee">
+                <img
+                  class="add_report"
+                  src="../../../../assets/icons/add_prereport.svg"
+                  alt=""
+                />Add
+              </button>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <!-- ****************table************** -->
+          <table class="employee_table">
+            <tr class="table_head">
+              <th>EMPLOYEE NAME</th>
+              <th>FUNCTION</th>
+              <th>RANK</th>
+            </tr>
+            <tr class="table_row" *ngFor="let employee of topEmployeesInEachFunction">
+              <td class="table_td">
+                <img
+                  class="profile_icn"
+                  src="../../../../assets/icons/red_profile_iocn.svg"
+                />
+                {{employee.user_name}}
+              </td>
+              <td class="table_td">{{employee.department}}</td>
+              <td class="table_td">{{employee.score | number : '1.2-2'}}</td>
+            </tr>
+          </table>
+        </mat-card>
+      </div>
+      <div class="col-6">
+        <mat-card class="top_employees_card">
+          <p class="employee_title">Top Employees in each function</p>
+          <div class="employees_card_header">
+            <div>
+              <mat-form-field class="status_filter" appearance="outline">
+                <mat-select placeholder="Function : All" value="value">
+                  <mat-option value="1">122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="period_filter" appearance="outline">
+                <mat-select placeholder="Period : Q1| Jan - Mar" value="value">
+                  <mat-option value="1">122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="download_add_container">
+              <div class="img_bg">
+                <img
+                  class="download_report"
+                  src="../../../../assets/icons/download_prereport.svg"
+                  alt="arrow"
+                />
+              </div>
+              <button class="add_btn_employee">
+                <img
+                  class="add_report"
+                  src="../../../../assets/icons/add_prereport.svg"
+                  alt=""
+                />Add
+              </button>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <!-- ****************table************** -->
+          <table class="employee_table">
+            <tr class="table_head">
+              <th>EMPLOYEE NAME</th>
+              <th>FUNCTION</th>
+              <th>RANK</th>
+            </tr>
+            <tr class="table_row" *ngFor="let employee of topEmployeesInEachFunction">
+              <td class="table_td">
+                <img
+                  class="profile_icn"
+                  src="../../../../assets/icons/red_profile_iocn.svg"
+                />
+                {{employee.user_name}}
+              </td>
+              <td class="table_td">{{employee.department}}</td>
+              <td class="table_td">{{employee.score | number : '1.2-2'}}</td>
+            </tr>
+          </table>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- *****************ADD REPORT **************** -->
+    <div class="add_report_container">
+      <mat-card class="add_report_card">
+        <div class="" style="text-align: center">
+          <img
+            class="plus_icon"
+            src="../../../../assets/icons/add_report_plus.svg"
+          />
+          <p class="add_report_txt">Add Report</p>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,371 @@
+@import "../../../../../assets/styles/variable.scss";
+
+.component_container {
+  .bg_GreenGradient {
+    background: $Primary_Blue;
+    width: 100%;
+    height: 330px;
+  }
+}
+.title_candidates {
+  color: white;
+
+  p {
+    font-size: 13px;
+    text-transform: uppercase;
+    padding-top: 30px;
+    // font-weight: 700;
+  }
+}
+// **********profile_header**********
+.profile_header {
+  display: flex;
+  color: white;
+  align-items: center;
+  padding-top: 20px;
+
+  gap: 15px;
+  img {
+    height: 32px;
+  }
+  p {
+    padding-top: 5px;
+    font-size: 32px;
+    font-family: $Titillium_Bold;
+  }
+}
+.team_count {
+  color: white;
+
+  padding: 10px 0 0 50px;
+  p {
+    font-size: 12px;
+  }
+  b {
+    font-size: 18px;
+  }
+}
+// ******************************CANDIDATES AVAILABLE**************************
+.ResourcesTeamContainer {
+  padding-top: 100px;
+}
+.candidate_available {
+  background-color: $cards_Bg;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  .graph_card {
+    flex-grow: 1;
+    background-color: white;
+    border-radius: 15px 15px 0px 0;
+  }
+}
+
+.candidate_header {
+  background: $Primary_RedGradient;
+  height: 70px;
+}
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  color: white;
+
+  .item1 {
+    flex-grow: 1;
+    padding-left: 50px;
+    h2 {
+      font-weight: 700;
+      padding-top: 10px;
+    }
+  }
+  .item2 {
+    flex-grow: 1;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    h2 {
+      font-weight: 700;
+      padding-right: 30px;
+      padding-top: 15px;
+    }
+    .bgBtn {
+      background-color: white;
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      margin-right: 8%;
+      i {
+        color: black;
+        translate: 30% 30%;
+        font-size: 15px;
+      }
+    }
+  }
+}
+// ***************************feture options*******************
+.options_container {
+  color: white;
+  width: 100%;
+  // height: 500px;
+  background: $Primary_Blue;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #707070;
+  margin-top: 70px;
+  padding-bottom: 30px;
+
+  align-items: center;
+}
+.button_container {
+  width: 85%;
+  display: flex;
+  place-items: center;
+  background: $Primary_Blue;
+  border: 1px solid #707070;
+
+  border-radius: 50px;
+  height: 55px;
+  margin-top: 15px;
+  img {
+    padding-left: 20px;
+    // width: 20px;
+    height: 35px;
+  }
+}
+.button_txt {
+  font-size: 1vw;
+  font-family: $Titillium_Bold;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.dotted_line {
+  border-bottom: 1px dashed #ffffff;
+  width: 80%;
+  margin: 20px 0 20px 0;
+}
+.notes_container {
+  width: 85%;
+  display: flex;
+  place-items: center;
+  border: 1px solid #707070;
+  background: $Primary_Blue;
+  border-radius: 50px;
+  height: 55px;
+  margin-top: 15px;
+  padding-left: 20px;
+}
+.img_border {
+  border: 1px solid rgb(234, 234, 234);
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  align-items: center;
+  img {
+    height: 18px;
+  }
+}
+// ******************detail tabs******************
+.tabs_contianer {
+  padding-top: 50px;
+}
+
+// *************************PROFILES AND NOTES CONTAINER*************************
+.tabs_contianer {
+  width: 100%;
+  background: transparent;
+  border-radius: 0;
+  .profile_note_tabs {
+    ::ng-deep .mat-mdc-tab-header {
+      width: 100%;
+      background: $cards_Bg;
+      margin-bottom: 30px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+      padding: 10px 10px 0 10px;
+    }
+    ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+      font-size: 18px;
+      font-family: $Titillium_Regular;
+    }
+    ::ng-deep .mat-mdc-tab.mdc-tab .mdc-tab-indicator__content--underline {
+      border-color: black !important;
+      border-width: 10px;
+      width: 80%;
+      border-radius: 10px 10px 0 0;
+      // padding-top: 10px;
+    }
+    ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+      color: black !important;
+    }
+  }
+}
+// ******************teamEmployeesProfile******************
+.teamEmployeesProfile {
+  width: 100%;
+  margin-top: 20px;
+}
+// ************skill_sumarry_tab  ************
+
+.skill_sumarry_tab {
+  width: 100%;
+
+  background: $Primary_RedGradient;
+
+  p {
+    font-size: 22px;
+    font-family: $Titillium_Bold;
+    color: white;
+    padding: 10px 10px 10px 10px;
+    margin: 0;
+    line-height: 30px;
+  }
+}
+.graph_skill_summary {
+  background: white;
+  height: 400px;
+  border: 1px solid black;
+}
+// **************tech_skills_tab******************
+.tech_skills {
+  padding: 30px;
+  background: white;
+  border: 1px solid black;
+  .tech_title {
+    font-size: 22px;
+    font-family: $Titillium_Bold;
+  }
+  .tech_skill_content {
+    font-family: $Titillium_Bold;
+    padding: 5px 10px 5px 10px;
+    background: $Primary_RedGradient;
+    border-radius: 30px;
+    color: white;
+    margin: 8px;
+    display: inline-block;
+  }
+}
+// *********************
+.mat_tab_content {
+  background: white;
+  border: 1px solid black;
+  color: black;
+  padding: 40px;
+  .highlight_txt {
+    font-size: 24px;
+    font-family: $Titillium_Bold;
+    padding-bottom: 20px;
+  }
+  .highlight_txt_points {
+    font-size: 14px;
+    padding-top: 20px;
+    img {
+      padding-right: 20px;
+    }
+  }
+}
+// *******************ROLES_CONTAINER**************************
+
+.roles_container {
+  padding-top: 50px;
+}
+.roles_header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.roles_text {
+  h2 {
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+}
+.Roles_filters_container {
+  padding-top: 5px;
+  display: flex;
+  gap: 25px;
+}
+.sort_Icon {
+  background-color: white;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  span {
+    translate: 26% 26%;
+    font-size: 20px;
+  }
+}
+.add_Icon {
+  background-color: $Primary_Blue;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+
+  i {
+    translate: 54% 35%;
+    font-size: 16px;
+    color: white;
+  }
+}
+//  *******************************************ROLE_CARDS*********************************
+.roles_card {
+  background-color: $cards_Bg;
+  height: 120px;
+  width: 100%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+  .role {
+    font-size: 12px;
+    font-weight: 600;
+    padding-top: 10px;
+    margin-bottom: 0px;
+  }
+  .role_title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+.role_actions {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+  padding-top: 10px;
+}
+.role_date {
+  font-size: 12px;
+}
+
+// *******************paginator**************************
+.page1 {
+  background: transparent;
+  color: #000;
+  ::ng-deep .mat-mdc-paginator-page-size {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-paginator-icon {
+    background: #fff;
+    border-radius: 50%;
+  }
+  ::ng-deep .mat-mdc-paginator-range-label {
+    font-weight: 500;
+    margin: 0 29px 0 24px;
+    font-size: 18px;
+  }
+}
+// ****************role_2_columns******************
+.role_2_column {
+  margin: 0;
+  padding: 40px 0 0 0;
+}

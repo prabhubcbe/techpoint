@@ -1,0 +1,755 @@
+<div class="padding_100">
+  <div class="Root_containerVariable pl-2">
+    <p class="title_candidates">CANDIDATES : roles</p>
+    <div class="roles_header">
+      <p>Roles ({{ AllRoles.length }})</p>
+      <div class="buttons_container">
+        <button
+          class="add_Applicants_btn_employee"
+          (click)="addRoleBasedOnEmployee(addRoleEmployees)"
+        >
+          <i class="fa-solid fa-circle-plus"></i>
+          BASED ON EMPLOYEE
+        </button>
+        <button class="add_Applicants_btn" (click)="createNewRole(newRole)">
+          <i class="fa-solid fa-circle-plus"></i>
+          NEW ROLE
+        </button>
+      </div>
+    </div>
+    <!-- ****************FILTER CONTAINER************ -->
+    <div class="roles_filter_container">
+      <mat-card class="filter_card">
+        <div class="row">
+          <div class="col-lg-5 col-md-12">
+            <div class="role_input_container">
+              <p class="filter_title">What are you looking for?</p>
+              <div class="role_search__button">
+                <input
+                  [(ngModel)]="searchText"
+                  type="text"
+                  class="role_search_input"
+                  placeholder="Search a role..specialist product"
+                />
+
+                <!-- search icon -->
+                <svg
+                  class="role_search__icon"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4">
+            <p class="filter_title">Department / Function</p>
+            <!-- *********** -->
+            <mat-form-field class="Bulk_actions" appearance="outline">
+              <mat-select
+                (selectionChange)="filterByDepartment($event)"
+                (openedChange)="handleOpen()"
+                placeholder="Select icon"
+                placeholder="ALL"
+                class="Bulk_actions_select"
+                ><mat-option class="Bulk_actions_select_options" value="ALL"
+                  >ALL</mat-option
+                >
+                <mat-option
+                  [value]="department"
+                  *ngFor="let department of EvalutionFunctioList"
+                  >{{ department }}</mat-option
+                >
+              </mat-select>
+              <span class="drop_down_arrow_icon">
+                <img
+                  *ngIf="!panelIsOpen"
+                  src="../../../../../assets/icons/downArrow.svg"
+                  alt=""
+                />
+                <img
+                  *ngIf="panelIsOpen"
+                  src="../../../../../assets/icons/upArrow.svg"
+                  alt=""
+                />
+              </span>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-3 col-md-4">
+            <p class="filter_title">Sort</p>
+            <!-- *********** -->
+            <mat-form-field class="Bulk_actions" appearance="outline">
+              <mat-select
+                (selectionChange)="filterBySort($event)"
+                (openedChange)="handleOpenSORT()"
+                placeholder="Select icon"
+                placeholder="Recently added"
+                class="Bulk_actions_select"
+              >
+                <mat-option
+                  value="Recently added"
+                  class="Bulk_actions_select_options"
+                  >Recently added</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options" value="A-Z"
+                  >Sort by Name : A-Z</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options" value="Z-A"
+                  >Sort by Name : Z-A</mat-option
+                >
+
+                <!-- <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../../assets/icons/bookmark.svg"
+                    style="padding-right: 20px"
+                  />Send email</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../../assets/icons/chat.svg"
+                    style="padding-right: 20px"
+                  />Send a message</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../../assets/icons/Addnotes.svg"
+                    style="padding-right: 20px"
+                  />Add notes</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../../assets/icons/resource.svg"
+                    style="padding-right: 20px"
+                  />Suggest resources</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../../assets/icons/share.svg"
+                    style="padding-right: 20px"
+                  />Share</mat-option
+                > -->
+              </mat-select>
+              <span class="drop_down_arrow_icon">
+                <img
+                  *ngIf="!panelIsOpenSORT"
+                  src="../../../../../assets/icons/downArrow.svg"
+                  alt=""
+                />
+                <img
+                  *ngIf="panelIsOpenSORT"
+                  src="../../../../../assets/icons/upArrow.svg"
+                  alt=""
+                />
+              </span>
+            </mat-form-field>
+          </div>
+
+          <div class="col-lg-1 col-md-4 p-0 m-0">
+            <div class="icons_container">
+              <img src="../../../../../assets/icons/gridview.svg" />
+              <!-- <img src="../../../../../assets/icons/listview.svg" /> -->
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <mat-divider
+      style="border-color: black; margin-top: 30px; opacity: 0.2"
+    ></mat-divider>
+    <!-- ************************ROLE Header******************* -->
+    <div class="pt-2">
+      <mat-checkbox
+        (change)="CheckAllOptions($event)"
+        [(ngModel)]="checkAll"
+        class="mat_checkbox_candidates_header"
+        ><p class="pt-3">Select all</p></mat-checkbox
+      >
+      <button
+        class="delete_btn"
+        (click)="openBulkdeleteRoleDialog(BulkdeleteRoleDialog)"
+      >
+        Delete
+      </button>
+    </div>
+    <!-- ************************ROLE CARDS******************* -->
+    <div class="role_cards_container">
+      <div class="row">
+        <div
+          class="col-lg-3 col-md-6 col-sm-6 col-xs-1 pt-1"
+          *ngFor="
+            let roles of AllRoles
+              | search : searchText
+              | slice
+                : paginator.pageIndex * paginator.pageSize
+                : (paginator.pageIndex + 1) * paginator.pageSize
+              | slice : 0 : 16;
+            let i = index
+          "
+        >
+          <mat-card class="role_card">
+            <div class="container">
+              <div class="role_card_header">
+                <p class="role">ROLE</p>
+                <button
+                  class="role_new_btn"
+                  *ngIf="isWithin24Hours(roles?.date)"
+                >
+                  New
+                </button>
+              </div>
+              <h2 class="role_title" (click)="getRoleById(roles)">
+                {{ roles?.role_name }}
+              </h2>
+              <mat-divider></mat-divider>
+              <div class="role_actions_container">
+                <mat-checkbox
+                  (change)="checkBoxChange($event, roles)"
+                  [(ngModel)]="roles.checked"
+                  class="mat_checkbox_role"
+                ></mat-checkbox>
+                <div class="role_actions">
+                  <p class="role_date">
+                    <i> {{ roles?.date | date : "mediumDate" }}</i>
+                  </p>
+                  <img
+                    src="../../../../assets/icons/verticalMenuProfile.svg"
+                    [matMenuTriggerFor]="menu"
+                  />
+                </div>
+              </div>
+            </div>
+          </mat-card>
+          <div class="trigger_menu">
+            <mat-menu #menu="matMenu">
+              <button
+                mat-menu-item
+                (click)="openGenerateDialog(jobDescription, roles)"
+              >
+                <img src="../../../../assets/icons/bookmark.svg" />
+                <span class="menu_options">Generate Job Description</span>
+              </button>
+              <button
+                mat-menu-item
+                (click)="openDialogDelete(deleteRoleDialog, roles)"
+              >
+                <img src="../../../assets/icons/Delete.svg" />
+                <span class="menu_options">Delete</span>
+              </button>
+              <button mat-menu-item>
+                <img src="../../../assets/icons/editRole.svg" />
+                <span class="menu_options" (click)="editRole(roles)">Edit Role</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- paginator -->
+    <div class="paginator_roles">
+      <p class="paginator-info">
+        Page {{ paginator.pageIndex + 1 }} of {{ AllRoles.length }}
+      </p>
+      <mat-paginator
+        #paginator
+        [length]="AllRoles.length"
+        [pageSize]="16"
+        class="page1"
+        (page)="pageEvent = $event"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+<!--***********add role employee DIALOG TEMPLATES************** -->
+
+<ng-template #addRoleEmployees class="add_Role_Employees">
+  <div class="bg-dailog">
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1">ROLES : <b>CREATE ROLE</b></p>
+        <p class="sub_txt2">Create a Role based on Employees</p>
+        <i class="sub_txt3">Search an employee and convert it into a role</i>
+      </div>
+      <div class="col-3 close_icon_dialog" (click)="closeDialogEmployee()">
+        <img src="../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class="role_dialog_container">
+    <p><b>FIND EMPLOYEE</b></p>
+    <div class="mat_autocomplete_Dialog">
+      <mat-form-field class="auto_complete_dialog">
+        <mat-select
+          [(ngModel)]="slectedEmployees"
+          [formControl]="bankMultiCtrl"
+          placeholder="Search Employee from your Org"
+          [multiple]="true"
+          ><mat-option>
+            <ngx-mat-select-search
+              [formControl]="bankMultiFilterCtrl"
+              placeholderLabel="Search"
+              [noEntriesFoundLabel]="'Not data found'"
+            ></ngx-mat-select-search>
+          </mat-option>
+          <mat-option
+            class="auto_complete_options"
+            *ngFor="let bank of filteredBanksMulti | async"
+            [value]="bank.user_id"
+          >
+            <!-- <div class="row"> -->
+            <!-- <div class="col-2"> -->
+            <i
+              style="color: #0f253a; font-size: 35px"
+              *ngIf="bank.user_photo === null"
+              class="fa-solid fa-circle-user"
+            ></i>
+            <img
+              *ngIf="bank.user_photo"
+              [src]="bank.user_photo"
+              height="35px"
+              width="35px"
+              style="border-radius: 50px"
+            />
+            <!-- </div> -->
+            <!-- <div class="col-5"> -->
+            <span class="p-3">{{ bank.user_name }}</span>
+            <!-- </div> -->
+            <!-- <div class="col-5">
+                {{ bank.designation === null ? "-" : bank.designation }}
+              </div> -->
+            <!-- </div> -->
+          </mat-option>
+        </mat-select>
+        <img
+          class="search_img_role"
+          src="../../../assets/icons/search.svg"
+          alt=""
+        />
+      </mat-form-field>
+    </div>
+    <!-- {{ bankMultiCtrl.value }} -->
+    <div class="role_dialog_btn_container">
+      <b (click)="closeDialogEmployee()"><u>CANCEL</u></b>
+      <button class="convert_btn" (click)="createNewRoleEmployee(newRole)">
+        <b>CONVERT ROLE</b>
+      </button>
+    </div>
+  </div>
+</ng-template>
+<!-- (click)="openSuccessDialog()" -->
+
+<!--***********create new role************** -->
+<ng-template #newRole class="add_Role_Employees">
+  <div class="bg-dailog">
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1">ROLES : <b>CREATE NEW ROLE</b></p>
+        <p class="sub_txt2">Help me create a New Role</p>
+        <i class="sub_txt3"
+          >Define a new role by answering the questions as per your
+          requirements, Loren ipsum</i
+        >
+      </div>
+      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+        <img src="../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <form #newRoleForm="ngForm">
+    <div class="container new_role_content">
+      <div class="row p-0 m-0">
+        <div class="col-6">
+          <b>FUNCTION</b>
+          <div class="row">
+            <div class="col pt-2">
+              <mat-form-field class="status_filter" appearance="outline">
+                <mat-select
+                  ngModel
+                  required="true"
+                  name="department"
+                  panelClass="evaluation_select_panel"
+                  placeholder="Select Function / Department"
+                  value="value"
+                >
+                  <mat-option
+                    *ngFor="let department of EvalutionFunctioList"
+                    [value]="department"
+                    >{{ department }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <b>LEVEL</b>
+          <div class="row">
+            <div class="col pt-2">
+              <!-- <input
+              type="text"
+              class="role_search_input"
+              placeholder="Enter Role Name"
+            /> -->
+
+              <!-- mat input filed with mat chips on top of input -->
+              <!-- <mat-form-field class="example-chip-list" class="input_chips">
+              <mat-chip-grid #chipList>
+                <ng-container *ngFor="let fruit of fruits; let i = index">
+                  <ng-container *ngIf="i < 2">
+                    <mat-chip-option
+                      [selectable]="selectable"
+                      [removable]="removable"
+                      (removed)="remove(fruit)"
+                    >
+                      {{ fruit.name }}
+                      <mat-icon matChipRemove *ngIf="removable"
+                        >cancel</mat-icon
+                      >
+                    </mat-chip-option>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf="fruits.length > 2">
+                  <mat-chip> +{{ fruits.length - 2 }} more </mat-chip>
+                </ng-container>
+                <input  
+                  placeholder="New fruit..."
+                  [matChipInputFor]="chipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="add($event)"
+                />
+              </mat-chip-grid>
+            </mat-form-field> -->
+
+              <div class="input-container">
+                <div class="display" style="display: flex">
+                  <ng-container *ngFor="let fruit of fruits; let i = index">
+                    <div class="chip" *ngIf="i < 2">
+                      {{ fruit.name }} <span (click)="remove(fruit)">x</span>
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="fruits.length > 2">
+                    <div class="more-chip">+{{ fruits.length - 2 }}</div>
+                  </ng-container>
+                  <input
+                    ngModel
+                    required="true"
+                    name="level"
+                    placeholder="Enter Role Name"
+                    (keydown.backspace)="removeLastChip()"
+                    (keyup.enter)="add(inputValue.value); inputValue.value = ''"
+                    #inputValue
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row_2">
+        <div class="col-6">
+          <b>ROLE NAME</b>
+          <div class="row">
+            <div class="col pt-2">
+              <input
+                required="true"
+                ngModel
+                name="roleName"
+                type="text"
+                class="role_search_input"
+                placeholder="Enter Role Name"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <b>DESCRIPTION</b>
+          <div class="row">
+            <div class="col pt-2">
+              <input
+                required="true"
+                ngModel
+                name="description"
+                type="text"
+                class="role_search_input"
+                placeholder="Add description"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="role_dialog_btn_container_newrole">
+        <b><u>RESET</u></b>
+        <!-- [disabled]="!newRoleForm.valid" -->
+        <button
+          *ngIf="scratchRoleBtn"
+          class="convert_btn"
+          type="submit"
+          (click)="openROLEQUESTIONDialog(ROLEQUESTION, newRoleForm.value)"
+        >
+          <b>NEXT </b>
+        </button>
+
+        <!-- [disabled]="!newRoleForm.valid" -->
+        <button
+          *ngIf="employeeRoleBtn"
+          class="convert_btn"
+          type="submit "
+          (click)="employeeRoleSubmit(newRoleForm.value)"
+        >
+          <b>NEXT</b>
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!-- *************** ROLES QUESTION DIALOG ************** -->
+<ng-template #ROLEQUESTION>
+  <div class="bg-dailog">
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1">ROLES : <b>CREATE NEW ROLE : DESIGN MANAGER</b></p>
+        <p class="sub_txt2">Help me create a New Role</p>
+        <i class="sub_txt3"
+          >Define a new role by answering the questions as per your
+          requirements, Loren ipsum</i
+        >
+      </div>
+      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+        <img src="../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class="outer-container">
+    <div class="roleQNScontainer">
+      <!-- ***ROLE QUESTIONS WITH SLIDERS*** -->
+
+      <div class="row pt-2" *ngFor="let qns of rolesQuestions; let i = index">
+        <div class="col-9">
+          <div class="question_cat">{{ qns.category }}</div>
+          <div class="qns_role">{{ i + 1 }}. {{ qns?.question }}</div>
+        </div>
+        <div class="col-3 slider_container">
+          <mat-slider
+            class="example-margin w-100"
+            [max]="max"
+            [min]="min"
+            [step]="step"
+            [discrete]="thumbLabel"
+            [showTickMarks]="showTicks"
+          >
+            <!-- <input
+              matSliderThumb
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="sliderValues[i]?.value"
+              #slider
+            /> -->
+            <input
+              matSliderThumb
+              [ngModelOptions]="{ standalone: true }"
+              [ngModel]="getSliderValue(i)"
+              (ngModelChange)="setSliderValue($event, i)"
+              #slider
+            />
+          </mat-slider>
+        </div>
+      </div>
+
+      <!-- ROLE QUESTIONS WITH BUTTONS -->
+      <!-- <div class="qns_ans">
+        <p>
+          1. Will this job require variety of new issues to be addressed
+          regularly?
+        </p>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button
+            type="button"
+            class="btn"
+            [class.selected]="selectedButton === 'Novice'"
+            (click)="selectButton('Novice')"
+          >
+            Novice
+          </button>
+          <button
+            class="btn"
+            [class.selected]="selectedButton === 'Proficient'"
+            (click)="selectButton('Proficient')"
+            type="button"
+            class="btn"
+          >
+            Proficient
+          </button>
+          <button
+            class="btn"
+            [class.selected]="selectedButton === 'Advanced'"
+            (click)="selectButton('Advanced')"
+            type="button"
+            class="btn"
+          >
+            Advanced
+          </button>
+          <button
+            class="btn"
+            [class.selected]="selectedButton === 'Expert'"
+            (click)="selectButton('Expert')"
+            type="button"
+            class="btn"
+          >
+            Expert
+          </button>
+          <button
+            class="btn"
+            [class.selected]="selectedButton === 'Legend'"
+            (click)="selectButton('Legend')"
+            type="button"
+            class="btn"
+          >
+            Legend
+          </button>
+        </div>
+      </div> -->
+
+      <!-- ******************* -->
+      <div class="role_dialog_btn_container">
+        <b><u>Cancel</u></b>
+        <button class="convert_btn" (click)="roleForQuestions()">
+          <b>Next</b>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- DELETE ROLE DIALOG -->
+<ng-template #deleteRoleDialog>
+  <div class="dialog_container">
+    <div class="row p-0 m-0">
+      <div class="col-11 head_container">
+        <!-- <h2 mat-dialog-title>Success</h2> -->
+        <div mat-dialog-content>
+          <p class="dialog_tittle">
+            Are you sure you want to delete the "{{
+              roleDetailsDelete.role_name
+            }}" role?
+          </p>
+          <!-- <i class="sub_txt">{{ notes }}</i> -->
+        </div>
+      </div>
+      <div class="col-1 pt-5">
+        <img
+          class="close_icon"
+          (click)="closedialog()"
+          src="../../../assets/icons/closeDialog.svg"
+        />
+      </div>
+    </div>
+    <div class="button">
+      <button (click)="deleteRole()" class="done_btn">Delete</button>
+    </div>
+
+    <!-- <div mat-dialog-actions>
+      <button  >Done</button>
+    </div> -->
+  </div>
+</ng-template>
+
+<!-- BULK DELETE ROLES -->
+<!-- DELETE ROLE DIALOG -->
+<ng-template #BulkdeleteRoleDialog>
+  <div class="dialog_container">
+    <div class="row p-0 m-0">
+      <div class="col-11 head_container">
+        <!-- <h2 mat-dialog-title>Success</h2> -->
+        <div mat-dialog-content>
+          <p class="dialog_tittle">
+            Are you sure you want to delete the "{{ deleteRoleIds.length }}"
+            role?
+          </p>
+          <!-- <i class="sub_txt">{{ notes }}</i> -->
+        </div>
+      </div>
+      <div class="col-1 pt-5">
+        <img
+          class="close_icon"
+          (click)="closedialog()"
+          src="../../../assets/icons/closeDialog.svg"
+        />
+      </div>
+    </div>
+    <div class="button">
+      <button (click)="bulkDelete()" class="done_btn">Delete</button>
+    </div>
+
+    <!-- <div mat-dialog-actions>
+      <button  >Done</button>
+    </div> -->
+  </div>
+</ng-template>
+
+<!-- *********GENERATE JOB DESCRIPTION************* -->
+
+<ng-template #jobDescription class="add_Role_Employees">
+  <div class="bg-dailog">
+    <!-- dialog header -->
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1">CANDIDATES : ROLES : <b>DESIGN MANAGER</b></p>
+        <p class="sub_txt2">Generate Job Description</p>
+        <i class="sub_txt3">Job description for role “ Design Manager”</i>
+      </div>
+      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+        <img src="../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class="description_container">
+    <div class="header_description">
+      <b>Job Description</b>
+      <div class="copyandGenerate">
+        <div
+          class="copy_description"
+          [cdkCopyToClipboard]="generatedJobDescription"
+        >
+          <img src="../../../../assets/icons/copy_description.svg" />
+        </div>
+        <div>
+          <div class="item1_filter">
+            <button class="generate_btn" (click)="createJobDescription()">
+              <img src="../../../../assets/icons/generate.svg" />GENERATE JOB
+              DESCRIPTION
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content_description">
+      <div>
+        <textarea
+          name=""
+          id=""
+          cols="160"
+          rows="15"
+          [(ngModel)]="generatedJobDescription"
+        >
+        </textarea>
+        <!-- {{ descriptionGenerated }} -->
+      </div>
+    </div>
+
+    <div class="role_dialog_btn_container pt-4">
+      <b><u>Close</u></b>
+      <button class="convert_btn" (click)="saveJobDescription()">
+        <b>SAVE</b>
+      </button>
+    </div>
+  </div>
+</ng-template>
+<app-footer></app-footer>

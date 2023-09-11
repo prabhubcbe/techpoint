@@ -1,0 +1,15 @@
+app-scatter-plot {
+   #scatterplot {
+        height: inherit;
+        width: inherit;
+        .bar {
+            fill: steelblue;
+        }
+        .bar:hover {
+            fill: navy;
+        }
+        .axis--x path {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,81 @@
+<div class="HeadContainer">
+  <div class="flexHolder Root_containerVariable">
+    <div class="flex-container">
+      <div class="logo_Img">
+        <img src="../../../assets/images/MayaMaya-Logo.png" width="80" />
+      </div>
+      <div class="item1">
+        <a routerLink="/home" routerLinkActive="active" class="">HOME</a>
+      </div>
+      <div class="item2 hover-link dropdown">
+        <a routerLink="/candidates" routerLinkActive="active"
+          >CANDIDATES<i class="fa-solid fa-chevron-down Fnt_Sze_12 p-2"></i
+        ></a>
+        <div class="dropdown-content">
+          <p routerLink="/roles" class="pb-0 mb-0">Roles</p>
+          <p routerLink="/candidates/applicants">Applicants</p>
+        </div>
+      </div>
+      <div class="item3 hover-link dropdown">
+        <a routerLink="/employees" routerLinkActive="active"
+          >EMPLOYEES
+          <i class="fa-solid fa-chevron-down Fnt_Sze_12 p-2"></i>
+        </a>
+        <div class="dropdown-content">
+          <!-- TEAMS PAGE ROUTER -->
+          <!-- <p
+            class="pb-0 mb-0"
+            routerLink="/employees/teams"
+            routerLinkActive="active"
+          >
+            Teams
+          </p> -->
+          <p routerLink="/employees/individual">Individuals</p>
+        </div>
+      </div>
+      <!-- <div class="item">
+        <a routerLink="/teams" routerLinkActive="active">TEAMS</a>
+      </div> -->
+      <div class="item4">
+        <a routerLink="/reports" routerLinkActive="active">REPORTS</a>
+      </div>
+      <!-- <div class="item5">
+        <a routerLink="/resources" routerLinkActive="active">RESOURCES</a>
+      </div> -->
+
+      <div class="item6"><i class="fa-solid fa-magnifying-glass"></i></div>
+      <div class="item7"><i class="fa-regular fa-bell"></i></div>
+      <div class="item8">
+        <div class="userProfileContainer" [matMenuTriggerFor]="Profilemenu">
+          <button mat-mini-fab style="color: #0f253a; background-color: white">
+            <i class="fa-solid fa-user"></i>
+          </button>
+          <p class="userName">John Doe</p>
+          <i class="fa-solid fa-chevron-down Fnt_Sze_12 p-2 pt-0"></i>
+        </div>
+        <div>
+          <mat-menu #Profilemenu="matMenu">
+            <button mat-menu-item routerLink="/userProfile">
+              <mat-icon class="icnn">person</mat-icon>
+
+              <span class="name">My Profile</span>
+            </button>
+
+            <button mat-menu-item routerLink="/adminsetting">
+              <mat-icon class="icnn">settings</mat-icon>
+              <span class="name">Settings</span>
+            </button>
+            <button mat-menu-item routerLink="/guide">
+              <mat-icon class="icnn">help_outline</mat-icon>
+              <span class="name">Help & Support</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="icnn">power_settings_new</mat-icon>
+              <span class="name" (click)="logout()">Logout</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<!-- ********************slider********************* -->
+<!-- <div style="margin-bottom: 80px">
+  <div class="crousel row pt-3"> -->
+<div class="container">
+  <p class="head_title">TOP FIVE: RESOURCES WITH AREAS OF IMPROVEMENT</p>
+  <owl-carousel-o
+    class="owl_slider"
+    class="col-9"
+    [options]="customOptions"
+    (change)="getData($event)"
+  >
+    <ng-template carouselSlide *ngFor="let employeeData of allEmployeesData">
+      <div class="employees_cards_container">
+        <div class="container_employees">
+          <div class="image_overlay"></div>
+          <div class="employees_card_bg_pic">
+            <img
+                        style="object-fit: cover"
+                        width="100%"
+                        [src]="employeeData.user_photo"
+                      />
+          </div>
+          <div class="checkBox_Burgermenu_container">
+            <div class="check_Box">
+              <label class="cl-checkbox">
+                <input type="checkbox" />
+                <span></span>
+              </label>
+            </div>
+            <div class="burger">
+              <i class="fa-solid fa-ellipsis-vertical vertical_menu"></i>
+            </div>
+          </div>
+          <div class="employee_txt_container"><p>{{ employeeData.user_name }}</p></div>
+          <div class="employee_name_container">
+            <div class="employee_card_Sprints">
+              <p>3 Sprints Latest Sep 24</p>
+            </div>
+            <div class="employee_card_Active"><p>Active</p></div>
+          </div>
+          <div class="employees_card_graph">
+            <div class="row">
+              <div class="col-7">
+                <app-radial-stacked-chart
+                id="2"
+                [data]="employeeData.result_values"
+              ></app-radial-stacked-chart>
+              </div>
+              <div class="col align-self-center">
+                    <p class="title_details">Department</p>
+                    <p class="result_details">{{employeeData.department}}</p>
+                    <p class="title_details">Role</p>
+                    <p class="result_details">{{employeeData.designation}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </owl-carousel-o>
+
+  <!-- *********************ALL RESOURCES ******************* -->
+  <div class="all_resources">
+    <p class="head_title">ALL RESOURCES IN TEAM</p>
+    <div class="row">
+      <div class="col-4" *ngFor="let employeeData of allEmployeesData">
+        <div class="employees_cards_container">
+          <div class="container_employees">
+            <div class="employees_card_bg">
+              <div class="employees_card_data_container">
+                <div class="image_overlay">
+                  <img
+                  style="object-fit: cover"
+                  width="100%"
+                  [src]="employeeData.user_photo"
+                />
+                </div>
+                <i class="fa-solid fa-user employees_card_icon"></i>
+              </div>
+              <div class="checkBox_Burgermenu_container">
+                <div class="check_Box">
+                  <label class="cl-checkbox">
+                    <input type="checkbox" />
+                    <span></span>
+                  </label>
+                </div>
+                <div class="burger">
+                  <i class="fa-solid fa-ellipsis-vertical vertical_menu"></i>
+                </div>
+              </div>
+              <div class="employee_txt_container"><p>{{ employeeData.user_name }}</p></div>
+              <div class="employee_name_container">
+                <div class="employee_card_Sprints">
+                  <p>3 Sprints Latest Sep 24</p>
+                </div>
+                <div class="employee_card_Active"><p>Active</p></div>
+              </div>
+            </div>
+            <div class="employees_card_graph">
+              <div class="row">
+                <div class="col-7">
+                  <app-radial-stacked-chart
+                  id="2"
+                  [data]="employeeData.result_values"
+                ></app-radial-stacked-chart>
+                </div>
+                <div class="col align-self-center">
+                      <p class="title_details">Department</p>
+                      <p class="result_details">{{employeeData.department}}</p>
+                      <p class="title_details">Role</p>
+                      <p class="result_details">{{employeeData.designation}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- </div>
+</div> -->

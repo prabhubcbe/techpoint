@@ -1,0 +1,223 @@
+<div class="component_container">
+  <div class="bg_GreenGradient padding_100">
+    <div class="Root_containerVariable pl-2">
+      <div class="title_candidates">
+        <p>TEAMS</p>
+        <button class="add_team_btn mt-4">
+          <i class="fa-solid fa-circle-plus"></i>CREATE NEW TEAM
+        </button>
+      </div>
+      <div class="filters_container row">
+        <div class="Bussiner_Filter col-3">
+          <p>TEAM</p>
+          <div>
+            <div class="search">
+              <input
+                type="text"
+                class="search__input"
+                placeholder="Search any team"
+              />
+              <div class="search__button">
+                <!-- search icon -->
+                <svg
+                  class="search__icon"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Level_filter col-4">
+          <p>ROLE</p>
+          <div class="level_DropDownFilter">
+            <mat-form-field class="w-100">
+              <mat-select
+                [formControl]="toppingsControl"
+                multiple
+                placeholder="Search/select"
+                ><mat-option>
+                  <ngx-mat-select-search
+                    [formControl]="bankFilterCtrl"
+                    (input)="searchFilterLevel($event)"
+                    placeholderLabel="Search: Team Manager"
+                    noEntriesFoundLabel="'no matching found'"
+                  >
+                    ></ngx-mat-select-search
+                  ></mat-option
+                >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      *ngFor="let topping of toppingsControl.value?.slice(0, 2)"
+                      [removable]="true"
+                      (removed)="onToppingRemoved(topping)"
+                    >
+                      {{ topping }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <mat-chip
+                      *ngIf="
+                        toppingsControl.value != null &&
+                        toppingsControl.value.length! > 2
+                      "
+                    >
+                      + {{ toppingsControl.value.length! - 2 }} more
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let topping of filteredToppingList"
+                  [value]="topping"
+                >
+                  {{ topping }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="evaluvation_filter col-3">
+          <p>EVALUATION SCALE</p>
+          <div class="evaluation_DropdwonFilter">
+            <mat-form-field class="evaluation_DropdwonFilterFile">
+              <mat-select
+                class="evaluation_select"
+                [formControl]="evaluation_DropdwonForm"
+                placeholder="Select from dropdown"
+              >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      [removable]="true"
+                      (removed)="onRemoveEvalvationDropdown()"
+                    >
+                      {{ evaluation_DropdwonForm.value }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let list of evaluvation_datalist"
+                  [value]="list.name"
+                  >{{ list.name }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- <div class="evaluation_Dropdwon">
+                <select class="evaluvation_Select">
+                  <option value="volvo">Volvo</option>
+                  <option value="saab">Saab</option>
+                  <option value="mercedes">Mercedes</option>
+                  <option value="audi">Audi</option>
+                </select>
+              </div> -->
+        </div>
+        <div class="col-2 search_btn_container">
+          <div class="search_Btn">
+            <button class="searchbtn">Search</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ****************TEAMS GRAPH CARD ***************** -->
+      <div class="row main_Block">
+        <div class="col-lg-9 col-md-12">
+          <div class="candidate_available">
+            <div class="candidate_header">
+              <div class="header_container">
+                <div class="item1">
+                  <h2>Teams</h2>
+                </div>
+                <div class="item2">
+                  <h2>50</h2>
+                  <div class="bgBtn">
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="graph_card">
+              <app-scatter-plot
+                [data]="bubbleChartData"
+                [bubbleColor]="'#672024'"
+                [scatterplot]="'acquisitions1'"
+              ></app-scatter-plot>
+            </div>
+          </div>
+        </div>
+        <div class="col-3"></div>
+      </div>
+      <mat-divider class="divider_main"></mat-divider>
+
+      <!-- *****************TEAMS CARDS********************* -->
+      <div class="teams_cards_container">
+        <div class="row">
+          <div class="teams_header">
+            <b>Teams(4)</b>
+            <button class="add_team_btn">
+              <i class="fa-solid fa-circle-plus"></i>CREATE NEW TEAM
+            </button>
+          </div>
+          <div class="col-lg-3 col-md-4" *ngFor="let employeeData of allEmployeesData">
+            <mat-card class="teams_card" (click)="routeTeamsProfile()">
+              <div class="cards_header">
+                <div class="actions_container">
+                  <!-- ************FAV ICON ***** -->
+                  <img
+                    class="fav_icon"
+                    src="../../../../assets/icons/black_fav.svg"
+                  />
+                  <mat-checkbox class="mat_checkbox_candidates"></mat-checkbox>
+                  <img
+                    class="burger_icon"
+                    src="../../../../assets/icons/black_vertical.svg"
+                  />
+                </div>
+                <div class="image_overlay">
+                  <img
+                  style="object-fit: cover"
+                  width="100%"
+                  [src]="employeeData.user_photo"
+                />
+                </div>
+                <div class="team_name">
+                  <p>{{ employeeData.user_name }}/p>
+                </div>
+                <div class="teams_graph">
+                  <div class="row">
+                    <div class="col-7">
+                      <app-radial-stacked-chart
+                      id="2"
+                      [data]="employeeData.result_values"
+                    ></app-radial-stacked-chart>
+                    </div>
+                    <div class="col align-self-center">
+                          <p class="title_details">Department</p>
+                          <p class="result_details">{{employeeData.department}}</p>
+                          <p class="title_details">Role</p>
+                          <p class="result_details">{{employeeData.designation}}</p>
+                    </div>
+                  </div>
+                </div>
+                <mat-divider class="divider_main"></mat-divider>
+                <div class="teams_actions">
+                  <i>Sep 15 2022</i>
+                  <img src="../../../../assets/icons/editRole.svg" />
+                  <img src="../../../../assets/icons/Delete.svg" />
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,529 @@
+<div class="component_container">
+  <div class="bg_GreenGradient padding_100">
+    <div class="Root_containerVariable pl-2">
+      <div class="title_container">
+        <a (click)="onPopState()">
+          <img src="../../../../assets/icons/backarrowwithBG.svg"
+        /></a>
+        <p *ngIf="!roleIdHandler">
+          Candidates : applicants : Search : {{ candateDetails?.user_name }}
+        </p>
+        <p *ngIf="roleIdHandler">
+          Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
+        </p>
+        <p></p>
+      </div>
+
+      <div class="profile_container">
+        <div class="row">
+          <div class="col-9">
+            <!-- ****************************PROFILE CARD************************* -->
+            <mat-card class="profile_image_card">
+              <i
+                *ngIf="candateDetails?.user_photo == null"
+                class="fa-solid fa-user candidate_profile_icon"
+              ></i>
+              <img
+                style="border-radius: 10px"
+                *ngIf="candateDetails?.user_photo"
+                class="profile_image"
+                [src]="candateDetails?.user_photo"
+              />
+              <div class="candidate_name_container">
+                <p class="name">{{ candateDetails?.user_name }}</p>
+                <p class="sprints">
+                  {{ candateDetails?.sprintscompleted }} Sprints Latest
+                  {{ formatDate(candateDetails?.date) }}
+                </p>
+              </div>
+              <div class="details_container">
+                <div class="row">
+                  <div class="col-4">
+                    <p class="title_details">Department</p>
+                    <p class="result_details">
+                      {{
+                        candateDetails?.department === ""
+                          ? "-"
+                          : candateDetails?.department
+                      }}
+                    </p>
+                  </div>
+                  <div class="col-4">
+                    <p class="title_details">Role</p>
+                    <p class="result_details">
+                      {{
+                        candateDetails?.designation === null
+                          ? "-"
+                          : candateDetails?.designation
+                      }}
+                    </p>
+                  </div>
+                  <div class="col-4">
+                    <div class="edit_assigned">
+                      <p class="title_details">ASSIGNED Status</p>
+                      <img
+                        src="../../../../assets/icons/edit_status_candidate.svg"
+                      />
+                    </div>
+                    <mat-form-field class="status_filter" appearance="outline">
+                      <mat-select
+                        (selectionChange)="updateStage()"
+                        [(ngModel)]="statusLevel"
+                        name="department"
+                        panelClass="evaluation_select_panel"
+                        placeholder="Select Level"
+                        value="value"
+                      >
+                        <mat-option
+                          *ngIf="candateDetails?.stage_level === null"
+                          value="null"
+                          >Null</mat-option
+                        >
+
+                        <mat-option
+                          class="evaluation_select_option"
+                          *ngFor="let stage of stageDataList"
+                          [value]="stage"
+                          >{{ stage }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                    <!-- <p class="result_details_status">
+                      {{
+                        candateDetails?.stage_level === null
+                          ? "Null"
+                          : candateDetails?.stage_level
+                      }}
+                    </p> -->
+                  </div>
+                </div>
+              </div>
+              <div class="image_overlay"></div>
+            </mat-card>
+
+            <!-- **************************PROFILE AND NOTES CARD******************** -->
+            <mat-card class="profile_notes_container">
+              <mat-tab-group class="profile_note_tabs">
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <img src="../../../../assets/icons/userProfileBlack.svg" />
+                    <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
+                    <p class="tab_title1">Profile</p>
+                  </ng-template>
+                  <div class="mat_tab_content">
+                    <p class="highlight_txt">Highlights -</p>
+                    <p
+                      class="highlight_txt_points"
+                      *ngFor="let high of highlights"
+                    >
+                      <img src="../../../../assets/icons/dotsHighlight.svg" />{{
+                        high === "" ? "-" : high
+                      }}
+                    </p>
+                  </div>
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <img src="../../../../assets/icons/sticky-note.svg" />
+                    <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
+                    <p class="tab_title1">Notes</p>
+                  </ng-template>
+                  <div class="mat_tab_content">
+                    <p class="" *ngFor="let note of notesAdded">
+                      {{ note.notes }}
+                    </p>
+                  </div>
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <img
+                      width="23px"
+                      src="../../../../assets/icons/chat_black.svg"
+                    />
+                    <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
+                    <p class="tab_title1">Messages</p>
+                  </ng-template>
+                  <div class="mat_tab_content">
+                    <p class="" *ngFor="let msg of messagesRecived">
+                      {{ msg.message }}
+                    </p>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+            </mat-card>
+            <!-- **************************SKILLS AND HUMAN SKILLS*************** -->
+            <mat-card class="Skills_container"
+              ><p>
+                Skills are human skills that aid to interact with your peers,
+                cohesively communicate your ideas, collaborate and shine at
+                work.
+              </p>
+            </mat-card>
+            <!-- *******************GRAPH****************************** -->
+            <mat-card class="graph_conatiner">
+              <app-radial-stacked-chart
+                id="2"
+                [data]="candateDetails?.result_values"
+                [svgHeight]="'500px'"
+              ></app-radial-stacked-chart>
+            </mat-card>
+            <!-- ****************FULL REPORT******************************************* -->
+            <mat-card class="FULL_REPORT">
+              <div class="full_report_container">
+                <p class="full_report_title">FULL REPORT</p>
+                <p>
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                  diam
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                  diam
+                </p>
+                <div class="search_Btn">
+                  <button class="searchbtn">DOWNLOAD REPORT</button>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+
+          <div class="col-3">
+            <div class="options_container">
+              <div class="button_container">
+                <img src="../../../../assets/icons/shareProfile.svg" />
+                <p class="button_txt">Share</p>
+              </div>
+              <div
+                class="button_container"
+                *ngIf="roleIdHandler && candateDetails?.is_favourite === true"
+              >
+                <i
+                  (click)="removeFav()"
+                  style="font-size: 19px; color: white; padding-left: 20px"
+                  class="fa-solid fa-star"
+                ></i>
+                <p class="button_txt">SHORTLISTED</p>
+              </div>
+
+              <div
+                class="button_container"
+                *ngIf="roleIdHandler && candateDetails?.is_favourite === false"
+              >
+                <img
+                  (click)="addFav()"
+                  src="../../../../assets/icons/shortlistProfile.svg"
+                />
+                <p class="button_txt">SHORTLIST</p>
+              </div>
+              <div class="button_container">
+                <img src="../../../../assets/icons/downloadProfile.svg" />
+                <p class="button_txt">DOWNLOAD REPORT</p>
+              </div>
+              <hr class="dotted_line" />
+              <div class="button_container">
+                <img src="../../../../assets/icons/messageProfile.svg" /><P
+                  class="button_txt"
+                  >SEND A MESSAGE</P
+                >
+              </div>
+              <div class="notes_container">
+                <div class="img_border">
+                  <img src="../../../../assets/icons/addnotesProfile.svg" />
+                </div>
+                <P class="button_txt">SET A TASK</P>
+              </div>
+              <div class="notes_container" (click)="addNotesDilaog(addNotes)">
+                <div class="img_border">
+                  <img src="../../../../assets/icons/tasksProfile.svg" />
+                </div>
+                <P class="button_txt">ADD A NOTES</P>
+              </div>
+            </div>
+            <!-- ***********************ROLE MATCH ******************** -->
+            <div class="roles_match_container">
+              <mat-card class="role_match">
+                <div class=" ">
+                  <p class="head_title">ROLE MATCH</p>
+                  <p>This candidate matches the role and is a good fit!</p>
+                  <div class="guage_container">
+                    <!-- (window:resize)="onResize($event)" -->
+                    <ngx-gauge
+                      style="height: 100px"
+                      class="guage_Chart"
+                      [thick]="guageSizethick"
+                      [type]="gaugeType"
+                      [value]="recommendJobs[0]?.overall_score"
+                      [foregroundColor]="gaugecolor"
+                    >
+                      <ngx-gauge-value class="guage_value">
+                        {{ recommendJobs[0]?.overall_score | number }}%
+                      </ngx-gauge-value>
+                      <p>hiiiiii</p>
+                    </ngx-gauge>
+                  </div>
+                  <mat-divider
+                    style="border-right-width: 1px; color: rgb(209, 206, 206)"
+                  ></mat-divider>
+                  <p class="calculated_txt">% Value calculated basis on</p>
+
+                  <div class="soft_skills_container">
+                    <div class="soft_skill">
+                      <p class="soft_skill_title">Technical Skills</p>
+                      <img
+                        class="soft_skill_icon"
+                        src="../../../../assets/icons/circle.svg"
+                      />
+                      <b class="soft_skill_result">{{
+                        recommendJobs[0]?.tech_skill_match_score
+                      }}</b>
+                    </div>
+                    <div class="soft_skill">
+                      <p class="soft_skill_title">Soft Skills</p>
+                      <img
+                        class="soft_skill_icon"
+                        src="../../../../assets/icons/circle.svg"
+                      />
+                      <b class="soft_skill_result">{{
+                        recommendJobs[0]?.soft_skill_match_score
+                      }}</b>
+                    </div>
+                    <div class="soft_skill">
+                      <p class="soft_skill_title">Education</p>
+                      <img
+                        class="soft_skill_icon"
+                        src="../../../../assets/icons/circle.svg"
+                      />
+                      <b class="soft_skill_result">{{
+                        recommendJobs[0]?.degree ==
+                        "Degree was matched(100% Match)"
+                          ? "100%"
+                          : "0%"
+                      }}</b>
+                    </div>
+                    <!-- <div class="soft_skill">
+                      <p class="soft_skill_title">Technical Skills</p>
+                      <img
+                        class="soft_skill_icon"
+                        src="../../../../assets/icons/circle.svg"
+                      />
+                      <b class="soft_skill_result">95%</b>
+                    </div>
+                    <div class="soft_skill">
+                      <p class="soft_skill_title">Technical Skills</p>
+                      <img
+                        class="soft_skill_icon"
+                        src="../../../../assets/icons/circle.svg"
+                      />
+                      <b class="soft_skill_result">95%</b>
+                    </div> -->
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+            <!-- ***************************MAYAMAYA RECOMMENDS*************** -->
+
+            <mat-card class="role_match_recommend">
+              <div class="container">
+                <p class="recommend_title">MAYAMAYA RECOMMENDED JOBS</p>
+                <div
+                  class="recommended_roles"
+                  *ngFor="
+                    let jobs of recommendJobs
+                      | slice
+                        : paginator.pageIndex * paginator.pageSize
+                        : (paginator.pageIndex + 1) * paginator.pageSize
+                      | slice : 0 : 5
+                  "
+                >
+                  <p>{{ jobs?.role_name }}</p>
+                  <b>{{ jobs?.overall_score }}%</b>
+                </div>
+                <!-- <div class="recommended_roles">
+                  <p>Design Manager</p>
+                  <b>87%</b>
+                </div>
+                <div class="recommended_roles">
+                  <p>Design Manager</p>
+                  <b>87%</b>
+                </div>
+                <div class="recommended_roles">
+                  <p>Design Manager</p>
+                  <b>87%</b>
+                </div>
+                <div class="recommended_roles">
+                  <p>Design Manager</p>
+                  <b>87%</b>
+                </div> -->
+
+                <!-- paginator -->
+                <div class="paginator_roles">
+                  <p class="paginator-info">
+                    Page {{ paginator.pageIndex + 1 }} of
+                    {{ recommendJobs.length }}
+                  </p>
+                  <mat-paginator
+                    #paginator
+                    [length]="recommendJobs.length"
+                    [pageSize]="6"
+                    class="page1"
+                    (page)="pageEvent = $event"
+                  >
+                  </mat-paginator>
+                </div>
+              </div>
+            </mat-card>
+
+            <!-- ***********************Similar roles************** -->
+            <!-- <div class="roles_head">
+              <p>Similar Roles</p>
+              <u><i>View More</i></u>
+            </div> -->
+            <!-- role_card -->
+
+            <!-- <div>
+              <div class="roles_card">
+                <div class="container">
+                  <p class="role">ROLE</p>
+                  <h2 class="role_title">Front End Engineer - Senior</h2>
+                  <mat-divider></mat-divider>
+                  <div class="role_actions">
+                    <p class="role_date"><i> Sep 15 2022</i></p>
+                    <img
+                      src="../../../../assets/icons/verticalMenuProfile.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-9">
+            <mat-card class="Bio_card">
+              <div class="row Bio_container">
+                <p class="bio_title">Bio</p>
+                <p class="bio_txt">
+                  {{ Bio === "" ? "-" : Bio }}
+                </p>
+
+                <!-- <p class="bio_txt">short text</p> -->
+              </div>
+              <mat-divider
+                style="border-right-width: 1.5px; border-color: black"
+              ></mat-divider>
+              <div class="row edu_hardskills_container">
+                <div class="col-6">
+                  <p class="edu_title">Education</p>
+                  <div class="row" *ngFor="let edu of educatioDetails">
+                    <p class="university_title">
+                      {{ edu?.university === "" ? "-" : edu?.university }}
+                    </p>
+                    <p class="mb-0">
+                      {{ edu?.degree === "" ? "-" : edu?.degree }}
+                    </p>
+                    <p class="">{{ edu?.year === "" ? "-" : edu?.year }}</p>
+                  </div>
+                  <!-- <div class="row pt-3">
+                    <p class="university_title">The University of Texas</p>
+                    <p class="mb-0">Masters of Business Administration</p>
+                    <p class="">2016 - 2018</p>
+                  </div> -->
+                </div>
+                <div class="col-6">
+                  <p class="edu_title">Hard Skills</p>
+                  <p
+                    class="hard_skills_txt"
+                    *ngFor="let hard of hardSkills | slice : 0 : 18"
+                  >
+                    {{ hard === "" ? "-" : hard }}
+                  </p>
+                  <p *ngIf="hardSkills?.length" class="hard_skills_txt">
+                    +{{ hardSkills?.length - 18 }}
+                  </p>
+                  <!-- <p class="hard_skills_txt">Lorem dolor sit</p>
+                  <p class="hard_skills_txt">dolor sit</p>
+                  <p class="hard_skills_txt">Lorem ipsum dolor</p> -->
+                </div>
+              </div>
+              <mat-divider
+                style="border-right-width: 1.5px; border-color: black"
+              ></mat-divider>
+              <div class="row experience_conatiner">
+                <div class="row">
+                  <p class="Experience_header">Experience</p>
+                  <div class="col-4" *ngFor="let exp of experienceDetails">
+                    <p class="company_title">
+                      {{
+                        exp.company_location == "" ? "-" : exp.company_location
+                      }}
+                    </p>
+                    <p class="mb-0">
+                      {{ exp.position == "" ? "-" : exp.position }}
+                    </p>
+                    <p>{{ exp.years == "" ? "-" : exp.years }}</p>
+                  </div>
+                  <!-- <div class="col-4">
+                    <p class="company_title">Company XYZ comes here</p>
+                    <p class="mb-0">Designation Role comes here</p>
+                    <p>2019- 2021</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="company_title">Company XYZ comes here</p>
+                    <p class="mb-0">Designation Role comes here</p>
+                    <p>2019- 2021</p>
+                  </div> -->
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>
+
+<!-- ***************************DIALOGS**************************** -->
+
+<ng-template #addNotes>
+  <div class="bg-dailog">
+    <!-- dialog header -->
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1" *ngIf="!roleIdHandler">
+          Candidates : applicants : Search : {{ candateDetails?.user_name }}
+        </p>
+        <p class="sub_txt1" *ngIf="roleIdHandler">
+          Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
+        </p>
+        <p class="sub_txt2">Add a Notes</p>
+      </div>
+      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+        <img src="../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="containerDialog">
+    <b classa="addNoteText">Add Notes</b>
+    <div class="row">
+      <textarea
+        [(ngModel)]="notesEntered"
+        placeholder="Enter detail"
+        class="notes_input"
+      ></textarea>
+    </div>
+    <div class="role_dialog_btn_container pt-4">
+      <b><u>Close</u></b>
+      <button class="convert_btn" (click)="saveNotes()">
+        <b>SAVE</b>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- <div class="footer">
+  <app-footer></app-footer>
+</div> -->

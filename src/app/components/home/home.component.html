@@ -1,0 +1,581 @@
+<div class="component_container">
+  <div class="Root_containerVariable padding_100">
+    <div class="">
+      <div class="HomeTittleTxt">
+        <p>Home</p>
+      </div>
+      <!-- ***********PROMPT INPUT FIELD*******************  -->
+
+      <div class="row pl-0 ml-0">
+        <div class="col-lg-9 col-md-12">
+          <div class="promptInput">
+            <label class="input_Home-container">
+              <input
+                type="text"
+                [(ngModel)]="promptinputValue"
+                (focus)="focusFunction()"
+                (focusout)="focusOutFunction()"
+                name="text"
+                class="input_Home"
+              />
+              <span class="promptTxtSpan" *ngIf="hidePromptText">
+                <b>Enter prompt </b>
+                <p>
+                  For example, show me the most creative people who joined in
+                  the last two years in our Asia marketing team.
+                </p>
+              </span></label
+            >
+
+            <button
+              mat-mini-fab
+              class="input-button"
+              style="
+                color: #0f253a;
+                background-color: white;
+                width: 20px;
+                height: 20px;
+              "
+            >
+              <i
+                class="fa-solid fa-chevron-right"
+                style="width: 15px; height: 15px"
+              ></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ***********GRAPHS AND COUNT CARDS*******************  -->
+      <div class="row first_row">
+        <div class="col-lg-9 col-md-12 p-0 m-0 cards_container">
+          <div class="row w-100 p-0 m-0">
+            <div class="col-lg-4 p-1 col-md-6 col-sm-8 col-10 mx-auto">
+              <div class="graph_card">
+                <app-scatter-plot
+                  [data]="employeeOrgbubbleChartData"
+                  [bubbleColor]="'#672024'"
+                  [scatterplot]="'acquisitions1'"
+                ></app-scatter-plot>
+              </div>
+              <div class="employee_card">
+                <div class="gradient_bg"></div>
+                <div class="count_container">
+                  <h1 class="count_Txt">{{ EmployeeCount }}</h1>
+                  <p class="count_EmployeesTxt">Employees in Organization</p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-lg-4 col-md-6 p-1 col-sm-8 col-10 mx-auto first-row_2col"
+            >
+              <div class="graph_card">
+                <app-scatter-plot
+                  [data]="candidateOrgbubbleChartData"
+                  [bubbleColor]="'#1E4B4F'"
+                  id="acquisitions2"
+                  [scatterplot]="'acquisitions2'"
+                ></app-scatter-plot>
+              </div>
+              <div class="candidate_card">
+                <div class="gradient_bg"></div>
+                <div class="count_container">
+                  <h1 class="count_Txt">{{ candidateCount }}</h1>
+                  <p class="count_EmployeesTxt">Candidates</p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-lg-4 col-md-6 p-1 col-sm-8 col-10 mx-auto first-row_3col"
+            >
+              <div class="graph_card">
+                <app-scatter-plot
+                  [data]="employeesInTeambubbleChartData"
+                  [bubbleColor]="'#0F253A'"
+                  id="acquisitions3"
+                  [scatterplot]="'acquisitions3'"
+                ></app-scatter-plot>
+              </div>
+              <div class="employeeTeam_card">
+                <div class="gradient_bg"></div>
+                <div class="count_container">
+                  <h1 class="count_Txt">{{ departmnetCount }}</h1>
+                  <p class="count_EmployeesTxt">Employees in department</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ***********RECENT ACTIVITY CARD*******************  -->
+        <div class="col">
+          <mat-card class="recent_ActivityCard">
+            <div class="recentActivetyContainer">
+              <div class="recent_centerDiv">
+                <h3 class="recent_heading">RECENT ACTIVITY</h3>
+                <mat-divider
+                  style="min-height: 1.5px; background-color: #c4c4c4"
+                ></mat-divider>
+
+                <div
+                  style="cursor: pointer"
+                  class="row"
+                  *ngFor="
+                    let activity of recentActivity;
+                    let i = index;
+                    let last = last
+                  "
+                >
+                  <div
+                    (click)="routeUserProfile(activity)"
+                    class="row recent_activity_row"
+                    *ngIf="activity.activity_type == 'MESSAGE'"
+                  >
+                    <div class="col-2 pt-1 m-0 icon_col">
+                      <button mat-mini-fab class="iconNotification">
+                        <i
+                          class="fa-solid fa-message"
+                          style="
+                            color: white;
+
+                            font-size: 10px;
+                          "
+                        >
+                        </i>
+                      </button>
+                    </div>
+                    <div class="col-8 p-0">
+                      <p class="m-0" class="recent_activity_txt">
+                        Sent a
+
+                        <u style="font-weight: 600">{{
+                          activity.activity_type
+                        }}</u>
+                        to {{ activity.user_role }} {{ activity.user_name }}
+                      </p>
+                    </div>
+                    <div class="col-2 p-0 m-0">
+                      <p class="msgsTxtTime">{{ activity.last_inserted_dt }}</p>
+                    </div>
+                  </div>
+
+                  <!-- <mat-divider
+                    style="min-height: 1px; background-color: #c4c4c4"
+                  ></mat-divider> -->
+                  <div
+                    (click)="routeUserProfile(activity)"
+                    class="row recent_activity_row"
+                    *ngIf="activity.activity_type == 'SHORTLISTED'"
+                  >
+                    <div class="col-2 pt-1 m-0 icon_col">
+                      <button mat-mini-fab class="iconNotification">
+                        <i
+                          class="fa-sharp fa-solid fa-bookmark"
+                          style="
+                            color: white;
+
+                            font-size: 10px;
+                          "
+                        >
+                        </i>
+                      </button>
+                    </div>
+                    <div class="col-8 p-0">
+                      <p class="m-0" class="recent_activity_txt">
+                        <u style="font-weight: 600">{{
+                          activity.activity_type
+                        }}</u>
+                        the {{ activity.user_role }} in {{ activity.job_name }}
+                      </p>
+                    </div>
+                    <div class="col-2 p-0 m-0">
+                      <p class="msgsTxtTime">{{ activity.last_inserted_dt }}</p>
+                    </div>
+                  </div>
+
+                  <div
+                    (click)="routeUserProfile(activity)"
+                    class="row recent_activity_row"
+                    *ngIf="activity.activity_type == 'TASK'"
+                  >
+                    <div class="col-2 pt-1 m-0 icon_col">
+                      <button mat-mini-fab class="iconNotification">
+                        <i
+                          class="fa-sharp fa-solid fa-list"
+                          style="
+                            color: white;
+
+                            font-size: 10px;
+                          "
+                        >
+                        </i>
+                      </button>
+                    </div>
+                    <div class="col-8 p-0">
+                      <p class="m-0" class="recent_activity_txt">
+                        Sent a
+                        <u style="font-weight: 600">{{
+                          activity.activity_type
+                        }}</u>
+                        to {{ activity.user_role }} {{ activity.user_name }}
+                      </p>
+                    </div>
+
+                    <div class="col-2 p-0 m-0">
+                      <p class="msgsTxtTime">{{ activity.last_inserted_dt }}</p>
+                    </div>
+                  </div>
+
+                  <div
+                    (click)="routeUserProfile(activity)"
+                    class="row recent_activity_row"
+                    *ngIf="activity.activity_type == 'NOTES'"
+                  >
+                    <div class="col-2 pt-1 m-0 icon_col">
+                      <button mat-mini-fab class="iconNotification">
+                        <i
+                          class="fa fa-sticky-note"
+                          style="
+                            color: white;
+
+                            font-size: 10px;
+                          "
+                        >
+                        </i>
+                      </button>
+                    </div>
+                    <div class="col-8 p-0">
+                      <p class="m-0" class="recent_activity_txt">
+                        Added a
+                        <u style="font-weight: 600">{{
+                          activity.activity_type
+                        }}</u>
+                        to {{ activity.user_role }} {{ activity.user_name }}
+                      </p>
+                    </div>
+                    <div class="col-2 p-0 m-0">
+                      <p class="msgsTxtTime">{{ activity.last_inserted_dt }}</p>
+                    </div>
+                  </div>
+
+                  <div
+                    (click)="routeUserProfile(activity)"
+                    class="row recent_activity_row"
+                    *ngIf="activity.activity_type == 'ACTION'"
+                  >
+                    <div class="col-2 pt-1 m-0 icon_col">
+                      <button mat-mini-fab class="iconNotification">
+                        <i
+                          class="fa fa-sticky-note"
+                          style="
+                            color: white;
+
+                            font-size: 10px;
+                          "
+                        >
+                        </i>
+                      </button>
+                    </div>
+                    <div class="col-8 p-0">
+                      <p class="m-0" class="recent_activity_txt">
+                        Added a
+                        <u style="font-weight: 600">{{
+                          activity.activity_type
+                        }}</u>
+                        to {{ activity.user_role }} {{ activity.user_name }}
+                      </p>
+                    </div>
+                    <div class="col-2 p-0 m-0">
+                      <p class="msgsTxtTime">{{ activity.last_inserted_dt }}</p>
+                    </div>
+                  </div>
+
+                  <div class="row p-0 m-0">
+                    <div class="col">
+                      <mat-divider
+                        *ngIf="!last"
+                        style="min-height: 1px; background-color: #c4c4c4"
+                      ></mat-divider>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+
+      <div class="row second_row">
+        <!-- ***********ROLES AND CANDIDATES CARDS*******************  -->
+
+        <div class="col-lg-9 col-md-12 Top_Five_Container">
+          <div class="tittle_container">
+            <div>
+              <p class="Top_Five_Txt">RECENT ROLES</p>
+            </div>
+            <div class="view_All" routerLink="/roles" routerLinkActive="active">
+              <i><u>View all</u></i>
+            </div>
+          </div>
+          <div class="">
+            <mat-card class="Top_Five_cards">
+              <div class="row Top_Five_Card_Container">
+                <div class="col-1 roles_header_card"></div>
+                <div class="col-4 roles_header_card p-0">Role Name</div>
+                <div class="col-2 roles_header_card">Candidates Count</div>
+
+                <div class="col-2 roles_header_card">Employees Count</div>
+                <div class="col-1 roles_header_card"></div>
+
+                <div class="col-2 roles_header_card">
+                  <p style="padding: 0 0 0 8px; margin: 0">Actions</p>
+                </div>
+              </div>
+            </mat-card>
+            <mat-card
+              class="Top_Five_cards"
+              *ngFor="let recentroles of recentRolesList"
+            >
+              <div class="row Top_Five_Card_Container">
+                <div class="col-5">
+                  <div class="icon_name">
+                    <div class="user_icon">
+                      <button mat-mini-fab class="user_Button">
+                        <i class="fa-solid fa-user"></i>
+                      </button>
+                    </div>
+                    <div class="user_name">
+                      <p>{{ recentroles.role_name | titlecase }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-2">
+                  <div class="user_department">
+                    <p>{{ recentroles.candidate_count }}</p>
+                  </div>
+                </div>
+                <div class="col-2">
+                  <div class="user_role">
+                    <p>{{ recentroles.employee_count }}</p>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="user_sendMsg_Btn">
+                    <button
+                      class="sendMsg_btn"
+                      (click)="getRoleById(recentroles)"
+                    >
+                      View Role
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="Top_Five_Card_Container">
+                <div class="user_icon">
+                  <button mat-mini-fab class="user_Button">
+                    <i class="fa-solid fa-user"></i>
+                  </button>
+                </div>
+                <div class="user_name">
+                  <p>{{ recentroles.role_name }}</p>
+                </div>
+                <div class="user_department">
+                  <p>{{ recentroles.candidate_count }}</p>
+                </div>
+                <div class="user_role">
+                  <p>{{ recentroles.employee_count }}</p>
+                </div>
+                <div class="user_sendMsg_Btn">
+                  <button class="sendMsg_btn">View Role</button>
+                </div>
+              </div> -->
+            </mat-card>
+          </div>
+        </div>
+
+        <!-- ***********RECENT MESSAGES CARDS*******************  -->
+
+        <div class="col">
+          <mat-card class="recent_ActivityCard">
+            <div class="recentActivetyContainer">
+              <div class="recent_centerDiv">
+                <div class="recent_viewall">
+                  <h3 class="recent_heading">RECENT MESSAGES</h3>
+                  <i class="pt-1"><u>View all</u></i>
+                </div>
+                <mat-divider
+                  style="min-height: 1px; background-color: #c4c4c4"
+                ></mat-divider>
+                <div
+                  class="recent_messages"
+                  *ngFor="let msg of recentMessages; let last = last"
+                >
+                  <div class="row pt-2" (click)="routeMessagesUser(msg)">
+                    <div class="col-2 icon_col">
+                      <button
+                        mat-mini-fab
+                        class="user_icon_green"
+                        *ngIf="msg.is_candidate == true"
+                      >
+                        <i class="fa-solid fa-user user_profile_msgs"></i>
+                      </button>
+                      <button
+                        mat-mini-fab
+                        class="user_icon_red"
+                        *ngIf="msg.is_candidate == false"
+                      >
+                        <i class="fa-solid fa-user user_profile_msgs"></i>
+                      </button>
+                    </div>
+                    <div class="col-8 p-0">
+                      <p class="user_Name_msgs">{{ msg.user_name }}</p>
+                      <p class="user_note_msgs">{{ msg.message }}</p>
+                    </div>
+                    <div class="col-2 p-0 m-0">
+                      <p class="user_Time_msgs">{{ msg.last_inserted_dt }}</p>
+                    </div>
+                  </div>
+                  <mat-divider
+                    *ngIf="!last"
+                    style="min-height: 0.5px; background-color: #c4c4c4"
+                  ></mat-divider>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+
+      <div class="row pt-5">
+        <!-- ***********TOP EMPLOYEES CARDS*******************  -->
+
+        <div class="col-9 Top_Five_Container">
+          <div class="tittle_container">
+            <div>
+              <p class="Top_Five_Txt">
+                TOP SIX : EMPLOYEES WITH AREAS OF IMPROVEMENT
+              </p>
+            </div>
+            <!-- <div class="view_All">
+              <i><u>View all</u></i>
+            </div> -->
+          </div>
+
+          <div class="row">
+            <div
+              class="col-lg-4 col-md-6 col-sm-8 col-10 mx-auto cards_container_recommend"
+              *ngFor="let employeeData of allEmployeesData"
+            >
+              <div class="">
+                <mat-card class="recommend_card">
+                  <div class="recommend_card_container">
+                    <div class="image_overlay"></div>
+                    <div class="candidateDummyImg">
+                      <i
+                        *ngIf="employeeData.user_photo === null"
+                        class="fa-solid fa-user candidate_profile_icon"
+                      ></i>
+
+                      <img
+                        loading="lazy"
+                        style="object-fit: cover"
+                        width="100%"
+                        [src]="employeeData.user_photo"
+                      />
+                    </div>
+                  </div>
+                  <!-- **********ACTIONS CONTAINER IN RESULTS CARDS** -->
+                  <!-- <div class="actions_container"> -->
+                  <!-- ************FAV ICON ***** -->
+                  <!-- <img
+                      loading="lazy"
+                      class="fav_icon"
+                      src="../../../../assets/icons/fav_icon.svg"
+                    />
+                    <mat-checkbox
+                      class="mat_checkbox_candidates"
+                    ></mat-checkbox>
+                    <img
+                      loading="lazy"
+                      class="burger_icon"
+                      src="../../../../assets/icons/burger_menu.svg"
+                    /> -->
+                  <!-- </div> -->
+                  <div
+                    class="container"
+                    style="cursor: pointer"
+                    (click)="routeEmployeeProfile(employeeData)"
+                  >
+                    <p class="user_details_container">
+                      {{ employeeData.user_name }}
+                    </p>
+                    <div class="sprint_contiainer">
+                      <p>3 Sprints Latest Sep 24</p>
+                      <p>Active</p>
+                    </div>
+                  </div>
+                </mat-card>
+                <mat-card class="recommend_graph_card">
+                  <div class="row m-0 p-0">
+                    <div class="col-7 p-0">
+                      <app-radial-stacked-chart
+                        id="2"
+                        [data]="employeeData.result_values"
+                      ></app-radial-stacked-chart>
+                    </div>
+                    <div class="col-5 m-0 p-1 align-self-center">
+                      <p class="title_details">Department</p>
+                      <p class="result_details">
+                        {{
+                          employeeData.department &&
+                          employeeData.department != "null"
+                            ? employeeData.department
+                            : "-"
+                        }}
+                      </p>
+                      <p class="title_details">Role</p>
+                      <p class="result_details">
+                        {{
+                          employeeData.designation &&
+                          employeeData.designation != "null"
+                            ? employeeData.designation
+                            : "-"
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- *ngFor="let employeeData of allEmployeesData" -->
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<!-- <div class="carousel"> -->
+<!-- You can now use your library component in app.component.html -->
+<!-- <ngx-slick-carousel
+  class="carousel"
+  #slickModal="slick-carousel"
+  [config]="slideConfig"
+  (init)="slickInit($event)"
+  (breakpoint)="breakpoint($event)"
+  (afterChange)="afterChange($event)"
+  (beforeChange)="beforeChange($event)"
+>
+  <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+    <img src="{{ slide.img }}" alt="" width="100%" />
+  </div>
+</ngx-slick-carousel> -->
+
+<!-- <button (click)="addSlide()">Add</button>
+  <button (click)="removeSlide()">Remove</button>
+  <button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
+  <button (click)="slickModal.unslick()">unslick</button> -->
+<!-- </div> -->

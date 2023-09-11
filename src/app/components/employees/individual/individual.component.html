@@ -1,0 +1,415 @@
+<div class="component_container">
+  <div class="bg_GreenGradient padding_100">
+    <div class="Root_containerVariable pl-2">
+      <div class="title_candidates"><p>EMPLOYEES : Individuals</p></div>
+      <!-- *************FILTER******************* -->
+      <div class="filters_container row">
+        <div class="Bussiner_Filter col-3">
+          <p>BUSINESS FUNCTION</p>
+          <div>
+            <div class="search">
+              <input
+                type="text"
+                class="search__input"
+                placeholder="Search function : For eg Sales"
+              />
+              <div class="search__button">
+                <!-- search icon -->
+                <svg
+                  class="search__icon"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Level_filter col-4">
+          <p>LEVEL</p>
+          <div class="level_DropDownFilter">
+            <mat-form-field class="w-100">
+              <mat-select
+                [formControl]="toppingsControl"
+                multiple
+                placeholder="Search/select"
+                ><mat-option>
+                  <ngx-mat-select-search
+                    [formControl]="bankFilterCtrl"
+                    (input)="searchFilterLevel($event)"
+                    placeholderLabel="Search: Team Manager"
+                    noEntriesFoundLabel="'no matching found'"
+                  >
+                    ></ngx-mat-select-search
+                  ></mat-option
+                >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      *ngFor="let topping of toppingsControl.value?.slice(0, 2)"
+                      [removable]="true"
+                      (removed)="onToppingRemoved(topping)"
+                    >
+                      {{ topping }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <mat-chip
+                      *ngIf="
+                        toppingsControl.value != null &&
+                        toppingsControl.value.length! > 2
+                      "
+                    >
+                      + {{ toppingsControl.value.length! - 2 }} more
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let topping of filteredToppingList"
+                  [value]="topping"
+                >
+                  {{ topping }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="evaluvation_filter col-3">
+          <p>EVALUATION SCALE</p>
+          <div class="evaluation_DropdwonFilter">
+            <mat-form-field class="evaluation_DropdwonFilterFile">
+              <mat-select
+                class="evaluation_select"
+                [formControl]="evaluation_DropdwonForm"
+                placeholder="Select from dropdown"
+              >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      [removable]="true"
+                      (removed)="onRemoveEvalvationDropdown()"
+                    >
+                      {{ evaluation_DropdwonForm.value }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let list of evaluvation_datalist"
+                  [value]="list.name"
+                  >{{ list.name }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- <div class="evaluation_Dropdwon">
+                <select class="evaluvation_Select">
+                  <option value="volvo">Volvo</option>
+                  <option value="saab">Saab</option>
+                  <option value="mercedes">Mercedes</option>
+                  <option value="audi">Audi</option>
+                </select>
+              </div> -->
+        </div>
+        <div class="col-2 search_btn_container">
+          <div class="search_Btn">
+            <button class="searchbtn">Search</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- *********************APPLICANTS************************ -->
+      <div class="applicants_container">
+        <div class="applicants_txt_content">
+          <p>Individuals</p>
+          <button class="add_Applicants_btn">
+            <i class="fa-solid fa-circle-plus"></i>
+            ADD INDIVIDUAL
+          </button>
+        </div>
+        <p class="applicants_subTxt">
+          About Sales Business function, Lorem ipsum dolor sit amet, consetetur
+          sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+        </p>
+      </div>
+      <!-- ***************************FILTERS****************************** -->
+      <div class="filter_icon_container">
+        <mat-divider
+          vertical
+          style="height: 25px; border-right-width: 1.5px; border-color: black"
+        ></mat-divider>
+        <!-- <img src="../../../../../assets/icons/filter.svg" alt="filter" class="filter_Icon" /> -->
+        <!-- **********************************filter icon****************** -->
+        <div
+          [ngClass]="
+            FilterpanelIsOpen ? 'filter_icon_block_show' : 'filter_icon_block'
+          "
+        >
+          <svg
+            (click)="toggleFilter()"
+            class="filter_Icon_white"
+            width="29"
+            height="27"
+            viewBox="0 0 29 27"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              id="Icon feather-filter"
+              d="M27.109 1.60498H1.58203L11.793 13.679V22.026L16.898 24.579V13.679L27.109 1.60498Z"
+              stroke="black"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+
+        <mat-divider
+          vertical
+          style="height: 25px; border-right-width: 1.5px; border-color: black"
+        ></mat-divider>
+
+        <!-- <img src="../../../../../assets/icons/search.svg" alt="" /> -->
+        <!-- *search icon -->
+        <div
+          [ngClass]="
+            searchPanelIsOpen ? 'search_icon_block_show' : 'search_icon_block'
+          "
+        >
+          <svg
+            class="search_Icon_white"
+            (click)="toggleSearch()"
+            width="27"
+            height="27"
+            viewBox="0 0 27 27"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="Icon feather-search">
+              <path
+                id="Path 769"
+                d="M22.1417 11.816C22.1417 13.8356 21.5428 15.8098 20.4208 17.489C19.2988 19.1682 17.704 20.477 15.8381 21.2498C13.9722 22.0226 11.9191 22.2248 9.9383 21.8307C7.95753 21.4366 6.1381 20.464 4.71011 19.0359C3.28212 17.6078 2.30969 15.7882 1.91581 13.8074C1.52193 11.8266 1.72428 9.77351 2.49728 7.90771C3.27028 6.04191 4.57921 4.44724 6.25853 3.32536C7.93785 2.20348 9.91214 1.60478 11.9317 1.60498C14.6397 1.60525 17.2366 2.68116 19.1514 4.59607C21.0661 6.51097 22.1417 9.10803 22.1417 11.816Z"
+                stroke="black"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                id="Path 770"
+                d="M24.6948 24.579L19.1428 19.027"
+                stroke="black"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <mat-divider style="border-color: black; margin-top: 30px"></mat-divider>
+      <!-- **************************FILTERS TO BE HIDE & SHOWN ********************-->
+      <div *ngIf="FilterpanelIsOpen || searchPanelIsOpen">
+        <div class="filter_Hide_Show">
+          <div class="">
+            <p>Status</p>
+            <mat-form-field class="status_filter" appearance="outline">
+              <mat-select placeholder="Applicants" value="value">
+                <mat-option value="1">122222</mat-option>
+                <mat-option>122222</mat-option>
+                <mat-option>122222</mat-option>
+                <mat-option>122222</mat-option>
+                <mat-option>122222</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="role_input_container">
+            <p>Roles</p>
+            <div class="role_search__button">
+              <input
+                type="text"
+                class="role_search_input"
+                placeholder="Search Roles"
+              />
+
+              <!-- search icon -->
+              <svg
+                class="role_search__icon"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+              >
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                  ></path>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <mat-divider
+          style="border-color: black; margin-top: 10px"
+        ></mat-divider>
+      </div>
+
+      <!-- ******************************RESULTS CONTAINER************************** -->
+      <div class="results_container">
+        <div class="results_header">
+          <p class="results_title">RESULTS - 800</p>
+          <div class="results_filters">
+            <mat-checkbox class="mat_checkbox_candidates_header"
+              ><p class="pt-2">Select All</p></mat-checkbox
+            >
+
+            <!-- *********** -->
+            <mat-form-field class="Bulk_actions" appearance="outline">
+              <mat-select
+                (openedChange)="handleOpen()"
+                placeholder="Select icon"
+                placeholder="BULK ACTIONS"
+                class="Bulk_actions_select"
+              >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../assets/icons/bookmark.svg"
+                    style="padding-right: 10px"
+                  />Send email</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../assets/icons/chat.svg"
+                    style="padding-right: 10px"
+                  />Send a message</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../assets/icons/Addnotes.svg"
+                    style="padding-right: 10px"
+                  />Add notes</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../assets/icons/resource.svg"
+                    style="padding-right: 10px"
+                  />Suggest resources</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../assets/icons/share.svg"
+                    style="padding-right: 10px"
+                  />Share</mat-option
+                >
+              </mat-select>
+              <span class="drop_down_arrow_icon">
+                <img
+                  *ngIf="!panelIsOpen"
+                  src="../../../../assets/icons/downArrow.svg"
+                  alt=""
+                />
+                <img
+                  *ngIf="panelIsOpen"
+                  src="../../../../assets/icons/upArrow.svg"
+                  alt=""
+                />
+
+                <!-- <mat-icon class="my-icon" *ngIf="panelIsOpen"
+                    >arrow_circle_down</mat-icon
+                  > -->
+                <!-- <mat-icon class="my-icon" *ngIf="!panelIsOpen"
+                    >arrow_circle_up</mat-icon
+                  > -->
+              </span>
+            </mat-form-field>
+
+            <img
+              class="grid_icon_result"
+              src="../../../../assets/icons/gridview.svg"
+              alt=""
+            />
+            <img
+              class="grid_icon_result"
+              src="../../../../assets/icons/listview.svg"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- *************************************Applicants cards****************** -->
+
+      <div class="recommends">
+        <!-- card -->
+        <div class="row">
+          <div
+            class="col-lg-3 col-md-6"
+            *ngFor="let employeeData of allEmployeesData"
+          >
+            <div class="cards_container_recommend">
+              <mat-card class="recommend_card">
+                <div class="recommend_card_container">
+                  <div class="image_overlay"></div>
+                  <div class="candidateDummyImg">
+                    <img
+                      style="object-fit: cover"
+                      width="100%"
+                      [src]="employeeData.user_photo"
+                    />
+                  </div>
+                </div>
+                <div class="actions_container">
+                  <!-- ************FAV ICON ***** -->
+                  <img
+                    class="fav_icon"
+                    src="../../../../assets/icons/fav_icon.svg"
+                  />
+                  <mat-checkbox class="mat_checkbox_candidates"></mat-checkbox>
+                  <img
+                    class="burger_icon"
+                    src="../../../../assets/icons/burger_menu.svg"
+                  />
+                </div>
+                <div class="container">
+                  <p class="user_details_container">
+                    {{ employeeData.user_name }}
+                  </p>
+                  <div class="sprint_contiainer">
+                    <p>3 Sprints Latest Sep 24</p>
+                    <p>Active</p>
+                  </div>
+                </div>
+              </mat-card>
+              <mat-card class="recommend_graph_card">
+                <div class="row">
+                  <div class="col-7">
+                    <app-radial-stacked-chart
+                    id="2"
+                    [data]="employeeData.result_values"
+                  ></app-radial-stacked-chart>
+                  </div>
+                  <div class="col align-self-center">
+                        <p class="title_details">Department</p>
+                        <p class="result_details">{{employeeData.department}}</p>
+                        <p class="title_details">Role</p>
+                        <p class="result_details">{{employeeData.designation}}</p>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+
+        <!-- card -->
+      </div>
+      <div class="load_more">
+        <u
+          ><i><p>Load More</p></i></u
+        >
+      </div>
+    </div>
+  </div>
+</div>

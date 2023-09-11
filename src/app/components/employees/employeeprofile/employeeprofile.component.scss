@@ -1,0 +1,527 @@
+@import "../../../../assets/styles/variable.scss";
+
+.component_container {
+  //   background: linear-gradient(180deg, #f5f1ee 0%, #e2dcd6 100%);
+  //   height: 100vw;
+  .bg_GreenGradient {
+    background: $Primary_RedGradient;
+    width: 100%;
+    height: 320px;
+  }
+}
+// *******************Title container*******************
+.title_container {
+  display: flex;
+  place-items: center;
+  align-content: center;
+  padding-top: 40px;
+  color: white;
+  img {
+    height: 35px;
+    width: 35px;
+  }
+  p {
+    font-size: 14px;
+    margin: 0;
+    padding-left: 20px;
+    text-transform: uppercase;
+  }
+}
+
+// ***********************Profile container***********************
+.profile_container {
+  padding-top: 50px;
+  color: white;
+  .profile_image_card {
+    width: 100%;
+    height: 450px;
+    border-radius: 10px 10px 0 0;
+    background: $Primary_RedGradient;
+  }
+  .candidate_profile_icon {
+    text-align: center;
+    font-size: 300px;
+    padding-top: 50px;
+    opacity: 0.1;
+    position: relative;
+  }
+  .candidate_name_container {
+    padding-left: 67px;
+    position: absolute;
+    top: 230px;
+    .name {
+      font-size: 44px;
+      font-family: $Titillium_Bold;
+    }
+    .sprints {
+      font-size: 16px;
+      padding-top: 8px;
+    }
+  }
+  .details_container {
+    padding-left: 67px;
+  }
+  .title_details {
+    text-transform: uppercase;
+    margin: 0px;
+    font-family: Titillium Web;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+
+  }
+  .result_details {
+    font-family: Titillium Web;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .result_details_status {
+    background-color: white;
+    width: 60%;
+    height: 40px;
+    border-radius: 10px;
+    color: black;
+    text-align: center;
+    padding-top: 10px;
+  }
+}
+// *************************PROFILES AND NOTES CONTAINER*************************
+.profile_notes_container {
+  // height: 500px;
+  width: 100%;
+  color: white;
+  border-radius: 0;
+  .profile_note_tabs {
+    ::ng-deep .mat-mdc-tab-labels {
+      width: 65%;
+      padding-left: 50px;
+      padding-top: 10px;
+    }
+    ::ng-deep .mat-mdc-tab.mdc-tab {
+      padding: 0;
+    }
+    ::ng-deep .mat-mdc-tab-label-container {
+      display: flex;
+      flex-grow: 0;
+      justify-content: start;
+      width: 60%;
+    }
+    ::ng-deep .mat-mdc-tab-header {
+      height: 73px;
+    }
+    ::ng-deep .mat-mdc-tab-header {
+      border-bottom: 3px solid $cards_Bg;
+    }
+    ::ng-deep .mat-mdc-tab.mdc-tab .mdc-tab-indicator__content--underline {
+      border-color: black !important;
+      border-width: 10px;
+      width: 80%;
+      border-radius: 10px 10px 0 0;
+    }
+    ::ng-deep .mat-mdc-tab.mdc-tab {
+      height: 60px;
+    }
+    ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+      color: black !important;
+    }
+  }
+  .tab_title1 {
+    font-size: 18px;
+    padding-top: 15px;
+    padding-left: 10px;
+    font-family: $Titillium_Bold;
+  }
+  .mat_tab_content {
+    color: black;
+    padding: 37px 20px 50px 45px;
+    .highlight_txt {
+      font-size: 24px;
+      font-family: $Titillium_Bold;
+    }
+    .highlight_txt_points {
+      font-size: 19px;
+      padding-top: 20px;
+      img {
+        padding-right: 10px;
+      }
+    }
+  }
+}
+// ******************************SKILLS AND HUMAN SKILLS***************
+.Skills_container {
+  // height: 100px;
+  width: 100%;
+  background: $Primary_RedGradient;
+  border-radius: 0;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  p {
+    width: 80%;
+    padding: 0;
+    padding: 20px 20px 20px 40px;
+    line-height: 30px;
+    margin: 0;
+    font-size: 22px;
+    font-family: $Titillium_Bold;
+  }
+}
+// ***************GRAPH CONTAINER***************
+.graph_conatiner {
+  height: 500px;
+  background-color: white;
+  border-radius: 0;
+}
+.full_report_title {
+  font-size: 24px;
+  font-family: $Titillium_Bold;
+}
+// *******************FULL_REPORT_CONTAINER*******************
+.FULL_REPORT {
+  // height: 250px;
+  background: $Primary_RedGradient;
+  border-radius: 0 0 10px 10px;
+  text-align: left;
+  padding-left: 40px;
+  padding-top: 60px;
+  padding-bottom: 5px;
+}
+
+.search_Btn {
+  padding-top: 30px;
+  margin-bottom: 40px;
+}
+
+.searchbtn {
+  background: $Primary_RedGradient; // Sets the  color using $Primary_greenGradient variable.scss
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 10px 25px 10px 25px;
+  font-size: 12px;
+  width: 20%;
+  height: 50px;
+  box-shadow: rgb(31, 31, 33) 10px 10px 26px -3px,
+    rgba(204, 207, 209, 0.2) -7px -2px 7px -2px;
+
+  // box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+  //   rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+  border: 0.5px solid $primary_checkBoxColor;
+  text-transform: uppercase;
+}
+// ****************Bio_card*******************
+.Bio_card {
+  margin-top: 50px;
+  height: 700px;
+  background: $cards_Bg;
+  border-radius: 10px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .Bio_container {
+    width: 90%;
+    padding-left: 65px;
+    padding-top: 39px;
+    padding-bottom: 10px;
+    color: black;
+    .bio_title {
+      font-size: 26px;
+      font-family: $Titillium_Bold;
+    }
+    .bio_txt {
+      font-size: 16px;
+      font-family: $Titillium_Bold;
+    }
+  }
+  .edu_hardskills_container {
+    width: 95%;
+    padding-left: 65px;
+    padding-top: 26px;
+    padding-bottom: 10px;
+    color: black;
+  }
+  .edu_title {
+    font-size: 26px;
+    font-family: $Titillium_Bold;
+  }
+  .university_title {
+    padding-top: 9px;
+    font-size: 18px;
+    font-family: $Titillium_Bold;
+    margin-bottom: 3px;
+  }
+  .experience_conatiner {
+    width: 100%;
+    padding-left: 65px;
+    padding-top: 26px;
+    padding-bottom: 80px;
+    color: black;
+    .Experience_header {
+      font-size: 26px;
+      font-family: $Titillium_Bold;
+    }
+    .company_title {
+      padding-top: 5px;
+      font-size: 17px;
+      font-family: $Titillium_Bold;
+      margin-bottom: 3px;
+    }
+  }
+  .hard_skills_txt {
+    font-family: $Titillium_Bold;
+    background: $Primary_RedGradient;
+    border-radius: 50px;
+    padding: 7px 13px 7px 13px;
+    display: inline-block;
+    color: white;
+    font-size: 13px;
+    margin-left: 5px;
+  }
+}
+// ***************************feture options*******************
+.options_container {
+  width: 100%;
+  // height: 500px;
+  background: $Primary_RedGradient;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  outline: 1px solid #707070;
+
+  align-items: center;
+  padding-bottom: 15px;
+}
+.button_container {
+  width: 85%;
+  display: flex;
+  place-items: center;
+  background: $Primary_RedGradient;
+  border-radius: 50px;
+  height: 55px;
+  margin-top: 15px;
+  img {
+    padding-left: 20px;
+    // width: 20px;
+    height: 35px;
+  }
+}
+.button_txt {
+  font-size: 15px;
+  font-family: $Titillium_Bold;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.dotted_line {
+  border-bottom: 1px dashed #ffffff;
+  width: 80%;
+  margin: 20px 0 20px 0;
+}
+.notes_container {
+  width: 85%;
+  display: flex;
+  place-items: center;
+  background: $Primary_RedGradient;
+  border-radius: 50px;
+  height: 55px;
+  margin-top: 15px;
+  padding-left: 20px;
+}
+.img_border {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  align-items: center;
+  img {
+    height: 18px;
+  }
+}
+// ***********************Similar roles**************
+.roles_head {
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  padding-top: 50px;
+  p {
+    font-size: 24px;
+    font-family: $Titillium_Bold;
+  }
+}
+//  *******************************************ROLE_CARDS*********************************
+.roles_card {
+  background-color: $cards_Bg;
+  height: 120px;
+  width: 100%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+  color: black;
+  .role {
+    font-size: 12px;
+    font-weight: 600;
+    padding-top: 10px;
+    margin-bottom: 0px;
+  }
+  .role_title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+.role_actions {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+  padding-top: 10px;
+  img {
+    margin-bottom: 5px;
+    height: 20px;
+  }
+}
+.role_date {
+  font-size: 12px;
+}
+// **********************ROLE_MATCHES******************
+.role_match {
+  width: 100%;
+  margin-top: 30px;
+  background: $cards_Bg;
+  height: 500px;
+  color: black;
+  .head_title {
+    font-size: 16px;
+    font-family: $Titillium_Bold;
+  }
+}
+// *****************************guage_value******************
+.guage_value {
+  font-size: 36px;
+  font-family: $Titillium_Bold;
+}
+.guage_container {
+  width: 100%;
+  canvas {
+    height: 100px !important;
+  }
+}
+.guage_Chart {
+  padding-left: 15%;
+  height: 120px !important;
+}
+.soft_skill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .soft_skill_title {
+    flex-grow: 1;
+  }
+  // .soft_skill_icon{
+
+  // }
+  .soft_skill_result {
+    padding-left: 10px;
+  }
+}
+// <!-- ***************************MAYAMAYA RECOMMENDS*************** -->
+.role_match_recommend {
+  width: 100%;
+  background: $Primary_RedGradient;
+  height: 500px;
+  margin-top: 30px;
+  color: white;
+  .recommend_title {
+    padding-top: 20px;
+    font-size: 16px;
+    font-family: $Titillium_Bold;
+  }
+  .recommended_roles {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+  }
+}
+// *******************************Suggested_tasks*******************
+.Suggested_tasks {
+  margin-top: 60px;
+  color: black;
+  .header_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      font-family: $Titillium_Bold;
+      font-size: 20px;
+    }
+  }
+}
+
+.suggesions_cards_container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .suggestion_card {
+    background: $cards_Bg;
+    // height: 160px;
+  }
+  .sugestion_name {
+    font-size: 16px;
+    font-family: $Titillium_Bold;
+  }
+  .actions_container {
+    padding-top: px;
+  }
+  .created_txt {
+    font-size: 10px;
+    font-family: $Titillium_Bold;
+    color: #555;
+  }
+  .user_icons {
+    background: $Primary_RedGradient;
+    width: 18px;
+    height: 18px;
+    border-radius: 22px;
+    padding: 3px;
+  }
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    .item1 {
+      display: flex;
+      gap: 3px;
+      p {
+        font-size: 14px;
+      }
+    }
+    .item2 {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      i {
+        font-size: 11px;
+      }
+      img {
+        height: 15px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .suggest_task_divider {
+    margin-bottom: 10px;
+  }
+}

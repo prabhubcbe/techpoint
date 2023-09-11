@@ -1,0 +1,587 @@
+@import "../../../../assets/styles/variable.scss";
+.bg_GreenGradient {
+  background: $Primary_greenGradient;
+  height: 330px;
+  color: white;
+}
+.title_candidates {
+  color: white;
+  p {
+    font-size: 13px;
+    text-transform: uppercase;
+    padding-top: 35px;
+    // font-weight: 700;
+  }
+}
+// **************Header**************
+.header_container {
+  padding-top: 20px;
+  display: flex;
+  gap: 20px;
+  .item1 {
+    flex-grow: 1;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    .item2 {
+      align-items: start;
+    }
+  }
+}
+.back_btn {
+  height: 38px;
+  width: 38px;
+}
+.Analysis_txt {
+  font-size: 43px;
+  font-family: $Titillium_Bold;
+}
+.sub_title {
+  padding-top: 15px;
+  padding-left: 55px;
+}
+// ****************tabs ****************
+.tabs_content {
+  //   padding-left: 55px;
+  margin-top: 35px;
+}
+.profile_note_tabs {
+  ::ng-deep .mat-mdc-tab-header {
+    width: 70%;
+    border-radius: 10px;
+    background: $cards_Bg;
+    margin-bottom: 30px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    padding: 10px 10px 0 10px;
+  }
+  ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+    font-size: 13px;
+    font-family: $Titillium_Regular;
+  }
+  ::ng-deep .mat-mdc-tab.mdc-tab .mdc-tab-indicator__content--underline {
+    border-color: black !important;
+    border-width: 7px;
+    width: 80%;
+    border-radius: 10px 10px 0 0;
+    // padding-top: 10px;
+  }
+  ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+    color: black !important;
+  }
+
+  ::ng-deep .mat-mdc-tab-label-container {
+    flex-grow: 0;
+  }
+}
+// *************roles_container*************
+.roles_container {
+  margin-top: 30px;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.role_head {
+  font-size: 22px;
+  font-family: $Titillium_Bold;
+  padding-bottom: 10px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.search__input {
+  font-family: inherit;
+  font-size: inherit;
+  height: 50px;
+  background: transparent;
+  border: 1px solid rgb(0, 0, 0);
+
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  width: 300px;
+  transition: all ease-in-out 0.5s;
+  //   margin-right: -2rem;
+}
+
+.search__input:hover,
+.search__input:focus {
+  box-shadow: 0 0 1em #00000013;
+}
+
+.search__input:focus {
+  outline: none;
+  //   background-color: #000000;
+}
+
+.search__input::-webkit-input-placeholder {
+  font-weight: 100;
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.search__input:focus + .search__button {
+  background: none;
+}
+
+.search__button {
+  border: none;
+  background: none;
+  margin-top: 0.1em;
+  margin-left: -1.5rem;
+}
+
+.search__icon {
+  height: 1.3em;
+  width: 1.3em;
+  fill: #000000;
+}
+// ********************
+// <!-- ************************ROLE CARDS******************* -->
+.role_cards_container {
+  color: black;
+  padding-top: 35px;
+  .role_card {
+    background-color: $cards_Bg;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+}
+.role_card_header {
+  display: flex;
+  justify-content: space-between;
+}
+.role_new_btn {
+  height: 20px;
+  width: 40px;
+  background: $Primary_greenGradient;
+  color: white;
+  font-size: 9px;
+  border-radius: 2px;
+  margin-top: 10px;
+
+  outline: none;
+  border: none;
+}
+.role {
+  font-size: 11px;
+  font-weight: 600;
+  padding-top: 10px;
+  margin-bottom: 0px;
+}
+// .role_title {
+//   font-size: 18px;
+//   font-weight: 700;
+// }
+
+.role_title {
+  font-size: 17px;
+  font-weight: 700;
+  font-family: $Titillium_Bold;
+  margin-bottom: 6px;
+}
+@media only screen and (max-width: 1200px) {
+  .role_title {
+    font-size: 12px;
+    display: inline-block;
+    width: 130px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+  }
+}
+
+.role_actions_container {
+  display: flex;
+  justify-content: space-between;
+}
+.role_actions {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+  padding-top: 10px;
+  img {
+    margin-bottom: 5px;
+    height: 20px;
+  }
+}
+.role_date {
+  font-size: 12px;
+}
+// **************check box for role cards**************
+.mat_checkbox_role {
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
+      [data-indeterminate="true"]
+    )
+    ~ .mdc-checkbox__background {
+    // border-color: $primary_checkBoxColor;
+    width: 18px;
+    height: 18px;
+    border: 1px solid black;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:focus:checked
+    ~ .mdc-checkbox__background {
+    background-color: white;
+    width: 18px;
+    height: 18px;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled
+    ~ .mdc-checkbox__background
+    .mdc-checkbox__checkmark {
+    color: $primary_checkBoxColor;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:checked
+    ~ .mdc-checkbox__background {
+    background-color: white;
+    border-color: $primary_checkBoxColor;
+    width: 18px;
+    height: 18px;
+  }
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__background {
+    top: calc((var(--mdc-checkbox-state-layer-size) - 18px) / 2);
+    left: calc((var(--mdc-checkbox-state-layer-size) - 18px) / 2);
+  }
+}
+// ****************ROLES PROFILE BASELINE CONTAINER***************
+.role_baseline {
+  color: black;
+  padding-top: 35px;
+}
+.head_txt {
+  font-size: 22px;
+  font-family: $Titillium_Bold;
+}
+.header_baseline {
+  display: flex;
+  align-items: center;
+}
+.role_txt_head {
+  font-size: 24px;
+}
+.back_arrow_white {
+  height: 60px;
+}
+// *************
+.row_sub_text {
+  width: 50%;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 50px;
+  p {
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+// ****************************soft_skills_card******************
+.soft_skills_card {
+  background: $Primary_greenGradient;
+  width: 100%;
+  // height: 500px;
+  border-radius: 10px;
+}
+.soft_skill_head {
+  background: $Primary_greenGradient;
+  color: white;
+  border-radius: 10px 10px 0px 0px;
+  height: 60px;
+  p {
+    font-size: 18px;
+    font-family: $Titillium_Bold;
+    padding-left: 50px;
+    padding-top: 20px;
+  }
+}
+// ****************
+.main_container {
+  padding: 35px;
+  color: white;
+}
+.graph_card_baseline {
+  background: $cards_Bg;
+  width: 100%;
+  height: 270px;
+  border-radius: 12px;
+  color: black;
+}
+// ****************buttons for soft skills card****************
+.head_btn {
+  display: flex;
+  gap: 30px;
+  color: white;
+}
+.base_head {
+  padding: 15px 30px 15px 30px;
+  border: none;
+  border-radius: 15px;
+  height: 48px;
+  font-size: 14px;
+  font-weight: 600;
+  background: transparent;
+  color: white;
+  transition: background 0.3s; /* Adding a transition for smoother effect */
+}
+
+.base_head.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+// **************
+.softskill_subtxt {
+  padding-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-family: $Titillium_Light;
+  u {
+    font-weight: 700;
+    font-size: 12px;
+    padding-left: 5px;
+  }
+}
+
+// ***************sliders for soft skills card****************
+.sliders2column {
+  padding-right: 0;
+}
+.slidecontainer {
+  width: 95%;
+  .slider_skill {
+    width: 95%;
+    margin: 0;
+    height: 10px;
+    margin-top: 5px;
+  }
+  .title_sill {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // font-family: $Titillium_Bold;
+    font-weight: 700;
+    padding-top: 20px;
+    font-size: 13px;
+
+    // font-size: 0.9vw;
+    // font-size: clamp(10px, 2vw, 16px);
+  }
+  .rating_txt {
+    font-size: 11px;
+    font-family: $Titillium_Light;
+    padding-top: 20px;
+  }
+  ::ng-deep .mat-mdc-slider .mdc-slider__thumb-knob {
+    display: none;
+  }
+  ::ng-deep .mat-mdc-slider .mdc-slider__track {
+    background: $Primary_greenGrdientReverse;
+    border-radius: 10px;
+    height: 6px;
+    border-bottom: 1px solid white;
+    border-top: 1px solid black;
+  }
+  ::ng-deep .mat-mdc-slider .mdc-slider__track--inactive {
+    background: $Primary_greenGrdientReverse;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    overflow: hidden;
+    height: 6px;
+  }
+  ::ng-deep .mat-mdc-slider .mdc-slider__track--active {
+    background: $Primary_greenGrdientReverse;
+    overflow: hidden;
+    height: 6px;
+  }
+  ::ng-deep .mat-mdc-slider .mdc-slider__track--active_fill {
+    background: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border: none;
+    height: 6px;
+    border-radius: 50px;
+  }
+  ::ng-deep .mat-mdc-slider-visual-thumb .mat-ripple {
+    display: none;
+  }
+}
+// **************alerts for soft skills card****************
+.alerts {
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  .item1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .item2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .item3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  p {
+    font-size: 12px;
+  }
+}
+
+// ****************************Technical Skills******************
+.Technical_Skills_card {
+  background: white;
+  margin-top: 37px;
+  width: 100%;
+  // height: 500px;
+  border-radius: 10px;
+}
+.Technical_Skills_head {
+  background: $Primary_RedGradient;
+  color: white;
+  border-radius: 10px 10px 0px 0px;
+  height: 60px;
+  p {
+    font-size: 18px;
+    font-family: $Titillium_Bold;
+    padding-left: 50px;
+    padding-top: 20px;
+  }
+}
+.content_technical_skills {
+  padding: 35px;
+}
+.content_head_technical_skill {
+  display: flex;
+  justify-content: space-between;
+  .item1 {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .item2 {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-size: 12px;
+  }
+}
+// ****************
+.existing_content {
+  padding-top: 20px;
+}
+.hard_skills_txt {
+  font-family: $Titillium_Bold;
+  background: $Primary_RedGradient;
+  border-radius: 50px;
+  padding: 7px 13px 7px 13px;
+  display: inline-block;
+  color: white;
+  font-size: 13px;
+  margin-left: 5px;
+}
+.divider_existing {
+  margin-top: 20px;
+}
+
+// ***************************
+.heade_existing {
+  padding-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .item1 {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .item2 {
+    p {
+      font-size: 12px;
+      padding-top: 10px;
+      // font-family: $Titillium_Light;
+    }
+  }
+}
+// ******************checkbox****************
+.mat_checkbox_candidates_header {
+  ::ng-deep .mdc-form-field > label {
+    padding: 0;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
+      [data-indeterminate="true"]
+    )
+    ~ .mdc-checkbox__background {
+    border-color: $primary_checkBoxColor;
+    width: 16px;
+    height: 16px;
+    border: 1px solid black;
+    border-radius: 3px;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:focus:checked
+    ~ .mdc-checkbox__background {
+    background-color: white;
+    width: 16px;
+    height: 16px;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled
+    ~ .mdc-checkbox__background
+    .mdc-checkbox__checkmark {
+    color: $primary_checkBoxColor;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:checked
+    ~ .mdc-checkbox__background {
+    background-color: white;
+    border-color: $primary_checkBoxColor;
+    width: 16px;
+    height: 16px;
+  }
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__background {
+    top: calc((var(--mdc-checkbox-state-layer-size) - 16px) / 2);
+    left: calc((var(--mdc-checkbox-state-layer-size) - 16px) / 2);
+  }
+}
+// *******************drag and drop ******************
+.border_dashed {
+  border: 1px dashed #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  height: 150px;
+}
+// *******************Alerts for Technical Skills******************
+.alert_head {
+  padding-top: 30px;
+  display: flex;
+  gap: 10px;
+}
+.alert_sub_txt {
+  font-size: 13px;
+  padding-top: 15px;
+  padding-left: 20px;
+}

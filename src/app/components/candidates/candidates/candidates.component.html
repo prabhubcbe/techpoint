@@ -1,0 +1,521 @@
+<div class="component_container">
+  <div class="bg_GreenGradient padding_100">
+    <div class="Root_containerVariable pl-2">
+      <div class="title_candidates">
+        <p>Candidates</p>
+      </div>
+
+      <!--*************** FILTERS CONTAINER************* -->
+      <div class="filters_container row">
+        <div class="Bussiner_Filter col-3">
+          <!-- <p>BUSINESS FUNCTION</p> -->
+
+          <p>DEPARTMENT</p>
+
+          <div class="evaluation_DropdwonFilter">
+            <mat-form-field class="evaluation_DropdwonFilterFile">
+              <mat-select
+                panelClass="evaluation_select_panel"
+                class="evaluation_select"
+                [formControl]="department_DropdownForm"
+                placeholder="Select from dropdown"
+              >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      [removable]="true"
+                      (removed)="onRemoveDepartmentDropdown()"
+                    >
+                      {{ department_DropdownForm.value }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let list of departmentsDataList"
+                  [value]="list"
+                  >{{ list }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <!-- <div class="search">
+              <input
+                type="text"
+                class="search__input"
+                placeholder="Search Department : For eg Sales"
+              /> -->
+            <!-- <div class="search__button"> -->
+            <!-- search icon -->
+            <!-- <svg
+                  class="search__icon"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                    ></path>
+                  </g>
+                </svg> -->
+            <!-- </div> -->
+            <!-- </div> -->
+          </div>
+        </div>
+        <div class="Level_filter col-4">
+          <p>ROLE</p>
+          <div class="level_DropDownFilter">
+            <mat-form-field class="w-100">
+              <mat-select
+                ngModel
+                panelClass="evaluation_select_panel"
+                [formControl]="toppingsControl"
+                multiple
+                placeholder="Search/select"
+                ><mat-option>
+                  <ngx-mat-select-search
+                    [formControl]="bankFilterCtrl"
+                    (input)="searchFilterLevel($event)"
+                    placeholderLabel="Search: Team Manager"
+                    noEntriesFoundLabel="'no matching found'"
+                  >
+                    ></ngx-mat-select-search
+                  ></mat-option
+                >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      *ngFor="let topping of toppingsControl.value?.slice(0, 1)"
+                      [removable]="true"
+                      (removed)="onToppingRemoved(topping)"
+                    >
+                      {{ topping }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <mat-chip
+                      *ngIf="
+                        toppingsControl.value != null &&
+                        toppingsControl.value.length! > 1
+                      "
+                    >
+                      + {{ toppingsControl.value.length! - 1 }}
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let roles of filteredRolesDataList; let i = index"
+                  [value]="roles.role_name"
+                >
+                  {{ roles.role_name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="evaluvation_filter col-3">
+          <p>EVALUATION SCALE</p>
+          <div class="evaluation_DropdwonFilter">
+            <mat-form-field class="evaluation_DropdwonFilterFile">
+              <mat-select
+                panelClass="evaluation_select_panel"
+                class="evaluation_select"
+                [formControl]="evaluation_DropdwonForm"
+                placeholder="Select from dropdown"
+              >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      [removable]="true"
+                      (removed)="onRemoveEvalvationDropdown()"
+                    >
+                      {{ evaluation_DropdwonForm.value }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let list of evaluvation_datalist"
+                  [value]="list.value"
+                  >{{ list.value }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- <div class="evaluation_Dropdwon">
+              <select class="evaluvation_Select">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div> -->
+        </div>
+        <div class="col-2 search_btn_container">
+          <div class="search_Btn">
+            <button class="searchbtn">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ***********MAIN CONTENT************ -->
+  <div class="main_Block Root_containerVariable">
+    <div class="row">
+      <div class="col-9">
+        <!-- CANDIDATES AVAILABLE CARD WITH BUBBLE GRAPH -->
+        <div class="candidate_available">
+          <div class="candidate_header">
+            <div class="header_container">
+              <div class="item1">
+                <h2>Candidates available</h2>
+              </div>
+              <div class="item2">
+                <h2>{{ candidateCount }}</h2>
+                <div class="bgBtn">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="graph_card">
+            <app-scatter-plot
+              [data]="bubbleChartData"
+              [bubbleColor]="'#672024'"
+              [scatterplot]="'acquisitions1'"
+            ></app-scatter-plot>
+          </div>
+        </div>
+
+        <!-- ROLES CARDS IN THE ORGANIZATION -->
+        <div class="row">
+          <div class="roles_container">
+            <div class="roles_header">
+              <div class="roles_text">
+                <h2>ROLES</h2>
+                <p>
+                  ….{{ AllRoles.length }} roles found in your organization,
+                  click on the roles to get matching results
+                </p>
+              </div>
+              <div class="Roles_filters_container">
+                <!-- <i
+                  class="fa-solid fa-magnifying-glass"
+                  style="font-size: 18px; padding-top: 5px"
+                ></i> -->
+                <!-- <img src="../../../../assets/icons/sort_candidates.svg" /> -->
+                <!-- <div class="sort_Icon"> -->
+                <!-- <mat-icon>sort</mat-icon> -->
+                <!-- <span class="material-icons">sort</span> -->
+                <!-- </div> -->
+                <form role="search" method="get" id="searchform" action="">
+                  <label for="s">
+                    <i
+                      style="font-size: 18px; margin-top: 5px"
+                      class="fa-solid fa-magnifying-glass"
+                    ></i>
+                    <!-- <span
+                      class="material-icons-outlined icon-search"
+                      style="font-size: 20px"
+                    >
+                      search
+                    </span> -->
+                  </label>
+                  <input
+                    [(ngModel)]="searchText"
+                    name="rolesSearch"
+                    class="pb-2"
+                    autocomplete="off"
+                    type="text"
+                    placeholder="search"
+                    id="s"
+                  />
+                </form>
+
+                <div class="add_Icon">
+                  <i (click)="routeRoles()" class="fa-solid fa-plus"></i>
+                </div>
+                <u
+                  (click)="routeRoles()"
+                  style="padding-top: 5px; cursor: pointer"
+                  ><i>View all</i></u
+                >
+              </div>
+            </div>
+            <!-- *******************************************ROLE_CARDS********************************* -->
+            <div class="role_cards_container">
+              <div class="row">
+                <div
+                  class="col-lg-4 col-md-6 pt-3"
+                  *ngFor="
+                    let roles of AllRoles
+                      | search : searchText
+                      | slice
+                        : paginator.pageIndex * paginator.pageSize
+                        : (paginator.pageIndex + 1) * paginator.pageSize
+                      | slice : 0 : 6
+                  "
+                >
+                  <div class="roles_card">
+                    <div class="container">
+                      <p class="role">ROLE</p>
+                      <h2 class="role_title" (click)="getRoleById(roles)">
+                        {{ roles?.role_name }}
+                      </h2>
+                      <mat-divider></mat-divider>
+                      <div class="role_actions">
+                        <p class="role_date">
+                          <i> {{ roles?.date | date : "mediumDate" }}</i>
+                        </p>
+                        <i
+                          (click)="editRole(roles)"
+                          class="fa-regular fa-pen-to-square"
+                        ></i>
+                        <!-- delete icon -->
+                        <svg
+                          (click)="openDialogDelete(deleteRoleDialog, roles)"
+                          width="16"
+                          height="15"
+                          viewBox="0 0 18 17"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g id="Iconly/Light-Outline/Delete">
+                            <g id="Delete">
+                              <path
+                                id="Combined-Shape"
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M15.194 5.71203C15.2787 5.71735 15.3614 5.7394 15.4375 5.77689C15.5135 5.81438 15.5814 5.86657 15.6372 5.93045C15.693 5.99433 15.7356 6.06862 15.7625 6.14905C15.7894 6.22948 15.8001 6.31444 15.794 6.39903C15.789 6.45703 15.319 12.161 15.049 14.554C15.012 15.2285 14.7098 15.8611 14.2084 16.3137C13.7069 16.7662 13.0468 17.0022 12.372 16.97C11.213 16.989 10.1 17 9.01001 17C7.83601 17 6.69201 16.987 5.56001 16.964C4.89776 16.982 4.2545 16.7416 3.76641 16.2937C3.27833 15.8457 2.98373 15.2254 2.94501 14.564C2.67201 12.15 2.20501 6.46403 2.20101 6.40303C2.19476 6.31841 2.20537 6.23339 2.23223 6.15291C2.25909 6.07243 2.30166 5.99808 2.35748 5.93417C2.41329 5.87026 2.48123 5.81808 2.55737 5.78063C2.63351 5.74318 2.71632 5.72122 2.80101 5.71603C2.97024 5.7054 3.13711 5.76001 3.26731 5.86863C3.39751 5.97725 3.48114 6.13163 3.50101 6.30003C3.50101 6.33703 3.69501 8.66103 3.90101 10.96L3.94301 11.419C4.04301 12.562 4.15401 13.66 4.24301 14.424C4.24193 14.598 4.27673 14.7703 4.34525 14.9302C4.41376 15.09 4.51452 15.2341 4.64121 15.3533C4.76791 15.4724 4.91782 15.5642 5.08159 15.6229C5.24536 15.6815 5.41946 15.7057 5.59301 15.694C7.75901 15.739 9.96901 15.742 12.351 15.699C12.5295 15.7162 12.7096 15.6958 12.8798 15.6392C13.05 15.5826 13.2064 15.4911 13.3391 15.3705C13.4718 15.2498 13.5778 15.1028 13.6503 14.9387C13.7228 14.7747 13.7601 14.5974 13.76 14.418C14.029 12.043 14.496 6.35803 14.502 6.30003C14.5202 6.13208 14.6021 5.97749 14.7308 5.8681C14.8595 5.75871 15.0253 5.70286 15.194 5.71203ZM10.829 2.70191e-05C11.2134 -0.00210473 11.5879 0.12196 11.895 0.353183C12.2021 0.584406 12.4248 0.91001 12.529 1.28003L12.749 2.35203C12.7856 2.52422 12.8797 2.67884 13.0158 2.79043C13.1519 2.90203 13.322 2.96396 13.498 2.96603H16.341C16.4269 2.96263 16.5125 2.9766 16.5928 3.0071C16.6731 3.03761 16.7464 3.08402 16.8084 3.14355C16.8703 3.20308 16.9196 3.27451 16.9533 3.35355C16.9869 3.43259 17.0043 3.51762 17.0043 3.60353C17.0043 3.68944 16.9869 3.77446 16.9533 3.8535C16.9196 3.93254 16.8703 4.00397 16.8084 4.0635C16.7464 4.12304 16.6731 4.16945 16.5928 4.19995C16.5125 4.23046 16.4269 4.24443 16.341 4.24103H1.65001C1.56417 4.24443 1.47852 4.23046 1.39821 4.19995C1.3179 4.16945 1.24458 4.12304 1.18264 4.0635C1.1207 4.00397 1.07143 3.93254 1.03777 3.8535C1.00411 3.77446 0.986755 3.68944 0.986755 3.60353C0.986755 3.51762 1.00411 3.43259 1.03777 3.35355C1.07143 3.27451 1.1207 3.20308 1.18264 3.14355C1.24458 3.08402 1.3179 3.03761 1.39821 3.0071C1.47852 2.9766 1.56417 2.96263 1.65001 2.96603H4.49201L4.58001 2.96003C4.7399 2.94031 4.88968 2.87126 5.0085 2.76247C5.12733 2.65368 5.2093 2.51056 5.24301 2.35303L5.45401 1.31903C5.55249 0.94128 5.77349 0.606869 6.08239 0.368182C6.39129 0.129495 6.77064 1.54808e-05 7.16101 2.70191e-05H10.829ZM10.829 1.27503H7.16101C7.06072 1.27412 6.96291 1.30623 6.88267 1.36641C6.80243 1.42659 6.74422 1.51149 6.71701 1.60803L6.51701 2.60303C6.4916 2.72727 6.45443 2.84882 6.40601 2.96603H11.586C11.5376 2.84882 11.5004 2.72727 11.475 2.60303L11.264 1.56903C11.2309 1.481 11.1712 1.40543 11.0933 1.35277C11.0154 1.3001 10.923 1.27294 10.829 1.27503Z"
+                                fill="url(#paint0_linear_21_4623)"
+                              />
+                            </g>
+                          </g>
+                          <defs>
+                            <linearGradient
+                              id="paint0_linear_21_4623"
+                              x1="8.99551"
+                              y1="0"
+                              x2="8.99551"
+                              y2="17"
+                              gradientUnits="userSpaceOnUse"
+                            >
+                              <stop stop-color="#132E46" />
+                              <stop offset="1" stop-color="#0D2236" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
+                        <!-- delete icon -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- paginator -->
+              <div class="paginator_roles">
+                <p class="paginator-info">
+                  Page {{ paginator.pageIndex + 1 }} of {{ AllRoles.length }}
+                </p>
+                <mat-paginator
+                  #paginator
+                  [length]="AllRoles.length"
+                  [pageSize]="6"
+                  class="page1"
+                  (page)="pageEvent = $event"
+                >
+                </mat-paginator>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- **********************MAYAMAYA RECOMMENDS************************ -->
+        <div class="recommends">
+          <div class="recommneds_container">
+            <h2 class="recommend_txt m-0">MAYAMAYA RECOMMENDS</h2>
+            <u
+              class="viewAll_txt"
+              routerLink="/candidates/applicants"
+              routerLinkActive="active"
+              >View all</u
+            >
+          </div>
+          <!-- card -->
+          <div class="row p-0 m-0">
+            <div
+              class="col-lg-4 col-md-6 m-0"
+              *ngFor="let employeeData of allCandidatesData"
+            >
+              <div class="cards_container_recommend">
+                <mat-card class="recommend_card">
+                  <div class="recommend_card_container">
+                    <div class="image_overlay"></div>
+                    <div class="candidateDummyImg">
+                      <i
+                        *ngIf="employeeData.user_photo === null"
+                        class="fa-solid fa-user candidate_profile_icon"
+                      ></i>
+
+                      <img
+                        *ngIf="employeeData.user_photo != null"
+                        style="object-fit: cover"
+                        width="100%"
+                        [src]="employeeData.user_photo"
+                      />
+                    </div>
+                  </div>
+                  <div class="actions_container">
+                    <!-- ************FAV ICON ***** -->
+                    <img
+                      class="fav_icon"
+                      src="../../../../assets/icons/fav_icon.svg"
+                    />
+                    <mat-checkbox
+                      class="mat_checkbox_candidates"
+                    ></mat-checkbox>
+                    <!-- <img
+                      class="burger_icon"
+                      src="../../../../assets/icons/burger_menu.svg"
+                    /> -->
+                  </div>
+                  <div
+                    style="cursor: pointer"
+                    class="container"
+                    (click)="routeCandidate(employeeData)"
+                  >
+                    <p class="user_details_container">
+                      {{ employeeData.user_name }}
+                    </p>
+                    <div class="sprint_contiainer">
+                      <p>3 Sprints Latest Sep 24</p>
+                      <p>Active</p>
+                    </div>
+                  </div>
+                </mat-card>
+                <mat-card class="recommend_graph_card">
+                  <div class="row m-0 p-0">
+                    <div class="col-7 p-0">
+                      <app-radial-stacked-chart
+                        id="2"
+                        [data]="employeeData.result_values"
+                      ></app-radial-stacked-chart>
+                    </div>
+                    <div class="col-5 m-0 p-1 align-self-center">
+                      <p class="title_details">Department</p>
+                      <p class="result_details">
+                        {{
+                          employeeData?.department === ""
+                            ? "-"
+                            : employeeData?.department
+                        }}
+                      </p>
+                      <p class="title_details">Role</p>
+                      <p class="result_details">
+                        {{
+                          employeeData.designation &&
+                          employeeData.designation != "null"
+                            ? employeeData.designation
+                            : "-"
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+
+          <!-- card -->
+        </div>
+      </div>
+      <!-- ******SHORTLISTED CANDIDATES********** -->
+      <div class="col-3 shortListed_container">
+        <p class="shortlisted">SHORTLISTED</p>
+        <!-- *************** PROFILE 1**************** -->
+        <div
+          class="row shortListed_names_container"
+          *ngFor="let shortlisted of allShortlistedCandidate"
+          (click)="routeCandidate(shortlisted)"
+        >
+          <div class="col-12 col-lg-3 col-md-3 col-sm-3 m-0 img_container">
+            <img
+              class="shortlist_profile_img"
+              *ngIf="shortlisted.user_photo != null"
+              [src]="shortlisted.user_photo"
+              alt="image"
+            />
+            <div
+              class="shortlist_dummyIcon"
+              *ngIf="shortlisted.user_photo == null"
+            >
+              <i class="fa-solid fa-user shortlist_dummyIcon_user"></i>
+            </div>
+          </div>
+          <div class="col-12 col-lg-8 col-md-8 col-sm-8 p-0 m-0">
+            <p class="shortlisted_username">{{ shortlisted.user_name }}</p>
+            <p class="shortlisted_sprints">
+              {{ shortlisted.sprintscompleted }} Sprints Latest
+              {{ formatDate(shortlisted.date) }}
+            </p>
+            <!-- **************RATING CIRCLES*********** -->
+            <!-- <ngb-rating
+              class="rating_circles"
+              [(rate)]="currentRate"
+              [readonly]="true"
+              [starTemplate]="starTemplate"
+              [max]="5"
+            ></ngb-rating> -->
+          </div>
+        </div>
+
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ***************TEMPALATE FOR NGB-RATING ICON SHORTLISTED***************** -->
+<!-- <ng-template #starTemplate let-fill="fill">
+  <span class="fa-stack fa-xs circle_icons_shortlist">
+    <i class="fa-solid fa-circle fa-stack-1x"></i>
+    <i
+      class="fa-solid fa-circle fa-stack-1x"
+      [style.color]="fill === 100 ? '#000000' : '#6C757D'"
+    ></i>
+  </span>
+</ng-template> -->
+
+<!-- ***************DELETE ROLE DIALOG********** -->
+
+<ng-template #deleteRoleDialog>
+  <div class="dialog_container">
+    <div class="row p-0 m-0">
+      <div class="col-11 head_container">
+        <!-- <h2 mat-dialog-title>Success</h2> -->
+        <div mat-dialog-content>
+          <p class="dialog_tittle">
+            Are you sure you want to delete the "{{
+              roleDetailsDelete.role_name
+            }}" role?
+          </p>
+          <!-- <i class="sub_txt">{{ notes }}</i> -->
+        </div>
+      </div>
+      <div class="col-1 pt-5">
+        <img
+          class="close_icon"
+          (click)="closedialog()"
+          src="../../../../assets/icons/closeDialog.svg"
+        />
+      </div>
+    </div>
+    <div class="button">
+      <button (click)="deleteRole()" class="done_btn">Delete</button>
+    </div>
+
+    <!-- <div mat-dialog-actions>
+      <button  >Done</button>
+    </div> -->
+  </div>
+</ng-template>
+<app-footer></app-footer>

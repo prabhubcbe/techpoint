@@ -1,0 +1,728 @@
+<div class="bg">
+  <div class="row m-0">
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1">
+      <img alt="logo" src="../../../assets/images/MayaMaya-Logo.png" />
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="imgg">
+    <div class="img1"></div>
+
+    <img
+      class="bg_women_img"
+      alt="logo"
+      src="../../../assets/images/woman.jpg"
+    />
+    <div class="img_hover">
+      <div class="row img-pos1 offset-1">
+        <div
+          class="col-lg-6 col-xl-6 col-md-6 col-sm-12 ml-5 mt-2"
+          style="z-index: 99"
+        >
+          <h1 class="head">Welcome to MayaMaya™ for Business</h1>
+          <!-- <h3 class="head pt-1"></h3> -->
+          <p class="text_12">
+            As a business owner or a leader, the patented AI engine in MayaMaya™
+            can ensure you achieve three key objectives based on every
+            employee's culture-fit and skills
+          </p>
+          <div class="row ml-2">
+            <div class="col-11 ml-2">
+              <div class="pt-2 mb-5">
+                <p class="text_1">
+                  1. Retain more employees by providing your employees the
+                  benefit by identifying the best roles, skill gaps and fit for
+                  the employee internally for career growth (83% of resignations
+                  in 2021)
+                </p>
+                <p class="text_1">
+                  2. Ensure hiring the candidates for the future based on the
+                  profiles of your ideal employees for every role within the
+                  organization to ensure culture-fit and skill-fit that's right
+                  for you
+                </p>
+                <p class="text_1">
+                  3. Increased profitability for CFOs by reducing the cost of
+                  attrition/ hiring (~150% in tech, ~205% in healthcare of
+                  salary) and improved employee retention
+                </p>
+                <p class="text_12">
+                  Doubles up as a sales tool for seasoned veterans in the
+                  knowledge workers industry.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-1">
+            <p class="pt-2 mt-1 ml-2 mb-4 talk" style="color: white">
+              TALK TO US
+            </p>
+            <button mat-button class="meet">
+              <a
+                href="https://calendly.com/karthikvishwa/shortmeeting"
+                target="_blank"
+                >Book a Meeting</a
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          class="col-lg-5 col-xl-5 col-md-5 col-sm-12 pt-2 pl-5"
+          style="z-index: 99"
+        >
+          <div>
+            <h1 style="font-size: 32px" class="pb-0 mb-1">
+              SIGN UP - FREE TRIAL NOW
+            </h1>
+            <p style="color: white; font-size: 18px" class="pt-0">
+              60$ for employee/year after.
+            </p>
+            <!-- <p style="font-size: 20px; color: white">
+                Signup below for a FREE trial now.
+              </p> -->
+          </div>
+          <form class="mt-2 pt-1" #signUpForm="ngForm">
+            <div class="about_formfield">
+              <p class="title_txt">Name</p>
+              <!-- <mat-form-field appearance="outline" class="w-100 m-0 p-0"> -->
+              <!-- <mat-label>Color</mat-label> -->
+              <input
+                class="login_email_filed"
+                placeholder="Jon Doe"
+                required
+                matInput
+                ngModel
+                name="name"
+                autocomplete="off"
+              />
+              <mat-error *ngIf="formName && signUpForm.value.name == ''"
+                >name is reguired*</mat-error
+              >
+              <!-- </mat-form-field> -->
+            </div>
+            <div class="about_formfield">
+              <p class="title_txt">Email</p>
+              <!-- <mat-form-field appearance="outline" class="w-100"> -->
+              <input
+                class="login_email_filed"
+                placeholder="JonDoe@gmail.com"
+                required
+                matInput
+                ngModel
+                name="email"
+                autocomplete="off"
+              />
+              <mat-error *ngIf="formName && signUpForm.value.email == ''"
+                >email is reguired*</mat-error
+              >
+              <!-- </mat-form-field> -->
+            </div>
+            <div class="about_formfield">
+              <p class="title_txt">Contact Number</p>
+              <!-- <mat-form-field appearance="outline" class="w-100"> -->
+              <input
+                class="login_email_filed"
+                placeholder="+1 - 650 - 013 - 123"
+                required
+                matInput
+                ngModel
+                name="number"
+                autocomplete="off"
+              />
+              <mat-error *ngIf="formName && signUpForm.value.number == ''"
+                >number is reguired*</mat-error
+              >
+              <!-- </mat-form-field> -->
+            </div>
+            <div class="about_formfield">
+              <p class="title_txt">Firm Name</p>
+              <!-- <mat-form-field appearance="outline" class="w-100"> -->
+              <input
+                class="login_email_filed"
+                placeholder="Catenate Corp  "
+                required
+                matInput
+                ngModel
+                name="firmName"
+                autocomplete="off"
+              />
+              <mat-error *ngIf="formName && signUpForm.value.firmName == ''"
+                >firmName is reguired*</mat-error
+              >
+              <!-- </mat-form-field> -->
+            </div>
+            <div class="about_formfield">
+              <p class="title_txt">Firm Website</p>
+              <!-- <mat-form-field appearance="outline" class="w-100"> -->
+              <input
+                class="login_email_filed"
+                placeholder="www.Catenate.io"
+                required
+                ngModel
+                name="firmWebsite"
+                matInput
+                autocomplete="off"
+              />
+              <mat-error *ngIf="formName && signUpForm.value.firmWebsite == ''"
+                >firmWebsite is reguired*</mat-error
+              >
+              <!-- </mat-form-field> -->
+            </div>
+
+            <div class="about_formfield">
+              <p class="p-0 m-0" style="font-size: 14px">
+                <!-- <mat-checkbox required ngModel name="SoftwareServicesAgreement">
+                </mat-checkbox> -->
+
+                <mat-checkbox
+                  class="mat_checkbox_candidates"
+                  required
+                  ngModel
+                  name="SoftwareServicesAgreement"
+                ></mat-checkbox>
+                <!-- <iframe src="../../../assets/file/Software Services Agreement & Terms of Trial -Website.pdf" title="testPdf">   </iframe> -->
+                <a
+                  class="pl-2 text"
+                  target="_blank"
+                  href="https://drive.google.com/file/d/1CM__Uy_O0N4ljOZM0b687b4ZhtAH0VjW/view"
+                >
+                  Accept the terms and conditions</a
+                >
+              </p>
+            </div>
+          </form>
+
+          <div class="text-center">
+            <button
+              mat-button
+              class="submit_btn"
+              type="submit"
+              (click)="signUp(signUpForm)"
+            >
+              <!-- [disabled]="signUpForm.invalid" -->
+              Sign Up
+            </button>
+          </div>
+          <!-- {{ signUpForm.value | json }}} -->
+          <div
+            style="
+              text-align: center;
+              color: white;
+              font-size: 22px;
+              padding-top: 10px;
+            "
+          >
+            <p>
+              Already have an account ?
+              <a routerLink="/login">Sign In</a> here.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row m-0">
+    <div class="col-6 offset-1">
+      <p class="pt-5 mt-3 catenate_head">CATENATE CORP</p>
+      <p class="catenate_text">8501 Wade Blvd, Ste 250</p>
+      <p class="catenate_text">Frisco, Texas 75034</p>
+      <div>
+        <p class="pt-5 mt-3 catenate_head">Email</p>
+        <p class="catenate_text">info@catenate.io</p>
+      </div>
+    </div>
+    <div class="col-5"></div>
+  </div>
+  <div class="row m-0 bg-greyy">
+    <div
+      class="col-lg-3 col-md-6 offset-md-1 col-sm-8 offset-sm-2 col-10 offset-1"
+    >
+      <img alt="logo" src="../../../assets/images/MayaMaya-Logo.png" />
+      <p class="copyright">Copyright 2022 | Catenate | Disclaimer</p>
+    </div>
+    <div class="col-lg-2 col-md-6 col-sm-4 col-6 list">
+      <p class="pt-lg-5 pt-md-4 pt-sm-3 pt-2">FOR PROFESSIONALS</p>
+      <p>FOR INTERNS</p>
+      <p>FOR BUSINESS</p>
+      <p>FOR COMPLIANCE</p>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-8 list">
+      <p class="pt-lg-5 pt-md-4 pt-sm-3 pt-2">ABOUT MAYAMAYA</p>
+      <p>MAYAMAYA</p>
+      <p>MAYAMAYA</p>
+    </div>
+  </div>
+</div>
+
+<!-- *************************************************ADD ORG INFO************************ -->
+
+<ng-template #organizationInfo class="dialog-container bg">
+  <div class="row m-0 p-0 bgdone-dialog1">
+    <div class="col-2 pl-0 pr-0">
+      <div>
+        <img
+          class="pt-3 pl-5"
+          width="70%"
+          loading="lazy"
+          fetchpriority="low"
+          src="../../../assets/images/MayaMaya-Logo.png"
+        />
+      </div>
+      <div></div>
+    </div>
+    <div class="col-9 pl-0 pr-0">
+      <div class="textHeader pt-4">
+        <p class="dialog_header">WELCOME TO MAYAMAYA ENTERPRISE CONSOLE</p>
+      </div>
+    </div>
+    <div class="col-1 pl-0 pr-0">
+      <div>
+        <span
+          class="material-icons-outlined close mt-3 mb-3 mr-5"
+          [mat-dialog-close]="true"
+        >
+          close
+        </span>
+      </div>
+      <div></div>
+    </div>
+  </div>
+  <div class="row m-0 pt-5 h_200">
+    <div class="col-9 offset-2 pl-0 pt-4">
+      <mat-horizontal-stepper
+        linear
+        #stepper
+        ngClass="{{ 'last-edited-step-' + stepper.selectedIndex }}"
+        labelPosition="bottom"
+      >
+        <mat-step>
+          <ng-template matStepLabel> </ng-template>
+          <div>
+            <div class="row m-0 label_text">
+              <div class="col-3 pl-0">1.UPDATE ORGANISATION INFORMATION</div>
+              <div class="col-3">2.ADD USERS AND USER INFORMATION</div>
+              <div class="col-3 pl-4">3.INVITE USERS TO USE MAYAMAYA</div>
+              <div class="col-3 pl-4">4.VIEW CONSOLE DASHBOARD</div>
+            </div>
+
+            <div class="pt-5">
+              <div>
+                <p class="org_info">Organization Info</p>
+                <p class="pt-1">
+                  It is mandatory to fill the organization detail as soon as you
+                  sign up. You can always modify these details later.
+                </p>
+              </div>
+
+              <form #organizationInfoForm="ngForm">
+                <div class="row m-0 pt-4" style="height: 85px">
+                  <div class="col-4 pl-0">
+                    <p class="step-one-name m-0 pb-1">ORGANIZATION NAME</p>
+                    <input
+                      [(ngModel)]="organizationName"
+                      required
+                      ngModel
+                      name="org_name"
+                      class="innershadow w-100"
+                      placeholder="Enter the full name of your firm/institution"
+                    />
+                  </div>
+                  <div class="col-4 pl-0 gen">
+                    <p class="step-one-name m-0">INDUSTRY</p>
+                    <!-- <mat-form-field appearance="outline" class="gender_filter"> -->
+                    <mat-select
+                      [(ngModel)]="organizationIndustry"
+                      required
+                      ngModel
+                      name="industry"
+                      placeholder="Pick the right industry vertical"
+                    >
+                      <mat-option
+                        *ngFor="let list of IndustryValues"
+                        [value]="list"
+                        >{{ list }}</mat-option
+                      >
+                    </mat-select>
+                    <!-- </mat-form-field> -->
+                  </div>
+
+                  <div class="col-4 pl-0 gen">
+                    <p class="step-one-name m-0 pb-1">COUNTRY</p>
+                    <!-- <mat-form-field appearance="outline" class="gender_filter">/ -->
+                    <mat-select
+                      (selectionChange)="getStateFromCountries($event.value)"
+                      [(ngModel)]="organizationCountry"
+                      placeholder="Pick your country"
+                      ngModel
+                      name="country"
+                    >
+                      <mat-option
+                        *ngFor="let list of countriesListOrg"
+                        [value]="list"
+                        >{{ list }}</mat-option
+                      >
+                    </mat-select>
+                    <!-- </mat-form-field> -->
+                  </div>
+                </div>
+              </form>
+
+              <div class="d-flex mt-3 pt-4">
+                <div style="flex: 1"></div>
+                <div class="d-flex">
+                  <p class="reset" (click)="organizationInfoForm.reset()">
+                    RESET
+                  </p>
+                  <button
+                    (click)="editSaveOrganization(organizationInfoForm.value)"
+                    mat-button
+                    matStepperNext
+                    class="btn-stepper"
+                  >
+                    Done
+                  </button>
+                  <!-- {{ organizationInfoForm.invalid }} -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel> </ng-template>
+          <!-- content -->
+
+          <div>
+            <div class="row m-0 label_text">
+              <div class="col-3 pl-0">1.UPDATE ORGANISATION INFORMATION</div>
+              <div class="col-3">2.ADD USERS AND USER INFORMATION</div>
+              <div class="col-3 pl-4">3.INVITE USERS TO USE MAYAMAYA</div>
+              <div class="col-3 pl-4">4.VIEW CONSOLE DASHBOARD</div>
+            </div>
+            <div class="pt-2">
+              <p class="org_info">Users & User Information</p>
+              <p class="pt-1">
+                You have to keep your list of users ready in .xls format for
+                bulk upload. You can skip this now and do it later too.
+              </p>
+            </div>
+            <div class="row pt-2 m-0">
+              <div class="col-4 pl-0">
+                <p class="step-one-name m-0 pb-1">
+                  UPLOAD APP USER INFORMATION
+                </p>
+                <!-- <input
+                  type="file"
+                  accept=".xlsx"
+                  (change)="onFileChangeEmployee($event.target.files)"
+                  multiple="false"
+                  class="innershadow w-100"
+                  placeholder="Only .xls format files smaller than 2Mb"
+                /> -->
+              </div>
+              <div class="col-2 pl-0 pr-0">
+                <p class="step-one-name pb-3"></p>
+                <button
+                  mat-button
+                  class="btn-browse"
+                  (click)="excelUploadEmployee()"
+                >
+                  UPLOAD
+                </button>
+              </div>
+              <div class="col-4">
+                <p class="step-one-name m-0 pb-1">
+                  UPLOAD ADMIN USER INFORMATION
+                </p>
+                <input
+                  type="file"
+                  accept=".xlsx"
+                  (change)="onSelectExecel($event)"
+                  class="innershadow w-100"
+                  placeholder="Only .xls format files smaller than 2Mb"
+                />
+              </div>
+              <div class="col-2 pl-0 pr-0">
+                <p class="step-one-name pb-3"></p>
+                <button
+                  mat-button
+                  class="btn-browse"
+                  (click)="uploadExcelFile()"
+                >
+                  UPLOAD
+                </button>
+              </div>
+            </div>
+            <div class="tabs mt-2">
+              <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+                <mat-tab label="Users">
+                  <ng-template mat-tab-label
+                    >APP USERS ({{ finalArrEmployee.length }})
+                  </ng-template>
+
+                  <ng-template matTabContent class="bg-white">
+                    <div class="sjs-table">
+                      <table class="w-100">
+                        <tbody>
+                          <tr>
+                            <th class="pl-2 pt-2">Name</th>
+                            <th class="pl-2 pt-2">Email</th>
+                          </tr>
+                          <tr *ngFor="let row of finalArrEmployee">
+                            <!-- <td class="pt-1 pl-2">{{ row.Name }}</td>
+                            <td class="pt-1 pl-2">{{ row.Email }}</td> -->
+                          </tr>
+                        </tbody>
+                      </table>
+                      <mat-paginator
+                        *ngIf="finalArrEmployee.length > 0"
+                        #paginator
+                        [length]="5"
+                        [pageSize]="5"
+                        class="page"
+                        [pageSizeOptions]="[5, 10, 30, 90]"
+                      >
+                      </mat-paginator>
+                    </div>
+                  </ng-template>
+                </mat-tab>
+                <mat-tab label="Second">
+                  <ng-template mat-tab-label
+                    >ADMIN USERS
+                    <!-- ({{ adminuserUploaded?.length }}) -->
+                  </ng-template>
+
+                  <ng-template matTabContent>
+                    <div class="sjs-table">
+                      <table class="w-100 p-2">
+                        <tbody>
+                          <tr>
+                            <th class="pl-2 pt-2">Name</th>
+                            <th class="pl-2 pt-2">Email</th>
+                          </tr>
+                          <!-- <tr *ngFor="let row of adminuserUploaded">
+                            <td class="pt-1 pl-2">{{ row.Name }}</td>
+                            <td class="pt-1 pl-2">{{ row.Email }}</td>
+                          </tr> -->
+                        </tbody>
+                      </table>
+                      <mat-paginator
+                        *ngIf="adminuserUploaded.length > 0"
+                        #paginator
+                        [length]="5"
+                        [pageSize]="5"
+                        class="page"
+                        [pageSizeOptions]="[5, 10, 30, 90]"
+                      >
+                      </mat-paginator>
+                    </div>
+                  </ng-template>
+                </mat-tab>
+              </mat-tab-group>
+            </div>
+
+            <!-- buttons -->
+            <div class="d-flex mt-2">
+              <div style="flex: 1">
+                <button mat-button matStepperPrevious class="btn-stepper">
+                  Previous
+                </button>
+              </div>
+
+              <div class="d-flex">
+                <button
+                  [disabled]="doneUpload"
+                  mat-button
+                  matStepperNext
+                  class="btn-stepper mr-2"
+                  (click)="DoneInStep2()"
+                >
+                  Done
+                </button>
+                <button mat-button class="btn-stepper" (click)="skipStep2()">
+                  Skip
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel> </ng-template>
+          <div class="row m-0 label_text">
+            <div class="col-3 pl-0">1.UPDATE ORGANISATION INFORMATION</div>
+            <div class="col-3">2.ADD USERS AND USER INFORMATION</div>
+            <div class="col-3 pl-4">3.INVITE USERS TO USE MAYAMAYA</div>
+            <div class="col-3 pl-4">4.VIEW CONSOLE DASHBOARD</div>
+          </div>
+          <div class="pt-2">
+            <div>
+              <p class="org_info">User Invitation</p>
+              <p class="pt-1">
+                we have drafted and formatted an invite letter for your
+                employees, candidates and console users.
+              </p>
+            </div>
+            <div class="tabs mt-2">
+              <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+                <mat-tab label="Userss">
+                  <ng-template mat-tab-label
+                    >APP USERS ({{ finalArrEmployee.length }})
+                  </ng-template>
+
+                  <ng-template matTabContent class="bg-white">
+                    <div class="tab3">
+                      <p>
+                        Dear Employee, We would like to thank you for being
+                        among the best and brightest in our organization. We are
+                        writing to reiterate our commitment to your personal and
+                        professional growth. I want to introduce you to
+                        MayaMaya™, an AI tool and your buddy that helps with
+                        this program. Three steps and 15 minutes later, you will
+                        be on this new journey
+                      </p>
+                      <p>
+                        1. Click https://web.MayaMaya.us/#/ and create your
+                        profile.
+                      </p>
+                      <p>
+                        2. Be sure to select ""Business User."" Add Org code
+                        {{ orgCodeShow }}. . Makes this FREE.
+                      </p>
+                      <p>
+                        3. Take two sprints (just 18 questions) that should take
+                        no more than 15-20 minutes. Upload your resume when
+                        prompted. You will get a personalized skills report.
+                      </p>
+
+                      <p>
+                        Voila!!!! You will be presented with more exciting
+                        growth opportunities.
+                      </p>
+
+                      <p>
+                        Talk to us about the right roles, and we will define a
+                        custom plan for your growth. Please feel free to talk to
+                        us if you want to know more.
+                      </p>
+
+                      <p>With Best Regards,</p>
+                    </div>
+                  </ng-template>
+                </mat-tab>
+                <mat-tab label="Users">
+                  <ng-template mat-tab-label
+                    >CONSOLE USERS
+                    <!-- ({{ adminuserUploaded?.length }}) -->
+                  </ng-template>
+
+                  <ng-template matTabContent class="bg-white">
+                    <div class="tab3">
+                      <p>
+                        Welcome to MayaMaya! We are excited to have you on board
+                        and we look forward to helping you achieve a better
+                        understanding of your employees and candidates with our
+                        AI-enabled decision-aiding platform.
+                      </p>
+                      <p>
+                        To help you get started, please find the following
+                        details - URL - https://app.mayamaya.us/loginV2
+                      </p>
+                      <p>User Name - Email</p>
+                      <p>ID Password - Generated by System</p>
+                      <p>
+                        In addition, we also recommend that you reset the
+                        password by clicking on forget password button after
+                        login in at one time.
+                      </p>
+                      <p>
+                        If you have any questions or encounter any issues during
+                        your onboarding process, our support team is available
+                        to assist you. You can reach out to our support team by
+                        emailing sameer@mayamaya.us. We are here to help you in
+                        any way we can.
+                      </p>
+
+                      <p>
+                        Thank you for choosing our platform. We are committed to
+                        providing you with the best user experience and look
+                        forward to working with you.
+                      </p>
+
+                      <p>Best regards,</p>
+                      <p>MayaMaya Team</p>
+                    </div>
+                  </ng-template>
+                </mat-tab>
+              </mat-tab-group>
+            </div>
+          </div>
+          <!-- buttons -->
+          <div class="d-flex mt-2">
+            <div style="flex: 1">
+              <button mat-button matStepperPrevious class="btn-stepper">
+                Previous
+              </button>
+            </div>
+            <div class="d-flex">
+              <button
+                mat-button
+                matStepperNext
+                class="btn-stepper mr-2"
+                (click)="sendOnBoardEmployee()"
+              >
+                Send
+              </button>
+              <button mat-button class="btn-stepper" (click)="skipStep2()">
+                Skip
+              </button>
+            </div>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel></ng-template>
+          <div class="row m-0 label_text">
+            <div class="col-3 pl-0">1.UPDATE ORGANISATION INFORMATION</div>
+            <div class="col-3">2.ADD USERS AND USER INFORMATION</div>
+            <div class="col-3 pl-4">3.INVITE USERS TO USE MAYAMAYA</div>
+            <div class="col-3 pl-4">4.VIEW CONSOLE DASHBOARD</div>
+          </div>
+          <div class="pt-4">
+            <p class="org_info">Your are all set!</p>
+            <p class="pt-2">
+              we have drafted and formatted an invite letter for your employees,
+              candidates and console users.
+            </p>
+          </div>
+          <div class="pt-3">
+            <p class="org_info pt-1">
+              Added {{ finalArrEmployee.length }} app users and
+              <!-- {{ adminuserUploaded?.length }} console users -->
+            </p>
+            <!-- <p class="org_info pt-3">Sent 1200 invite mails to new users.</p> -->
+          </div>
+          <div class="d-flex mt-5">
+            <div style="flex: 1">
+              <button mat-button matStepperPrevious class="btn-stepper">
+                Previous
+              </button>
+            </div>
+            <!-- (click)="stepper.reset()" -->
+            <button
+              mat-button
+              routerLink="/home"
+              (click)="skipStep2()"
+              class="btn-stepper"
+            >
+              Go to Dashboard
+            </button>
+          </div>
+        </mat-step>
+        <mat-step> </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,452 @@
+@import "../../../../assets/styles/variable.scss";
+
+.component_container {
+  .bg_GreenGradient {
+    background: $Primary_Blue;
+    width: 100%;
+    height: 330px;
+  }
+}
+.title_candidates {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+
+  p {
+    font-size: 13px;
+    text-transform: uppercase;
+    padding-top: 30px;
+    // font-weight: 700;
+  }
+}
+.add_team_btn {
+  border: none;
+  outline: none;
+  width: 180px;
+  height: 50px;
+  border-radius: 40px;
+  //   margin-top: 30px;
+  i {
+    padding: 5px;
+  }
+}
+.filters_container {
+  color: white;
+  padding-top: 30px;
+  font-size: 14px p {
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  .Bussiner_Filter {
+    // *****************search bussiness function *****************
+    .search {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    .search__input {
+      font-family: inherit;
+      font-size: inherit;
+      height: 50px;
+      background: $Primary_Blue;
+      border: 1px solid white;
+      color: #ffffff;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      width: 25em;
+      transition: all ease-in-out 0.5s;
+      margin-right: -2rem;
+    }
+
+    .search__input:hover,
+    .search__input:focus {
+      box-shadow: 0 0 1em #00000013;
+    }
+
+    .search__input:focus {
+      outline: none;
+      background-color: #f0eeee;
+    }
+
+    .search__input::-webkit-input-placeholder {
+      font-weight: 100;
+      color: #ffffff;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .search__input:focus + .search__button {
+      background: none;
+    }
+
+    .search__button {
+      border: none;
+      background: none;
+      margin-top: 0.1em;
+    }
+
+    // .search__button:hover {
+    //   cursor: pointer;
+    // }
+
+    .search__icon {
+      height: 1.3em;
+      width: 1.3em;
+      fill: #b4b4b4;
+    }
+  }
+  .Level_filter {
+    padding-left: 30px;
+  }
+
+  // *************EVAluation  HTML SELECT filter*************
+
+  // .evaluation_Dropdwon {
+  //   position: relative;
+  //   width: 100%; /* Adjust the width as needed */
+  // }
+
+  // .evaluation_Dropdwon::after {
+  //   content: "";
+  //   position: absolute;
+  //   top: 50%;
+  //   right: 4%;
+  //   transform: translateY(-50%);
+  //   /* Add your icon styles here */
+  //   width: 19px;
+  //   height: 19px;
+  //   background-image: url(../../../../assets/icons/downArrowExpand.svg);
+  //   background-size: cover;
+  //   filter: invert(100%) brightness(100%) saturate(0%); //SVG color set to white
+  // }
+
+  // .evaluation_Dropdwon :focus {
+  //   outline: none;
+  // }
+
+  // .evaluation_Dropdwon select {
+  //   color: white;
+  //   cursor: pointer;
+  //   width: 100%;
+  //   height: 50px;
+  //   background: $Primary_RedGradient;
+  //   border-radius: 10px;
+  //   border: 1px solid white;
+  //   padding: 5px 20px 5px 10px; /* Increase the right padding to make space for the arrow */
+  //   appearance: none;
+  //   -webkit-appearance: none;
+  //   -moz-appearance: none;
+  // }
+
+  // .evaluation_Dropdwon option {
+  //   color: black;
+  // }
+}
+// ********************evaluation_ MAT DropdwonFilter******************
+.evaluation_DropdwonFilter {
+  width: 100%;
+  .evaluation_DropdwonFilterFile {
+    width: 100%;
+    // height: 65px;
+  }
+  .evaluation_select {
+    color: rgb(255, 255, 255);
+  }
+
+  ::ng-deep .mat-mdc-select-placeholder {
+    color: white;
+    font-family: $Titillium_Regular;
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 3;
+  }
+  ::ng-deep .mat-mdc-select-arrow {
+    color: white;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    color: rgb(129, 17, 17);
+  }
+  ::ng-deep
+    .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(
+      .mdc-text-field--textarea
+    )
+    .mat-mdc-form-field-infix {
+    padding: 0px;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    // padding: 0;
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 50px !important;
+    background: $Primary_Blue;
+    padding: 4px 10px 0 10px;
+  }
+  ::ng-deep .mat-mdc-select-panel-above .mdc-menu-surface.mat-mdc-select-panel {
+    margin: 8px 0px 13px 0px;
+    border-radius: 10px;
+    background-color: red !important;
+  }
+  ::ng-deep
+    .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(
+      .mdc-text-field--textarea
+    )
+    .mat-mdc-form-field-infix {
+    padding-top: 2px;
+  }
+}
+
+// ************************LEVEL DROP DOWN FILTER ******************
+.level_DropDownFilter {
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 50px;
+    background: $Primary_Blue;
+    padding: 3px 10px 0 10px;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    color: rgb(129, 17, 17);
+  }
+  ::ng-deep .mat-mdc-select-placeholder {
+    color: white;
+    font-family: $Titillium_Regular;
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 3;
+  }
+  ::ng-deep .mat-mdc-select-arrow {
+    color: white;
+  }
+  ::ng-deep
+    .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(
+      .mdc-text-field--textarea
+    )
+    .mat-mdc-form-field-infix {
+    padding-top: 2px;
+  }
+  :ng-deep .mat-mdc-select {
+    padding-top: 10px !important;
+  }
+}
+// **********************SEARCH BUTTON ************************
+.search_Btn {
+  padding-top: 30px;
+}
+.search_btn_container {
+  text-align: end;
+}
+.searchbtn {
+  background: $Primary_Blue; // Sets the  color using $Primary_RedGradient variable.scss
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 10px 25px 10px 25px;
+  font-size: 12px;
+  width: 90%;
+  height: 50px;
+  //   box-shadow: -2px -8px 13px 5px rgb(255 255 255 /5%);
+
+  box-shadow: -2px -8px 13px 5px rgb(255 255 255 /5%),
+    rgba(0, 0, 0, 0.9) 0px 10px 10px -5px;
+  border: 0.5px solid $primary_checkBoxColor;
+  text-transform: uppercase;
+}
+
+.main_Block {
+  padding-top: 50px;
+}
+// ******************************CANDIDATES AVAILABLE**************************
+.candidate_available {
+  background-color: $cards_Bg;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  .graph_card {
+    flex-grow: 1;
+    background-color: white;
+    border-radius: 15px 15px 0px 0;
+  }
+  .title_details {
+    text-transform: uppercase;
+    margin: 0px;
+    font-family: Titillium Web;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+
+  }
+  .result_details {
+    font-family: Titillium Web;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}
+
+.candidate_header {
+  background: $Primary_Blue;
+  height: 70px;
+}
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  color: white;
+
+  .item1 {
+    flex-grow: 1;
+    padding-left: 50px;
+    h2 {
+      font-weight: 700;
+      padding-top: 10px;
+    }
+  }
+  .item2 {
+    flex-grow: 1;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    h2 {
+      font-weight: 700;
+      padding-right: 30px;
+      padding-top: 15px;
+    }
+    .bgBtn {
+      background-color: white;
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      margin-right: 8%;
+      i {
+        color: black;
+        translate: 30% 30%;
+        font-size: 15px;
+      }
+    }
+  }
+}
+// ************* divider *************
+.divider_main {
+  margin-top: 50px;
+}
+// **********teams_card************
+.teams_cards_container {
+  padding-top: 30px;
+}
+.teams_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  b {
+    font-size: 26px;
+  }
+}
+.teams_card {
+  margin-top: 30px;
+  background-color: $cards_Bg;
+  height: 390px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+// *****************ACTIONS INSIDE THE CARD*****************
+.actions_container {
+  display: flex;
+  //   position: absolute;
+  z-index: 2;
+
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  padding-right: 20px;
+  padding-top: 10px;
+  gap: 10px;
+}
+// ******************checkbox****************
+.mat_checkbox_candidates {
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
+      [data-indeterminate="true"]
+    )
+    ~ .mdc-checkbox__background {
+    border-radius: 3px;
+    border: 1px solid white;
+    width: 20px;
+    height: 20px;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:focus:checked
+    ~ .mdc-checkbox__background {
+    background-color: white;
+    width: 20px;
+    height: 20px;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled
+    ~ .mdc-checkbox__background
+    .mdc-checkbox__checkmark {
+    color: $primary_checkBoxColor;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:checked
+    ~ .mdc-checkbox__background {
+    background-color: white;
+    border-color: $primary_checkBoxColor;
+    width: 20px;
+    height: 20px;
+  }
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__background {
+    top: calc((var(--mdc-checkbox-state-layer-size) - 24px) / 2);
+    left: calc((var(--mdc-checkbox-state-layer-size) - 24px) / 2);
+  }
+}
+// **********************VERTICAL BURGER MENU **********************
+.fav_icon {
+  height: 30px;
+  // margin-top: 3%;
+}
+.burger_icon {
+  height: 22px;
+  // margin-top: 4%;
+  margin-left: 2%;
+}
+// ************team_name*************
+.team_name {
+  font-size: 22px;
+  padding-top: 20px;
+  p {
+    font-size: 30px;
+    line-height: 30px;
+  }
+}
+.cards_header {
+  padding: 10px;
+}
+.teams_graph {
+  height: 150px;
+}
+.teams_actions {
+  display: flex;
+  padding-top: 10px;
+  justify-content: end;
+  gap: 15px;
+}

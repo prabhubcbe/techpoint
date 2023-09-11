@@ -1,0 +1,26 @@
+<div class="dialog_container">
+  <div class="row p-0 m-0">
+    <div class="col-11 head_container">
+      <!-- <h2 mat-dialog-title>Success</h2> -->
+      <div mat-dialog-content>
+        <p class="dialog_tittle">
+          {{ message }}
+        </p>
+        <i class="sub_txt">{{ notes }}</i>
+      </div>
+    </div>
+    <div class="col-1 pt-5">
+      <img class="close_icon"
+        (click)="closedialog()"
+        src="../../../assets/icons/closeDialog.svg"
+      />
+    </div>
+  </div>
+  <div class="button">
+    <button (click)="closedialog()" class="done_btn">Done</button>
+  </div>
+
+  <!-- <div mat-dialog-actions>
+    <button  >Done</button>
+  </div> -->
+</div>

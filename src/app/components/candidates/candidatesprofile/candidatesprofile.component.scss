@@ -1,0 +1,710 @@
+@import "../../../../assets/styles/variable.scss";
+
+.component_container {
+  //   background: linear-gradient(180deg, #f5f1ee 0%, #e2dcd6 100%);
+  //   height: 100vw;
+  .bg_GreenGradient {
+    background: $Primary_greenGradient;
+    width: 100%;
+    height: 320px;
+  }
+}
+// *******************Title container*******************
+.title_container {
+  display: flex;
+  place-items: center;
+  align-content: center;
+  padding-top: 40px;
+  color: white;
+  img {
+    height: 35px;
+    width: 35px;
+  }
+  p {
+    font-size: 14px;
+    margin: 0;
+    padding-left: 20px;
+    text-transform: uppercase;
+  }
+}
+
+// ***********************Profile container***********************
+.image_overlay {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  // background: linear-gradient(#30757b, #000000);
+  background: linear-gradient(
+    rgba(48, 117, 123, 0.3),
+    /* 50% opacity for the first color */ rgba(0, 0, 0, 0.9)
+      /* 80% opacity for the second color */
+  );
+}
+.profile_container {
+  padding-top: 50px;
+  color: white;
+  .profile_image_card {
+    width: 100%;
+    height: 450px;
+    border-radius: 10px 10px 0 0;
+    background: $Primary_greenGradient;
+  }
+  .candidate_profile_icon {
+    text-align: center;
+    font-size: 300px;
+    padding-top: 50px;
+    opacity: 0.1;
+    position: relative;
+  }
+  .candidate_profile_img {
+    border-radius: 10px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .candidate_name_container {
+    padding-left: 67px;
+    position: absolute;
+    top: 230px;
+    z-index: 5;
+    .name {
+      font-size: 44px;
+      font-family: $Titillium_Bold;
+    }
+    .sprints {
+      font-size: 16px;
+      padding-top: 8px;
+    }
+  }
+  .details_container {
+    z-index: 5;
+
+    padding-left: 67px;
+    position: absolute;
+    top: 22rem;
+    width: 100%;
+  }
+  .edit_assigned {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    img {
+      height: 13px;
+      margin-top: 5px;
+    }
+  }
+  .title_details {
+    text-transform: uppercase;
+    margin: 0px;
+    font-family: Titillium Web;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .result_details {
+    font-family: Titillium Web;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .result_details_status {
+    margin-top: 5px;
+    background-color: white;
+    width: 60%;
+    height: 40px;
+    border-radius: 10px;
+    color: black;
+    text-align: center;
+    padding-top: 10px;
+  }
+}
+// *************************PROFILES AND NOTES CONTAINER*************************
+.profile_notes_container {
+  // height: 500px;
+  width: 100%;
+  color: white;
+  border-radius: 0;
+  .profile_note_tabs {
+    ::ng-deep .mat-mdc-tab-labels {
+      width: 65%;
+      padding-left: 50px;
+      padding-top: 10px;
+    }
+    ::ng-deep .mat-mdc-tab.mdc-tab {
+      padding: 0;
+    }
+    ::ng-deep .mat-mdc-tab-label-container {
+      display: flex;
+      flex-grow: 0;
+      justify-content: start;
+      width: 80%;
+    }
+    ::ng-deep .mat-mdc-tab-header {
+      height: 73px;
+    }
+    ::ng-deep .mat-mdc-tab-header {
+      border-bottom: 3px solid $cards_Bg;
+    }
+    ::ng-deep .mat-mdc-tab.mdc-tab .mdc-tab-indicator__content--underline {
+      border-color: black !important;
+      border-width: 10px;
+      width: 80%;
+      border-radius: 10px 10px 0 0;
+    }
+    ::ng-deep .mat-mdc-tab.mdc-tab {
+      height: 60px;
+    }
+    ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+      color: black !important;
+    }
+  }
+  .tab_title1 {
+    font-size: 18px;
+    padding-top: 15px;
+    padding-left: 10px;
+    font-family: $Titillium_Bold;
+  }
+  .mat_tab_content {
+    color: black;
+    padding: 37px 20px 50px 45px;
+    .highlight_txt {
+      font-size: 24px;
+      font-family: $Titillium_Bold;
+    }
+    .highlight_txt_points {
+      font-size: 18px;
+      padding-top: 15px;
+      text-indent: -1.8rem;
+      img {
+        padding-right: 20px;
+      }
+    }
+  }
+}
+// ******************************SKILLS AND HUMAN SKILLS***************
+.Skills_container {
+  // height: 100px;
+  width: 100%;
+  background: $Primary_Blue;
+  border-radius: 0;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  p {
+    width: 80%;
+    padding: 0;
+    padding: 20px 20px 20px 40px;
+    line-height: 30px;
+    margin: 0;
+    font-size: 22px;
+    font-family: $Titillium_Bold;
+  }
+}
+// ***************GRAPH CONTAINER***************
+.graph_conatiner {
+  height: 500px;
+  background-color: white;
+  border-radius: 0;
+}
+.full_report_title {
+  font-size: 24px;
+  font-family: $Titillium_Bold;
+}
+// *******************FULL_REPORT_CONTAINER*******************
+
+.FULL_REPORT {
+  // height: 250px;
+  background: $Primary_RedGradient;
+  border-radius: 0 0 10px 10px;
+  text-align: left;
+  padding-left: 40px;
+  padding-top: 60px;
+  padding-bottom: 5px;
+}
+
+.search_Btn {
+  padding-top: 30px;
+  margin-bottom: 40px;
+}
+
+.searchbtn {
+  background: $Primary_RedGradient; // Sets the  color using $Primary_greenGradient variable.scss
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 10px 25px 10px 25px;
+  font-size: 12px;
+  width: 20%;
+  height: 50px;
+
+  box-shadow: rgb(31, 31, 33) 10px 10px 26px -3px,
+    rgba(204, 207, 209, 0.2) -7px -2px 7px -2px;
+
+  // box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+  //   rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+  border: 0.5px solid $primary_checkBoxColor;
+  text-transform: uppercase;
+}
+// ****************Bio_card*******************
+.Bio_card {
+  margin-top: 50px;
+  height: 700px;
+  background: $cards_Bg;
+  border-radius: 10px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 50px;
+  height: auto;
+
+  .Bio_container {
+    width: 90%;
+    padding-left: 65px;
+    padding-top: 39px;
+    padding-bottom: 10px;
+    color: black;
+    .bio_title {
+      font-size: 26px;
+      font-family: $Titillium_Bold;
+    }
+    .bio_txt {
+      font-size: 16px;
+      font-family: $Titillium_Bold;
+    }
+  }
+  .edu_hardskills_container {
+    width: 95%;
+    padding-left: 65px;
+    padding-top: 26px;
+    padding-bottom: 10px;
+    color: black;
+  }
+  .edu_title {
+    font-size: 26px;
+    font-family: $Titillium_Bold;
+  }
+  .university_title {
+    padding-top: 9px;
+    font-size: 18px;
+    font-family: $Titillium_Bold;
+    margin-bottom: 3px;
+  }
+  .experience_conatiner {
+    width: 100%;
+    padding-left: 65px;
+    padding-top: 26px;
+    padding-bottom: 80px;
+    color: black;
+    .Experience_header {
+      font-size: 26px;
+      font-family: $Titillium_Bold;
+    }
+    .company_title {
+      padding-top: 5px;
+      font-size: 17px;
+      font-family: $Titillium_Bold;
+      margin-bottom: 3px;
+    }
+  }
+  .hard_skills_txt {
+    font-family: $Titillium_Bold;
+    background: $Primary_greenGradient;
+    border-radius: 50px;
+    padding: 7px 13px 7px 13px;
+    display: inline-block;
+    color: white;
+    font-size: 13px;
+    margin-left: 5px;
+    margin-bottom: 6px;
+  }
+}
+// ***************************feture options*******************
+.options_container {
+  width: 100%;
+  height: auto;
+  padding-bottom: 20px;
+  background: $Primary_greenGradient;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  outline: 1px solid #707070;
+}
+.button_container {
+  width: 85%;
+  display: flex;
+  place-items: center;
+  background: $Primary_greenGradient;
+  border-radius: 50px;
+  height: 55px;
+  margin-top: 15px;
+  img {
+    padding-left: 20px;
+    // width: 20px;
+    height: 35px;
+  }
+}
+.button_txt {
+  font-size: 15px;
+  font-family: $Titillium_Bold;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.dotted_line {
+  border-bottom: 1px dashed #ffffff;
+  width: 80%;
+  margin: 27px 0 13px 0;
+}
+.notes_container {
+  width: 85%;
+  display: flex;
+  place-items: center;
+  background: $Primary_greenGradient;
+  border-radius: 50px;
+  height: 55px;
+  margin-top: 15px;
+  padding-left: 20px;
+}
+.img_border {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  align-items: center;
+  img {
+    height: 18px;
+  }
+}
+// ***********************Similar roles**************
+.roles_head {
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  padding-top: 50px;
+  p {
+    font-size: 24px;
+    font-family: $Titillium_Bold;
+  }
+}
+//  *******************************************ROLE_CARDS*********************************
+.roles_card {
+  background-color: $cards_Bg;
+  height: 120px;
+  width: 100%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+  color: black;
+  .role {
+    font-size: 12px;
+    font-weight: 600;
+    padding-top: 10px;
+    margin-bottom: 0px;
+  }
+  .role_title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+.role_actions {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+  padding-top: 10px;
+  img {
+    margin-bottom: 5px;
+    height: 20px;
+  }
+}
+.role_date {
+  font-size: 12px;
+}
+// **********************ROLE_MATCHES******************
+.role_match {
+  width: 100%;
+  margin-top: 30px;
+  padding: 25px 24px 30px 24px;
+  background: $cards_Bg;
+  border-radius: 10px;
+
+  color: black;
+  .head_title {
+    font-size: 16px;
+    font-family: $Titillium_Bold;
+  }
+}
+.calculated_txt {
+  text-align: center;
+  padding-top: 20px;
+  color: #808080;
+  margin-bottom: 0;
+}
+// *****************************guage_value******************
+.guage_value {
+  font-size: 36px;
+  font-family: $Titillium_Bold;
+}
+.guage_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  canvas {
+    height: 100px !important;
+  }
+}
+.guage_Chart {
+  // padding-left: 15%;
+  height: 120px !important;
+}
+// .soft_skills_container {
+//   padding-top: 5px;
+// }
+.soft_skill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2px;
+  .soft_skill_title {
+    flex-grow: 1;
+    padding-top: 10px;
+  }
+  // .soft_skill_icon{
+
+  // }
+  .soft_skill_result {
+    padding-left: 10px;
+  }
+}
+// <!-- ***************************MAYAMAYA RECOMMENDS*************** -->
+.role_match_recommend {
+  width: 100%;
+  background: $Primary_greenGradient;
+  // height: 500px;
+  padding-bottom: 15px;
+  margin-top: 35px;
+  border-radius: 10px;
+  color: white;
+  .recommend_title {
+    padding-top: 20px;
+    font-size: 16px;
+    font-family: $Titillium_Bold;
+  }
+  .recommended_roles {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+  }
+}
+
+// *******************paginator**************************
+.paginator_roles {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  place-items: end;
+  p {
+    font-size: 15px;
+    font-family: $Titillium_Bold;
+  }
+}
+.page1 {
+  background: transparent;
+  color: #000;
+  padding-top: 10px;
+  ::ng-deep .mat-mdc-paginator-page-size {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-paginator-icon {
+    background: #fff;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+  }
+  ::ng-deep .mat-mdc-paginator-range-label {
+    display: none;
+    // font-weight: 500;
+    // margin: 12px 0px 0 24px;
+    // font-size: 15px;
+    // word-spacing: -1.5px;
+  }
+
+  ::ng-deep
+    .mat-mdc-icon-button:hover
+    .mat-mdc-button-persistent-ripple::before {
+    display: none !important;
+  }
+
+  ::ng-deep
+    .mat-mdc-icon-button:active
+    .mat-mdc-button-persistent-ripple::before {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-button-persistent-ripple .mdc-icon-button__ripple {
+    display: none import !important;
+  }
+}
+
+.footer {
+  // position: fixed;
+  bottom: 0px;
+  // background-color: pink;
+  width: 100%;
+}
+// ******************DIALOGS******************
+.bg-dailog {
+  background: linear-gradient(#1e4b4f, #0c141d);
+  height: 120px;
+}
+.dialogheader_container {
+  color: white;
+}
+.dialog_col {
+  padding: 25px 25px 0 25px;
+}
+.close_icon_dialog {
+  padding: 30px 50px 0 0;
+  cursor: pointer;
+  img {
+    float: right;
+    height: 25px;
+  }
+}
+.sub_txt1 {
+  font-size: 12px;
+}
+.sub_txt2 {
+  font-size: 22px;
+  font-family: $Titillium_Bold;
+}
+.sub_txt3 {
+  font-size: 12px;
+}
+.containerDialog {
+  padding: 30px;
+}
+// ******************* role_dialog_btn_container ******************
+.role_dialog_btn_container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 20px;
+  // margin-bottom: 20px;
+  gap: 37px;
+  u {
+    font-family: $Titillium_Bold;
+  }
+}
+// *************button inside dialog box*************
+.convert_btn {
+  background: $Primary_greenGradient; // Sets the  color using $Primary_greenGradient variable.scss
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+
+  border: none;
+  height: 46px;
+  width: 160px;
+  border-radius: 30px;
+  cursor: pointer;
+  //   padding: 10px 25px 10px 25px;
+  font-size: 13px;
+  i {
+    font-size: 16px;
+    padding-right: 5px;
+    padding-top: 3px;
+  }
+}
+.addNoteText {
+  font-size: 19px;
+  font-family: $Titillium_Bold;
+}
+.notes_input {
+  width: 97.5%;
+  height: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+
+  outline: none;
+
+  border: 1px solid #707070;
+  padding: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(172, 172, 172, 0.2),
+    rgba(233, 228, 223, 0.2)
+  );
+  font-size: 15px;
+}
+.evaluation_select_option {
+  font-size: 12.5px;
+}
+::ng-deep .mat-mdc-select-panel.evaluation_select_panel {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  margin-top: 7px;
+}
+.status_filter {
+  width: 60%;
+  margin-top: 7px;
+  // ::ng-deep
+  //   .mat-mdc-form-field-flex
+  //   .mdc-notched-outline
+  //   .mdc-notched-outline__trailing {
+  // border-radius: 25px 25px 25px 25px;
+  // border: 1px solid yellow;
+  // border-top: 1px solid rgba(162, 162, 162, 0.5);
+  // border-bottom: 1px solid rgba(162, 162, 162, 0.5);
+  // border-right: 1px solid rgba(162, 162, 162, 0.5);
+  // }
+
+  ::ng-deep
+    .mat-mdc-form-field-flex
+    .mdc-notched-outline
+    .mdc-notched-outline__leading {
+    // border-radius: 25px 25px 25px 25px;
+    // border-top: 1px solid rgba(162, 162, 162, 0.5);
+    // border-bottom: 1px solid rgba(162, 162, 162, 0.5);
+    // border-left: 1px solid rgba(162, 162, 162, 0.5);
+
+    width: 25px !important;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 40px;
+    background: white;
+    padding: 3px 10px 0 10px;
+  }
+
+  ::ng-deep
+    .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+    .mat-mdc-form-field-infix {
+    padding-top: 5px;
+  }
+
+  ::ng-deep .mat-mdc-select-placeholder {
+    font-family: $Titillium_Regular;
+    font-size: 14px;
+  }
+}

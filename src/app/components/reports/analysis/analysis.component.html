@@ -1,0 +1,191 @@
+<div class="component_container">
+  <div class="bg_GreenGradient padding_100">
+    <div class="Root_containerVariable pl-2">
+      <div class="title_candidates">
+        <p>REPORTS : ANALYSIS</p>
+      </div>
+
+      <div class="header_container">
+        <div class="item1">
+          <img
+            class="back_btn"
+            src="../../../../assets/icons/backarrowwithBG.svg"
+          />
+          <p class="Analysis_txt">Analysis</p>
+        </div>
+        <div class="item2">
+          <button class="baseline_btn" (click)="routeBaselinecomp()">
+            <img src="../../../../assets/icons/baseline.svg" />BASELINE
+          </button>
+        </div>
+      </div>
+      <p class="sub_title">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+        eirmod tempor invidunt ut labore
+      </p>
+    </div>
+  </div>
+
+  <div class="main_container Root_containerVariable">
+    <!-- ***********HEADER************ -->
+    <div class="row">
+      <div class="col-9">
+        <p class="COMPARISON_txt">COMPARISON</p>
+        <p>
+          Based on soft-skills/Aptitude/Technical skills/Job Match Percentage as
+          stand alone entities and as clusters plotted with all the other
+          departments/individuals/roles/teams and changes along with moving time
+          as a factor.
+        </p>
+      </div>
+    </div>
+    <!-- ****************MAIN CONTAINER************** -->
+    <div class="row">
+      <div class="col-9">
+        <mat-card class="add_value_card">
+          <div class="row" style="height: 260px">
+            <div class="col-6 p-0 border_right">
+              <div class="add_container">
+                <div class="add_icons_container">
+                  <img
+                    src="../../../../assets/icons/add_group.svg"
+                    class="analysis_add_icon"
+                  />
+                  <p class="add_txt">Add Value 1</p>
+                </div>
+
+                <!-- ****************** -->
+                <div>
+                  <mat-form-field class="evaluation_DropdwonFilterFile">
+                    <mat-select
+                      panelClass="evaluation_select_panel"
+                      class="evaluation_select"
+                      placeholder="Select dept/role/te..."
+                    >
+                      <mat-option> list.name </mat-option>
+                      <mat-option> list.name </mat-option>
+                      <mat-option> list.name </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <!-- ************SEARCH BOX ********** -->
+                  <div class="role_search__button">
+                    <input
+                      type="text"
+                      class="role_search_input"
+                      placeholder="Search Roles"
+                    />
+
+                    <!-- search icon -->
+                    <svg
+                      class="role_search__icon"
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                    >
+                      <g>
+                        <path
+                          d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                        ></path>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <!--  -->
+              </div>
+            </div>
+
+            <div class="col-6 p-0">
+              <div class="add_container">
+                <div class="add_icons_container">
+                  <img
+                    src="../../../../assets/icons/add_group.svg"
+                    class="analysis_add_icon"
+                  />
+                  <p class="add_txt">Add Value 1</p>
+                </div>
+
+                <!-- ****************** -->
+                <div>
+                  <mat-form-field class="evaluation_DropdwonFilterFile">
+                    <mat-select
+                      panelClass="evaluation_select_panel"
+                      class="evaluation_select"
+                      placeholder="Select dept/role/te..."
+                    >
+                      <mat-option> list.name </mat-option>
+                      <mat-option> list.name </mat-option>
+                      <mat-option> list.name </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <!-- ************SEARCH BOX ********** -->
+                  <div class="role_search__button">
+                    <input
+                      type="text"
+                      class="role_search_input"
+                      placeholder="Search Roles"
+                    />
+
+                    <!-- search icon -->
+                    <svg
+                      class="role_search__icon"
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                    >
+                      <g>
+                        <path
+                          d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                        ></path>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <!--  -->
+              </div>
+            </div>
+          </div>
+          <div class="button_container">
+            <button class="done_btn" (click)="compareBtn()">
+              <p>COMPARE NOW</p>
+              <img src="../../../../assets/icons/compare_now.svg" />
+            </button>
+          </div>
+        </mat-card>
+      </div>
+      <div class="col-3">
+        <mat-card class="saved_comaparison_cards">
+          <div class="saved_comaprisions">
+            <p class="saved_head_txt">SAVED COMPARISONS</p>
+            <!-- ****************CARD 1 ******************* -->
+            <mat-card class="saved_cards_container">
+              <p class="saved_headeeer">Team: Software Engineering</p>
+              <div class="vs_container">
+                <hr class="dotted_line" />
+                <p class="vs_txt">VS</p>
+              </div>
+              <p class="saved_headeeer">Individual : Josh Enigma</p>
+            </mat-card>
+            <!-- ****************CARD 2 ******************* -->
+            <mat-card class="saved_cards_container">
+              <p class="saved_headeeer">Team: Software Engineering</p>
+              <div class="vs_container">
+                <hr class="dotted_line" />
+                <p class="vs_txt">VS</p>
+              </div>
+              <p class="saved_headeeer">Individual : Josh Enigma</p>
+            </mat-card>
+            <!-- ****************CARD 3 ******************* -->
+            <mat-card class="saved_cards_container">
+              <p class="saved_headeeer">Team: Software Engineering</p>
+              <div class="vs_container">
+                <hr class="dotted_line" />
+                <p class="vs_txt">VS</p>
+              </div>
+              <p class="saved_headeeer">Individual : Josh Enigma</p>
+            </mat-card>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

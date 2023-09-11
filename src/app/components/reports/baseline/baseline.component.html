@@ -1,0 +1,475 @@
+<div class="component_container">
+  <div class="bg_GreenGradient padding_100">
+    <div class="Root_containerVariable pl-2">
+      <div class="title_candidates">
+        <p>REPORTS : ANALYSIS : BASELINE</p>
+      </div>
+
+      <div class="header_container">
+        <div class="item1">
+          <img
+            class="back_btn"
+            src="../../../../assets/icons/backarrowwithBG.svg"
+          />
+          <p class="Analysis_txt">Baseline</p>
+        </div>
+      </div>
+      <p class="sub_title">
+        Set baseline for on Soft-skills/Aptitude/Technical skills which will act
+        as a combined goal set by an individual or group of individuals to move
+        along in a direction.
+      </p>
+    </div>
+
+    <div class="tabs_content Root_containerVariable">
+      <mat-tab-group class="profile_note_tabs">
+        <mat-tab label="EMPLOYEE"></mat-tab>
+        <mat-tab label="ROLE">
+          <!--************* ROLE CARDS********************* -->
+          <div *ngIf="roles_onfirst">
+            <div class="row p-0 m-0">
+              <div class="col-9">
+                <div class="roles_container">
+                  <p class="role_head">ROLES(4)</p>
+                  <div class="search">
+                    <input
+                      type="text"
+                      class="search__input"
+                      placeholder="Search any team"
+                    />
+                    <div class="search__button">
+                      <!-- search icon -->
+                      <svg
+                        class="search__icon"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                      >
+                        <g>
+                          <path
+                            d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                          ></path>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ************************ROLE CARDS******************* -->
+                <div class="role_cards_container">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <mat-card class="role_card" (click)="showRolesBaseline()">
+                        <div class="container">
+                          <div class="role_card_header">
+                            <p class="role">ROLE</p>
+                            <button class="role_new_btn">New</button>
+                          </div>
+                          <h2 class="role_title">
+                            Front End Engineer - Senior
+                          </h2>
+                          <mat-divider></mat-divider>
+                          <div class="role_actions_container">
+                            <mat-checkbox
+                              class="mat_checkbox_role"
+                            ></mat-checkbox>
+                            <div class="role_actions">
+                              <p class="role_date"><i> Sep 15 2022</i></p>
+                              <img
+                                src="../../../../assets/icons/verticalMenuProfile.svg"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </mat-card>
+                    </div>
+                    <div class="col-lg-4">
+                      <mat-card class="role_card">
+                        <div class="container">
+                          <p class="role">ROLE</p>
+                          <h2 class="role_title">
+                            Front End Engineer - Senior
+                          </h2>
+                          <mat-divider></mat-divider>
+                          <div class="role_actions_container">
+                            <mat-checkbox
+                              class="mat_checkbox_role"
+                            ></mat-checkbox>
+                            <div class="role_actions">
+                              <p class="role_date"><i> Sep 15 2022</i></p>
+                              <img
+                                src="../../../../assets/icons/verticalMenuProfile.svg"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </mat-card>
+                    </div>
+                    <div class="col-lg-4">
+                      <mat-card class="role_card">
+                        <div class="container">
+                          <p class="role">ROLE</p>
+                          <h2 class="role_title">
+                            Front End Engineer - Senior
+                          </h2>
+                          <mat-divider></mat-divider>
+                          <div class="role_actions_container">
+                            <mat-checkbox
+                              class="mat_checkbox_role"
+                            ></mat-checkbox>
+                            <div class="role_actions">
+                              <p class="role_date"><i> Sep 15 2022</i></p>
+                              <img
+                                src="../../../../assets/icons/verticalMenuProfile.svg"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </mat-card>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3"></div>
+            </div>
+          </div>
+          <!-- ***********ROLE PROFILES************* -->
+          <div *ngIf="roles_onSecond">
+            <div class="role_baseline">
+              <div class="row p-o m-0">
+                <div class="col-9">
+                  <p (click)="showRolesBaseline()" class="head_txt">ROLES</p>
+                  <div class="header_baseline">
+                    <img
+                      class="back_arrow_white"
+                      src="../../../../assets/icons/baseline_back_whitebg.svg"
+                    />
+                    <p class="role_txt_head">Software Engineering</p>
+                  </div>
+                  <div class="row row_sub_text">
+                    <div class="col-4">NO. OF EMPLOYEES</div>
+                    <div class="col-4">NO. OF ROLES</div>
+                    <div class="col-4">LAST UPDATED BASELINE</div>
+                  </div>
+                  <div class="row row_sub_text">
+                    <div class="col-4"><p>60</p></div>
+                    <div class="col-4"><p>23</p></div>
+                    <div class="col-4"><p>08 August 2023</p></div>
+                  </div>
+                  <mat-divider style="margin: 20px 0 40px 0"></mat-divider>
+                  <!-- *************Soft Skills and Aptitude**************** -->
+                  <mat-card class="soft_skills_card">
+                    <div class="soft_skill_head">
+                      <p>Soft Skills and Aptitude</p>
+                    </div>
+
+                    <!-- *********MAIN_CONTAINER************* -->
+                    <div class="row main_container">
+                      <div class="col-4">
+                        <div class="graph_card_baseline">graph</div>
+                      </div>
+                      <div class="col-7">
+                        <div class="head_btn">
+                          <button
+                            class="base_head"
+                            [class.active]="isFirstButtonActive"
+                            (click)="toggleButtons()"
+                          >
+                            SOFT SKILLS
+                          </button>
+                          <button
+                            class="base_head"
+                            [class.active]="!isFirstButtonActive"
+                            (click)="toggleButtons()"
+                          >
+                            APTITUDE
+                          </button>
+                        </div>
+                        <div class="softskill_subtxt">
+                          <p>
+                            Set baseline for on Soft-skills by adjusting the
+                            slider
+                          </p>
+                          <div>
+                            <img
+                              src="../../../../assets/icons/baseline_edit white.svg"
+                              alt=""
+                            />
+                            <u>EDIT</u>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="slidecontainer">
+                              <div class="title_sill">
+                                <p class="p-0 m-0">COMMUNICATION</p>
+                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
+                              </div>
+                              <mat-slider class="slider_skill">
+                                <input
+                                  width="100%"
+                                  matSliderThumb
+                                  [disabled]="false"
+                                  value="30"
+                                />
+                              </mat-slider>
+                              <div class="title_sill">
+                                <p class="p-0 m-0">COMMUNICATION</p>
+                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
+                              </div>
+                              <mat-slider class="slider_skill">
+                                <input
+                                  matSliderThumb
+                                  [disabled]="false"
+                                  value="30"
+                                />
+                              </mat-slider>
+                              <div class="title_sill">
+                                <p class="p-0 m-0">COMMUNICATION</p>
+                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
+                              </div>
+                              <mat-slider class="slider_skill">
+                                <input
+                                  matSliderThumb
+                                  [disabled]="false"
+                                  value="30"
+                                />
+                              </mat-slider>
+                              <div class="title_sill">
+                                <p class="p-0 m-0">COMMUNICATION</p>
+                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
+                              </div>
+                              <mat-slider class="slider_skill">
+                                <input
+                                  matSliderThumb
+                                  [disabled]="false"
+                                  value="30"
+                                />
+                              </mat-slider>
+                              <div class="title_sill">
+                                <p class="p-0 m-0">COMMUNICATION</p>
+                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
+                              </div>
+                              <mat-slider class="slider_skill">
+                                <input
+                                  matSliderThumb
+                                  [disabled]="false"
+                                  value="30"
+                                />
+                              </mat-slider>
+                            </div>
+                          </div>
+                          <div class="col sliders2column">
+                            <div class="slidecontainer">
+                              <div class="title_sill">
+                                <p class="p-0 m-0">COMMUNICATION</p>
+                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
+                              </div>
+                              <mat-slider class="slider_skill">
+                                <input
+                                  matSliderThumb
+                                  [disabled]="false"
+                                  value="30"
+                                />
+                              </mat-slider>
+                              <div class="title_sill">
+                                <p class="p-0 m-0">COMMUNICATION</p>
+                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
+                              </div>
+                              <mat-slider class="slider_skill">
+                                <input
+                                  matSliderThumb
+                                  [disabled]="false"
+                                  value="30"
+                                />
+                              </mat-slider>
+                              <div class="title_sill">
+                                <p class="p-0 m-0">COMMUNICATION</p>
+                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
+                              </div>
+                              <mat-slider class="slider_skill">
+                                <input
+                                  matSliderThumb
+                                  [disabled]="false"
+                                  value="30"
+                                />
+                              </mat-slider>
+                              <div class="title_sill">
+                                <p class="p-0 m-0">COMMUNICATION</p>
+                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
+                              </div>
+                              <mat-slider class="slider_skill">
+                                <input
+                                  matSliderThumb
+                                  [disabled]="false"
+                                  value="30"
+                                />
+                              </mat-slider>
+                            </div>
+                          </div>
+
+                          <div class="alerts">
+                            <div class="item1">
+                              <img
+                                src="../../../../assets/icons/current_level_white.svg"
+                                alt=""
+                              />
+                              <p class="m-0 p-0">Current level</p>
+                            </div>
+                            <div class="item2">
+                              <img
+                                src="../../../../assets/icons/benchmark_purple.svg"
+                                alt=""
+                              />
+                              <p class="m-0 p-0">Benchmark</p>
+                            </div>
+                            <div class="item3">
+                              <img
+                                src="../../../../assets/icons/alert_red.svg"
+                                alt=""
+                              />
+                              <p class="m-0 p-0">Alert warning</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-card>
+
+                  <!-- ******************TECHNICAL SKILLS************* -->
+                  <mat-card class="Technical_Skills_card">
+                    <div class="Technical_Skills_head">
+                      <p>Soft Skills and Aptitude</p>
+                    </div>
+
+                    <div class="content_technical_skills">
+                      <div class="content_head_technical_skill">
+                        <div class="item1">
+                          <img
+                            src="../../../../assets/icons/current_level_white.svg"
+                            alt=""
+                          />
+                          <b class="m-0 p-0">Exisiting (16 )</b>
+                        </div>
+                        <div class="item2">
+                          <img
+                            src="../../../../assets/icons/baseline_edit_black.svg"
+                            alt=""
+                          /><u><b>ADD NEW</b></u>
+                        </div>
+                      </div>
+                      <div class="existing_content">
+                        <div
+                          cdkDropList
+                          #todoList="cdkDropList"
+                          [cdkDropListData]="todo"
+                          [cdkDropListConnectedTo]="[doneList]"
+                          class="example-list"
+                          (cdkDropListDropped)="drop($event)"
+                        >
+                          <div
+                            class="hard_skills_txt"
+                            *ngFor="let item of todo"
+                            cdkDrag
+                          >
+                            {{ item }}
+                          </div>
+                        </div>
+                      </div>
+                      <mat-divider class="divider_existing"></mat-divider>
+
+                      <div class="heade_existing">
+                        <div class="item1">
+                          <img
+                            src="../../../../assets/icons/benchmark_purple.svg"
+                            alt=""
+                          />
+                          <b class="p-0 m-0">Benchmark</b>
+                        </div>
+                        <div class="item2">
+                          <mat-checkbox class="mat_checkbox_candidates_header">
+                            <p class=" ">Same as existing</p>
+                          </mat-checkbox>
+                        </div>
+                      </div>
+
+                      <!-- ***************DRAD AND DROP************ -->
+                      <!--
+                        <div class="example-container">
+                          <h2>To do</h2>
+                          <div
+                            cdkDropList
+                            #todoList="cdkDropList"
+                            [cdkDropListData]="todo"
+                            [cdkDropListConnectedTo]="[doneList]"
+                            class="example-list"
+                            (cdkDropListDropped)="drop($event)"
+                          >
+                            <div
+                              class="example-box"
+                              *ngFor="let item of todo"
+                              cdkDrag
+                            >
+                              {{ item }}
+                            </div>
+                          </div>
+                        </div> -->
+                      <div class="border_dashed">
+                        <div class="example-container">
+                          <div
+                            cdkDropList
+                            #doneList="cdkDropList"
+                            [cdkDropListData]="done"
+                            [cdkDropListConnectedTo]="[todoList]"
+                            class="example-list"
+                            (cdkDropListDropped)="drop($event)"
+                          >
+                            <div
+                              class="hard_skills_txt"
+                              *ngFor="let item of done"
+                              cdkDrag
+                            >
+                              {{ item }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <mat-divider style="margin-top: 30px"></mat-divider>
+
+                      <!-- ***************DRAD AND DROP************ -->
+
+                      <div class="alert_content">
+                        <div class="alert_head">
+                          <img
+                            src="../../../../assets/icons/alert_red.svg"
+                            alt=""
+                          />
+                          <b class="p-0 m-0">Alert (5)</b>
+                        </div>
+                        <p class="alert_sub_txt">
+                          Sets warning lorem ispum dolor sit, alerts if one of
+                          these skills are missing from any employee in the team
+                          or in the team.
+                        </p>
+
+                        <div class="alert_badges">
+                          <p class="hard_skills_txt">hiii</p>
+                          <p class="hard_skills_txt">hiii</p>
+
+                          <p class="hard_skills_txt">hiii</p>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-card>
+                </div>
+                <div class="col-3"></div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="DEPARTMENT"></mat-tab>
+        <mat-tab label="ORGANIZATION"></mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

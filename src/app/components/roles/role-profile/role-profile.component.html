@@ -1,0 +1,770 @@
+<div class="padding_100">
+  <div class="Root_containerVariable">
+    <div class="header_container">
+      <p class="title_candidates">CANDIDATES : roles : {{ getRoleName }}</p>
+      <div class="row">
+        <div class="col-lg-9 col-md-12">
+          <div class="title_container">
+            <div class="item1" (click)="onPopState()">
+              <img src="../../../../assets/icons/backarrowwithBG.svg" />
+              <p>{{ getRoleName }}</p>
+            </div>
+            <div class="item2">
+              <button class="duplicate_role_btn" (click)="duplicateRole()">
+                <!-- <i class="fa-solid fa-circle-plus"></i> -->
+                <img src="../../../../assets/icons/duplicate.svg" />
+                DUPLICATE
+              </button>
+              <button
+                class="edit_role_btn"
+                (click)="editDilaogOPen(editDialog)"
+              >
+                <img src="../../../../assets/icons/edit_role.svg" />
+
+                <!-- <i class="fa-solid fa-circle-plus"></i> -->
+                EDIT
+              </button>
+            </div>
+          </div>
+          <p class="sub_txt_role">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et
+          </p>
+
+          <div class="filters_container">
+            <div class="item1_filter">
+              <button
+                class="generate_btn"
+                (click)="openGenerateDialog(jobDescription)"
+              >
+                <img src="../../../../assets/icons/generate.svg" />GENERATE JOB
+                DESCRIPTION
+              </button>
+            </div>
+
+            <div class="item2_filter">
+              <form role="search" method="get" id="searchform" action="">
+                <label for="s">
+                  <i
+                    style="font-size: 20px"
+                    class="fa-solid fa-magnifying-glass"
+                  ></i>
+                  <!-- <span
+                    class="material-icons-outlined icon-search"
+                    style="font-size: 20px"
+                  >
+                    search
+                  </span> -->
+                </label>
+                <input
+                  [(ngModel)]="searchText"
+                  name="rolesSearch"
+                  class="pb-2"
+                  autocomplete="off"
+                  type="text"
+                  placeholder="search"
+                  id="s"
+                />
+              </form>
+              <mat-divider
+                vertical
+                style="
+                  height: 25px;
+                  border-right-width: 1.5px;
+                  border-color: black;
+                "
+              ></mat-divider
+              ><img
+                *ngIf="!favFilledIcon"
+                style="cursor: pointer"
+                src="../../../../assets/icons/fav_black.svg"
+                (click)="getShortListed()"
+              />
+
+              <i
+                (click)="getAllEmployeesData()"
+                *ngIf="favFilledIcon"
+                style="font-size: 1.6rem; color: rgb(0, 0, 0); cursor: pointer"
+                class="fa-solid fa-star"
+              ></i>
+
+              <mat-divider
+                vertical
+                style="
+                  height: 25px;
+                  border-right-width: 1.5px;
+                  border-color: black;
+                "
+              ></mat-divider>
+              <div
+                [ngClass]="
+                  FilterpanelIsOpen
+                    ? 'filter_icon_block_show'
+                    : 'filter_icon_block'
+                "
+              >
+                <svg
+                  (click)="toggleFilter()"
+                  class="filter_Icon_white"
+                  width="29"
+                  height="27"
+                  viewBox="0 0 29 27"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    id="Icon feather-filter"
+                    d="M27.109 1.60498H1.58203L11.793 13.679V22.026L16.898 24.579V13.679L27.109 1.60498Z"
+                    stroke="black"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <!-- <mat-divider
+                vertical
+                style="
+                  height: 25px;
+                  border-right-width: 1.5px;
+                  border-color: black;
+                "
+              ></mat-divider> -->
+
+              <!-- <img src="../../../../../assets/icons/search.svg" alt="" /> -->
+              <!-- *search icon -->
+              <!-- <div
+                [ngClass]="
+                  searchPanelIsOpen
+                    ? 'search_icon_block_show'
+                    : 'search_icon_block'
+                "
+              >
+                <svg
+                  class="search_Icon_white"
+                  (click)="toggleSearch()"
+                  width="27"
+                  height="27"
+                  viewBox="0 0 27 27"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="Icon feather-search">
+                    <path
+                      id="Path 769"
+                      d="M22.1417 11.816C22.1417 13.8356 21.5428 15.8098 20.4208 17.489C19.2988 19.1682 17.704 20.477 15.8381 21.2498C13.9722 22.0226 11.9191 22.2248 9.9383 21.8307C7.95753 21.4366 6.1381 20.464 4.71011 19.0359C3.28212 17.6078 2.30969 15.7882 1.91581 13.8074C1.52193 11.8266 1.72428 9.77351 2.49728 7.90771C3.27028 6.04191 4.57921 4.44724 6.25853 3.32536C7.93785 2.20348 9.91214 1.60478 11.9317 1.60498C14.6397 1.60525 17.2366 2.68116 19.1514 4.59607C21.0661 6.51097 22.1417 9.10803 22.1417 11.816Z"
+                      stroke="black"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      id="Path 770"
+                      d="M24.6948 24.579L19.1428 19.027"
+                      stroke="black"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </g>
+                </svg>
+              </div> -->
+            </div>
+          </div>
+          <mat-divider
+            style="
+              border-right-width: 1.5px;
+              border-color: black;
+              margin-top: 27px;
+            "
+          ></mat-divider>
+          <!-- **************FILTER HIDE AND SHOW ********************** -->
+          <div
+            class="filters_container_hide_show"
+            *ngIf="FilterpanelIsOpen || searchPanelIsOpen"
+          >
+            <div class="row">
+              <div class="col-sm">
+                <b>Gender</b>
+                <mat-form-field class="gender_filter" appearance="outline">
+                  <mat-select
+                    [(ngModel)]="selectedGender"
+                    placeholder="Selectselect"
+                  >
+                    <mat-option
+                      *ngFor="let val of genderDataList"
+                      [value]="val"
+                      >{{ val }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm">
+                <b>Ethnicity</b>
+                <mat-form-field class="gender_filter" appearance="outline">
+                  <mat-select
+                    [(ngModel)]="selectedEthnicity"
+                    placeholder="select"
+                  >
+                    <mat-option
+                      *ngFor="let val of ethnicityDataList"
+                      [value]="val"
+                      >{{ val }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm">
+                <b>Special consideration</b>
+                <mat-form-field class="gender_filter" appearance="outline">
+                  <mat-select
+                    [(ngModel)]="selectedConsideration"
+                    placeholder="select"
+                  >
+                    <mat-option
+                      [value]="val"
+                      *ngFor="let val of considerationDatalIst"
+                      >{{ val }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm">
+                <b>Region</b>
+                <mat-form-field class="gender_filter" appearance="outline">
+                  <mat-select [(ngModel)]="selectedRegion" placeholder="select">
+                    <mat-option
+                      [value]="val"
+                      *ngFor="let val of regionDataList"
+                      >{{ val }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row filters_2_row">
+              <div class="col-sm">
+                <b>Education</b>
+                <mat-form-field class="gender_filter" appearance="outline">
+                  <mat-select
+                    [(ngModel)]="selectedEducation"
+                    placeholder="Selectselect"
+                    value="value"
+                  >
+                    <mat-option value="Bachelors">Bachelors</mat-option>
+                    <mat-option value="Masters">Masters</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm">
+                <b>Hard Skills</b>
+                <mat-form-field class="gender_filter" appearance="outline">
+                  <mat-select
+                    [(ngModel)]="selectedHardskill"
+                    placeholder="select"
+                    value="value"
+                  >
+                    <mat-option
+                      *ngFor="let val of hardSkillsDataList"
+                      [value]="val"
+                      >{{ val }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm"></div>
+              <div class="col-sm filter_apply_container">
+                <b (click)="resetFilters()"><u>RESET</u></b>
+                <button class="apply_btn" (click)="applyFilters()">
+                  APPLY
+                </button>
+              </div>
+            </div>
+
+            <mat-divider
+              style="border-right-width: 1.5px; border-color: black"
+            ></mat-divider>
+          </div>
+          <p class="Reccomend_title">Applicants-{{ totalCountCandidates }}</p>
+          <!-- *********************RECCOMENDE RESULTS*********************** -->
+          <div class="recommends">
+            <!-- card -->
+            <div class="row">
+              <div
+                class="col-lg-4 col-md-8"
+                *ngFor="
+                  let employeeData of allEmployeesData | search : searchText;
+                  let i = index
+                "
+              >
+                <div class="cards_container_recommend">
+                  <mat-card class="recommend_card">
+                    <div class="recommend_card_container">
+                      <div class="image_overlay"></div>
+                      <div class="candidateDummyImg">
+                        <i
+                          *ngIf="employeeData.user_photo === null"
+                          class="fa-solid fa-user candidate_profile_icon"
+                        ></i>
+                        <img
+                          style="object-fit: cover"
+                          width="100%"
+                          [src]="employeeData.user_photo"
+                        />
+                      </div>
+                    </div>
+                    <div class="actions_container" style="cursor: pointer">
+                      <p class="item1"><button>RECOMMENDED</button></p>
+                      <!-- ************FAV ICON ***** -->
+                      <i
+                        (click)="removeFav(employeeData)"
+                        *ngIf="employeeData.is_favourite === true"
+                        style="font-size: 19px; color: white"
+                        class="fa-solid fa-star"
+                      ></i>
+                      <img
+                        style="cursor: pointer"
+                        (click)="addFav(employeeData)"
+                        *ngIf="employeeData.is_favourite === false"
+                        class="fav_icon"
+                        src="../../../../assets/icons/fav_icon.svg"
+                      />
+                      <mat-checkbox
+                        class="mat_checkbox_candidates"
+                      ></mat-checkbox>
+                      <img
+                        class="burger_icon"
+                        src="../../../../assets/icons/burger_menu.svg"
+                      />
+                    </div>
+                    <div
+                      style="cursor: pointer"
+                      class="container"
+                      (click)="routeCandidate(employeeData)"
+                    >
+                      <p class="user_details_container">
+                        {{ employeeData.user_name }}
+                      </p>
+                      <div class="sprint_contiainer">
+                        <p>3 Sprints Latest Sep 24</p>
+                        <p>Active</p>
+                      </div>
+                    </div>
+                  </mat-card>
+                  <mat-card class="recommend_graph_card">
+                    <div class="row m-0 p-0">
+                      <div class="col-7 p-0 m-0">
+                        <app-radial-stacked-chart
+                          id="2"
+                          [data]="employeeData.result_values"
+                        ></app-radial-stacked-chart>
+                      </div>
+                      <div class="col-5 m-0 p-1 align-self-center">
+                        <p class="title_details">Department</p>
+                        <p class="result_details">
+                          {{
+                            employeeData?.department === ""
+                              ? "-"
+                              : employeeData?.department
+                          }}
+                        </p>
+                        <p class="title_details">Role</p>
+                        <p class="result_details">
+                          {{
+                            employeeData.designation &&
+                            employeeData.designation != "null"
+                              ? employeeData.designation
+                              : "-"
+                          }}
+                        </p>
+                      </div>
+                    </div>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+
+            <!-- card -->
+          </div>
+
+          <!-- paginator -->
+          <div class="paginator_roles">
+            <p class="paginator-info">
+              Page {{ paginator.pageIndex + 1 }} of
+              {{ totalCountCandidates }}
+            </p>
+            <mat-paginator
+              #paginator
+              [length]="totalCountCandidates"
+              [pageSize]="21"
+              class="page1"
+              (page)="getuserresultsViewAll($event)"
+            >
+            </mat-paginator>
+          </div>
+
+          <!-- <div class="load_more">
+            <u
+              ><i><p>Load More</p></i></u
+            >
+          </div> -->
+        </div>
+        <div class="col-lg-3 col-md-12 p-1">
+          <div class="container">
+            <mat-card class="summary_container">
+              <div class="container">
+                <p class="title p-o m-0">Recommended</p>
+                <p class="title p-1">Soft Skills Summary</p>
+                <p class="sub_title">
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                  diam nonumy eirmod tempor invidunt ut labore
+                </p>
+                <div class="adjust_btn">
+                  <button *ngIf="hideAdjust" class="adjust_btn_txt">
+                    <span class="circle">
+                      <img src="../../../../assets/icons/edit_role_white.svg" />
+                    </span>
+                    <p class="adjust_txt" (click)="editSliders()">
+                      ADJUST SLIDERS
+                    </p>
+                  </button>
+
+                  <button *ngIf="!hideAdjust" class="adjust_btn_txt_save">
+                    <p class="adjust_txt" (click)="updatesSliders()">Save</p>
+                  </button>
+                </div>
+                <div class="slidecontainer">
+                  <div *ngFor="let skill of skillValues; let i = index">
+                    <div class="title_sill">
+                      <p class="p-0 m-0">{{ skill.category }}</p>
+                      <p class="rating_txt p-0 m-0">{{ skill.value }} / 5</p>
+                    </div>
+                    <mat-slider
+                      [disabled]="disableSlider"
+                      min="0.5"
+                      max="5"
+                      step="0.5"
+                      class="slider_skill"
+                    >
+                      <input
+                        width="100%"
+                        matSliderThumb
+                        [disabled]="false"
+                        [ngModel]="skill.value"
+                        (ngModelChange)="setSliderValue($event, i)"
+                      />
+                    </mat-slider>
+
+                    <!-- <mat-slider
+                      [disabled]="disableSlider"
+                      min="1"
+                      max="5"
+                      step="1"
+                      class="slider_skill"
+                    >
+                      <input
+                        width="100%"
+                        matSliderThumb
+                        [disabled]="false"
+                        [value]="getSliderValue(i)"
+                        (ngModelChange)="setSliderValue($event, i)"
+                      />
+                    </mat-slider> -->
+                  </div>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ************************DIALOGS*********************** -->
+
+<ng-template #jobDescription class="add_Role_Employees">
+  <div class="bg-dailog">
+    <!-- dialog header -->
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1">CANDIDATES : ROLES : <b>DESIGN MANAGER</b></p>
+        <p class="sub_txt2">Generate Job Description</p>
+        <i class="sub_txt3">Job description for role “ Design Manager”</i>
+      </div>
+      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+        <img src="../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class="description_container">
+    <div class="header_description">
+      <b>Job Description</b>
+      <div class="copyandGenerate">
+        <div
+          class="copy_description"
+          [cdkCopyToClipboard]="generatedJobDescription"
+        >
+          <img src="../../../../assets/icons/copy_description.svg" />
+        </div>
+        <div>
+          <div class="item1_filter">
+            <button class="generate_btn" (click)="createJobDescription()">
+              <img src="../../../../assets/icons/generate.svg" />GENERATE JOB
+              DESCRIPTION
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content_description">
+      <div>
+        <textarea
+          name=""
+          id=""
+          cols="160"
+          rows="15"
+          [(ngModel)]="generatedJobDescription"
+        >
+        </textarea>
+        <!-- {{ descriptionGenerated }} -->
+      </div>
+    </div>
+
+    <div class="role_dialog_btn_container pt-4">
+      <b><u>Close</u></b>
+      <button class="convert_btn" (click)="saveJobDescription()">
+        <b>SAVE</b>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- ************EDIT DIALOG************* -->
+<ng-template #editDialog class="add_Role_Employees">
+  <div class="bg-dailog">
+    <!-- dialog header -->
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1">CANDIDATES : ROLES : <b>DESIGN MANAGER</b></p>
+        <p class="sub_txt2">Generate Job Description</p>
+        <i class="sub_txt3">Job description for role “ Design Manager”</i>
+      </div>
+      <div class="col-3 close_icon_dialog">
+        <img
+          src="../../../assets/icons/closeDialog.svg"
+          alt=""
+          (click)="editDialogClose()"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="total_container">
+    <div class="role_dialog_container">
+      <div class="input_fileds">
+        <div class="new_role_content">
+          <div class="row p-0 m-0">
+            <div class="col-6">
+              <b>FUNCTION</b>
+              <div class="row">
+                <div class="col pt-2">
+                  <mat-form-field class="status_filter" appearance="outline">
+                    <mat-select
+                      [(ngModel)]="department"
+                      name="department"
+                      panelClass="evaluation_select_panel"
+                      placeholder="Select Function / Department"
+                      value="value"
+                    >
+                      <mat-option
+                        *ngFor="let department of EvalutionFunctioList"
+                        [value]="department"
+                        >{{ department }}</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <b>LEVEL</b>
+              <div class="row">
+                <div class="col pt-2">
+                  <div class="input-container">
+                    <div class="display" style="display: flex">
+                      <ng-container *ngFor="let fruit of fruits; let i = index">
+                        <div class="chip" *ngIf="i < 2">
+                          {{ fruit.name }}
+                          <span (click)="remove(fruit)">x</span>
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="fruits.length > 2">
+                        <div class="more-chip">+{{ fruits.length - 2 }}</div>
+                      </ng-container>
+                      <input
+                        style="
+                          background: transparent;
+                          border: none;
+                          outline: none;
+                        "
+                        [(ngModel)]="level"
+                        name="level"
+                        placeholder="Enter Level"
+                        (keydown.backspace)="removeLastChip()"
+                        (keyup.enter)="
+                          add(inputValue.value); inputValue.value = ''
+                        "
+                        #inputValue
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row row_2">
+            <div class="col-6">
+              <b>ROLE NAME</b>
+              <div class="row">
+                <div class="col pt-2">
+                  <input
+                    [(ngModel)]="getRoleName"
+                    name="roleName"
+                    type="text"
+                    class="role_search_input"
+                    placeholder="Enter Role Name"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <b>DESCRIPTION</b>
+              <div class="row">
+                <div class="col pt-2">
+                  <input
+                    [(ngModel)]="description"
+                    name="description"
+                    type="text"
+                    class="role_search_input"
+                    placeholder="Add description"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="role_Details_container"
+        *ngIf="roleCompleteDetails?.created_from === 'employees'"
+      >
+        <p><b>FIND EMPLOYEE</b></p>
+        <!-- {{ bankMultiCtrl.value }} -->
+        <!-- [(ngModel)]="slectedEmployees" -->
+        <div class="mat_autocomplete_Dialog">
+          <mat-form-field class="auto_complete_dialog">
+            <mat-select
+              [formControl]="bankMultiCtrl"
+              placeholder="Search Employee from your Org"
+              [multiple]="true"
+              ><mat-option>
+                <ngx-mat-select-search
+                  [formControl]="bankMultiFilterCtrl"
+                  placeholderLabel="Search"
+                  [noEntriesFoundLabel]="'Not data found'"
+                ></ngx-mat-select-search>
+              </mat-option>
+              <mat-option
+                class="auto_complete_options"
+                *ngFor="let bank of filteredBanksMulti | async"
+                [value]="bank.user_id"
+              >
+                <i
+                  style="color: #0f253a; font-size: 35px"
+                  *ngIf="bank.user_photo === null"
+                  class="fa-solid fa-circle-user"
+                ></i>
+                <img
+                  *ngIf="bank.user_photo"
+                  [src]="bank.user_photo"
+                  height="35px"
+                  width="35px"
+                  style="border-radius: 50px"
+                />
+
+                <span class="p-3">{{ bank.user_name }}</span>
+              </mat-option>
+            </mat-select>
+            <img
+              class="search_img_role"
+              src="../../../assets/icons/search.svg"
+              alt=""
+            />
+          </mat-form-field>
+        </div>
+        <div class="role_dialog_btn_container">
+          <b (click)="editDialogClose()"><u>CANCEL</u></b>
+          <button (click)="updatesSlidersDialog()" class="convert_btn">
+            <b>Save</b>
+          </button>
+        </div>
+      </div>
+      <div
+        class="role_Details_container"
+        *ngIf="roleCompleteDetails.created_from == 'scratch'"
+      >
+        <div class="roleQNScontainer">
+          <!-- ***ROLE QUESTIONS WITH SLIDERS*** -->
+
+          <div
+            class="row pt-2"
+            *ngFor="let qns of rolesQuestions; let i = index"
+          >
+            <div class="col-9">
+              <div class="question_cat">{{ qns.category }}</div>
+              <div class="qns_role">{{ i + 1 }}. {{ qns?.question }}</div>
+            </div>
+            <div class="col-3 slider_container">
+              <mat-slider
+                class="example-margin w-100"
+                [max]="max"
+                [min]="min"
+                [step]="step"
+                [discrete]="thumbLabel"
+                [showTickMarks]="showTicks"
+              >
+                <!-- <input
+              matSliderThumb
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="sliderValues[i]?.value"
+              #slider
+            /> -->
+                <input
+                  matSliderThumb
+                  [ngModelOptions]="{ standalone: true }"
+                  [ngModel]="getSliderValue(i)"
+                  (ngModelChange)="setSliderValueDialog($event, i)"
+                  #slider
+                />
+              </mat-slider>
+            </div>
+          </div>
+
+          <!-- ******************* -->
+          <div
+            class="role_dialog_btn_container pb-3"
+            (click)="editDialogClose()"
+          >
+            <b><u>Cancel</u></b>
+            <button class="convert_btn" (click)="updatesSlidersDialog()">
+              <b>Save</b>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<app-footer></app-footer>

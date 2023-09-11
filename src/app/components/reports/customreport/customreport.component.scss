@@ -1,0 +1,291 @@
+@import "../../../../assets/styles/variable.scss";
+
+.bg_GreenGradient {
+  background: $Primary_greenGradient;
+  height: 300px;
+  color: white;
+}
+.title_candidates {
+  color: white;
+  p {
+    font-size: 13px;
+    text-transform: uppercase;
+    padding-top: 35px;
+    // font-weight: 700;
+  }
+}
+// **************Header**************
+.header_container {
+  padding-top: 20px;
+  display: flex;
+  gap: 20px;
+  .item1 {
+    flex-grow: 1;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    .item2 {
+      align-items: start;
+    }
+  }
+}
+.back_btn {
+  height: 38px;
+  width: 38px;
+}
+.Analysis_txt {
+  font-size: 43px;
+  font-family: $Titillium_Bold;
+}
+
+.sub_title {
+  padding-top: 15px;
+  padding-left: 55px;
+}
+// <!-- *******************HEADER******************** -->
+.header_card {
+  height: 70px;
+  background: white;
+  margin-top: 26px;
+  border-radius: 12px;
+  padding: 13px 27px 13px 45px;
+}
+.header_container {
+  display: flex;
+  padding: 0;
+  justify-content: space-between;
+  align-items: center;
+  .items1 {
+    display: flex;
+    // align-items: center;
+    flex-grow: 1;
+    gap: 15px;
+    font-size: 18px;
+    img {
+      height: 20px;
+      cursor: pointer;
+      padding-top: 5px;
+    }
+  }
+  //   .items2 {
+
+  //   }
+}
+.share_btn {
+  //   width: 100px;
+  border: 1px solid #d4d4d4;
+  padding: 10px 20px 10px 20px;
+  background-color: white;
+  border-radius: 50px;
+  color: #717171;
+  font-weight: 600;
+  img {
+    padding-right: 7px;
+  }
+}
+// ***************drop downs**************
+.status_filter {
+  width: 130px;
+  ::ng-deep
+    .mat-mdc-form-field-flex
+    .mdc-notched-outline
+    .mdc-notched-outline__trailing {
+    border-radius: 0 25px 25px 0;
+  }
+
+  ::ng-deep
+    .mat-mdc-form-field-flex
+    .mdc-notched-outline
+    .mdc-notched-outline__leading {
+    border-radius: 25px 0 0 25px;
+    width: 25px !important;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 40px;
+    //   background: $Primary_greenGradient;
+    padding: 3px 10px 0 10px;
+  }
+
+  ::ng-deep
+    .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+    .mat-mdc-form-field-infix {
+    padding-top: 5px;
+  }
+
+  ::ng-deep .mat-mdc-select-placeholder {
+    font-size: 12px;
+    font-family: $Titillium_Bold;
+  }
+}
+// **************************************************************
+.add_Applicants_btn {
+  background: $Primary_greenGradient; // Sets the  color using $Primary_greenGradient variable.scss
+  color: white;
+  border: none;
+  height: 41px;
+  width: 135px;
+  padding-right: 17px;
+  border-radius: 30px;
+  cursor: pointer;
+  //   padding: 10px 25px 10px 25px;
+  font-size: 12px;
+  i {
+    font-size: 16px;
+    padding-right: 5px;
+    padding-top: 3px;
+  }
+}
+// ************************table1 card ****************
+.top_employees_card {
+  border-radius: 12px;
+  padding: 30px 40px 30px 40px;
+  margin-top: 40px;
+}
+.employees_card_header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+.download_add_container {
+  display: flex;
+  // justify-content: end;
+  gap: 15px;
+}
+.employee_title {
+  font-size: 24px;
+  font-weight: 700;
+}
+// ***************drop downs**************
+.status_filter {
+  width: 130px;
+  ::ng-deep
+    .mat-mdc-form-field-flex
+    .mdc-notched-outline
+    .mdc-notched-outline__trailing {
+    border-radius: 0 25px 25px 0;
+  }
+
+  ::ng-deep
+    .mat-mdc-form-field-flex
+    .mdc-notched-outline
+    .mdc-notched-outline__leading {
+    border-radius: 25px 0 0 25px;
+    width: 25px !important;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 40px;
+    //   background: $Primary_greenGradient;
+    padding: 3px 10px 0 10px;
+  }
+
+  ::ng-deep
+    .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+    .mat-mdc-form-field-infix {
+    padding-top: 5px;
+  }
+
+  ::ng-deep .mat-mdc-select-placeholder {
+    font-size: 12px;
+    font-family: $Titillium_Bold;
+  }
+}
+.period_filter {
+  margin-left: 30px;
+  width: 170px;
+  ::ng-deep
+    .mat-mdc-form-field-flex
+    .mdc-notched-outline
+    .mdc-notched-outline__trailing {
+    border-radius: 0 25px 25px 0;
+  }
+
+  ::ng-deep
+    .mat-mdc-form-field-flex
+    .mdc-notched-outline
+    .mdc-notched-outline__leading {
+    border-radius: 25px 0 0 25px;
+    width: 25px !important;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 40px;
+    //   background: $Primary_greenGradient;
+    padding: 3px 10px 0 10px;
+  }
+
+  ::ng-deep
+    .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+    .mat-mdc-form-field-infix {
+    padding-top: 5px;
+  }
+
+  ::ng-deep .mat-mdc-select-placeholder {
+    font-size: 12px;
+    font-family: $Titillium_Bold;
+  }
+}
+// **************************
+.download_report {
+  outline: 1px solid #505050;
+  padding: 5px;
+  border-radius: 50px;
+}
+.img_bg {
+  background-color: #e9e9e9;
+  padding: 8px 10px 10px 10px;
+  display: inline;
+  border-radius: 50px;
+  height: 40px;
+}
+.add_btn_employee {
+  width: 90px;
+  border: none;
+  background-color: #e9e9e9;
+  height: 40px;
+  border-radius: 50px;
+  padding: 8px 15px 8px 8px;
+}
+.add_report {
+  outline: 1px solid #505050;
+  padding: 5px;
+  border-radius: 50px;
+  margin-right: 7px;
+}
+// **********************table*******************
+.employee_table {
+  margin-top: 20px;
+}
+.table_head {
+  font-size: 14px;
+  font-family: $Titillium_Bold;
+}
+.profile_icn {
+  height: 25px;
+  width: 25px;
+}
+.table_row {
+  margin-top: 10px;
+}
+.table_td {
+  padding: 20px 10px 10px 0;
+}
+// ********************add_report_card ***************
+.add_report_card {
+  height: 320px;
+  background: $cards_Bg;
+  margin-top: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px;
+}
+.add_report_txt {
+  font-size: 24px;
+  font-weight: 700;
+  color: #575757;
+  padding: 10px;
+}
+.plus_icon {
+  height: 80px;
+}

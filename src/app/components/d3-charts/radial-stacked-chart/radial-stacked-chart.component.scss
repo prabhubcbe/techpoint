@@ -1,0 +1,15 @@
+app-radial-stacked-chart {
+  #radialstackedchart {
+    height: inherit;
+    width: inherit;
+    .bar {
+      fill: steelblue;
+    }
+    .bar:hover {
+      fill: navy;
+    }
+    .axis--x path {
+      display: none;
+    }
+  }
+}

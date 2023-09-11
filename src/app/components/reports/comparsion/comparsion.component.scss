@@ -1,0 +1,448 @@
+@import "../../../../assets/styles/variable.scss";
+
+.bg_GreenGradient {
+  background: $Primary_greenGradient;
+  height: 330px;
+  color: white;
+}
+.title_candidates {
+  color: white;
+  p {
+    font-size: 13px;
+    text-transform: uppercase;
+    padding-top: 35px;
+    // font-weight: 700;
+  }
+}
+// **************Header**************
+.header_container {
+  padding-top: 20px;
+  .item1 {
+    flex-grow: 1;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    .item2 {
+      align-items: start;
+    }
+  }
+}
+.back_btn {
+  height: 38px;
+  width: 38px;
+}
+.Analysis_txt {
+  font-size: 43px;
+  font-family: $Titillium_Bold;
+}
+// *******************main*****************
+.main_container {
+  margin-top: 25px;
+}
+
+// *********************Header VS Header*******************
+.vs_header {
+  padding-left: 100px;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.team_sub {
+  font-size: 11px;
+}
+.team_title {
+  font-size: 22px;
+  font-family: $Titillium_Bold;
+}
+.bg_vs {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  padding: 10px;
+  font-family: $Titillium_Bold;
+  font-size: 18px;
+}
+// ***************MAIN BLOCK***************
+// .main_content {
+//   padding-top: 50px;
+// }
+.basic_info_card {
+  margin-top: 65px;
+  background: white;
+  border-radius: 10px;
+
+  // height: 2500px;
+}
+.header_red_bg {
+  background: $Primary_RedGradient;
+  height: 63px;
+  color: white;
+  border-radius: 10px 10px 0px 0px;
+  padding: 20px 0 20px 40px;
+  p {
+    font-size: 22px;
+    font-family: $Titillium_Bold;
+  }
+}
+
+// *************cards_content*************
+.card_content {
+  color: black;
+}
+.main_content_table {
+  width: 100%;
+  .main_content_table_row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #d7d1ca;
+  }
+  .main_content_table_sl1 {
+    width: 12%;
+    text-align: center;
+    border-right: 1px solid #d7d1ca;
+    padding-top: 70px;
+    padding-bottom: 35px;
+  }
+  .main_content_table_sl2 {
+    border-right: 1px solid #d7d1ca;
+    padding-bottom: 35px;
+    width: 39%;
+    padding-top: 40px;
+    // display: flex;
+    // justify-content: center;
+  }
+  .main_content_table_sl3 {
+    width: 39%;
+    padding-top: 40px;
+    padding-bottom: 35px;
+    // display: flex;
+    // justify-content: center;
+  }
+}
+// ***************************************
+// **********************RECOMMENDS CARDS************************
+
+.cards_container_recommend {
+  padding-top: 10px;
+}
+.recommend_card {
+  background: $Primary_greenGrdientReverse;
+  width: 300px;
+  height: 150px;
+  border-radius: 20px 20px 0 0;
+
+  overflow: hidden;
+}
+.recommend_card_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.candidate_profile_icon {
+  color: white;
+  font-size: 100px;
+  opacity: 0.2;
+}
+
+.candidateDummyImg {
+  // height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  .candidate_image {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+.image_overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+
+  // background: linear-gradient(#30757b, #000000);
+  background: linear-gradient(
+    rgba(48, 117, 123, 0.3),
+    /* 50% opacity for the first color */ rgba(0, 0, 0, 0.9)
+      /* 80% opacity for the second color */
+  );
+}
+
+// **********************CANDIDATES DETAILS************************
+.user_details_container {
+  position: absolute;
+  z-index: 4;
+
+  top: 100px;
+  color: white;
+  font-size: 24px;
+}
+.sprint_contiainer {
+  position: absolute;
+  z-index: 5;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  color: white;
+  top: 125px;
+}
+// ********************GRAPH CARD**************
+.recommend_graph_card {
+  background: $cards_Bg;
+  width: 300px;
+  height: 160px;
+  border-radius: 0 0 20px 20px;
+  .title_details {
+    text-transform: uppercase;
+    margin: 0px;
+    font-family: Titillium Web;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+
+  }
+  .result_details {
+    font-family: Titillium Web;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}
+// **************************
+.department_card {
+  background: $cards_Bg;
+  width: 300px;
+  height: 320px;
+  border-radius: 20px 20px 20px 20px;
+  border: 1px solid #dad3cb;
+  padding: 40px 10px 0 30px;
+}
+.title_txt {
+  font-size: 22px;
+  line-height: 30px;
+}
+// ***************table row 2 **************
+.main_content_table_row2 {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #d7d1ca;
+}
+.main_content_table_sl2_1 {
+  width: 12%;
+  text-align: center;
+  border-right: 1px solid #d7d1ca;
+  padding-top: 40px;
+  padding-bottom: 35px;
+}
+.main_content_table_sl2_2 {
+  border-right: 1px solid #d7d1ca;
+  padding-bottom: 35px;
+  width: 39%;
+  padding-top: 40px;
+}
+.main_content_table_sl2_3 {
+  width: 39%;
+  padding-top: 40px;
+  padding-bottom: 35px;
+}
+// *******************
+.hard_skills_txt {
+  background: $Primary_RedGradient;
+  border-radius: 50px;
+  padding: 7px 13px 7px 13px;
+  display: inline-block;
+  color: white;
+  font-size: 13px;
+  margin-left: 5px;
+}
+// **********************ROLE_MATCHES******************
+.role_match {
+  width: 300px;
+  // margin-top: 30px;
+  padding: 25px 24px 30px 24px;
+  background: $cards_Bg;
+  border-radius: 10px;
+
+  color: black;
+  .head_title {
+    font-size: 16px;
+    font-family: $Titillium_Bold;
+  }
+}
+.calculated_txt {
+  text-align: center;
+  padding-top: 20px;
+  color: #808080;
+  margin-bottom: 0;
+}
+// *****************************guage_value******************
+.guage_value {
+  font-size: 36px;
+  font-family: $Titillium_Bold;
+}
+.guage_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  canvas {
+    height: 100px !important;
+  }
+}
+.guage_Chart {
+  // padding-left: 15%;
+  height: 120px !important;
+}
+// .soft_skills_container {
+//   padding-top: 5px;
+// }
+.soft_skill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2px;
+  .soft_skill_title {
+    flex-grow: 1;
+    padding-top: 10px;
+  }
+  // .soft_skill_icon{
+
+  // }
+  .soft_skill_result {
+    padding-left: 10px;
+  }
+}
+// *****************download card *****************
+.download-card {
+  margin-top: 30px;
+  background: $Primary_RedGradient;
+  // height: 300px;
+  margin-bottom: 20px;
+  padding: 50px 0 50px 50px;
+}
+// <!-- ***************FULL COMPARISON REPORT*************** -->
+.searchbtn {
+  background: $Primary_RedGradient; // Sets the  color using $Primary_greenGradient variable.scss
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 10px 25px 10px 25px;
+  font-size: 12px;
+  width: 20%;
+  height: 50px;
+  box-shadow: rgb(31, 31, 33) 10px 10px 26px -3px,
+    rgba(204, 207, 209, 0.2) -7px -2px 7px -2px;
+  // box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+  //   rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  border: 0.5px solid $primary_checkBoxColor;
+  text-transform: uppercase;
+}
+.comparision_txt {
+  font-size: 22px;
+  font-family: $Titillium_Bold;
+}
+.comparsion_sub_txt {
+  padding-top: 15px;
+}
+// *************************TIME FACTOR******************
+
+// *************time_factor_card*************
+.time_factor_txt {
+  padding-left: 25px;
+  font-size: 10px;
+}
+.time_factor_card {
+  background: $Primary_greenGradient;
+  width: 100%;
+  // height: 100px;
+  border-radius: 12px;
+  padding: 40px 25px 60px 25px;
+}
+
+.evaluation_DropdwonFilterFile {
+  width: 100%;
+  // height: 65px;
+
+  ::ng-deep .mat-mdc-select-placeholder {
+    color: white !important;
+    font-family: $Titillium_Regular;
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 3;
+  }
+  ::ng-deep .mat-mdc-select-arrow {
+    color: white !important;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    color: rgb(129, 17, 17);
+  }
+  ::ng-deep
+    .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(
+      .mdc-text-field--textarea
+    )
+    .mat-mdc-form-field-infix {
+    padding: 0px;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    // padding: 0;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 50px !important;
+    height: 50px !important;
+    background: $Primary_greenGradient;
+    padding: 4px 10px 0 10px;
+  }
+  ::ng-deep .mat-mdc-select-panel-above .mdc-menu-surface.mat-mdc-select-panel {
+    margin: 8px 0px 13px 0px;
+    border-radius: 10px;
+    // background-color: red !important;
+  }
+  ::ng-deep
+    .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(
+      .mdc-text-field--textarea
+    )
+    .mat-mdc-form-field-infix {
+    padding-top: 4px;
+  }
+}
+.evaluation_select {
+  color: rgb(255, 255, 255);
+}
+
+// *************dashed line
+.dotted_line {
+  border-bottom: 1px dashed #ffffff;
+  width: 100%;
+  margin: 10px 0 13px 0;
+}
+// *******************
+.button_container {
+  width: 100%;
+  display: flex;
+  border: 1px solid rgb(171, 170, 170);
+  place-items: center;
+  background: $Primary_greenGradient;
+  border-radius: 50px;
+  height: 55px;
+  margin-top: 15px;
+  img {
+    padding-left: 20px;
+    // width: 20px;
+    height: 35px;
+  }
+}
+.button_txt {
+  font-size: 14px;
+  font-family: $Titillium_Bold;
+  padding-top: 10px;
+  padding-left: 10px;
+}

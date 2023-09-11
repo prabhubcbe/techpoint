@@ -1,0 +1,664 @@
+<div class="component_container">
+  <div class="bg_GreenGradient padding_100">
+    <div class="Root_containerVariable pl-2">
+      <div class="title_candidates">
+        <p>Candidates : Applicants</p>
+      </div>
+      <!-- *************FILTER******************* -->
+      <div class="filters_container row">
+        <div class="Bussiner_Filter col-3">
+          <!-- <p>BUSINESS FUNCTION</p> -->
+
+          <p>DEPARTMENT</p>
+
+          <div class="evaluation_DropdwonFilter">
+            <mat-form-field class="evaluation_DropdwonFilterFile">
+              <mat-select
+                (selectionChange)="onDepartmentChange($event)"
+                panelClass="evaluation_select_panel"
+                class="evaluation_select"
+                [formControl]="department_DropdownForm"
+                placeholder="Select from dropdown"
+              >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      [removable]="true"
+                      (removed)="onRemoveDepartmentDropdown()"
+                    >
+                      {{ department_DropdownForm.value }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let list of departmentsDataList"
+                  [value]="list"
+                  >{{ list }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <!-- <div class="search">
+              <input
+                type="text"
+                class="search__input"
+                placeholder="Search Department : For eg Sales"
+              /> -->
+            <!-- <div class="search__button"> -->
+            <!-- search icon -->
+            <!-- <svg
+                  class="search__icon"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                    ></path>
+                  </g>
+                </svg> -->
+            <!-- </div> -->
+            <!-- </div> -->
+          </div>
+        </div>
+        <div class="Level_filter col-4">
+          <p>ROLE</p>
+          <div class="level_DropDownFilter">
+            <mat-form-field class="w-100">
+              <mat-select
+                (selectionChange)="onRoleChange($event)"
+                ngModel
+                panelClass="evaluation_select_panel"
+                [formControl]="toppingsControl"
+                multiple
+                placeholder="Search/select"
+                ><mat-option>
+                  <ngx-mat-select-search
+                    [formControl]="bankFilterCtrl"
+                    (input)="searchFilterLevel($event)"
+                    placeholderLabel="Search: Team Manager"
+                    noEntriesFoundLabel="'no matching found'"
+                  >
+                    ></ngx-mat-select-search
+                  ></mat-option
+                >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      *ngFor="let topping of toppingsControl.value?.slice(0, 1)"
+                      [removable]="true"
+                      (removed)="onToppingRemoved(topping)"
+                    >
+                      {{ topping }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <mat-chip
+                      *ngIf="
+                        toppingsControl.value != null &&
+                        toppingsControl.value.length! > 1
+                      "
+                    >
+                      + {{ toppingsControl.value.length! - 1 }}
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let roles of filteredRolesDataList; let i = index"
+                  [value]="roles.role_name"
+                >
+                  {{ roles.role_name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="evaluvation_filter col-3">
+          <p>EVALUATION SCALE</p>
+          <div class="evaluation_DropdwonFilter">
+            <mat-form-field class="evaluation_DropdwonFilterFile">
+              <mat-select
+                panelClass="evaluation_select_panel"
+                class="evaluation_select"
+                [formControl]="evaluation_DropdwonForm"
+                placeholder="Select from dropdown"
+              >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      [removable]="true"
+                      (removed)="onRemoveEvalvationDropdown()"
+                    >
+                      {{ evaluation_DropdwonForm.value }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let list of evaluvation_datalist"
+                  [value]="list.value"
+                  >{{ list.value }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- <div class="evaluation_Dropdwon">
+              <select class="evaluvation_Select">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div> -->
+        </div>
+        <div class="col-2 search_btn_container">
+          <div class="search_Btn">
+            <button class="searchbtn" (click)="searchFilter()">Search</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- *********************APPLICANTS************************ -->
+      <div class="applicants_container">
+        <div class="applicants_txt_content">
+          <p>Applicants</p>
+          <button
+            class="add_Applicants_btn"
+            (click)="bulkResumeUpload(resumeUpload)"
+          >
+            <i class="fa-solid fa-circle-plus"></i>
+            ADD APPLICANT
+          </button>
+        </div>
+        <p class="applicants_subTxt">
+          About applicants in the system, Lorem ipsum dolor sit amet, consetetur
+          sadipscing elitr, sed diam.
+        </p>
+      </div>
+      <!-- ***************************FILTERS****************************** -->
+      <div class="filter_icon_container">
+        <div class="slectedFilter">
+          <div class="scale" *ngIf="toppingsControl.value">
+            <b class="scale_txt">LEVEL</b>
+            <div class="scale_loopTxt">
+              <p
+                class="selectedRoles"
+                *ngFor="let role of toppingsControl.value | slice : 0 : 6"
+              >
+                {{ role }}
+
+                <b
+                  style="margin-left: 8px; cursor: pointer; font-size: 14px"
+                  (click)="onToppingRemoved(role)"
+                  >x</b
+                >
+              </p>
+              <mat-chip
+                *ngIf="
+                  toppingsControl.value != null &&
+                  toppingsControl.value.length! > 6
+                "
+              >
+                + {{ toppingsControl.value.length! - 6 }}
+              </mat-chip>
+            </div>
+          </div>
+          <div class="scale" *ngIf="evaluation_DropdwonForm.value">
+            <b class="scale_txt">SCALE</b>
+            <p class="selectedRoles">
+              {{ evaluation_DropdwonForm.value
+              }}<b
+                style="margin-left: 8px; cursor: pointer; font-size: 14px"
+                (click)="onRemoveEvalvationDropdown()"
+                >x</b
+              >
+            </p>
+          </div>
+        </div>
+
+        <div class="filterContainer_icons">
+          <!-- <mat-divider
+            vertical
+            style="height: 25px; border-right-width: 1.5px; border-color: black"
+          ></mat-divider> -->
+
+          <!-- <img src="../../../../../assets/icons/search.svg" alt="" /> -->
+          <!-- *search icon -->
+          <form role="search" method="get" id="searchform" action="">
+            <label for="s">
+              <i
+                style="font-size: 20px"
+                class="fa-solid fa-magnifying-glass"
+              ></i>
+              <!-- <span
+                class="material-icons-outlined icon-search"
+                style="font-size: 20px"
+              >
+                search
+              </span> -->
+            </label>
+            <input
+              [(ngModel)]="searchText"
+              name="rolesSearch"
+              class="pb-2"
+              autocomplete="off"
+              type="text"
+              placeholder="search"
+              id="s"
+            />
+          </form>
+
+          <mat-divider
+            vertical
+            style="height: 25px; border-right-width: 1.5px; border-color: black"
+          ></mat-divider>
+          <!-- <img src="../../../../../assets/icons/filter.svg" alt="filter" class="filter_Icon" /> -->
+          <!-- **********************************filter icon****************** -->
+          <div
+            [ngClass]="
+              FilterpanelIsOpen ? 'filter_icon_block_show' : 'filter_icon_block'
+            "
+          >
+            <svg
+              (click)="toggleFilter()"
+              class="filter_Icon_white"
+              width="29"
+              height="27"
+              viewBox="0 0 29 27"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="Icon feather-filter"
+                d="M27.109 1.60498H1.58203L11.793 13.679V22.026L16.898 24.579V13.679L27.109 1.60498Z"
+                stroke="black"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <mat-divider style="border-color: black; margin-top: 20px"></mat-divider>
+      <!-- **************************FILTERS TO BE HIDE & SHOWN ********************-->
+      <div *ngIf="FilterpanelIsOpen || searchPanelIsOpen">
+        <div class="filter_Hide_Show">
+          <div class="">
+            <div class="staus_header">
+              <p>Status</p>
+              <p
+                class="level_button"
+                (click)="openDialogAddStatus(addStatusDialog)"
+              >
+                <i class="fa-solid fa-circle-plus"></i> Add New Level
+              </p>
+            </div>
+            <mat-form-field class="status_filter" appearance="outline">
+              <mat-select placeholder="Applicants" value="value">
+                <mat-option *ngFor="let status of statusData">{{
+                  status
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="role_input_container">
+            <p>Roles</p>
+            <div class="role_search__button">
+              <input
+                type="text"
+                class="role_search_input"
+                placeholder="Search Roles"
+              />
+
+              <!-- search icon -->
+              <svg
+                class="role_search__icon"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+              >
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                  ></path>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <mat-divider
+          style="border-color: black; margin-top: 10px"
+        ></mat-divider>
+      </div>
+
+      <!-- ******************************RESULTS CONTAINER************************** -->
+      <div class="results_container">
+        <div class="results_header">
+          <p class="results_title">RESULTS - 5000</p>
+          <div class="results_filters">
+            <mat-checkbox class="mat_checkbox_candidates_header">
+              <p class="pt-2">Select All</p>
+            </mat-checkbox>
+
+            <!-- *********** -->
+            <mat-form-field class="Bulk_actions" appearance="outline">
+              <mat-select
+                [disabled]="true"
+                (openedChange)="handleOpen()"
+                placeholder="Select icon"
+                placeholder="BULK ACTIONS"
+                class="Bulk_actions_select"
+              >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../../assets/icons/bookmark.svg"
+                    style="padding-right: 10px"
+                  />Send email</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../../assets/icons/chat.svg"
+                    style="padding-right: 10px"
+                  />Send a message</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../../assets/icons/Addnotes.svg"
+                    style="padding-right: 10px"
+                  />Add notes</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../../assets/icons/resource.svg"
+                    style="padding-right: 10px"
+                  />Suggest resources</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../../assets/icons/share.svg"
+                    style="padding-right: 10px"
+                  />Share</mat-option
+                >
+                <mat-option class="Bulk_actions_select_options"
+                  ><img
+                    src="../../../../../assets/icons/assign_level.svg"
+                    style="padding-right: 10px"
+                  />Assign</mat-option
+                >
+              </mat-select>
+              <span class="drop_down_arrow_icon">
+                <img
+                  *ngIf="!panelIsOpen"
+                  src="../../../../../assets/icons/downArrow.svg"
+                  alt=""
+                />
+                <img
+                  *ngIf="panelIsOpen"
+                  src="../../../../../assets/icons/upArrow.svg"
+                  alt=""
+                />
+
+                <!-- <mat-icon class="my-icon" *ngIf="panelIsOpen"
+                  >arrow_circle_down</mat-icon
+                > -->
+                <!-- <mat-icon class="my-icon" *ngIf="!panelIsOpen"
+                  >arrow_circle_up</mat-icon
+                > -->
+              </span>
+            </mat-form-field>
+
+            <img
+              class="grid_icon_result"
+              src="../../../../../assets/icons/gridview.svg"
+              alt=""
+            />
+            <!-- <img
+              class="grid_icon_result"
+              src="../../../../../assets/icons/listview.svg"
+              alt=""
+            /> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- *************************************Applicants cards****************** -->
+
+      <div class="recommends">
+        <!-- card -->
+        <div class="row">
+          <div
+            class="col-lg-3 col-md-6"
+            *ngFor="let employeeData of allEmployeesData | search : searchText"
+          >
+            <div class="cards_container_recommend">
+              <mat-card class="recommend_card">
+                <div class="recommend_card_container">
+                  <div class="image_overlay"></div>
+                  <div class="candidateDummyImg">
+                    <i
+                      *ngIf="employeeData.user_photo === null"
+                      class="fa-solid fa-user candidate_profile_icon"
+                    ></i>
+                    <img
+                      *ngIf="employeeData.user_photo != null"
+                      style="object-fit: cover"
+                      width="100%"
+                      [src]="employeeData.user_photo"
+                    />
+                  </div>
+                </div>
+                <div class="actions_container">
+                  <p class="item1"><button>RECOMMENDED</button></p>
+                  <!-- ************FAV ICON ***** -->
+                  <img
+                    class="fav_icon"
+                    src="../../../../assets/icons/fav_icon.svg"
+                  />
+                  <mat-checkbox class="mat_checkbox_candidates"></mat-checkbox>
+                  <img
+                    class="burger_icon"
+                    src="../../../../assets/icons/burger_menu.svg"
+                  />
+                </div>
+                <div
+                  class="container"
+                  (click)="candidatesProfileRoute(employeeData)"
+                >
+                  <p class="user_details_container">
+                    {{ employeeData.user_name }}
+                  </p>
+                  <div class="sprint_contiainer">
+                    <p>3 Sprints Latest Sep 24</p>
+                    <p>Active</p>
+                  </div>
+                </div>
+              </mat-card>
+              <mat-card class="recommend_graph_card">
+                <div class="row m-0 p-0">
+                  <div class="col-7 m-0 p-0">
+                    <app-radial-stacked-chart
+                      id="2"
+                      [data]="employeeData.result_values"
+                    ></app-radial-stacked-chart>
+                  </div>
+                  <div class="col-5 m-0 p-1 align-self-center">
+                    <p class="title_details">Department</p>
+                    <p class="result_details">
+                      {{
+                        employeeData?.department === ""
+                          ? "-"
+                          : employeeData?.department
+                      }}
+                    </p>
+                    <p class="title_details">Role</p>
+                    <p class="result_details">
+                      {{
+                        employeeData.designation &&
+                        employeeData.designation != "null"
+                          ? employeeData.designation
+                          : "-"
+                      }}
+                    </p>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+
+        <!-- card -->
+      </div>
+      <div class="load_more">
+        <u
+          ><i>
+            <p>Load More</p>
+          </i></u
+        >
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>
+
+<!-- *****************RESUME UPLOAD*********************** -->
+<ng-template #resumeUpload>
+  <div class="bg-dailog">
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1">APPICANTS : <b>ADD APPLICANT</b></p>
+        <p class="sub_txt2">Bulk Upload Resume</p>
+        <i class="sub_txt3"
+          >Upload Applicant resume to automatically convert into a applicant
+          profile.</i
+        >
+      </div>
+      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+        <img src="../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class="container_dialog">
+    <div
+      style="border: 1px dashed grey; background: rgb(255, 255, 255)"
+      class="dropzone mt-2"
+      fileDragDrop
+      (filesChangeEmiter)="onFileChangeEmployee($event)"
+    >
+      <div class="text-wrapper">
+        <div class="centered">
+          <input
+            id="file"
+            type="file"
+            accept=".xlsx"
+            (change)="onFileChangeEmployee($event.target)"
+            multiple="false"
+          />
+          <label for="file"
+            ><img src="../../../../../assets/icons/upload.svg" />
+            <!-- <span class="textLink">Select file(s)</span> -->
+
+            <p></p>
+
+            <p></p>
+            <p class="pt-3 upload_txt">Upload Applicant Resume(s) here</p>
+            <p></p>
+            <p class="pt-1 fs_13 upload_subtxt">
+              Drag & Drop, or click to select, supported formats pdf, word or
+              excel
+            </p>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="role_dialog_btn_container">
+      <b><u>Reset</u></b>
+      <button class="convert_btn" (click)="openSuccessDialog()">
+        <b>Next</b>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- ***********************ADD STATUS DIALOG ****************** -->
+<ng-template #addStatusDialog>
+  <div class="bg-dailog">
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1">CANDIDATES : SEARCH : APPLICANTS : SALES</p>
+
+        <p class="sub_txt2">Assign Stage Level</p>
+        <i class="sub_txt3"
+          >For selected applicants ( 8 ) assign a stage level from the dropdown
+          below
+        </i>
+      </div>
+      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+        <img src="../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class="status_dialog_content">
+    <div class="">
+      <div class="staus_header">
+        <b>Status Level</b>
+      </div>
+      <mat-form-field class="status_filter_dilaog pt-2" appearance="outline">
+        <mat-select placeholder="Select Level" value="value">
+          <mat-option value="1">122222</mat-option>
+          <mat-option>122222</mat-option>
+          <mat-option>122222</mat-option>
+          <mat-option>122222</mat-option>
+          <mat-option>122222</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="role_dialog_btn_container">
+      <b><u>Reset</u></b>
+      <button
+        class="convert_btn"
+        (click)="openconfirmAddstatus(confirmAddstatus)"
+      >
+        <b>Next</b>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- add status confirm dialog  -->
+
+<ng-template #confirmAddstatus>
+  <div class="dialog_container">
+    <div class="row p-0 m-0">
+      <div class="col-11 head_container">
+        <!-- <h2 mat-dialog-title>Success</h2> -->
+        <div mat-dialog-content>
+          <p class="dialog_tittle">Assign Status level as Interview Stage 2?</p>
+          <i class="sub_txt"
+            >Selelcted 8 applicants from Sales business function will be
+            assigned the status level of Interview Stage 2</i
+          >
+        </div>
+      </div>
+      <div class="col-1 pt-5">
+        <img
+          class="close_icon"
+          (click)="closedialog()"
+          src="../../../../../assets/icons/closeDialog.svg"
+        />
+      </div>
+    </div>
+    <div class="button">
+      <button (click)="openDialogAddStatus(addStatusDialog)" class="back_btn">
+        BACK
+      </button>
+      <button (click)="openSuccessDialog()" class="done_btn">
+        YES, CONFIRM
+      </button>
+    </div>
+
+    <!-- <div mat-dialog-actions>
+      <button  >Done</button>
+    </div> -->
+  </div>
+</ng-template>

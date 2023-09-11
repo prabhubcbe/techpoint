@@ -1,0 +1,114 @@
+@import "../../../../assets/styles/variable.scss";
+
+// ::ng-deep body,
+// ::ng-deep html {
+//   height: 100%;
+//   margin: 0;
+//   // background: $Primary_greenGradient !important;
+// }
+.bg_color {
+  // min-height: 100%; /* Using viewport height for full-page height */
+  margin: 0;
+  padding: 0;
+  background-size: auto auto;
+  background: $Primary_greenGradient !important;
+
+  color: white;
+}
+.back_ground_texture {
+  // min-height: 100%; /* Using viewport height for full-page height */
+  margin: 0;
+  padding: 0;
+  // opacity: 0.2;
+
+  background-size: auto auto;
+  // background-color: rgba(6, 56, 61, 0.9882352941176471);
+  background-image: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 84px,
+      rgba(255, 255, 255, 0.03) 84px,
+      rgba(255, 255, 255, 0.03) 85px
+    ),
+    repeating-linear-gradient(
+      160deg,
+      transparent,
+      transparent 50px,
+      rgba(255, 255, 255, 0.03) 50px,
+      rgba(255, 255, 255, 0.03) 51px
+    ),
+    repeating-linear-gradient(
+      15deg,
+      transparent,
+      transparent 50px,
+      rgba(255, 255, 255, 0.03) 50px,
+      rgba(255, 255, 255, 0.03) 52px
+    );
+}
+// *****************
+.margin_center {
+  margin-left: 230px;
+  margin-right: 230px;
+  height: 100%;
+  padding-top: 160px;
+}
+// ************HEADER*************
+.header_txt {
+  font-size: 42px;
+  font-family: $Titillium_Bold;
+  letter-spacing: 3.5px;
+  margin-bottom: 30px;
+}
+// ***********
+.report_cards_container {
+  margin-top: 35px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 50px 50px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". ."
+    ". .";
+}
+.report_cards {
+  background: $cards_Bg;
+  width: 490px;
+  height: 210px;
+  padding: 30px 20px 35px 26px;
+  color: black;
+  border-radius: 10px;
+}
+
+.cards_container {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 50px;
+}
+.card_profile_img {
+  border-radius: 6px;
+  height: 75px;
+  width: 200px;
+}
+.cards_arrow {
+  align-items: end;
+  display: flex;
+  padding-left: 10px;
+  img {
+    height: 70px;
+    width: 70px;
+  }
+}
+
+.report_txt_head {
+  font-size: 21px;
+  color: #000;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42px;
+}
+.report_txt_subtxt {
+  font-size: 15px;
+  font-family: $Titillium_Light;
+  // line-height: normal;
+}

@@ -1,0 +1,910 @@
+@import "../../../../assets/styles/variable.scss";
+
+.component_container {
+  .bg_GreenGradient {
+    background: $Primary_greenGradient;
+    width: 100%;
+    height: 330px;
+  }
+}
+.title_candidates {
+  color: white;
+
+  p {
+    font-size: 13px;
+    text-transform: uppercase;
+    padding-top: 35px;
+    // font-weight: 700;
+  }
+}
+.filters_container {
+  color: white;
+  padding-top: 30px;
+  font-size: 14px p {
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  .bussiness_fltr_txt {
+    font-size: clamp(0.5rem, 1.6vw, 1rem);
+  }
+  .Bussiner_Filter {
+    // *****************search bussiness function *****************
+    .search {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    .search__input {
+      font-family: inherit;
+      font-size: inherit;
+      height: 50px;
+      background: $Primary_greenGradient;
+      border: 1px solid white;
+      color: #ffffff;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      width: 25em;
+      transition: all ease-in-out 0.5s;
+      margin-right: -2rem;
+    }
+
+    .search__input:hover,
+    .search__input:focus {
+      box-shadow: 0 0 1em #00000013;
+    }
+
+    .search__input:focus {
+      outline: none;
+      background-color: #f0eeee;
+    }
+
+    .search__input::-webkit-input-placeholder {
+      font-weight: 100;
+      color: #ffffff;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .search__input:focus + .search__button {
+      background: none;
+    }
+
+    .search__button {
+      border: none;
+      background: none;
+      margin-top: 0.1em;
+    }
+
+    // .search__button:hover {
+    //   cursor: pointer;
+    // }
+
+    .search__icon {
+      height: 1.3em;
+      width: 1.3em;
+      fill: #b4b4b4;
+    }
+  }
+  .Level_filter {
+    padding-left: 30px;
+  }
+
+  // *************EVAluation  HTML SELECT filter*************
+
+  // .evaluation_Dropdwon {
+  //   position: relative;
+  //   width: 100%; /* Adjust the width as needed */
+  // }
+
+  // .evaluation_Dropdwon::after {
+  //   content: "";
+  //   position: absolute;
+  //   top: 50%;
+  //   right: 4%;
+  //   transform: translateY(-50%);
+  //   /* Add your icon styles here */
+  //   width: 19px;
+  //   height: 19px;
+  //   background-image: url(../../../../assets/icons/downArrowExpand.svg);
+  //   background-size: cover;
+  //   filter: invert(100%) brightness(100%) saturate(0%); //SVG color set to white
+  // }
+
+  // .evaluation_Dropdwon :focus {
+  //   outline: none;
+  // }
+
+  // .evaluation_Dropdwon select {
+  //   color: white;
+  //   cursor: pointer;
+  //   width: 100%;
+  //   height: 50px;
+  //   background: $Primary_greenGradient;
+  //   border-radius: 10px;
+  //   border: 1px solid white;
+  //   padding: 5px 20px 5px 10px; /* Increase the right padding to make space for the arrow */
+  //   appearance: none;
+  //   -webkit-appearance: none;
+  //   -moz-appearance: none;
+  // }
+
+  // .evaluation_Dropdwon option {
+  //   color: black;
+  // }
+}
+// ********************evaluation_ MAT DropdwonFilter******************
+
+// drop down option panel customization class name evaluation_select_panel
+::ng-deep .mat-mdc-select-panel.evaluation_select_panel {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  margin-top: 7px;
+}
+.evaluation_DropdwonFilter {
+  // ***************
+
+  width: 100%;
+  .evaluation_DropdwonFilterFile {
+    width: 100%;
+    // height: 65px;
+  }
+  .evaluation_select {
+    color: rgb(255, 255, 255);
+  }
+
+  // ::ng-deep .mat-mdc-select-panel {
+  //   border-radius: 30px !important;
+  // }
+
+  ::ng-deep .mat-mdc-select-placeholder {
+    color: white;
+    font-family: $Titillium_Regular;
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 3;
+  }
+  ::ng-deep .mat-mdc-select-arrow {
+    color: white;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    color: rgb(129, 17, 17);
+  }
+  ::ng-deep
+    .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(
+      .mdc-text-field--textarea
+    )
+    .mat-mdc-form-field-infix {
+    padding: 0px;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    // padding: 0;
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 50px !important;
+    background: $Primary_greenGradient;
+    padding: 4px 10px 0 10px;
+  }
+  ::ng-deep .mat-mdc-select-panel-above .mdc-menu-surface.mat-mdc-select-panel {
+    margin: 8px 0px 13px 0px;
+    border-radius: 10px;
+    background-color: red !important;
+  }
+  ::ng-deep
+    .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(
+      .mdc-text-field--textarea
+    )
+    .mat-mdc-form-field-infix {
+    padding-top: 2px;
+  }
+}
+
+// ************************LEVEL DROP DOWN FILTER ******************
+.level_DropDownFilter {
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 50px;
+    background: $Primary_greenGradient;
+    padding: 3px 10px 0 10px;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    color: rgb(129, 17, 17);
+  }
+  ::ng-deep .mat-mdc-select-placeholder {
+    color: white;
+    font-family: $Titillium_Regular;
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 3;
+  }
+  ::ng-deep .mat-mdc-select-arrow {
+    color: white;
+  }
+  ::ng-deep
+    .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(
+      .mdc-text-field--textarea
+    )
+    .mat-mdc-form-field-infix {
+    padding-top: 2px;
+  }
+  :ng-deep .mat-mdc-select {
+    padding-top: 10px !important;
+  }
+
+  // **********
+
+  ::ng-deep .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+    background: $Primary_greenGradient !important;
+    border: 1px solid rgb(163, 162, 162);
+  }
+  ::ng-deep
+    .mat-mdc-chip.mdc-evolution-chip--with-trailing-action
+    .mat-mdc-chip-action-label {
+    color: white !important;
+    font-family: $Titillium_Regular;
+  }
+
+  ::ng-deep
+    .mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action
+    .mdc-evolution-chip__action--trailing {
+    color: white !important;
+  }
+  ::ng-deep
+    .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled)
+    .mdc-evolution-chip__text-label {
+    color: white;
+  }
+}
+// **********************SEARCH BUTTON ************************
+.search_Btn {
+  padding-top: 30px;
+}
+.search_btn_container {
+  text-align: end;
+}
+.searchbtn {
+  background: $Primary_greenGrdientReverse; // Sets the  color using $Primary_greenGradient variable.scss
+  color: #f5f1ee;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  // padding: 10px 25px 10px 25px;
+  padding: clamp(0.625rem, 2vw, 1rem) clamp(0.4rem, 2vw, 1.4rem);
+  font-size: clamp(0.4rem, 1.6vw, 0.75rem);
+  width: 95%;
+  height: 50px;
+  box-shadow: -2px -8px 13px 5px rgb(255 255 255 /5%);
+  border: 0.5px solid $primary_checkBoxColor;
+  text-transform: uppercase;
+}
+
+// ******************************MAIN_BLOCK_CONTENT**************************
+.main_Block {
+  padding-top: 50px;
+}
+
+// ******************************CANDIDATES AVAILABLE**************************
+.candidate_available {
+  background-color: $cards_Bg;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  .graph_card {
+    flex-grow: 1;
+    background-color: white;
+    border-radius: 15px 15px 0px 0;
+  }
+  .title_details {
+    text-transform: uppercase;
+    margin: 0px;
+    font-family: Titillium Web;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .result_details {
+    font-family: Titillium Web;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}
+
+.candidate_header {
+  background: $Primary_greenGrdientReverse;
+  height: 63px;
+}
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  color: white;
+
+  .item1 {
+    flex-grow: 1;
+    padding-left: 50px;
+    h2 {
+      font-weight: 700;
+      padding-top: 10px;
+    }
+  }
+  .item2 {
+    flex-grow: 1;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    h2 {
+      font-weight: 700;
+      padding-right: 30px;
+      padding-top: 15px;
+    }
+    .bgBtn {
+      background-color: white;
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      margin-right: 8%;
+      i {
+        color: black;
+        translate: 30% 30%;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+// *******************ROLES_CONTAINER**************************
+
+.roles_container {
+  padding-top: 60px;
+}
+.roles_header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.roles_text {
+  h2 {
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+}
+.Roles_filters_container {
+  padding-top: 5px;
+  display: flex;
+  gap: 25px;
+}
+.sort_Icon {
+  background-color: white;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  place-items: center;
+
+  span {
+    translate: 26% 26%;
+    font-size: 20px;
+  }
+}
+.add_Icon {
+  background-color: $Primary_Blue;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+
+  i {
+    translate: 54% 35%;
+    font-size: 16px;
+    color: white;
+  }
+}
+//  *******************************************ROLE_CARDS*********************************
+.roles_card {
+  background-color: $cards_Bg;
+
+  // height: 120px;
+  width: 100%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+  // padding: 5px;
+  // height: 110px;
+  .role {
+    font-size: 10px;
+    font-weight: 600;
+    padding-top: 10px;
+    margin-bottom: 0px;
+  }
+  .role_title {
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: $Titillium_Bold;
+    margin-bottom: 6px;
+    // ***********
+    overflow: hidden;
+    height: 37px;
+    text-overflow: ellipsis;
+    width: 96%;
+    white-space: nowrap;
+  }
+}
+
+.role_actions {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 15px;
+  padding-top: 10px;
+  padding-bottom: 9px;
+}
+.role_date {
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+}
+
+// *******************paginator**************************
+.paginator_roles {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  place-items: end;
+  p {
+    font-size: 15px;
+    font-family: $Titillium_Bold;
+  }
+}
+.page1 {
+  background: transparent;
+  color: #000;
+  padding-top: 10px;
+  ::ng-deep .mat-mdc-paginator-page-size {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-paginator-icon {
+    background: #fff;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+  }
+  ::ng-deep .mat-mdc-paginator-range-label {
+    display: none;
+    // font-weight: 500;
+    // margin: 12px 0px 0 24px;
+    // font-size: 15px;
+    // word-spacing: -1.5px;
+  }
+
+  ::ng-deep
+    .mat-mdc-icon-button:hover
+    .mat-mdc-button-persistent-ripple::before {
+    display: none !important;
+  }
+
+  ::ng-deep
+    .mat-mdc-icon-button:active
+    .mat-mdc-button-persistent-ripple::before {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-button-persistent-ripple .mdc-icon-button__ripple {
+    display: none import !important;
+  }
+}
+
+// <!-- **********************MAYAMAYA RECOMMENDS************************ -->
+.recommneds_container {
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  place-items: end;
+}
+.recommend_txt {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: $Titillium_Bold;
+}
+.viewAll_txt {
+  font-family: $Titillium_Extra_Light;
+  font-weight: 600;
+  margin-top: 5px;
+  cursor: pointer;
+}
+// **********************RECOMMENDS CARDS************************
+
+.cards_container_recommend {
+  padding-top: 20px;
+}
+.recommend_card {
+  background: $Primary_greenGrdientReverse;
+  width: 100%;
+  height: 150px;
+  border-radius: 20px 20px 0 0;
+
+  overflow: hidden;
+}
+.recommend_card_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.candidate_profile_icon {
+  color: white;
+  font-size: 100px;
+  opacity: 0.2;
+}
+
+.candidateDummyImg {
+  // height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  .candidate_image {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+.image_overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  // background: linear-gradient(#30757b, #000000);
+  background: linear-gradient(
+    rgba(48, 117, 123, 0.3),
+    /* 50% opacity for the first color */ rgba(0, 0, 0, 0.9)
+      /* 80% opacity for the second color */
+  );
+}
+
+// *****************ACTIONS INSIDE THE CARD*****************
+.actions_container {
+  display: flex;
+  position: absolute;
+  z-index: 2;
+
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  padding-right: 20px;
+  padding-top: 10px;
+  gap: 5px;
+}
+// ******************checkbox****************
+.mat_checkbox_candidates {
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
+      [data-indeterminate="true"]
+    )
+    ~ .mdc-checkbox__background {
+    border-radius: 3px;
+    border: 1px solid white;
+    width: 20px;
+    height: 20px;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:focus:checked
+    ~ .mdc-checkbox__background {
+    background-color: white;
+    width: 20px;
+    height: 20px;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled
+    ~ .mdc-checkbox__background
+    .mdc-checkbox__checkmark {
+    color: $primary_checkBoxColor;
+  }
+  ::ng-deep
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:checked
+    ~ .mdc-checkbox__background {
+    background-color: white;
+    border-color: $primary_checkBoxColor;
+    width: 20px;
+    height: 20px;
+  }
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__background {
+    top: calc((var(--mdc-checkbox-state-layer-size) - 20px) / 2);
+    left: calc((var(--mdc-checkbox-state-layer-size) - 20px) / 2);
+  }
+}
+// **********************VERTICAL BURGER MENU **********************
+.fav_icon {
+  height: 28px;
+  // margin-top: 3%;
+}
+.burger_icon {
+  height: 18px;
+  // margin-top: 4%;
+  margin-left: 2%;
+}
+// **********************CANDIDATES DETAILS************************
+.user_details_container {
+  position: absolute;
+  z-index: 4;
+  top: 100px;
+  color: white;
+  font-size: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 90%;
+  height: 1.7rem;
+}
+.sprint_contiainer {
+  position: absolute;
+  z-index: 5;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  color: white;
+  top: 125px;
+}
+// ********************GRAPH CARD**************
+.recommend_graph_card {
+  background: $cards_Bg;
+  width: 100%;
+  border-radius: 0 0 20px 20px;
+  .title_details {
+    text-transform: uppercase;
+    margin: 0px;
+    font-family: Titillium Web;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    letter-spacing: 1px;
+  }
+  .result_details {
+    font-family: $Titillium_Bold;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    line-height: 16px;
+  }
+}
+
+// *********************************Shortlisted candidates*********************************
+.shortListed_container {
+  .shortlisted {
+    font-size: 21px;
+    font-weight: 700;
+    font-family: $Titillium_Bold;
+  }
+}
+.shortlist_dummyIcon {
+  width: 3.3rem;
+  height: 3.3rem;
+  border-radius: 50%;
+  background-color: $cards_Bg;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shortlist_dummyIcon_user {
+  font-size: 2rem;
+  color: $primary_checkBoxColor;
+  opacity: 0.3;
+}
+.img_container {
+  padding-right: 0;
+}
+
+.shortlist_profile_img {
+  width: 3.3rem;
+  height: 3.3rem;
+  border-radius: 50%;
+}
+.shortListed_names_container {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+
+  padding-top: 15px;
+}
+.shortlisted_username {
+  font-size: 1.5vw;
+  font-weight: 700;
+  font-family: $Titillium_Bold;
+  margin-bottom: 1px;
+  height: 1.5rem;
+
+  width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.shortlisted_sprints {
+  font-size: 1vw;
+  font-weight: 500;
+  font-family: $Titillium_Regular;
+  margin-bottom: 1px;
+}
+
+.circle_icons_shortlist {
+  margin-left: -10px;
+
+  i {
+    font-size: 9px;
+  }
+}
+// ************DELETE ROLE DIALOG *********
+.dialog_container {
+  background: $Primary_greenGradient;
+  color: white;
+}
+.head_container {
+  display: flex;
+  justify-content: center;
+  padding-top: 70px;
+  padding-left: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+.dialog_tittle {
+  color: white;
+
+  font-size: 27px;
+  font-family: $Titillium_Bold;
+
+  line-height: 1.5;
+}
+.button {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+.done_btn {
+  background: white;
+  border-radius: 50px;
+  color: black;
+  width: 150px;
+  height: 50px;
+  font-size: 14px;
+  font-family: $Titillium_Bold;
+  outline: none;
+  //   font
+}
+.sub_txt {
+  color: white;
+  font-size: 13px;
+  font-family: $Titillium_Light;
+}
+.close_icon {
+  cursor: pointer;
+}
+
+// ***************************************************EXPANSION SEARCH************************************************
+.search-click {
+  border: 1px solid #ccc;
+  outline: none;
+  background-size: 22px;
+  background-position: 13px;
+  border-radius: 10px;
+  width: 50px;
+  height: 38px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 4px;
+  transition: all 0.5s;
+  // transition: max-width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.search-click:focus {
+  width: 200px;
+  // padding-left: 50px;
+}
+.search-click {
+  position: relative;
+  overflow: hidden;
+  height: 38px;
+}
+.search-click input {
+  background: transparent;
+  border: 1px solid #ccc;
+  outline: none;
+  position: absolute;
+  width: 200px;
+  height: 30px;
+  left: 0%;
+  padding: 10px;
+}
+
+.inp-icon {
+  // width: 2px;
+  position: relative;
+  right: 40px;
+  font-size: 20px;
+  line-height: 40px;
+  cursor: pointer;
+  z-index: 1;
+  color: #03045fc7;
+}
+
+#searchform {
+  display: inline;
+  font-size: 1em;
+  // border-radius: 8em;
+  // border: 0.1em solid rgba(218, 208, 190, 1);
+  // box-shadow: 0 0 0.3em rgba(60, 60, 60, 0.4);
+  // padding: 0.3em;
+  // background: white;
+  height: 40px;
+
+  input[type="text"] {
+    top: -5px;
+    padding: 6px 0 0 35px;
+
+    // left: 15px;
+    position: relative;
+  }
+  ::placeholder {
+    position: relative;
+    padding-top: 5px;
+  }
+
+  label {
+    padding-left: 1px;
+    display: inline-block;
+    margin-top: 0.3em;
+    // color: rgba(218, 208, 190, 1);
+    text-shadow: 0 0 0.1em rgba(60, 60, 60, 0.3);
+    position: relative;
+    left: 2.2em;
+    z-index: 999;
+  }
+}
+#s {
+  transition: all 0.2s ease-out;
+  width: 1px;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  margin: 0;
+  padding-bottom: 10px !important;
+  border: 0;
+  background-color: transparent;
+  opacity: 0;
+}
+#s:focus {
+  width: 14em;
+  border-radius: 8em;
+  border: 0.1em solid rgba(218, 208, 190, 1);
+  // box-shadow: 0 0 0.3em rgba(60, 60, 60, 0.4);
+  padding: 0.3em;
+  background: white;
+  opacity: 1;
+}

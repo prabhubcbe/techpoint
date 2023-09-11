@@ -1,0 +1,44 @@
+@import "../../../assets/styles/variable.scss";
+.dialog_container {
+  background: $Primary_greenGradient;
+  color: white;
+}
+.head_container {
+  display: flex;
+  justify-content: center;
+  padding-top: 70px;
+  padding-left: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+.dialog_tittle {
+  color: white;
+
+  font-size: 27px;
+  font-family: $Titillium_Bold;
+
+  line-height: 1.5;
+}
+.button {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+.done_btn {
+  background: white;
+  border-radius: 50px;
+  color: black;
+  width: 150px;
+  height: 50px;
+  font-size: 14px;
+  font-family: $Titillium_Bold;
+  //   font
+}
+.sub_txt {
+  color: white;
+  font-size: 13px;
+  font-family: $Titillium_Light;
+}
+.close_icon {
+  cursor: pointer;
+}

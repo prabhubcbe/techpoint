@@ -1,0 +1,339 @@
+<div class="component_container">
+  <div class="bg_GreenGradient padding_100">
+    <div class="Root_containerVariable pl-2">
+      <div class="title_candidates">
+        <p>REPORTS : PREGENERATED REPORTS</p>
+      </div>
+
+      <div class="header_container">
+        <div class="item1">
+          <img
+            class="back_btn"
+            src="../../../../assets/icons/backarrowwithBG.svg"
+          />
+          <p class="Analysis_txt">Pregenerated Reports</p>
+        </div>
+      </div>
+      <p class="sub_title">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+        eirmod tempor invidunt ut labore
+      </p>
+    </div>
+  </div>
+
+  <div class="Root_containerVariable main_container">
+    <!-- ***********FIRST ROW*************** -->
+    <div class="row">
+      <div class="col-6">
+        <mat-card class="top_employees_card">
+          <p class="employee_title">Top Employees in each function</p>
+          <div class="employees_card_header">
+            <div>
+              <mat-form-field class="status_filter" appearance="outline">
+                <mat-select placeholder="Function : All" value="value">
+                  <mat-option value="1">122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="period_filter" appearance="outline">
+                <mat-select placeholder="Period : Q1| Jan - Mar" value="value">
+                  <mat-option value="1">122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="download_add_container">
+              <div class="img_bg">
+                <img
+                  class="download_report"
+                  src="../../../../assets/icons/download_prereport.svg"
+                  alt="arrow"
+                />
+              </div>
+              <button class="add_btn_employee">
+                <img
+                  class="add_report"
+                  src="../../../../assets/icons/add_prereport.svg"
+                  alt=""
+                />Add
+              </button>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <!-- ****************table************** -->
+          <table class="employee_table">
+            <tr class="table_head">
+              <th>EMPLOYEE NAME</th>
+              <th>FUNCTION</th>
+              <th>RANK</th>
+            </tr>
+            <tr class="table_row" *ngFor="let employee of topEmployeesInEachFunction">
+              <td class="table_td">
+                <img
+                  class="profile_icn"
+                  src="../../../../assets/icons/red_profile_iocn.svg"
+                />
+                {{employee.user_name}}
+              </td>
+              <td class="table_td">{{employee.department}}</td>
+              <td class="table_td">{{employee.score | number : '1.2-2'}}</td>
+            </tr>
+          </table>
+        </mat-card>
+      </div>
+      <div class="col-6">
+        <mat-card class="top_employees_card">
+          <p class="employee_title">Top Tasks Achievers</p>
+          <div class="employees_card_header">
+            <div>
+              <mat-form-field class="status_filter" appearance="outline">
+                <mat-select placeholder="Function : All" value="value">
+                  <mat-option value="1">122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="period_filter" appearance="outline">
+                <mat-select placeholder="Period : Q1| Jan - Mar" value="value">
+                  <mat-option value="1">122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="download_add_container">
+              <div class="img_bg">
+                <img
+                  class="download_report"
+                  src="../../../../assets/icons/download_prereport.svg"
+                  alt="arrow"
+                />
+              </div>
+              <button class="add_btn_employee">
+                <img
+                  class="add_report"
+                  src="../../../../assets/icons/add_prereport.svg"
+                  alt=""
+                />Add
+              </button>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <!-- ****************table************** -->
+          <table class="employee_table">
+            <tr class="table_head">
+              <th>EMPLOYEE NAME</th>
+              <th>FUNCTION</th>
+              <th>TASKS RATE</th>
+            </tr>
+            <tr class="table_row" *ngFor="let employee of topTaskAcheivers">
+              <td class="table_td">
+                <img
+                  class="profile_icn"
+                  src="../../../../assets/icons/red_profile_iocn.svg"
+                />
+                {{ employee.user_name}}
+              </td>
+              <td class="table_td">{{employee.department}}</td>
+              <td class="table_td">{{employee.total_tasks_assigned}}</td>
+            </tr>
+          </table></mat-card
+        >
+      </div>
+    </div>
+
+    <!-- ***********SECOND ROW *************** -->
+    <div class="row">
+      <div class="col">
+        <mat-card class="benchmark_card">
+          <p class="employee_title">People progressing towards benchmark</p>
+          <div class="benchmark_card_header">
+            <div class="benchmark_item1">
+              <mat-form-field class="status_filter" appearance="outline">
+                <mat-select placeholder="Function : All" value="value">
+                  <mat-option value="1">122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="period_filter" appearance="outline">
+                <mat-select placeholder="Period : Q1| Jan - Mar" value="value">
+                  <mat-option value="1">122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="download_add_container">
+              <div class="img_bg">
+                <img
+                  class="download_report"
+                  src="../../../../assets/icons/download_prereport.svg"
+                  alt="arrow"
+                />
+              </div>
+              <button class="report_btn_employee">
+                <img
+                  class="add_report"
+                  src="../../../../assets/icons/add_prereport.svg"
+                  alt=""
+                />Add to Custom Report
+              </button>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <!-- ****************table************** -->
+          <table class="employee_table">
+            <tr class="table_head">
+              <th>EMPLOYEE NAME</th>
+              <th>DEPARMENT</th>
+              <th>PROGRESS</th>
+              <th>STATUS</th>
+              <th>BENCHMARK</th>
+            </tr>
+            <tr class="table_row">
+              <td class="table_td">
+                <img
+                  class="profile_icn"
+                  src="../../../../assets/icons/red_profile_iocn.svg"
+                />
+                Sriharsha Kathri
+              </td>
+              <td class="table_td">SEO</td>
+              <td class="table_td">100%</td>
+              <td class="table_td on_track">On-Track</td>
+              <td class="table_td">100</td>
+            </tr>
+            <tr>
+              <td class="table_td">
+                <img
+                  class="profile_icn"
+                  src="../../../../assets/icons/red_profile_iocn.svg"
+                />
+                Lionel Allen
+              </td>
+              <td class="table_td">Sales</td>
+              <td class="table_td">100%</td>
+              <td class="table_td approaching">Approaching</td>
+              <td class="table_td">75%</td>
+            </tr>
+            <tr>
+              <td class="table_td">
+                <img
+                  class="profile_icn"
+                  src="../../../../assets/icons/red_profile_iocn.svg"
+                />
+                Lionel Allen
+              </td>
+              <td class="table_td">Sales</td>
+              <td class="table_td">100%</td>
+              <td class="table_td behind">Behind</td>
+              <td class="table_td">75%</td>
+            </tr>
+          </table>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- ************THERRE ROW********** -->
+    <div class="row">
+      <div class="col">
+        <mat-card class="benchmark_card">
+          <p class="employee_title">
+            People who are slacking in 60 - 80% fit with dept and role
+          </p>
+          <div class="benchmark_card_header">
+            <div class="benchmark_item1">
+              <mat-form-field class="status_filter" appearance="outline">
+                <mat-select placeholder="Function : All" value="value">
+                  <mat-option value="1">122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="period_filter" appearance="outline">
+                <mat-select placeholder="Period : Q1| Jan - Mar" value="value">
+                  <mat-option value="1">122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                  <mat-option>122222</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="download_add_container">
+              <div class="img_bg">
+                <img
+                  class="download_report"
+                  src="../../../../assets/icons/download_prereport.svg"
+                  alt="arrow"
+                />
+              </div>
+              <button class="report_btn_employee">
+                <img
+                  class="add_report"
+                  src="../../../../assets/icons/add_prereport.svg"
+                  alt=""
+                />Add to Custom Report
+              </button>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <!-- ****************table************** -->
+          <table class="employee_table">
+            <tr class="table_head">
+              <th>EMPLOYEE NAME</th>
+              <th>DEPARMENT</th>
+              <th>ROLE</th>
+              <th>FIT PERCENTAGE</th>
+              <th>AVG BECNHMARK</th>
+            </tr>
+            <tr class="table_row" *ngFor="let employee of employeeSlackingBetween60To80">
+              <td class="table_td">
+                <img
+                  class="profile_icn"
+                  src="../../../../assets/icons/red_profile_iocn.svg"
+                />
+                {{employee.user_name}}
+              </td>
+              <td class="table_td">{{employee.department}}</td>
+              <td class="table_td">{{employee.designation}}</td>
+              <td class="table_td">
+                <img src="../../../../assets/icons/red_circle.svg" /> {{employee.score | number : '1.2-2'}}
+              </td>
+              <td class="table_td">TBD</td>
+            </tr>
+          </table>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
