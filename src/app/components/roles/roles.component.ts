@@ -377,9 +377,11 @@ export class RolesComponent implements OnInit {
     this.router.navigate(['roles/RoleProfile'], {
       queryParams: {
         role_id: editData.role_id,
-        editable: 'edit',
+        // editable: 'edit',
       },
     });
+    let newValue = 'edit';
+    this.api.setEditable(newValue);
   }
 
   // *****************INPUT CHIPS*****************
@@ -443,6 +445,8 @@ export class RolesComponent implements OnInit {
         role_id: data.role_id,
       },
     });
+    let newValue = '';
+    this.api.setEditable(newValue);
   }
 
   // *************ALL ROLES*************

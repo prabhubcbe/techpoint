@@ -219,14 +219,25 @@ export class CandidatesComponent implements OnInit {
             }
           });
           ranges.map((r) => {
-            r.display =
-              r.count ? Math.round((r.count * 100) / response.length) : 0;
+            r.display = r.count
+              ? Math.round((r.count * 100) / response.length)
+              : 0;
             const uniqueScores = r.uniqueScores.sort();
             const firstPart = Math.round(uniqueScores.length / 2);
-            const sum = uniqueScores.slice(0, firstPart).reduce((a: any, b: any) => a + b, 0);
-            const sum2 = uniqueScores.slice(firstPart).reduce((a: any, b: any) => a + b, 0);
-            r.averageScores = [{ average: (Math.round(sum / firstPart) || 0), count: firstPart },
-            { average: (Math.round(sum2 / (uniqueScores.length - firstPart)) || 0), count: uniqueScores.length - firstPart }];
+            const sum = uniqueScores
+              .slice(0, firstPart)
+              .reduce((a: any, b: any) => a + b, 0);
+            const sum2 = uniqueScores
+              .slice(firstPart)
+              .reduce((a: any, b: any) => a + b, 0);
+            r.averageScores = [
+              { average: Math.round(sum / firstPart) || 0, count: firstPart },
+              {
+                average:
+                  Math.round(sum2 / (uniqueScores.length - firstPart)) || 0,
+                count: uniqueScores.length - firstPart,
+              },
+            ];
           });
           this.bubbleChartData = ranges;
           this.cdr.detectChanges();
@@ -424,6 +435,8 @@ export class CandidatesComponent implements OnInit {
         role_id: data.role_id,
       },
     });
+    let newValue = '';
+    this.api.setEditable(newValue);
   }
 
   // ************OPEN DELETE DIALOG*************
@@ -470,8 +483,21 @@ export class CandidatesComponent implements OnInit {
     this.route.navigate(['/roles']);
   }
 
-  // ************EDIT ROLE*************
-  editRole(data: any) {}
+  // ****************EDIT ROLE *****************
+  editRole(editData: any) {
+    this.sendToService();
+    console.log('editData', editData);
+    this.route.navigate(['roles/RoleProfile'], {
+      queryParams: {
+        role_id: editData.role_id,
+      },
+    });
+  }
+
+  sendToService() {
+    let newValue = 'edit';
+    this.api.setEditable(newValue);
+  }
 
   // *****************NG DESTROY**************
   ngOnDestroy(): void {

@@ -199,10 +199,10 @@
                         </div>
                         <div class="row">
                           <div class="col">
-                            <div class="slidecontainer">
+                            <div class="slidecontainer" *ngFor="let baseline of baselineCol1Values">
                               <div class="title_sill">
-                                <p class="p-0 m-0">COMMUNICATION</p>
-                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
+                                <p class="p-0 m-0">{{baseline.name}}</p>
+                                <p class="rating_txt p-0 m-0">{{baseline.value | number : '1.2-2'}} / 5</p>
                               </div>
                               <mat-slider class="slider_skill">
                                 <input
@@ -212,90 +212,13 @@
                                   value="30"
                                 />
                               </mat-slider>
-                              <div class="title_sill">
-                                <p class="p-0 m-0">COMMUNICATION</p>
-                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
-                              </div>
-                              <mat-slider class="slider_skill">
-                                <input
-                                  matSliderThumb
-                                  [disabled]="false"
-                                  value="30"
-                                />
-                              </mat-slider>
-                              <div class="title_sill">
-                                <p class="p-0 m-0">COMMUNICATION</p>
-                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
-                              </div>
-                              <mat-slider class="slider_skill">
-                                <input
-                                  matSliderThumb
-                                  [disabled]="false"
-                                  value="30"
-                                />
-                              </mat-slider>
-                              <div class="title_sill">
-                                <p class="p-0 m-0">COMMUNICATION</p>
-                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
-                              </div>
-                              <mat-slider class="slider_skill">
-                                <input
-                                  matSliderThumb
-                                  [disabled]="false"
-                                  value="30"
-                                />
-                              </mat-slider>
-                              <div class="title_sill">
-                                <p class="p-0 m-0">COMMUNICATION</p>
-                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
-                              </div>
-                              <mat-slider class="slider_skill">
-                                <input
-                                  matSliderThumb
-                                  [disabled]="false"
-                                  value="30"
-                                />
-                              </mat-slider>
                             </div>
                           </div>
                           <div class="col sliders2column">
-                            <div class="slidecontainer">
+                            <div class="slidecontainer" *ngFor="let baseline of baselineCol2Values">
                               <div class="title_sill">
-                                <p class="p-0 m-0">COMMUNICATION</p>
-                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
-                              </div>
-                              <mat-slider class="slider_skill">
-                                <input
-                                  matSliderThumb
-                                  [disabled]="false"
-                                  value="30"
-                                />
-                              </mat-slider>
-                              <div class="title_sill">
-                                <p class="p-0 m-0">COMMUNICATION</p>
-                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
-                              </div>
-                              <mat-slider class="slider_skill">
-                                <input
-                                  matSliderThumb
-                                  [disabled]="false"
-                                  value="30"
-                                />
-                              </mat-slider>
-                              <div class="title_sill">
-                                <p class="p-0 m-0">COMMUNICATION</p>
-                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
-                              </div>
-                              <mat-slider class="slider_skill">
-                                <input
-                                  matSliderThumb
-                                  [disabled]="false"
-                                  value="30"
-                                />
-                              </mat-slider>
-                              <div class="title_sill">
-                                <p class="p-0 m-0">COMMUNICATION</p>
-                                <p class="rating_txt p-0 m-0">4.5 / 5</p>
+                                <p class="p-0 m-0">{{baseline.name}}</p>
+                                <p class="rating_txt p-0 m-0">{{baseline.value | number : '1.2-2'}} / 5</p>
                               </div>
                               <mat-slider class="slider_skill">
                                 <input

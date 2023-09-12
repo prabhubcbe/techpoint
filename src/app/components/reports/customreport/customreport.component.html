@@ -128,7 +128,7 @@
       </div>
       <div class="col-6">
         <mat-card class="top_employees_card">
-          <p class="employee_title">Top Employees in each function</p>
+          <p class="employee_title">Top Tasks Achievers</p>
           <div class="employees_card_header">
             <div>
               <mat-form-field class="status_filter" appearance="outline">
@@ -176,9 +176,9 @@
             <tr class="table_head">
               <th>EMPLOYEE NAME</th>
               <th>FUNCTION</th>
-              <th>RANK</th>
+              <th>TASKS RATE</th>
             </tr>
-            <tr class="table_row" *ngFor="let employee of topEmployeesInEachFunction">
+            <tr class="table_row" *ngFor="let employee of topTaskAcheivers">
               <td class="table_td">
                 <img
                   class="profile_icn"
@@ -187,7 +187,7 @@
                 {{employee.user_name}}
               </td>
               <td class="table_td">{{employee.department}}</td>
-              <td class="table_td">{{employee.score | number : '1.2-2'}}</td>
+              <td class="table_td">{{employee.total_tasks_assigned}}</td>
             </tr>
           </table>
         </mat-card>

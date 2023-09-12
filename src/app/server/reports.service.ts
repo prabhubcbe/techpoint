@@ -42,4 +42,11 @@ export class ReportsService {
       data
     );
   }
+
+  getBaselineValues(data: any) {
+    return this.http.post(
+      environment.url + environment.reportsPath + `/get_baseline_values`,
+      data
+    );
+  }
 }

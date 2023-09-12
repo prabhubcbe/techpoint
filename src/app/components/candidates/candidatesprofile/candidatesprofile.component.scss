@@ -708,3 +708,19 @@
     font-size: 14px;
   }
 }
+.resources_dropDown {
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    background: linear-gradient(
+      90deg,
+      rgba(172, 172, 172, 0.2),
+      rgba(233, 228, 223, 0.2)
+    );
+    font-size: 15px;
+  }
+  ::ng-deep .mdc-notched-outline__leading {
+    border-radius: 0px !important;
+  }
+  ::ng-deep .mdc-notched-outline__trailing {
+    border-radius: 0px !important;
+  }
+}

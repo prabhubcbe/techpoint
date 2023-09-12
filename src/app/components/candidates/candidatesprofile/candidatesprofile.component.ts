@@ -47,6 +47,7 @@ export class CandidatesprofileComponent implements OnInit {
   experienceDetails: any;
   highlights: any;
   roleIdHandler: any;
+  editStageFlag = true;
 
   roleName: any;
   notesAdded: any;
@@ -54,6 +55,11 @@ export class CandidatesprofileComponent implements OnInit {
   messagesRecived: any;
   stageDataList: any;
   statusLevel: any;
+  MsgEntered: any;
+  resourcesData: any;
+  selecteResorce: any;
+  dateActions: any;
+  taskEntered: any;
   constructor(
     private location: Location,
     public snackBar: MatSnackBar,
@@ -74,6 +80,7 @@ export class CandidatesprofileComponent implements OnInit {
     this.getNotes();
     this.reciveMessages();
     this.getStagesDataList();
+    this.getResourcesDataList();
   }
 
   formatDate(date: any) {
@@ -148,12 +155,24 @@ export class CandidatesprofileComponent implements OnInit {
         this.stageDataList = response.data;
       });
   }
+
+  getResourcesDataList() {
+    this.api
+      .getResourcesInAction()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((response: any) => {
+        console.log('stages', response);
+        this.resourcesData = response.data;
+        // this.cdr.detectChanges();
+      });
+  }
   getuserProfile() {
     let obj = {
       userId: this.userIdForProfile,
       email: this.loginEmail,
       organization: this.organizationName,
       orgCode: this.organizationCode,
+      roleId: this.roleIdHandler,
     };
     this.api
       .getUserById(obj)
@@ -184,6 +203,7 @@ export class CandidatesprofileComponent implements OnInit {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: any) => {
+          this.editStageFlag = true;
           this.snackBar.open(response.message, '×', {
             panelClass: ['custom-style'],
             verticalPosition: 'top',
@@ -215,7 +235,9 @@ export class CandidatesprofileComponent implements OnInit {
         },
       });
   }
-
+  editStage() {
+    this.editStageFlag = false;
+  }
   getHardSkill() {
     let obj = {
       userId: this.userIdForProfile,
@@ -270,6 +292,7 @@ export class CandidatesprofileComponent implements OnInit {
         next: (response: any) => {
           if (response.code === 200) {
             // this.getroleData();
+            this.getuserProfile();
 
             this.snackBar.open(response.message, '×', {
               panelClass: ['custom-style'],
@@ -289,7 +312,7 @@ export class CandidatesprofileComponent implements OnInit {
   removeFav() {
     let obj = {
       roleId: this.roleIdHandler,
-      userIdArray: [this.userIdForProfile],
+      userId: this.userIdForProfile,
     };
     this.api
       .unFavCandidateToRole(obj)
@@ -297,6 +320,7 @@ export class CandidatesprofileComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           if (response.code === 200) {
+            this.getuserProfile();
             // this.getroleData();
             // this.getAllEmployeesData();
             this.snackBar.open(response.message, '×', {
@@ -349,6 +373,53 @@ export class CandidatesprofileComponent implements OnInit {
     });
   }
 
+  addMsgDilaog(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef, {
+      width: '1000px',
+      height: 'auto',
+      panelClass: 'custom-dialog-container',
+    });
+  }
+
+  addTaskDilaog(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef, {
+      width: '1000px',
+      height: 'auto',
+      panelClass: 'custom-dialog-container',
+    });
+  }
+
+  saveMessage() {
+    let obj = {
+      email: this.loginEmail,
+      organization: this.organizationName,
+      userIdArray: [this.userIdForProfile], // ARRAY OF USER ID
+      message: this.MsgEntered,
+      orgCode: this.organizationCode,
+    };
+    this.api
+      .sendMessages(obj)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          console.log('NOTES ADDED:', response);
+          if (response.code === 200) {
+            this.reciveMessages();
+            this.notesEntered = '';
+            this.dialog.closeAll();
+            this.snackBar.open(response.message, '×', {
+              panelClass: ['custom-style'],
+              verticalPosition: 'top',
+              duration: 3000,
+            });
+          }
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
+  }
+
   saveNotes() {
     let obj = {
       email: this.loginEmail,
@@ -391,6 +462,36 @@ export class CandidatesprofileComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           this.messagesRecived = response.data;
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
+  }
+
+  savetask() {
+    let obj = {
+      email: this.loginEmail,
+      organization: this.organizationName,
+      userIdArray: [this.userIdForProfile], // ARRAY OF USER ID
+      dueDate: this.dateActions,
+      type: this.selecteResorce,
+      taskDesc: this.taskEntered,
+    };
+    this.api
+      .saveAction(obj)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          console.log('NOTES ADDED:', response);
+          if (response.code === 200) {
+            this.dialog.closeAll();
+            this.snackBar.open(response.message, '×', {
+              panelClass: ['custom-style'],
+              verticalPosition: 'top',
+              duration: 3000,
+            });
+          }
         },
         error: (error: any) => {
           this.handleComponentError(error);

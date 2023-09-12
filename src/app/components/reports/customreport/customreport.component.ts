@@ -13,6 +13,7 @@ import { ReportsService } from 'src/app/server/reports.service';
 export class CustomreportComponent {
 
   topEmployeesInEachFunction: any;
+  topTaskAcheivers: any;
   organizationCode = localStorage.getItem('org-code');
   organizationName = localStorage.getItem('organization');
   loginEmail = localStorage.getItem('loginEmail');
@@ -29,6 +30,7 @@ export class CustomreportComponent {
 
   ngOnInit(): void {
     this.getTopEmployeesInEachFunction();
+    this.getTopTaskAchievers();
   }
 
   getTopEmployeesInEachFunction() {
@@ -41,6 +43,35 @@ export class CustomreportComponent {
       .subscribe({
         next: (response: any) => {
           this.topEmployeesInEachFunction = response.data;
+          // Manually trigger change detection
+          this.cdr.detectChanges();
+          if (response.code === 200) {
+            // console.log('getTopEmployeesInEachFunction', response.data);
+            // Further operations with the response data can be performed here
+          } else {
+            console.error(
+              'API error getTopEmployeesInEachFunction: Unexpected status code:',
+              response.success
+            );
+            // Handle the error here, for example, display an error message
+          }
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
+  }
+
+  getTopTaskAchievers() {
+    const obj = {
+      orgCode: this.organizationCode
+    };
+    this.api
+      .getTopTaskAchievers(obj)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          this.topTaskAcheivers = response.data;
           // Manually trigger change detection
           this.cdr.detectChanges();
           if (response.code === 200) {

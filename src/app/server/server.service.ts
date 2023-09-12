@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ServerService {
   env = environment;
+  private editableSubject = new BehaviorSubject<string>('default_value');
+  editable$ = this.editableSubject.asObservable();
 
   constructor(public http: HttpClient) {}
 
@@ -21,6 +24,10 @@ export class ServerService {
   // httpOptions = {
   //   headers: this.headers_object,
   // };
+
+  setEditable(newValue: string) {
+    this.editableSubject.next(newValue);
+  }
 
   recentActivities(data: any) {
     return this.http.post(
@@ -423,6 +430,13 @@ export class ServerService {
     );
   }
 
+  sendMessages(data: any) {
+    return this.http.post(
+      environment.url + environment.candidatePath + `/send_message`,
+      data
+    );
+  }
+
   // ***********get shortlisted candiates in role profile************
   shortListedCandidatesInRole(data: any) {
     return this.http.post(
@@ -441,6 +455,20 @@ export class ServerService {
   setStageLevel(data: any) {
     return this.http.post(
       environment.url + environment.candidatePath + `/assign_stage_level`,
+      data
+    );
+  }
+
+  // ************get resources in action************
+  getResourcesInAction() {
+    return this.http.get(
+      environment.url + environment.candidatePath + `/get_action_resource_types`
+    );
+  }
+
+  saveAction(data: any) {
+    return this.http.post(
+      environment.url + environment.candidatePath + `/add_action`,
       data
     );
   }

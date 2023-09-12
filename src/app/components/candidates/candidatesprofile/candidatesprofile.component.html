@@ -62,11 +62,14 @@
                     <div class="edit_assigned">
                       <p class="title_details">ASSIGNED Status</p>
                       <img
+                        style="cursor: pointer"
+                        (click)="editStage()"
                         src="../../../../assets/icons/edit_status_candidate.svg"
                       />
                     </div>
                     <mat-form-field class="status_filter" appearance="outline">
                       <mat-select
+                        [disabled]="editStageFlag"
                         (selectionChange)="updateStage()"
                         [(ngModel)]="statusLevel"
                         name="department"
@@ -195,11 +198,11 @@
                 <p class="button_txt">Share</p>
               </div>
               <div
+                (click)="removeFav()"
                 class="button_container"
                 *ngIf="roleIdHandler && candateDetails?.is_favourite === true"
               >
                 <i
-                  (click)="removeFav()"
                   style="font-size: 19px; color: white; padding-left: 20px"
                   class="fa-solid fa-star"
                 ></i>
@@ -207,13 +210,11 @@
               </div>
 
               <div
+                (click)="addFav()"
                 class="button_container"
                 *ngIf="roleIdHandler && candateDetails?.is_favourite === false"
               >
-                <img
-                  (click)="addFav()"
-                  src="../../../../assets/icons/shortlistProfile.svg"
-                />
+                <img src="../../../../assets/icons/shortlistProfile.svg" />
                 <p class="button_txt">SHORTLIST</p>
               </div>
               <div class="button_container">
@@ -221,13 +222,13 @@
                 <p class="button_txt">DOWNLOAD REPORT</p>
               </div>
               <hr class="dotted_line" />
-              <div class="button_container">
+              <div class="button_container" (click)="addMsgDilaog(addMessages)">
                 <img src="../../../../assets/icons/messageProfile.svg" /><P
                   class="button_txt"
                   >SEND A MESSAGE</P
                 >
               </div>
-              <div class="notes_container">
+              <div class="notes_container" (click)="addTaskDilaog(addTask)">
                 <div class="img_border">
                   <img src="../../../../assets/icons/addnotesProfile.svg" />
                 </div>
@@ -518,6 +519,109 @@
     <div class="role_dialog_btn_container pt-4">
       <b><u>Close</u></b>
       <button class="convert_btn" (click)="saveNotes()">
+        <b>SAVE</b>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- **********************MESSAGES ********************** -->
+<ng-template #addMessages>
+  <div class="bg-dailog">
+    <!-- dialog header -->
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1" *ngIf="!roleIdHandler">
+          Candidates : applicants : Search : {{ candateDetails?.user_name }}
+        </p>
+        <p class="sub_txt1" *ngIf="roleIdHandler">
+          Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
+        </p>
+        <p class="sub_txt2">Add a Message</p>
+      </div>
+      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+        <img src="../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="containerDialog">
+    <b classa="addNoteText">Add Message</b>
+    <div class="row">
+      <textarea
+        [(ngModel)]="MsgEntered"
+        placeholder="Enter Message"
+        class="notes_input"
+      ></textarea>
+    </div>
+    <div class="role_dialog_btn_container pt-4">
+      <b><u>Close</u></b>
+      <button class="convert_btn" (click)="saveMessage()">
+        <b>SAVE</b>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- **********************AADD TASKS ********************** -->
+<ng-template #addTask>
+  <div class="bg-dailog">
+    <!-- dialog header -->
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1" *ngIf="!roleIdHandler">
+          Candidates : applicants : Search : {{ candateDetails?.user_name }}
+        </p>
+        <p class="sub_txt1" *ngIf="roleIdHandler">
+          Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
+        </p>
+        <p class="sub_txt2">Add a Task</p>
+      </div>
+      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+        <img src="../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="containerDialog">
+    <b classa="addNoteText">Add Task description</b>
+    <div class="row">
+     
+      <textarea placeholder="Enter Message" class="notes_input"  [(ngModel)]="taskEntered" ></textarea>
+    </div>
+    <div class="row pt-4">
+      <div class="col-6">
+        <p class="Pick Date"><b>Pick Resource</b></p>
+
+        <mat-form-field appearance="outline" class="resources_dropDown w-100">
+          <mat-select
+            [(ngModel)]="selecteResorce"
+            placeholder="select resource"
+          >
+            <mat-option *ngFor="let val of resourcesData" [value]="val">{{
+              val
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <p class="Pick Date"><b>Pick Date</b></p>
+        <mat-form-field appearance="outline" class="resources_dropDown w-100">
+          <mat-label>Input disabled</mat-label>
+          <input matInput [matDatepicker]="dp3" [(ngModel)]="dateActions" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="dp3"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- {{ dateActions }} -->
+    <div class="role_dialog_btn_container pt-4">
+      <b><u>Close</u></b>
+      <button class="convert_btn" (click)="savetask()">
         <b>SAVE</b>
       </button>
     </div>

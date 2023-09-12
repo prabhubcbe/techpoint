@@ -11,7 +11,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ReplaySubject, Subject, takeUntil } from 'rxjs';
+import { ReplaySubject, Subject, async, takeUntil } from 'rxjs';
 import { ServerService } from 'src/app/server/server.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -112,10 +112,16 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
   ngOnInit(): void {
     this.getRoleID = this.routeActive.snapshot.queryParams['role_id'];
     this.getroleData();
+    // ****************CHECKING EDITABLE****************
+    this.api.editable$.subscribe((value) => {
+      this.editable = value;
+      // Do something with the editable value
+      console.log(value, 'EDITABLE VALUE');
+    });
     // this.getRoleName = this.routeActive.snapshot.queryParams['role_name'];
     // this.getJobId = this.routeActive.snapshot.queryParams['job_id'];
     console.log('ROLEID:', this.getRoleID);
-    this.editable = this.routeActive.snapshot.queryParams['editable'];
+    // this.editable = this.routeActive.snapshot.queryParams['editable'];
 
     this.createRolesQuestions();
     this.getAllEmployeesData();
@@ -126,12 +132,13 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
       .subscribe(() => {
         this.filterBanksMulti();
       });
-    setTimeout(() => {
-      if (this.editable === 'edit') {
-        this.editDilaogOPen(this.editDialog);
-      }
-    }, 2000);
 
+    // setTimeout(() => {
+    // ********OPEN EDIT DIALOG ************
+    if (this.editable === 'edit') {
+      this.editDilaogOPen(this.editDialog);
+    }
+    // }, 2000);
     console.log('roles profile component rendered');
   }
 
@@ -297,30 +304,30 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
 
   // ***********EDIT DIALOG *************
   editDilaogOPen(templateRef: TemplateRef<any>) {
-    console.log(this.roleCompleteDetails, 'roleCompleteDetails');
+    this.EmployeesDropDown();
+
+    // console.log(this.roleCompleteDetails, 'roleCompleteDetails');
     this.dialog.open(templateRef, {
       width: '1100px',
       // height: '600px',
       panelClass: 'bg-color',
     });
+    // if (this.roleCompleteDetails.user_details) {
 
-    if (this.roleCompleteDetails.user_details) {
-      this.EmployeesDropDown();
-      this.editable = false;
-      // this.getAllEmployeesData();
-    }
+    // }
+
     // Assuming newValue is defined somewhere in your component
-    let newValue = 'notEditable';
-    this.routeActive.queryParams.subscribe((params: any) => {
-      const currentParams = { ...params }; // Create a copy of the current parameters
-      currentParams.editable = newValue; // Update the editable parameter
+    // let newValue = 'notEditable';
+    // this.routeActive.queryParams.subscribe((params: any) => {
+    //   const currentParams = { ...params }; // Create a copy of the current parameters
+    //   currentParams.editable = newValue; // Update the editable parameter
 
-      this.route.navigate([], {
-        relativeTo: this.routeActive,
-        queryParams: currentParams, // Set the updated parameters
-        queryParamsHandling: 'merge', // Merge with existing query parameters
-      });
-    });
+    //   this.route.navigate([], {
+    //     relativeTo: this.routeActive,
+    //     queryParams: currentParams, // Set the updated parameters
+    //     queryParamsHandling: 'merge', // Merge with existing query parameters
+    //   });
+    // });
   }
 
   createJobDescription() {
@@ -555,7 +562,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
       });
   }
 
-  getroleData() {
+  async getroleData() {
     this.api
       .rolesById(this.getRoleID)
       .pipe(takeUntil(this.ngUnsubscribe))
@@ -565,9 +572,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
           this.roleCompleteDetails = response.data;
           // console.clear();
           console.log('ROLE ID RESPONSE:', this.roleCompleteDetails);
-          // this.bankMultiCtrl.setValue([response.data.user_details[0].user_id]);
-          // console.log(this.bankMultiCtrl, 'this.bankMultiCtrl');
-          // this.slectedEmployees = this.roleCompleteDetails.user_details;
+
           this.getRoleName = response.data.role_name;
           this.getJobId = response.data.job_id;
           this.skillValues = response.data.skill_values;
@@ -707,7 +712,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
     if (!this.skillValues[index]) {
       this.skillValues.push({
         value: event,
-        category: this.skillValues[index].category,
+        category: this.skillValues[index]?.category,
       });
       console.log(this.skillValues, 'skillValues');
     } else {
@@ -735,7 +740,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   // *********EMPLOYEES NAMES DROP DOWN************
-  EmployeesDropDown() {
+  async EmployeesDropDown() {
     let obj = {
       email: this.loginEmail,
       orgCode: this.organizationCode,
@@ -750,9 +755,10 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
           this.employeesNames = response.data;
           this.filteredBanksMulti.next(response.data); // Initialize filtered data
 
-          let selectedRoles = this.roleCompleteDetails.user_details.map(
+          let selectedRoles = this.roleCompleteDetails?.user_details?.map(
             (item: any) => item.user_id
           );
+
           this.bankMultiCtrl.setValue(selectedRoles);
 
           this.cdr.detectChanges();

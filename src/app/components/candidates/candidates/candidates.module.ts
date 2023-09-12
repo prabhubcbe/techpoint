@@ -24,6 +24,9 @@ import { D3ChartsModule } from '../../d3-charts/d3-charts.module';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SearchFilterModule } from 'src/app/shared/search-filter/search-filter.module';
 import { FooterModule } from 'src/app/core/footer/footer/footer.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     CandidatesComponent,
@@ -32,6 +35,7 @@ import { FooterModule } from 'src/app/core/footer/footer/footer.module';
   ],
   imports: [
     CommonModule,
+    MatInputModule,
     CandidatesRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -53,6 +57,8 @@ import { FooterModule } from 'src/app/core/footer/footer/footer.module';
     MatAutocompleteModule,
     SearchFilterModule,
     FooterModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
 })
 export class CandidatesModule {}
