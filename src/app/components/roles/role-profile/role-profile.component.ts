@@ -91,6 +91,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
   editDialog!: TemplateRef<any>;
   editable: any;
   favFilledIcon = false;
+  levelDataList: any;
 
   constructor(
     private location: Location,
@@ -112,6 +113,9 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
   ngOnInit(): void {
     this.getRoleID = this.routeActive.snapshot.queryParams['role_id'];
     this.getroleData();
+    this.getDepartmentDropDown();
+    this.getLevelDataList();
+
     // ****************CHECKING EDITABLE****************
     this.api.editable$.subscribe((value) => {
       this.editable = value;
@@ -435,7 +439,6 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
     this.getEthnicityDataList();
     this.getGenderDataList();
     this.getConsiderationDataList();
-    this.getDepartmentDropDown();
     this.getRegionDataList();
     this.getHardSkillDataList();
     this.cdr.detectChanges();
@@ -452,6 +455,21 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
     this.pageSize = event.pageSize;
 
     this.getAllEmployeesData();
+  }
+
+  getLevelDataList() {
+    this.api
+      .getLevel()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          this.levelDataList = response.data;
+          console.log(response);
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
   }
 
   async getAllEmployeesData() {
@@ -579,6 +597,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
           this.department = response.data.department;
           this.level = response.data.level;
           this.description = response.data.description;
+          this.level = response.data.level;
           this.cdr.detectChanges();
           console.log(
             this.getRoleName,

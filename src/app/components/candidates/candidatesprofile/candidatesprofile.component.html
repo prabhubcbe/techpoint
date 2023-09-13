@@ -80,7 +80,7 @@
                         <mat-option
                           *ngIf="candateDetails?.stage_level === null"
                           value="null"
-                          >Null</mat-option
+                          >Assig Status</mat-option
                         >
 
                         <mat-option
@@ -125,7 +125,6 @@
                     </p>
                   </div>
                 </mat-tab>
-
                 <mat-tab>
                   <ng-template mat-tab-label>
                     <img src="../../../../assets/icons/sticky-note.svg" />
@@ -138,7 +137,6 @@
                     </p>
                   </div>
                 </mat-tab>
-
                 <mat-tab>
                   <ng-template mat-tab-label>
                     <img
@@ -151,6 +149,21 @@
                   <div class="mat_tab_content">
                     <p class="" *ngFor="let msg of messagesRecived">
                       {{ msg.message }}
+                    </p>
+                  </div>
+                </mat-tab>
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <img
+                      width="23px"
+                      src="../../../../assets/icons/chat_black.svg"
+                    />
+                    <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
+                    <p class="tab_title1">Tasks</p>
+                  </ng-template>
+                  <div class="mat_tab_content">
+                    <p class="" *ngFor="let task of actionsData">
+                      {{ task.task_desc }}-{{ task.due_date }}
                     </p>
                   </div>
                 </mat-tab>
@@ -254,11 +267,11 @@
                       class="guage_Chart"
                       [thick]="guageSizethick"
                       [type]="gaugeType"
-                      [value]="recommendJobs[0]?.overall_score"
+                      [value]="matchDetails[0]?.overall_score"
                       [foregroundColor]="gaugecolor"
                     >
                       <ngx-gauge-value class="guage_value">
-                        {{ recommendJobs[0]?.overall_score | number }}%
+                        {{ matchDetails[0]?.overall_score | number }}%
                       </ngx-gauge-value>
                       <p>hiiiiii</p>
                     </ngx-gauge>
@@ -276,7 +289,7 @@
                         src="../../../../assets/icons/circle.svg"
                       />
                       <b class="soft_skill_result">{{
-                        recommendJobs[0]?.tech_skill_match_score
+                        matchDetails[0]?.tech_skill_match_score
                       }}</b>
                     </div>
                     <div class="soft_skill">
@@ -286,7 +299,7 @@
                         src="../../../../assets/icons/circle.svg"
                       />
                       <b class="soft_skill_result">{{
-                        recommendJobs[0]?.soft_skill_match_score
+                        matchDetails[0]?.soft_skill_match_score
                       }}</b>
                     </div>
                     <div class="soft_skill">
@@ -296,7 +309,7 @@
                         src="../../../../assets/icons/circle.svg"
                       />
                       <b class="soft_skill_result">{{
-                        recommendJobs[0]?.degree ==
+                        matchDetails[0]?.degree ==
                         "Degree was matched(100% Match)"
                           ? "100%"
                           : "0%"
@@ -334,8 +347,10 @@
                       | slice
                         : paginator.pageIndex * paginator.pageSize
                         : (paginator.pageIndex + 1) * paginator.pageSize
-                      | slice : 0 : 5
+                      | slice : 0 : 5;
+                    let i = index
                   "
+                  (click)="sendRoleMatch(jobs)"
                 >
                   <p>{{ jobs?.role_name }}</p>
                   <b>{{ jobs?.overall_score }}%</b>
@@ -586,8 +601,11 @@
   <div class="containerDialog">
     <b classa="addNoteText">Add Task description</b>
     <div class="row">
-     
-      <textarea placeholder="Enter Message" class="notes_input"  [(ngModel)]="taskEntered" ></textarea>
+      <textarea
+        placeholder="Enter Message"
+        class="notes_input"
+        [(ngModel)]="taskEntered"
+      ></textarea>
     </div>
     <div class="row pt-4">
       <div class="col-6">

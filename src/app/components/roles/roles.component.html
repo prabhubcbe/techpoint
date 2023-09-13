@@ -242,7 +242,9 @@
               </button>
               <button mat-menu-item>
                 <img src="../../../assets/icons/editRole.svg" />
-                <span class="menu_options" (click)="editRole(roles)">Edit Role</span>
+                <span class="menu_options" (click)="editRole(roles)"
+                  >Edit Role</span
+                >
               </button>
             </mat-menu>
           </div>
@@ -392,6 +394,23 @@
           <b>LEVEL</b>
           <div class="row">
             <div class="col pt-2">
+              <!-- [(ngModel)]="level" -->
+              <mat-form-field class="status_filter" appearance="outline">
+                <mat-select
+                  ngModel
+                  required="true"
+                  name="level"
+                  panelClass="evaluation_select_panel"
+                  placeholder="Select Level"
+                  value="value"
+                >
+                  <mat-option
+                    *ngFor="let level of levelDataList"
+                    [value]="level"
+                    >{{ level }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
               <!-- <input
               type="text"
               class="role_search_input"
@@ -427,7 +446,7 @@
                 />
               </mat-chip-grid>
             </mat-form-field> -->
-
+              <!-- 
               <div class="input-container">
                 <div class="display" style="display: flex">
                   <ng-container *ngFor="let fruit of fruits; let i = index">
@@ -448,7 +467,7 @@
                     #inputValue
                   />
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

@@ -16,6 +16,7 @@ export class PreGeneratereportComponent {
   topEmployeesInEachFunction: any;
   topTaskAcheivers: any;
   employeeSlackingBetween60To80: any;
+  peopleProgressingTowardsBenchmark: any;
   organizationCode = localStorage.getItem('org-code');
   organizationName = localStorage.getItem('organization');
   loginEmail = localStorage.getItem('loginEmail');
@@ -34,6 +35,7 @@ export class PreGeneratereportComponent {
     this.getTopEmployeesInEachFunction();
     this.getTopTaskAchievers();
     this.getEmployeeSlackingBetween60To80();
+    this.getPeopleProgressingTowardsBenchmark();
   }
 
   getEmployeeSlackingBetween60To80() {
@@ -112,6 +114,37 @@ export class PreGeneratereportComponent {
           } else {
             console.error(
               'API error getTopEmployeesInEachFunction: Unexpected status code:',
+              response.success
+            );
+            // Handle the error here, for example, display an error message
+          }
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
+  }
+
+  getPeopleProgressingTowardsBenchmark() {
+    const obj = {
+      orgCode: this.organizationCode,
+      pageNo: 1,
+      pageSize: 6
+    };
+    this.api
+      .getPeopleProgressingTowardsBenchmark(obj)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          this.peopleProgressingTowardsBenchmark = response.data;
+          // Manually trigger change detection
+          this.cdr.detectChanges();
+          if (response.code === 200) {
+            // console.log('getPeoplProgressingTowardsBenchmark', response.data);
+            // Further operations with the response data can be performed here
+          } else {
+            console.error(
+              'API error getPeoplProgressingTowardsBenchmark: Unexpected status code:',
               response.success
             );
             // Handle the error here, for example, display an error message

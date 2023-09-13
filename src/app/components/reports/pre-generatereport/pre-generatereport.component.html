@@ -214,44 +214,18 @@
               <th>STATUS</th>
               <th>BENCHMARK</th>
             </tr>
-            <tr class="table_row">
+            <tr class="table_row" *ngFor="let employee of peopleProgressingTowardsBenchmark">
               <td class="table_td">
                 <img
                   class="profile_icn"
                   src="../../../../assets/icons/red_profile_iocn.svg"
                 />
-                Sriharsha Kathri
+                {{ employee.user_name}}
               </td>
-              <td class="table_td">SEO</td>
-              <td class="table_td">100%</td>
-              <td class="table_td on_track">On-Track</td>
-              <td class="table_td">100</td>
-            </tr>
-            <tr>
-              <td class="table_td">
-                <img
-                  class="profile_icn"
-                  src="../../../../assets/icons/red_profile_iocn.svg"
-                />
-                Lionel Allen
-              </td>
-              <td class="table_td">Sales</td>
-              <td class="table_td">100%</td>
-              <td class="table_td approaching">Approaching</td>
-              <td class="table_td">75%</td>
-            </tr>
-            <tr>
-              <td class="table_td">
-                <img
-                  class="profile_icn"
-                  src="../../../../assets/icons/red_profile_iocn.svg"
-                />
-                Lionel Allen
-              </td>
-              <td class="table_td">Sales</td>
-              <td class="table_td">100%</td>
-              <td class="table_td behind">Behind</td>
-              <td class="table_td">75%</td>
+              <td class="table_td">{{employee.department}}</td>
+              <td class="table_td">{{employee.progress}}</td>
+              <td class="table_td">{{employee.status}}</td>
+              <td class="table_td">{{employee.benchmark}}</td>
             </tr>
           </table>
         </mat-card>

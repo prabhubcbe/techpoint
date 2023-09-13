@@ -63,6 +63,10 @@ export class ApplicantsComponent implements OnInit {
   RolesDataList: any;
   filterSelectedRoles: any[] = [];
   filteredRolesDataList: any;
+  selectedStatus: any;
+  totalCountOfEmployees: any;
+  pageIndex = 1;
+  pageSize = 20;
 
   constructor(
     public api: ServerService,
@@ -88,9 +92,35 @@ export class ApplicantsComponent implements OnInit {
     // console.log('filteredRolesDataList:', this.filteredRolesDataList);
   }
 
+  // onToppingRemoved(topping: string) {
+  //   console.log('onToppingRemoved', topping);
+  //   const toppings = this.toppingsControl.value as string[];
+
+  //   for (let i = 0; i < this.RolesDataList.length; i++) {
+  //     if (topping.includes(this.RolesDataList[i].role_name)) {
+  //       let indexinSelectedRole = this.filterSelectedRoles.findIndex(
+  //         (role: any) => role === this.RolesDataList[i].role_id
+  //       );
+
+  //       this.filterSelectedRoles.splice(indexinSelectedRole, 1);
+  //     }
+  //   }
+  //   this.removeFirst(toppings, topping); // Remove the first occurrence of the topping
+  //   this.toppingsControl.setValue(toppings); // Update the selected toppings
+  // }
+
   onToppingRemoved(topping: string) {
-    console.log('onToppingRemoved', topping);
-    const toppings = this.toppingsControl.value as string[]; // Get the current selected toppings
+    //  Find role IDs associated with the removed topping
+    const selectedRoleIds = this.RolesDataList.filter((role: any) =>
+      topping.includes(role.role_name)
+    ) // Filter roles by matching topping
+      .map((role: any) => role.role_id); // Extract role IDs
+    //  Filter out role IDs that are associated with the removed topping
+    this.filterSelectedRoles = this.filterSelectedRoles.filter(
+      (roleId) => !selectedRoleIds.includes(roleId)
+    ); // Keep only roles not in selectedRoleIds
+    //  Update the selected toppings in the form control
+    const toppings = this.toppingsControl.value as string[];
     this.removeFirst(toppings, topping); // Remove the first occurrence of the topping
     this.toppingsControl.setValue(toppings); // Update the selected toppings
   }
@@ -158,8 +188,8 @@ export class ApplicantsComponent implements OnInit {
       email: this.loginEmail,
       orgCode: this.organizationCode,
       organization: this.organizationName,
-      pageNo: 1,
-      pageSize: 52,
+      pageNo: this.pageIndex,
+      pageSize: this.pageSize,
     };
 
     this.api
@@ -168,6 +198,8 @@ export class ApplicantsComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           this.allEmployeesData = response.data;
+          this.totalCountOfEmployees = response.total_count;
+
           // Manually trigger change detection
           this.cdr.detectChanges();
           if (response.code === 200) {
@@ -186,6 +218,14 @@ export class ApplicantsComponent implements OnInit {
           // Handle the error here, for example, display an error message
         },
       });
+  }
+
+  getuserresultsViewAll(event: any) {
+    console.log(event, 'event');
+    this.pageIndex = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+
+    this.getAllCandidatesData();
   }
 
   // ********************get status drop down values *****************
@@ -288,9 +328,9 @@ export class ApplicantsComponent implements OnInit {
       pageSize: 102,
       userType: 'candidate',
       department: this.department_DropdownForm.value,
-      roleId: this.filterSelectedRoles,
+      roleIdArray: this.filterSelectedRoles,
       scale: this.evaluation_DropdwonForm.value,
-      status: '',
+      status: this.selectedStatus,
     };
     console.log('SEARCH FILTER:', obj);
     this.api
@@ -299,6 +339,7 @@ export class ApplicantsComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           this.allEmployeesData = response.data;
+          this.totalCountOfEmployees = response.data.length;
           console.log('SEARCH FILTER RESPONSE:', response);
           if (response.code === 200) {
             console.log('SEARCH FILTER RESPONSE:', response.data);
@@ -378,12 +419,12 @@ export class ApplicantsComponent implements OnInit {
   //   this.dialog.closeAll();
   // }
 
-  openDialogAddStatus(templateRef: TemplateRef<any>) {
-    this.dialog.closeAll();
-    this.dialog.open(templateRef, {
-      width: '900px',
-    });
-  }
+  // openDialogAddStatus(templateRef: TemplateRef<any>) {
+  //   this.dialog.closeAll();
+  //   this.dialog.open(templateRef, {
+  //     width: '900px',
+  //   });
+  // }
 
   // sending message from here to success dialog
   openSuccessDialog() {

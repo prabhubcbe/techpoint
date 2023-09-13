@@ -28,6 +28,7 @@ export class BaselineComponent {
 
   baselineCol1Values: any[] = [];
   baselineCol2Values: any[] = [];
+  chartData : any[] = [];
   skillSetCol1 = [
     { name: 'ADAPTABILITY', key: 'adaptability' },
     { name: 'COMMUNICATION', key: 'communication' },
@@ -75,23 +76,27 @@ export class BaselineComponent {
         next: (response: any) => {
           this.baselineCol1Values = [];
           this.baselineCol2Values = [];
+          this.chartData = [];
           if (response.data.length) {
             Object.keys(response.data[0]).forEach((key: any) => {
               const skill1 = this.skillSetCol1.find((s: any) => s.key.toLowerCase() === key.toLowerCase());
               const skill2 = this.skillSetCol2.find((s: any) => s.key.toLowerCase() === key.toLowerCase());
               if (skill1) {
                 this.baselineCol1Values.push({
-                  name: skill1.name,
-                  value: response.data[0][key]
+                  category: skill1.name,
+                  latest_value: parseInt(response.data[0][key])/2,
+                  org_value: parseInt(response.data[0][key])/2
                 });
               }
               if (skill2) {
                 this.baselineCol2Values.push({
-                  name: skill2.name,
-                  value: response.data[0][key]
+                  category: skill2.name,
+                  latest_value: parseInt(response.data[0][key])/2,
+                  org_value: parseInt(response.data[0][key])/2
                 });
               }
             });
+            this.chartData = [...this.baselineCol1Values, ...this.baselineCol2Values];
           }
           // Manually trigger change detection
           this.cdr.detectChanges();

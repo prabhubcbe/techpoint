@@ -15,6 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
+import { Y } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-candidatesprofile',
@@ -60,6 +61,8 @@ export class CandidatesprofileComponent implements OnInit {
   selecteResorce: any;
   dateActions: any;
   taskEntered: any;
+  matchDetails: any[] = [];
+  actionsData: any;
   constructor(
     private location: Location,
     public snackBar: MatSnackBar,
@@ -81,6 +84,24 @@ export class CandidatesprofileComponent implements OnInit {
     this.reciveMessages();
     this.getStagesDataList();
     this.getResourcesDataList();
+    this.getActionsData();
+  }
+
+  getActionsData() {
+    let obj = {
+      userId: this.userIdForProfile,
+      email: this.loginEmail,
+      organization: this.organizationName,
+    };
+    this.api
+      .getAction(obj)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          console.log('actions:', response);
+          this.actionsData = response.data;
+        },
+      });
   }
 
   formatDate(date: any) {
@@ -229,11 +250,19 @@ export class CandidatesprofileComponent implements OnInit {
         next: (response: any) => {
           console.log('jobRecommendations:', response);
           this.recommendJobs = response.data;
+          this.matchDetails[0] = response.data[0];
+          // this.matchDetails.push(response.data[0]);
         },
         error: (error: any) => {
           this.handleComponentError(error);
         },
       });
+  }
+  sendRoleMatch(event: any) {
+    console.log(event);
+    this.matchDetails[0] = event;
+    console.log(this.matchDetails, 'matchDetails');
+    console.log(this.recommendJobs);
   }
   editStage() {
     this.editStageFlag = false;

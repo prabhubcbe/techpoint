@@ -84,6 +84,7 @@ export class RolesComponent implements OnInit {
   step = 0.5;
   thumbLabel = true;
   sliderValues: { value: number; category: string }[] = [];
+  level: any;
 
   rolesQuestions: Question[] = [];
   employeeRoleBtn = false;
@@ -98,12 +99,14 @@ export class RolesComponent implements OnInit {
   selectedSortBy: any;
   generatedJobDescription: any;
   roleGenerationData: any;
+  levelDataList: any;
   // value = 0;
   ngOnInit(): void {
     this.getDepartmentDropDown();
     this.getAllRoles();
     this.EmployeesDropDown();
     this.createRolesQuestions();
+    this.getLevelDataList();
 
     // Listen for search field value changes employees drop down
     this.bankMultiFilterCtrl.valueChanges
@@ -448,7 +451,20 @@ export class RolesComponent implements OnInit {
     let newValue = '';
     this.api.setEditable(newValue);
   }
-
+  getLevelDataList() {
+    this.api
+      .getLevel()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          this.levelDataList = response.data;
+          console.log(response);
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
+  }
   // *************ALL ROLES*************
   getAllRoles() {
     let obj = {

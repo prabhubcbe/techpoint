@@ -468,7 +468,10 @@
               *ngFor="let employeeData of allEmployeesData"
             >
               <div class="">
-                <mat-card class="recommend_card">
+                <mat-card
+                  class="recommend_card"
+                  (click)="routeEmployeeProfile(employeeData)"
+                >
                   <div class="recommend_card_container">
                     <div class="image_overlay"></div>
                     <div class="candidateDummyImg">
@@ -482,9 +485,11 @@
                       ></i>
 
                       <img
+                        *ngIf="employeeData.user_photo"
                         loading="lazy"
                         style="object-fit: cover"
                         width="100%"
+                        height="102%"
                         [src]="employeeData.user_photo"
                       />
                     </div>
@@ -506,11 +511,7 @@
                       src="../../../../assets/icons/burger_menu.svg"
                     /> -->
                   <!-- </div> -->
-                  <div
-                    class="container"
-                    style="cursor: pointer"
-                    (click)="routeEmployeeProfile(employeeData)"
-                  >
+                  <div class="container" style="cursor: pointer">
                     <p class="user_details_container">
                       {{ employeeData.user_name }}
                     </p>

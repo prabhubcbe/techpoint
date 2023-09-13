@@ -472,4 +472,12 @@ export class ServerService {
       data
     );
   }
+
+  getLevel() {
+    return this.http.get(
+      environment.url + environment.candidatePath + `/get_levels`
+    );
+  }
+
+  
 }

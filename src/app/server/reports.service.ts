@@ -43,6 +43,13 @@ export class ReportsService {
     );
   }
 
+  getPeopleProgressingTowardsBenchmark(data: any) {
+    return this.http.post(
+      environment.url + environment.reportsPath + `/people_progressing_towards_benchmark`,
+      data
+    );
+  }
+
   getBaselineValues(data: any) {
     return this.http.post(
       environment.url + environment.reportsPath + `/get_baseline_values`,

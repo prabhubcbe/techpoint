@@ -21,34 +21,36 @@ import { MatIconModule } from '@angular/material/icon';
 import { PreGeneratereportComponent } from '../pre-generatereport/pre-generatereport.component';
 import { CustomreportComponent } from '../customreport/customreport.component';
 import { PromptAIComponent } from '../prompt-ai/prompt-ai.component';
+import { D3ChartsModule } from "../../d3-charts/d3-charts.module";
 
 @NgModule({
-  declarations: [
-    ReportsComponent,
-    AnalysisComponent,
-    ComparsionComponent,
-    BaselineComponent,
-    PreGeneratereportComponent,
-    CustomreportComponent,
-    PromptAIComponent,
-  ],
-  imports: [
-    CommonModule,
-    ReportsRoutingModule,
-    HttpClientModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatDividerModule,
-    NgxGaugeModule,
-    MatTabsModule,
-    MatCheckboxModule,
-    MatSliderModule,
-    DragDropModule,
-    MatChipsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatIconModule,
-  ],
+    declarations: [
+        ReportsComponent,
+        AnalysisComponent,
+        ComparsionComponent,
+        BaselineComponent,
+        PreGeneratereportComponent,
+        CustomreportComponent,
+        PromptAIComponent,
+    ],
+    imports: [
+        CommonModule,
+        ReportsRoutingModule,
+        HttpClientModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatDividerModule,
+        NgxGaugeModule,
+        MatTabsModule,
+        MatCheckboxModule,
+        MatSliderModule,
+        DragDropModule,
+        MatChipsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        D3ChartsModule
+    ]
 })
 export class ReportsModule {}

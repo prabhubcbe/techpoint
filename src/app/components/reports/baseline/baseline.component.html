@@ -165,7 +165,14 @@
                     <!-- *********MAIN_CONTAINER************* -->
                     <div class="row main_container">
                       <div class="col-4">
-                        <div class="graph_card_baseline">graph</div>
+                        <div class="graph_card_baseline">
+                          <app-radial-stacked-chart
+                            id="baseline-chart"
+                            [data]="chartData"
+                            [svgHeight]="'260px'"
+                            [maxScore]="5">
+                          </app-radial-stacked-chart>
+                        </div>
                       </div>
                       <div class="col-7">
                         <div class="head_btn">
@@ -201,15 +208,15 @@
                           <div class="col">
                             <div class="slidecontainer" *ngFor="let baseline of baselineCol1Values">
                               <div class="title_sill">
-                                <p class="p-0 m-0">{{baseline.name}}</p>
-                                <p class="rating_txt p-0 m-0">{{baseline.value | number : '1.2-2'}} / 5</p>
+                                <p class="p-0 m-0">{{baseline.category}}</p>
+                                <p class="rating_txt p-0 m-0">{{baseline.latest_value | number : '1.2-2'}} / 5</p>
                               </div>
                               <mat-slider class="slider_skill">
                                 <input
                                   width="100%"
                                   matSliderThumb
                                   [disabled]="false"
-                                  value="30"
+                                  [value]="baseline.latest_value * 10"
                                 />
                               </mat-slider>
                             </div>
@@ -217,14 +224,14 @@
                           <div class="col sliders2column">
                             <div class="slidecontainer" *ngFor="let baseline of baselineCol2Values">
                               <div class="title_sill">
-                                <p class="p-0 m-0">{{baseline.name}}</p>
-                                <p class="rating_txt p-0 m-0">{{baseline.value | number : '1.2-2'}} / 5</p>
+                                <p class="p-0 m-0">{{baseline.category}}</p>
+                                <p class="rating_txt p-0 m-0">{{baseline.latest_value | number : '1.2-2'}} / 5</p>
                               </div>
                               <mat-slider class="slider_skill">
                                 <input
                                   matSliderThumb
                                   [disabled]="false"
-                                  value="30"
+                                  [value]="baseline.latest_value * 10"
                                 />
                               </mat-slider>
                             </div>
