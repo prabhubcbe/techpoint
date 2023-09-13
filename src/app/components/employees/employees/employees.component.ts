@@ -24,6 +24,12 @@ export class EmployeesComponent {
   toppingsControl = new FormControl<string[]>([]); // Form control for toppings selection
   evaluation_DropdwonForm = new FormControl([]); // Form control for evaluation dropdown selection
   bankFilterCtrl = new FormControl(); // Form control for bank filter
+  //*My Change */
+  department_DropdownForm = new FormControl([])
+  departmentsDataList: any;
+  EvalutionFunctioList: any;
+  filteredRolesDataList: any;
+  RolesDataList: any;
   toppingList: string[] = [
     // Array of available toppings
     'Extra cheese',
@@ -38,15 +44,23 @@ export class EmployeesComponent {
     // Array of evaluation options
     {
       id: 1,
-      name: 'Team leader',
+      value: '0-20',
     },
     {
       id: 2,
-      name: 'Team member',
+      value: '20-40',
     },
     {
       id: 3,
-      name: 'Software develop',
+      value: '40-60',
+    },
+    {
+      id: 4,
+      value: '60-80',
+    },
+    {
+      id: 5,
+      value: '80-100',
     },
   ];
   filteredToppingList: string[] = []; // Array of filtered toppings
@@ -66,6 +80,7 @@ export class EmployeesComponent {
     this.getAllEmployeesData();
     this.getBubbleChartData();
     this.getorgEmployee();
+    this.getDepartmentDropDown();
   }
   private getBubbleChartData() {
     const data = {
@@ -122,7 +137,69 @@ export class EmployeesComponent {
         },
       });
   }
+  onRemoveDepartmentDropdown() {
+    this.department_DropdownForm.setValue([]); // Clear the selected department options
+    // console.log('DEPARTMENTVLAUE FORM:', this.department_DropdownForm);
+    // if (this.department_DropdownForm === 0) {
+    // this.getAllRolesData();
+    // }
+  }
+  getDepartmentDropDown() {
+    this.api
+      .getDepartmentsDropdown()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          this.departmentsDataList = response.data;
+          this.cdr.detectChanges();
+          console.log('BUSSINESS FUNCTION:', this.EvalutionFunctioList);
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
+  }
+  searchFilterLevel(event: any) {
+    const filterValue = event.target.value.toLowerCase(); // Get the entered filter value
+    this.filteredRolesDataList = this.RolesDataList.filter((role: any) =>
+      role.role_name.toLowerCase().includes(filterValue)
+    );
+    this.bankFilterCtrl.setValue(filterValue);
+    console.log(this.filteredRolesDataList, 'filteredRolesDataList');
+  }
+  // ***************GETALL ROLES DATALIST****************
+  getAllRolesData() {
+    let obj = {
+      email: this.loginEmail,
+      orgCode: this.organizationCode,
+      organization: this.organizationName,
+    };
+    this.api
+      .getAllRoles(obj)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          // Initialize filteredRolesDataList with all roles initially
+          this.RolesDataList = response.data;
+          this.filteredRolesDataList = this.RolesDataList;
+          this.cdr.detectChanges();
+          console.log('ROLES DATA:', this.RolesDataList);
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
+  }
 
+  private filterToppings(value: string): string[] {
+    if (!value) {
+      return this.toppingList; // If no value provided, return all toppings
+    }
+    const filterText = value.toLowerCase(); // Convert the value to lowercase for case-insensitive comparison
+    return this.toppingList.filter(
+      (topping) => topping.toLowerCase().includes(filterText) // Filter toppings that include the filter text
+    );
+  }
   getorgEmployee() {
     let obj = {
       email: this.loginEmail,
@@ -158,20 +235,20 @@ export class EmployeesComponent {
     }
   }
 
-  searchFilterLevel(event: any) {
-    const filterValue = event.target.value.toLowerCase(); // Get the entered filter value
-    this.bankFilterCtrl.setValue(filterValue); // Set the filter value in the form control
-  }
+  // searchFilterLevel(event: any) {
+  //   const filterValue = event.target.value.toLowerCase(); // Get the entered filter value
+  //   this.bankFilterCtrl.setValue(filterValue); // Set the filter value in the form control
+  // }
 
-  private filterToppings(value: string): string[] {
-    if (!value) {
-      return this.toppingList; // If no value provided, return all toppings
-    }
-    const filterText = value.toLowerCase(); // Convert the value to lowercase for case-insensitive comparison
-    return this.toppingList.filter(
-      (topping) => topping.toLowerCase().includes(filterText) // Filter toppings that include the filter text
-    );
-  }
+  // private filterToppings(value: string): string[] {
+  //   if (!value) {
+  //     return this.toppingList; // If no value provided, return all toppings
+  //   }
+  //   const filterText = value.toLowerCase(); // Convert the value to lowercase for case-insensitive comparison
+  //   return this.toppingList.filter(
+  //     (topping) => topping.toLowerCase().includes(filterText) // Filter toppings that include the filter text
+  //   );
+  // }
 
   onRemoveEvalvationDropdown() {
     this.evaluation_DropdwonForm.setValue([]); // Clear the selected evaluation options
