@@ -3,7 +3,7 @@
     <div class="Root_containerVariable pl-2">
       <div class="title_candidates"><p>EMPLOYEES : Individuals</p></div>
       <!-- *************FILTER******************* -->
-      <div class="filters_container row">
+      <!-- <div class="filters_container row">
         <div class="Bussiner_Filter col-3">
           <p>BUSINESS FUNCTION</p>
           <div>
@@ -14,7 +14,7 @@
                 placeholder="Search function : For eg Sales"
               />
               <div class="search__button">
-                <!-- search icon -->
+               
                 <svg
                   class="search__icon"
                   aria-hidden="true"
@@ -107,22 +107,143 @@
             </mat-form-field>
           </div>
 
-          <!-- <div class="evaluation_Dropdwon">
-                <select class="evaluvation_Select">
-                  <option value="volvo">Volvo</option>
-                  <option value="saab">Saab</option>
-                  <option value="mercedes">Mercedes</option>
-                  <option value="audi">Audi</option>
-                </select>
-              </div> -->
+         
         </div>
         <div class="col-2 search_btn_container">
           <div class="search_Btn">
             <button class="searchbtn">Search</button>
           </div>
         </div>
-      </div>
+      </div> -->
+      <div class="filters_container row">
+        <div class="Bussiner_Filter col-3">
+          <!-- <p>BUSINESS FUNCTION</p> -->
 
+          <p>DEPARTMENT</p>
+
+          <div class="evaluation_DropdwonFilter">
+            <mat-form-field class="evaluation_DropdwonFilterFile">
+              <mat-select
+                panelClass="evaluation_select_panel"
+                class="evaluation_select"
+                [formControl]="department_DropdownForm"
+                placeholder="Select from dropdown"
+              >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      [removable]="true"
+                      (removed)="onRemoveDepartmentDropdown()"
+                    >
+                      {{ department_DropdownForm.value }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let list of departmentsDataList"
+                  [value]="list"
+                  >{{ list }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="Level_filter col-4">
+          <p>ROLE</p>
+          <div class="level_DropDownFilter">
+            <mat-form-field class="w-100">
+              <mat-select
+                ngModel
+                panelClass="evaluation_select_panel"
+                [formControl]="toppingsControl"
+                multiple
+                placeholder="Search/select"
+                ><mat-option>
+                  <ngx-mat-select-search
+                    [formControl]="bankFilterCtrl"
+                    (input)="searchFilterLevel($event)"
+                    placeholderLabel="Search: Team Manager"
+                    noEntriesFoundLabel="'no matching found'"
+                  >
+                    ></ngx-mat-select-search
+                  ></mat-option
+                >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      *ngFor="let topping of toppingsControl.value?.slice(0, 1)"
+                      [removable]="true"
+                      (removed)="onToppingRemoved(topping)"
+                    >
+                      {{ topping }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <mat-chip
+                      *ngIf="
+                        toppingsControl.value != null &&
+                        toppingsControl.value.length! > 1
+                      "
+                    >
+                      + {{ toppingsControl.value.length! - 1 }}
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let roles of filteredRolesDataList; let i = index"
+                  [value]="roles.role_name"
+                >
+                  {{ roles.role_name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="evaluvation_filter col-3">
+          <p>EVALUATION SCALE</p>
+          <div class="evaluation_DropdwonFilter">
+            <mat-form-field class="evaluation_DropdwonFilterFile">
+              <mat-select
+                panelClass="evaluation_select_panel"
+                class="evaluation_select"
+                [formControl]="evaluation_DropdwonForm"
+                placeholder="Select from dropdown"
+              >
+                <mat-select-trigger>
+                  <mat-chip-listbox>
+                    <mat-chip
+                      [removable]="true"
+                      (removed)="onRemoveEvalvationDropdown()"
+                    >
+                      {{ evaluation_DropdwonForm.value }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </mat-select-trigger>
+                <mat-option
+                  *ngFor="let list of evaluvation_datalist"
+                  [value]="list.value"
+                  >{{ list.value }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- <div class="evaluation_Dropdwon">
+              <select class="evaluvation_Select">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div> -->
+        </div>
+        <div class="col-2 search_btn_container">
+          <div class="search_Btn">
+            <button class="searchbtn" (click)="searchFilter()">Search</button>
+          </div>
+        </div>
+      </div>
       <!-- *********************APPLICANTS************************ -->
       <div class="applicants_container">
         <div class="applicants_txt_content">
@@ -139,106 +260,149 @@
       </div>
       <!-- ***************************FILTERS****************************** -->
       <div class="filter_icon_container">
-        <mat-divider
-          vertical
-          style="height: 25px; border-right-width: 1.5px; border-color: black"
-        ></mat-divider>
-        <!-- <img src="../../../../../assets/icons/filter.svg" alt="filter" class="filter_Icon" /> -->
-        <!-- **********************************filter icon****************** -->
-        <div
-          [ngClass]="
-            FilterpanelIsOpen ? 'filter_icon_block_show' : 'filter_icon_block'
-          "
-        >
-          <svg
-            (click)="toggleFilter()"
-            class="filter_Icon_white"
-            width="29"
-            height="27"
-            viewBox="0 0 29 27"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              id="Icon feather-filter"
-              d="M27.109 1.60498H1.58203L11.793 13.679V22.026L16.898 24.579V13.679L27.109 1.60498Z"
-              stroke="black"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+        <div class="slectedFilter">
+          <div class="scale" *ngIf="toppingsControl.value">
+            <b class="scale_txt">LEVEL</b>
+            <div class="scale_loopTxt">
+              <p
+                class="selectedRoles"
+                *ngFor="let role of toppingsControl.value | slice : 0 : 6"
+              >
+                {{ role }}
+
+                <b
+                  style="margin-left: 8px; cursor: pointer; font-size: 14px"
+                  (click)="onToppingRemoved(role)"
+                  >x</b
+                >
+              </p>
+              <mat-chip
+                *ngIf="
+                  toppingsControl.value != null &&
+                  toppingsControl.value.length! > 6
+                "
+              >
+                + {{ toppingsControl.value.length! - 6 }}
+              </mat-chip>
+            </div>
+          </div>
+          <div class="scale" *ngIf="evaluation_DropdwonForm.value">
+            <b class="scale_txt">SCALE</b>
+            <p class="selectedRoles">
+              {{ evaluation_DropdwonForm.value
+              }}<b
+                style="margin-left: 8px; cursor: pointer; font-size: 14px"
+                (click)="onRemoveEvalvationDropdown()"
+                >x</b
+              >
+            </p>
+          </div>
         </div>
 
-        <mat-divider
-          vertical
-          style="height: 25px; border-right-width: 1.5px; border-color: black"
-        ></mat-divider>
+        <div class="filterContainer_icons">
+          <!-- <mat-divider
+            vertical
+            style="height: 25px; border-right-width: 1.5px; border-color: black"
+          ></mat-divider> -->
 
-        <!-- <img src="../../../../../assets/icons/search.svg" alt="" /> -->
-        <!-- *search icon -->
-        <div
-          [ngClass]="
-            searchPanelIsOpen ? 'search_icon_block_show' : 'search_icon_block'
-          "
-        >
-          <svg
-            class="search_Icon_white"
-            (click)="toggleSearch()"
-            width="27"
-            height="27"
-            viewBox="0 0 27 27"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+          <!-- <img src="../../../../../assets/icons/search.svg" alt="" /> -->
+          <!-- *search icon -->
+          <form role="search" method="get" id="searchform" action="">
+            <label for="s">
+              <i
+                style="font-size: 20px"
+                class="fa-solid fa-magnifying-glass"
+              ></i>
+              <!-- <span
+                class="material-icons-outlined icon-search"
+                style="font-size: 20px"
+              >
+                search
+              </span> -->
+            </label>
+            <input
+              [(ngModel)]="searchText"
+              name="rolesSearch"
+              class="pb-2"
+              autocomplete="off"
+              type="text"
+              placeholder="search"
+              id="s"
+            />
+          </form>
+
+          <mat-divider
+            vertical
+            style="height: 25px; border-right-width: 1.5px; border-color: black"
+          ></mat-divider>
+          <!-- <img src="../../../../../assets/icons/filter.svg" alt="filter" class="filter_Icon" /> -->
+          <!-- **********************************filter icon****************** -->
+          <div
+            [ngClass]="
+              FilterpanelIsOpen ? 'filter_icon_block_show' : 'filter_icon_block'
+            "
           >
-            <g id="Icon feather-search">
+            <svg
+              (click)="toggleFilter()"
+              class="filter_Icon_white"
+              width="29"
+              height="27"
+              viewBox="0 0 29 27"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
-                id="Path 769"
-                d="M22.1417 11.816C22.1417 13.8356 21.5428 15.8098 20.4208 17.489C19.2988 19.1682 17.704 20.477 15.8381 21.2498C13.9722 22.0226 11.9191 22.2248 9.9383 21.8307C7.95753 21.4366 6.1381 20.464 4.71011 19.0359C3.28212 17.6078 2.30969 15.7882 1.91581 13.8074C1.52193 11.8266 1.72428 9.77351 2.49728 7.90771C3.27028 6.04191 4.57921 4.44724 6.25853 3.32536C7.93785 2.20348 9.91214 1.60478 11.9317 1.60498C14.6397 1.60525 17.2366 2.68116 19.1514 4.59607C21.0661 6.51097 22.1417 9.10803 22.1417 11.816Z"
+                id="Icon feather-filter"
+                d="M27.109 1.60498H1.58203L11.793 13.679V22.026L16.898 24.579V13.679L27.109 1.60498Z"
                 stroke="black"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
-              <path
-                id="Path 770"
-                d="M24.6948 24.579L19.1428 19.027"
-                stroke="black"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </g>
-          </svg>
+            </svg>
+          </div>
         </div>
       </div>
-      <mat-divider style="border-color: black; margin-top: 30px"></mat-divider>
+      <mat-divider style="border-color: black; margin-top: 20px"></mat-divider>
       <!-- **************************FILTERS TO BE HIDE & SHOWN ********************-->
       <div *ngIf="FilterpanelIsOpen || searchPanelIsOpen">
         <div class="filter_Hide_Show">
           <div class="">
-            <p>Status</p>
+            <div class="staus_header">
+              <p>Status</p>
+              <!-- <p
+                class="level_button"
+                (click)="openDialogAddStatus(addStatusDialog)"
+              >
+                <i class="fa-solid fa-circle-plus"></i> Add New Level
+              </p> -->
+            </div>
             <mat-form-field class="status_filter" appearance="outline">
-              <mat-select placeholder="Applicants" value="value">
-                <mat-option value="1">122222</mat-option>
-                <mat-option>122222</mat-option>
-                <mat-option>122222</mat-option>
-                <mat-option>122222</mat-option>
-                <mat-option>122222</mat-option>
+              <mat-select
+                [(ngModel)]="selectedStatus"
+                placeholder="Applicants"
+                value="value"
+                (click)="searchFilter()"
+              >
+                <mat-option
+                  *ngFor="let status of statusData"
+                  [value]="status"
+                  >{{ status }}</mat-option
+                >
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="role_input_container">
+          <!-- <div class="role_input_container">
             <p>Roles</p>
             <div class="role_search__button">
               <input
                 type="text"
                 class="role_search_input"
                 placeholder="Search Roles"
-              />
+              /> -->
 
-              <!-- search icon -->
-              <svg
+          <!-- search icon -->
+          <!-- <svg
                 class="role_search__icon"
                 aria-hidden="true"
                 viewBox="0 0 24 24"
@@ -248,9 +412,9 @@
                     d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
                   ></path>
                 </g>
-              </svg>
-            </div>
-          </div>
+              </svg> -->
+          <!-- </div> -->
+          <!-- </div> -->
         </div>
         <mat-divider
           style="border-color: black; margin-top: 10px"
@@ -260,7 +424,7 @@
       <!-- ******************************RESULTS CONTAINER************************** -->
       <div class="results_container">
         <div class="results_header">
-          <p class="results_title">RESULTS - 800</p>
+          <p class="results_title">RESULTS - {{allEmployeesData?.length}}</p>
           <div class="results_filters">
             <mat-checkbox class="mat_checkbox_candidates_header"
               ><p class="pt-2">Select All</p></mat-checkbox
@@ -363,7 +527,7 @@
                 </div>
                 <div class="actions_container">
                   <!-- ************FAV ICON ***** -->
-                  <img
+                  <!-- <img
                     class="fav_icon"
                     src="../../../../assets/icons/fav_icon.svg"
                   />
@@ -371,7 +535,7 @@
                   <img
                     class="burger_icon"
                     src="../../../../assets/icons/burger_menu.svg"
-                  />
+                  /> -->
                 </div>
                 <div class="container">
                   <p class="user_details_container">

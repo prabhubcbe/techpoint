@@ -154,24 +154,140 @@
                 <P class="button_txt">CONVERT TO A ROLE</P>
               </div>
             </div>
+            <!-- ***********************ROLE MATCH ******************** -->
+            <div class="roles_match_container">
+              <mat-card class="role_match">
+                <div class=" ">
+                  <p class="head_title">ROLE MATCH</p>
+                  <p>This candidate matches the role and is a good fit!</p>
+                  <div class="guage_container">
+                    <!-- (window:resize)="onResize($event)" -->
+                    <ngx-gauge
+                      style="height: 100px"
+                      class="guage_Chart"
+                      [thick]="guageSizethick"
+                      [type]="gaugeType"
+                      [value]="matchDetails[0]?.overall_score"
+                      [foregroundColor]="gaugecolor"
+                    >
+                      <ngx-gauge-value class="guage_value">
+                        {{ matchDetails[0]?.overall_score | number }}%
+                      </ngx-gauge-value>
+                      <p>hiiiiii</p>
+                    </ngx-gauge>
+                  </div>
+                  <mat-divider
+                    style="border-right-width: 1px; color: rgb(209, 206, 206)"
+                  ></mat-divider>
+                  <p class="calculated_txt">% Value calculated basis on</p>
 
+                  <div class="soft_skills_container">
+                    <div class="soft_skill">
+                      <p class="soft_skill_title">Technical Skills</p>
+                      <img
+                        class="soft_skill_icon"
+                        src="../../../../assets/icons/circle.svg"
+                      />
+                      <b class="soft_skill_result">{{
+                        matchDetails[0]?.tech_skill_match_score
+                      }}</b>
+                    </div>
+                    <div class="soft_skill">
+                      <p class="soft_skill_title">Soft Skills</p>
+                      <img
+                        class="soft_skill_icon"
+                        src="../../../../assets/icons/circle.svg"
+                      />
+                      <b class="soft_skill_result">{{
+                        matchDetails[0]?.soft_skill_match_score
+                      }}</b>
+                    </div>
+                    <div class="soft_skill">
+                      <p class="soft_skill_title">Education</p>
+                      <img
+                        class="soft_skill_icon"
+                        src="../../../../assets/icons/circle.svg"
+                      />
+                      <b class="soft_skill_result">{{
+                        matchDetails[0]?.degree ==
+                        "Degree was matched(100% Match)"
+                          ? "100%"
+                          : "0%"
+                      }}</b>
+                    </div>
+                    <!-- <div class="soft_skill">
+                      <p class="soft_skill_title">Technical Skills</p>
+                      <img
+                        class="soft_skill_icon"
+                        src="../../../../assets/icons/circle.svg"
+                      />
+                      <b class="soft_skill_result">95%</b>
+                    </div>
+                    <div class="soft_skill">
+                      <p class="soft_skill_title">Technical Skills</p>
+                      <img
+                        class="soft_skill_icon"
+                        src="../../../../assets/icons/circle.svg"
+                      />
+                      <b class="soft_skill_result">95%</b>
+                    </div> -->
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+            
+            <!-- ***************************MAYAMAYA RECOMMENDS*************** -->
+
+            <mat-card class="role_match_recommend">
+              <div class="container">
+                <p class="recommend_title">MAYAMAYA RECOMMENDED JOBS</p><!--MAYAMAYA RECOMMENDED JOBS--><!--employeeRoles-->
+                <div
+                  class="recommended_roles"
+                  *ngFor="
+                    let jobs of recommendJobs 
+                      | slice
+                        : paginator.pageIndex * paginator.pageSize
+                        : (paginator.pageIndex + 1) * paginator.pageSize
+                      | slice : 0 : 5;
+                    let i = index
+                  "
+                  (click)="sendRoleMatch(jobs)"
+                >
+                  <p>{{ jobs?.role_name }}</p>
+                  <b>{{ jobs?.overall_score }}%</b>
+                </div>
+                
+                <!-- paginator -->
+                <div class="paginator_roles">
+                  <p class="paginator-info"><!--recommendJobs-->
+                    Page {{ paginator.pageIndex + 1 }} of
+                    {{ recommendJobs.length }}
+                  </p><!--recommendJobs-->
+                  <mat-paginator
+                    #paginator
+                    [length]="recommendJobs.length"
+                    [pageSize]="6"
+                    class="page1"
+                    (page)="pageEvent = $event"
+                  >
+                  </mat-paginator>
+                </div>
+              </div>
+            </mat-card>
             <!-- ***********************Similar roles************** -->
             <div class="roles_head">
               <p>Roles</p>
               <u><i>View More</i></u>
             </div>
 
-            <div *ngFor="let role of employeeRoles | slice
-            : paginator.pageIndex * paginator.pageSize
-            : (paginator.pageIndex + 1) * paginator.pageSize
-          | slice : 0 : 5">
+            <div *ngFor="let role of RolesDataList">
               <div class="roles_card mb-2" >
                 <div class="container">
                   <p class="role">ROLE</p>
-                  <h2 class="role_title">{{role?.role_name}} - Senior</h2>
+                  <h2 class="role_title">{{role?.role_name}}</h2>
                   <mat-divider></mat-divider>
                   <div class="role_actions">
-                    <p class="role_date"><i> Sep 15 2022</i></p>
+                    <p class="role_date"><i> {{role?.date}}</i></p>
                     <img
                       src="../../../../assets/icons/verticalMenuProfile.svg"
                     />
@@ -192,7 +308,7 @@
                 (page)="pageEvent = $event"
               >
               </mat-paginator>
-            </div>
+            </div> 
           </div>
         </div>
 
@@ -223,9 +339,24 @@
                     <i class="">{{item.year}}</i>
                   </div>
                 </div>
-                <div class="col-6">
+                <!-- <div class="col-6">
                   <p class="edu_title">Hard Skills</p>
                   <p class="hard_skills_txt" *ngFor="let item of employeBio.skills">{{item}}</p>
+                </div> -->
+                <div class="col-6">
+                  <p class="edu_title">Hard Skills</p>
+                  <p
+                    class="hard_skills_txt"
+                    *ngFor="let hard of employeBio.skills | slice : 0 : 18"
+                  >
+                    {{ hard === "" ? "-" : hard }}
+                  </p>
+                  <p *ngIf="employeBio.skills?.length" class="hard_skills_txt">
+                    +{{ employeBio.skills?.length - 18 }}
+                  </p>
+                  <!-- <p class="hard_skills_txt">Lorem dolor sit</p>
+                  <p class="hard_skills_txt">dolor sit</p>
+                  <p class="hard_skills_txt">Lorem ipsum dolor</p> -->
                 </div>
               </div>
               <mat-divider

@@ -22,33 +22,35 @@ import { EmployeeprofileComponent } from '../employeeprofile/employeeprofile.com
 import { IndividualComponent } from '../individual/individual.component';
 
 import { D3ChartsModule } from '../../d3-charts/d3-charts.module';
+import { SearchFilterModule } from "../../../shared/search-filter/search-filter.module";
 
 @NgModule({
-  declarations: [
-    EmployeesComponent,
-    EmployeeprofileComponent,
-    IndividualComponent,
-  ],
-  imports: [
-    CommonModule,
-    EmployeesRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatChipsModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    NgxMatSelectSearchModule,
-    MatDividerModule,
-    MatPaginatorModule,
-    MatCardModule,
-    MatCheckboxModule,
-    NgbRatingModule,
-    MatTabsModule,
-    NgxGaugeModule,
-    MatCardModule,
-    D3ChartsModule
-  ],
+    declarations: [
+        EmployeesComponent,
+        EmployeeprofileComponent,
+        IndividualComponent,
+    ],
+    imports: [
+        CommonModule,
+        EmployeesRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatChipsModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        NgxMatSelectSearchModule,
+        MatDividerModule,
+        MatPaginatorModule,
+        MatCardModule,
+        MatCheckboxModule,
+        NgbRatingModule,
+        MatTabsModule,
+        NgxGaugeModule,
+        MatCardModule,
+        D3ChartsModule,
+        SearchFilterModule
+    ]
 })
 export class EmployeesModule {}

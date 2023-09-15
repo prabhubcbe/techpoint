@@ -1,8 +1,9 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxGaugeType } from 'ngx-gauge/gauge/gauge';
 import { Subject, takeUntil } from 'rxjs';
 import { ServerService } from 'src/app/server/server.service';
 
@@ -18,11 +19,25 @@ export class EmployeeprofileComponent implements OnInit{
   employeeHighlights: any = {}
   suggestedTask: any = []
   employeeRoles: any[] = [];
+  RolesDataList: any;
+  filteredRolesDataList: any;
   organizationCode = localStorage.getItem('org-code');
   organizationName = localStorage.getItem('organization');
   loginEmail = localStorage.getItem('loginEmail');
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   pageEvent: PageEvent = new PageEvent();
+
+  recommendJobs: any[] = [];
+  userIdForProfile: any;
+  matchDetails: any[] = [];
+  gaugeType: NgxGaugeType = 'semi';
+  gaugeValue = 70;
+  guageSizethick = 27;
+  gaugeAppendText = '%';
+  blue = true;
+  
+
+  gaugecolor = '#2e585b';
 
   constructor(
     public routerActive: ActivatedRoute,
@@ -30,15 +45,19 @@ export class EmployeeprofileComponent implements OnInit{
     private api: ServerService,
     public route: Router,
     private location: Location,
+    private cdr: ChangeDetectorRef
   ) {}
   
   ngOnInit(): void {
     this.employeeDetails.user_id = this.routerActive.snapshot.queryParams['userId'];
+    this.userIdForProfile = this.routerActive.snapshot.queryParams['userId'];
     this.getEmployeeDetails();
+    this.getJobRecomendation();
     this.getHardSkill();
     this.getHighlights();
     this.getSuggestedTasks();
     this.getRoles();
+    this.getAllRolesData();    
   }
 
   onPopState() {
@@ -143,6 +162,36 @@ export class EmployeeprofileComponent implements OnInit{
       });
   }
 
+  getJobRecomendation() {
+    let obj = {
+      email: this.loginEmail,
+      organization: this.organizationName,
+      userId: this.userIdForProfile,
+    };
+    this.api
+      .getRecommendedJobs(obj)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          console.log('jobRecommendations:', response);
+          this.recommendJobs = response.data;
+          this.matchDetails[0] = response.data[0];
+          console.log("matchDetails###");
+          console.log(this.matchDetails[0]);
+          // this.matchDetails.push(response.data[0]);
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
+      
+  }
+  sendRoleMatch(event: any) {
+    console.log(event);
+    this.matchDetails[0] = event;
+    console.log(this.matchDetails, 'matchDetails');
+    console.log(this.recommendJobs);
+  }
   // ******************GLOBAL ERROR HANDLING FUNCTION******************
   handleComponentError(error: any) {
     console.log(error, 'handleComponentError');
@@ -190,7 +239,29 @@ export class EmployeeprofileComponent implements OnInit{
       });
     }
   }
-
+// ***************GETALL ROLES DATALIST****************
+getAllRolesData() {
+  let obj = {
+    email: this.loginEmail,
+    orgCode: this.organizationCode,
+    organization: this.organizationName,
+  };
+  this.api
+    .getAllRoles(obj)
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe({
+      next: (response: any) => {
+        // Initialize filteredRolesDataList with all roles initially
+        this.RolesDataList = response.data;
+        this.filteredRolesDataList = this.RolesDataList;
+        this.cdr.detectChanges();
+        console.log('ROLES DATA:', this.RolesDataList);
+      },
+      error: (error: any) => {
+        this.handleComponentError(error);
+      },
+    });
+}
   ngOnDestroy(): void {
     console.log('employee profile component destroyed');
     this.ngUnsubscribe.next();

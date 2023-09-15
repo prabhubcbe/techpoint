@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
@@ -7,13 +7,14 @@ import { Subject, takeUntil } from 'rxjs';
 import { ServerService } from 'src/app/server/server.service';
 import { BubbleChartModel } from '../../d3-charts/data/data.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss'],
 })
-export class EmployeesComponent {
+export class EmployeesComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator | undefined;
 
   organizationCode = localStorage.getItem('org-code');
@@ -29,7 +30,15 @@ export class EmployeesComponent {
   departmentsDataList: any;
   EvalutionFunctioList: any;
   filteredRolesDataList: any;
+  searchText: string = "";
+  AllRoles: any[] = [];
+  totalPages: any;
   RolesDataList: any;
+  idForRole: any;
+  roleDetailsDelete: any;
+  filterSelectedRoles: any[] = [];
+  selectedStatus: any;
+  totalCountOfEmployees: any;
   toppingList: string[] = [
     // Array of available toppings
     'Extra cheese',
@@ -71,16 +80,21 @@ export class EmployeesComponent {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
 
-  constructor(public router: Router, public api: ServerService, private cdr: ChangeDetectorRef, private http: HttpClient, public snackBar: MatSnackBar) {
+  constructor(public router: Router, public api: ServerService, private cdr: ChangeDetectorRef, private http: HttpClient, public snackBar: MatSnackBar, public dialog: MatDialog) {
     this.bankFilterCtrl.valueChanges.subscribe((value) => {
       // Subscribe to value changes in bank filter control
       this.filteredToppingList = this.filterToppings(value); // Filter toppings based on the entered value
     });
     this.filteredToppingList = this.toppingList; // Initialize filtered toppings list with all toppings
+    
+  }
+  ngOnInit(){
     this.getAllEmployeesData();
     this.getBubbleChartData();
     this.getorgEmployee();
     this.getDepartmentDropDown();
+    this.getAllRolesData();
+    this.getAllRoles();
   }
   private getBubbleChartData() {
     const data = {
@@ -167,6 +181,63 @@ export class EmployeesComponent {
     this.bankFilterCtrl.setValue(filterValue);
     console.log(this.filteredRolesDataList, 'filteredRolesDataList');
   }
+  // ***********SEARCH FILTER*************
+  searchFilter() {
+    console.log('search filter');
+    console.log('DEPARTMENTVLAUE FORM:', this.evaluation_DropdwonForm);
+    let obj = {
+      email: this.loginEmail,
+      orgCode: this.organizationCode,
+      organization: this.organizationName,
+      pageNo: 1,
+      pageSize: 102,
+      userType: 'employee',
+      department: this.department_DropdownForm.value,
+      roleIdArray: this.filterSelectedRoles,
+      scale: this.evaluation_DropdwonForm.value,
+      status: this.selectedStatus,
+    };
+    console.log('SEARCH FILTER:', obj);
+    this.api
+      .searchFilterCandidates(obj)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          this.allEmployeesData = response.data;
+          this.totalCountOfEmployees = response.data.length;
+          console.log('SEARCH FILTER RESPONSE:', response);
+          if (response.code === 200) {
+            console.log('SEARCH FILTER RESPONSE:', response.data);
+            // this.responseSuccess(response);
+          } else if (response.code === 400) {
+            this.responseNoData(response);
+          }
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
+  }
+  // ***********RESPONSE NO DATA*************
+  responseNoData(response: any) {
+    this.snackBar.open(response.message, '×', {
+      panelClass: ['custom-style'],
+      verticalPosition: 'top',
+    });
+    // this.getAllCandidatesData();
+  }
+  // ************getrolebyID*************
+  getRoleById(data: any) {
+    console.log(data);
+    this.idForRole = data.role_id;
+    this.router.navigate(['roles/RoleProfile'], {
+      queryParams: {
+        role_id: data.role_id,
+      },
+    });
+    let newValue = '';
+    this.api.setEditable(newValue);
+  }
   // ***************GETALL ROLES DATALIST****************
   getAllRolesData() {
     let obj = {
@@ -190,7 +261,52 @@ export class EmployeesComponent {
         },
       });
   }
+  getAllRoles() {
+    let obj = {
+      email: this.loginEmail,
+      orgCode: this.organizationCode,
+      organization: this.organizationName,
+    };
+    this.api
+      .allRoles(obj)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          this.AllRoles = response.data;
+          this.totalPages = Math.ceil(this.AllRoles.length / 6);
 
+          // this.sizeOfAllRoles=response.data.length;
+
+          this.cdr.detectChanges();
+          // console.log('ALL ROLES:', this.AllRoles);
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
+  }
+// ****************EDIT ROLE *****************
+editRole(editData: any) {
+  this.sendToService();
+  console.log('editData', editData);
+  this.router.navigate(['roles/RoleProfile'], {
+    queryParams: {
+      role_id: editData.role_id,
+    },
+  });
+}
+sendToService() {
+  let newValue = 'edit';
+  this.api.setEditable(newValue);
+}
+// ************OPEN DELETE DIALOG*************
+openDialogDelete(templateRef: TemplateRef<any>, deleteroleDetails: any) {
+  console.log('DELETEROLEDIALOG:', deleteroleDetails);
+  this.roleDetailsDelete = deleteroleDetails;
+  this.dialog.open(templateRef, {
+    width: '900px',
+  });
+}
   private filterToppings(value: string): string[] {
     if (!value) {
       return this.toppingList; // If no value provided, return all toppings
@@ -262,7 +378,10 @@ export class EmployeesComponent {
       },
     });
   }
-
+// **********ROUTING TO ROLES WHEN ADD ROLE********
+routeRoles() {
+  this.router.navigate(['/roles']);
+}
   getAllEmployeesData() {
     const obj = {
       "email": this.loginEmail,
@@ -296,6 +415,34 @@ export class EmployeesComponent {
           // Handle the error here, for example, display an error message
         },
       });
+  }
+  // ***********DELETE ROLE****************
+  deleteRole() {
+    let obj = {
+      roleIdArray: [this.roleDetailsDelete.role_id],
+    };
+    this.api
+      .deleteRoleById(obj)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          if (response.code === 200) {
+            this.dialog.closeAll();
+            this.getAllRoles();
+            this.snackBar.open(response.message, 'x', {
+              panelClass: ['custom-style'],
+              verticalPosition: 'top',
+            });
+          }
+          console.log('DELETE ROLE:', response);
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
+  }
+  closedialog() {
+    this.dialog.closeAll();
   }
 
     // ******************GLOBAL ERROR HANDLING FUNCTION******************

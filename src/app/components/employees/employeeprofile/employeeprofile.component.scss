@@ -392,16 +392,36 @@
   font-size: 12px;
 }
 // **********************ROLE_MATCHES******************
+// .role_match {
+//   width: 100%;
+//   margin-top: 30px;
+//   background: $cards_Bg;
+//   height: 500px;
+//   color: black;
+//   .head_title {
+//     font-size: 16px;
+//     font-family: $Titillium_Bold;
+//   }
+// }
+// **********************ROLE_MATCHES******************
 .role_match {
   width: 100%;
   margin-top: 30px;
+  padding: 25px 24px 30px 24px;
   background: $cards_Bg;
-  height: 500px;
+  border-radius: 10px;
+
   color: black;
   .head_title {
     font-size: 16px;
     font-family: $Titillium_Bold;
   }
+}
+.calculated_txt {
+  text-align: center;
+  padding-top: 20px;
+  color: #808080;
+  margin-bottom: 0;
 }
 // *****************************guage_value******************
 .guage_value {
@@ -410,21 +430,27 @@
 }
 .guage_container {
   width: 100%;
+  display: flex;
+  justify-content: center;
   canvas {
     height: 100px !important;
   }
 }
 .guage_Chart {
-  padding-left: 15%;
+  // padding-left: 15%;
   height: 120px !important;
 }
+// .soft_skills_container {
+//   padding-top: 5px;
+// }
 .soft_skill {
   display: flex;
   justify-content: center;
   align-items: center;
-
+  padding-top: 2px;
   .soft_skill_title {
     flex-grow: 1;
+    padding-top: 10px;
   }
   // .soft_skill_icon{
 
@@ -437,7 +463,7 @@
 .role_match_recommend {
   width: 100%;
   background: $Primary_RedGradient;
-  height: 500px;
+  //height: 500px;
   margin-top: 30px;
   color: white;
   .recommend_title {
@@ -454,6 +480,54 @@
     justify-content: space-between;
     align-items: center;
     color: black;
+  }
+}// *******************paginator**************************
+.paginator_roles {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  place-items: end;
+  p {
+    font-size: 15px;
+    font-family: $Titillium_Bold;
+  }
+}
+.page1 {
+  background: transparent;
+  color: #000;
+  padding-top: 10px;
+  ::ng-deep .mat-mdc-paginator-page-size {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-paginator-icon {
+    background: #fff;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+  }
+  ::ng-deep .mat-mdc-paginator-range-label {
+    display: none;
+    // font-weight: 500;
+    // margin: 12px 0px 0 24px;
+    // font-size: 15px;
+    // word-spacing: -1.5px;
+  }
+
+  ::ng-deep
+    .mat-mdc-icon-button:hover
+    .mat-mdc-button-persistent-ripple::before {
+    display: none !important;
+  }
+
+  ::ng-deep
+    .mat-mdc-icon-button:active
+    .mat-mdc-button-persistent-ripple::before {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-button-persistent-ripple .mdc-icon-button__ripple {
+    display: none import !important;
   }
 }
 // *******************************Suggested_tasks*******************
