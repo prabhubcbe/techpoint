@@ -17,7 +17,8 @@
                 <p class="name">{{ employeeDetails.user_name }}</p>
                 <p class="sprints">
                   {{ employeeDetails?.sprintscompleted }} Sprints Latest
-                  {{ employeeDetails?.date | date : 'MMM d' }}</p>
+                  {{ employeeDetails?.date | date : "MMM d" }}
+                </p>
               </div>
               <div class="details_container">
                 <div class="row">
@@ -28,15 +29,16 @@
                         employeeDetails?.department === ""
                           ? "-"
                           : employeeDetails?.department
-                      }}</p>
+                      }}
+                    </p>
                   </div>
                   <div class="col-4">
                     <p class="title_details">Role</p>
                     <p class="result_details">
                       {{
                         employeeDetails?.designation === null
-                        ? "-"
-                        : employeeDetails?.designation
+                          ? "-"
+                          : employeeDetails?.designation
                       }}
                     </p>
                   </div>
@@ -59,10 +61,15 @@
                   </ng-template>
                   <div class="mat_tab_content">
                     <p class="highlight_txt">Highlights -</p>
-                    <p class="highlight_txt_points" *ngFor="let heighlight of employeeHighlights.profile_intelligence">
-                      <img
-                        src="../../../../assets/icons/dotsHighlight.svg"
-                      />{{ heighlight }}
+                    <p
+                      class="highlight_txt_points"
+                      *ngFor="
+                        let heighlight of employeeHighlights.profile_intelligence
+                      "
+                    >
+                      <img src="../../../../assets/icons/dotsHighlight.svg" />{{
+                        heighlight
+                      }}
                     </p>
                   </div>
                 </mat-tab>
@@ -88,23 +95,23 @@
             <!-- *******************GRAPH****************************** -->
             <mat-card class="graph_conatiner">
               <app-radial-stacked-chart
-                        id="2"
-                        [data]="employeeDetails?.result_values"
-                        [svgHeight]="'500px'"
-                      ></app-radial-stacked-chart>
+                id="2"
+                [data]="employeeDetails?.result_values"
+                [svgHeight]="'500px'"
+              ></app-radial-stacked-chart>
             </mat-card>
             <!-- ****************FULL REPORT******************************************* -->
             <mat-card class="FULL_REPORT">
               <div class="full_report_container">
                 <p class="full_report_title">FULL REPORT</p>
                 <p class="pt-1">
+                  Download the mayamaya report for this profile to understand
+                  soft skills, aptitude and technical skills in detail.
+                </p>
+                <!-- <p>
                   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                   diam
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam
-                </p>
+                </p> -->
                 <div class="search_Btn">
                   <button class="searchbtn">DOWNLOAD REPORT</button>
                 </div>
@@ -235,16 +242,17 @@
                 </div>
               </mat-card>
             </div>
-            
+
             <!-- ***************************MAYAMAYA RECOMMENDS*************** -->
 
             <mat-card class="role_match_recommend">
               <div class="container">
-                <p class="recommend_title">MAYAMAYA RECOMMENDED JOBS</p><!--MAYAMAYA RECOMMENDED JOBS--><!--employeeRoles-->
+                <p class="recommend_title">MAYAMAYA RECOMMENDED JOBS</p>
+                <!--MAYAMAYA RECOMMENDED JOBS--><!--employeeRoles-->
                 <div
                   class="recommended_roles"
                   *ngFor="
-                    let jobs of recommendJobs 
+                    let jobs of recommendJobs
                       | slice
                         : paginator.pageIndex * paginator.pageSize
                         : (paginator.pageIndex + 1) * paginator.pageSize
@@ -256,13 +264,15 @@
                   <p>{{ jobs?.role_name }}</p>
                   <b>{{ jobs?.overall_score }}%</b>
                 </div>
-                
+
                 <!-- paginator -->
                 <div class="paginator_roles">
-                  <p class="paginator-info"><!--recommendJobs-->
+                  <p class="paginator-info">
+                    <!--recommendJobs-->
                     Page {{ paginator.pageIndex + 1 }} of
                     {{ recommendJobs.length }}
-                  </p><!--recommendJobs-->
+                  </p>
+                  <!--recommendJobs-->
                   <mat-paginator
                     #paginator
                     [length]="recommendJobs.length"
@@ -281,13 +291,15 @@
             </div>
 
             <div *ngFor="let role of RolesDataList">
-              <div class="roles_card mb-2" >
+              <div class="roles_card mb-2">
                 <div class="container">
                   <p class="role">ROLE</p>
-                  <h2 class="role_title">{{role?.role_name}}</h2>
+                  <h2 class="role_title">{{ role?.role_name }}</h2>
                   <mat-divider></mat-divider>
                   <div class="role_actions">
-                    <p class="role_date"><i> {{role?.date}}</i></p>
+                    <p class="role_date">
+                      <i> {{ role?.date }}</i>
+                    </p>
                     <img
                       src="../../../../assets/icons/verticalMenuProfile.svg"
                     />
@@ -308,7 +320,7 @@
                 (page)="pageEvent = $event"
               >
               </mat-paginator>
-            </div> 
+            </div>
           </div>
         </div>
 
@@ -333,10 +345,13 @@
               <div class="row edu_hardskills_container">
                 <div class="col-6">
                   <p class="edu_title">Education</p>
-                  <div class="row pb-3" *ngFor="let item of employeBio.education">
-                    <p class="university_title">{{item.university}}</p>
-                    <p class="mb-0">{{item.degree}}</p>
-                    <i class="">{{item.year}}</i>
+                  <div
+                    class="row pb-3"
+                    *ngFor="let item of employeBio.education"
+                  >
+                    <p class="university_title">{{ item.university }}</p>
+                    <p class="mb-0">{{ item.degree }}</p>
+                    <i class="">{{ item.year }}</i>
                   </div>
                 </div>
                 <!-- <div class="col-6">
@@ -366,9 +381,9 @@
                 <div class="row">
                   <p class="Experience_header">Experience</p>
                   <div class="col-4" *ngFor="let item of employeBio.experience">
-                    <p class="company_title">{{item.company_location}}</p>
+                    <p class="company_title">{{ item.company_location }}</p>
                     <p class="mb-0">{{ item.position }}</p>
-                    <i>{{item.years}}</i>
+                    <i>{{ item.years }}</i>
                   </div>
                 </div>
               </div>

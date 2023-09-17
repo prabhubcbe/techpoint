@@ -1,3 +1,4 @@
+<app-spinner></app-spinner>
 <div class="component_container">
   <div class="bg_GreenGradient padding_100">
     <div class="Root_containerVariable pl-2">
@@ -78,6 +79,7 @@
                         value="value"
                       >
                         <mat-option
+                          class="evaluation_select_option"
                           *ngIf="candateDetails?.stage_level === null"
                           value="null"
                           >Assig Status</mat-option
@@ -154,10 +156,14 @@
                 </mat-tab>
                 <mat-tab>
                   <ng-template mat-tab-label>
-                    <img
+                    <i
+                      class="fa-solid fa-clipboard-list"
+                      style="font-size: 23px; color: black"
+                    ></i>
+                    <!-- <img
                       width="23px"
                       src="../../../../assets/icons/chat_black.svg"
-                    />
+                    /> -->
                     <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
                     <p class="tab_title1">Tasks</p>
                   </ng-template>
@@ -190,15 +196,17 @@
               <div class="full_report_container">
                 <p class="full_report_title">FULL REPORT</p>
                 <p>
+                  Download the mayamaya report for this profile to understand
+                  soft skills, aptitude and technical skills in detail.
+                </p>
+                <!-- <p>
                   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                   diam
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam
-                </p>
+                </p> -->
                 <div class="search_Btn">
-                  <button class="searchbtn">DOWNLOAD REPORT</button>
+                  <button style="cursor: not-allowed" class="searchbtn">
+                    DOWNLOAD REPORT
+                  </button>
                 </div>
               </div>
             </mat-card>
@@ -206,7 +214,7 @@
 
           <div class="col-3">
             <div class="options_container">
-              <div class="button_container">
+              <div class="button_container" style="cursor: not-allowed">
                 <img src="../../../../assets/icons/shareProfile.svg" />
                 <p class="button_txt">Share</p>
               </div>
@@ -223,6 +231,7 @@
               </div>
 
               <div
+                style="cursor: pointer"
                 (click)="addFav()"
                 class="button_container"
                 *ngIf="roleIdHandler && candateDetails?.is_favourite === false"
@@ -230,24 +239,36 @@
                 <img src="../../../../assets/icons/shortlistProfile.svg" />
                 <p class="button_txt">SHORTLIST</p>
               </div>
-              <div class="button_container">
+              <div class="button_container" style="cursor: not-allowed">
                 <img src="../../../../assets/icons/downloadProfile.svg" />
                 <p class="button_txt">DOWNLOAD REPORT</p>
               </div>
               <hr class="dotted_line" />
-              <div class="button_container" (click)="addMsgDilaog(addMessages)">
+              <div
+                class="button_container"
+                (click)="addMsgDilaog(addMessages)"
+                style="cursor: pointer"
+              >
                 <img src="../../../../assets/icons/messageProfile.svg" /><P
                   class="button_txt"
                   >SEND A MESSAGE</P
                 >
               </div>
-              <div class="notes_container" (click)="addTaskDilaog(addTask)">
+              <div
+                class="notes_container"
+                (click)="addTaskDilaog(addTask)"
+                style="cursor: pointer"
+              >
                 <div class="img_border">
                   <img src="../../../../assets/icons/addnotesProfile.svg" />
                 </div>
                 <P class="button_txt">SET A TASK</P>
               </div>
-              <div class="notes_container" (click)="addNotesDilaog(addNotes)">
+              <div
+                class="notes_container"
+                (click)="addNotesDilaog(addNotes)"
+                style="cursor: pointer"
+              >
                 <div class="img_border">
                   <img src="../../../../assets/icons/tasksProfile.svg" />
                 </div>
@@ -259,7 +280,11 @@
               <mat-card class="role_match">
                 <div class=" ">
                   <p class="head_title">ROLE MATCH</p>
-                  <p>This candidate matches the role and is a good fit!</p>
+                  <!-- <p>This candidate matches the role and is a good fit!</p> -->
+                  <p>
+                    This is detailed analysis of how much fit this candidates is
+                    for the role.
+                  </p>
                   <div class="guage_container">
                     <!-- (window:resize)="onResize($event)" -->
                     <ngx-gauge
@@ -455,7 +480,7 @@
                   >
                     {{ hard === "" ? "-" : hard }}
                   </p>
-                  <p *ngIf="hardSkills?.length" class="hard_skills_txt">
+                  <p *ngIf="hardSkills?.length > 18" class="hard_skills_txt">
                     +{{ hardSkills?.length - 18 }}
                   </p>
                   <!-- <p class="hard_skills_txt">Lorem dolor sit</p>

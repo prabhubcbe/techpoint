@@ -144,7 +144,7 @@
                 <h2>Employees in Organization</h2>
               </div>
               <div class="item2">
-                <h2>{{EmployeeCount}}</h2>
+                <h2>{{ EmployeeCount }}</h2>
                 <div class="bgBtn">
                   <i class="fa-solid fa-chevron-down"></i>
                 </div>
@@ -166,8 +166,8 @@
               <div class="roles_text">
                 <h2>ROLES</h2>
                 <p>
-                  {{ AllRoles.length }} roles found in your organization,
-                  click on the roles to get matching results
+                  {{ AllRoles.length }} roles found in your organization, click
+                  on the roles to get matching results
                 </p>
               </div>
               <div class="Roles_filters_container">
@@ -308,9 +308,15 @@
             <h2 class="recommend_txt">MAYAMAYA RECOMMENDS</h2>
             <u class="viewAll_txt">View all</u>
           </div>
+          <p>
+            Recommendation of employees is based on selected roles from the
+            list.
+          </p>
           <!-- card -->
           <div class="row">
-            <div class="col-lg-4 col-md-6" *ngFor="let employeeData of allEmployeesData"
+            <div
+              class="col-lg-4 col-md-6"
+              *ngFor="let employeeData of allEmployeesData"
             >
               <div
                 class="cards_container_recommend"
@@ -320,7 +326,11 @@
                   <div class="recommend_card_container">
                     <div class="image_overlay"></div>
                     <div class="candidateDummyImg">
-                      <img style="object-fit: cover" width="100%" [src]="employeeData.user_photo" />
+                      <img
+                        style="object-fit: cover"
+                        width="100%"
+                        [src]="employeeData.user_photo"
+                      />
                     </div>
                   </div>
                   <div class="actions_container">
@@ -338,7 +348,9 @@
                     /> -->
                   </div>
                   <div class="container">
-                    <p class="user_details_container">{{ employeeData.user_name }}</p>
+                    <p class="user_details_container">
+                      {{ employeeData.user_name }}
+                    </p>
                     <div class="sprint_contiainer">
                       <p>3 Sprints Latest Sep 24</p>
                       <p>Active</p>
@@ -349,15 +361,19 @@
                   <div class="row">
                     <div class="col-7">
                       <app-radial-stacked-chart
-                      id="2"
-                      [data]="employeeData.result_values"
-                    ></app-radial-stacked-chart>
+                        id="2"
+                        [data]="employeeData.result_values"
+                      ></app-radial-stacked-chart>
                     </div>
                     <div class="col align-self-center">
-                          <p class="title_details">Department</p>
-                          <p class="result_details">{{employeeData.department}}</p>
-                          <p class="title_details">Role</p>
-                          <p class="result_details">{{employeeData.designation}}</p>
+                      <p class="title_details">Department</p>
+                      <p class="result_details">
+                        {{ employeeData.department }}
+                      </p>
+                      <p class="title_details">Role</p>
+                      <p class="result_details">
+                        {{ employeeData.designation }}
+                      </p>
                     </div>
                   </div>
                 </mat-card>

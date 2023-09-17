@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Y } from '@angular/cdk/keycodes';
+import { LoadSpinnerService } from 'src/app/shared/load-spinner.service';
 
 @Component({
   selector: 'app-candidatesprofile',
@@ -70,6 +71,7 @@ export class CandidatesprofileComponent implements OnInit {
     public routerActive: ActivatedRoute,
     private datePipe: DatePipe,
     public route: Router,
+    private loadSpinner: LoadSpinnerService,
     public dialog: MatDialog
   ) {}
   ngOnInit(): void {
@@ -215,6 +217,7 @@ export class CandidatesprofileComponent implements OnInit {
   }
 
   updateStage() {
+    this.loadSpinner.setLoading(true);
     let obj = {
       userIdArray: [this.userIdForProfile],
       stageLevel: this.statusLevel,
@@ -225,6 +228,7 @@ export class CandidatesprofileComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           this.editStageFlag = true;
+          this.loadSpinner.setLoading(false);
           this.snackBar.open(response.message, '×', {
             panelClass: ['custom-style'],
             verticalPosition: 'top',
@@ -381,11 +385,11 @@ export class CandidatesprofileComponent implements OnInit {
           console.log('NOTES:', response);
           this.notesAdded = response.data;
           if (response.code === 400) {
-            this.snackBar.open(' Notes arent added', '×', {
-              panelClass: ['custom-style'],
-              verticalPosition: 'top',
-              duration: 3000,
-            });
+            // this.snackBar.open(' Notes arent added', '×', {
+            //   panelClass: ['custom-style'],
+            //   verticalPosition: 'top',
+            //   duration: 3000,
+            // });
           }
         },
         error: (error: any) => {

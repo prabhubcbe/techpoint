@@ -9,13 +9,14 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, finalize, takeUntil } from 'rxjs';
 import { ServerService } from 'src/app/server/server.service';
 import { BubbleChartModel } from '../../d3-charts/data/data.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
+import { LoadSpinnerService } from 'src/app/shared/load-spinner.service';
 
 @Component({
   selector: 'app-candidates',
@@ -36,7 +37,7 @@ export class CandidatesComponent implements OnInit {
   searchText = '';
   currentRate = 3;
   toppingsControl = new FormControl<string[]>([]); // Form control for toppings selection
-  evaluation_DropdwonForm = new FormControl([]); // Form control for evaluation dropdown selection
+  evaluation_DropdwonForm = new FormControl(); // Form control for evaluation dropdown selection
   bankFilterCtrl = new FormControl(); // Form control for bank filter
   toppingList: string[] = [
     // Array of available toppings
@@ -51,23 +52,23 @@ export class CandidatesComponent implements OnInit {
   evaluvation_datalist = [
     // Array of evaluation options
     {
-      id: 1,
+      id: 'Unfit',
       value: '0-20',
     },
     {
-      id: 2,
+      id: 'Poorfit',
       value: '20-40',
     },
     {
-      id: 3,
+      id: 'Neutral',
       value: '40-60',
     },
     {
-      id: 4,
+      id: 'Goodfit',
       value: '60-80',
     },
     {
-      id: 5,
+      id: 'PerfetFit',
       value: '80-100',
     },
   ];
@@ -89,6 +90,7 @@ export class CandidatesComponent implements OnInit {
   RolesDataList: any;
   constructor(
     public api: ServerService,
+    private loadSpinner: LoadSpinnerService,
     private cdr: ChangeDetectorRef,
     private route: Router,
     public snackBar: MatSnackBar,
@@ -102,6 +104,8 @@ export class CandidatesComponent implements OnInit {
     this.filteredToppingList = this.toppingList; // Initialize filtered toppings list with all toppings
   }
   ngOnInit(): void {
+    // this.loadSpinner.setLoading(false); // Manually trigger the spinner
+
     this.getAllRoles();
     this.getAllShortListed();
     this.getDepartmentDropDown();
@@ -109,6 +113,7 @@ export class CandidatesComponent implements OnInit {
     this.getBubbleChartData();
     this.getorgCandidates();
     this.getAllRolesData();
+    // Manually trigger the spinner
   }
 
   onRemoveDepartmentDropdown() {
@@ -369,6 +374,8 @@ export class CandidatesComponent implements OnInit {
   }
 
   getAllRoles() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
+
     let obj = {
       email: this.loginEmail,
       orgCode: this.organizationCode,
@@ -383,6 +390,7 @@ export class CandidatesComponent implements OnInit {
           this.totalPages = Math.ceil(this.AllRoles.length / 6);
 
           // this.sizeOfAllRoles=response.data.length;
+          this.loadSpinner.setLoading(false); // Manually trigger the spinner
 
           this.cdr.detectChanges();
           // console.log('ALL ROLES:', this.AllRoles);
@@ -450,15 +458,23 @@ export class CandidatesComponent implements OnInit {
 
   // ***********DELETE ROLE****************
   deleteRole() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
+
     let obj = {
       roleIdArray: [this.roleDetailsDelete.role_id],
     };
+
     this.api
       .deleteRoleById(obj)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: any) => {
+          this.loadSpinner.setLoading(false);
+
           if (response.code === 200) {
+            // complete: () => {
+            this.cdr.detectChanges(); // Turn off the spinner
+            // },
             this.dialog.closeAll();
             this.getAllRoles();
             this.snackBar.open(response.message, 'x', {

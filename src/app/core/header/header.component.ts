@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  userName = localStorage.getItem('userName');
   constructor(public route: Router) {}
   routeIndividuals() {
     this.route.navigate(['/employees/IndividualComponent']);

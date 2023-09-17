@@ -1,3 +1,4 @@
+<app-spinner></app-spinner>
 <div class="component_container">
   <div class="bg_GreenGradient padding_100">
     <div class="Root_containerVariable pl-2">
@@ -10,6 +11,7 @@
           <!-- <p>BUSINESS FUNCTION</p> -->
 
           <p>DEPARTMENT</p>
+          <!-- {{ department_DropdownForm.value }} -->
 
           <div class="evaluation_DropdwonFilter">
             <mat-form-field class="evaluation_DropdwonFilterFile">
@@ -128,16 +130,24 @@
                       [removable]="true"
                       (removed)="onRemoveEvalvationDropdown()"
                     >
-                      {{ evaluation_DropdwonForm.value }}
+                      {{ evaluation_DropdwonForm.value?.id }}
                       <mat-icon matChipRemove>cancel</mat-icon>
                     </mat-chip>
                   </mat-chip-listbox>
                 </mat-select-trigger>
                 <mat-option
-                  *ngFor="let list of evaluvation_datalist"
-                  [value]="list.value"
-                  >{{ list.value }}</mat-option
+                  *ngFor="let list of evaluvation_datalist; let i = index"
+                  [value]="list"
+                  >{{ list.id }}</mat-option
                 >
+                <!-- <mat-option value="0-20">Unfit</mat-option>
+                <mat-option value="20-40">Poorfit</mat-option>
+
+                <mat-option value="40-60"> Neutral</mat-option>
+
+                <mat-option value="60-80">Goodfit</mat-option>
+
+                <mat-option value="80-100">PerfetFit</mat-option> -->
               </mat-select>
             </mat-form-field>
           </div>
@@ -171,8 +181,8 @@
           </button>
         </div>
         <p class="applicants_subTxt">
-          About applicants in the system, Lorem ipsum dolor sit amet, consetetur
-          sadipscing elitr, sed diam.
+          Applicants are candidates who are interested in working with your
+          organization and have applied for a role.
         </p>
       </div>
       <!-- ***************************FILTERS****************************** -->
@@ -299,7 +309,7 @@
                 [(ngModel)]="selectedStatus"
                 placeholder="Applicants"
                 value="value"
-                (click)="searchFilter()"
+                (selectionChange)="searchFilter()"
               >
                 <mat-option
                   *ngFor="let status of statusData"
@@ -526,7 +536,7 @@
         <mat-paginator
           #paginator
           [length]="totalCountOfEmployees"
-          [pageSize]="22"
+          [pageSize]="32"
           class="page1"
           (page)="getuserresultsViewAll($event)"
         >

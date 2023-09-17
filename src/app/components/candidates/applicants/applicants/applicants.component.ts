@@ -13,6 +13,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { ServerService } from 'src/app/server/server.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSelectChange } from '@angular/material/select';
+import { LoadSpinnerService } from 'src/app/shared/load-spinner.service';
 @Component({
   selector: 'app-applicants',
   templateUrl: './applicants.component.html',
@@ -32,23 +33,23 @@ export class ApplicantsComponent implements OnInit {
   evaluvation_datalist = [
     // Array of evaluation options
     {
-      id: 1,
+      id: 'Unfit',
       value: '0-20',
     },
     {
-      id: 2,
+      id: 'Poorfit',
       value: '20-40',
     },
     {
-      id: 3,
+      id: 'Neutral',
       value: '40-60',
     },
     {
-      id: 4,
+      id: 'Goodfit',
       value: '60-80',
     },
     {
-      id: 5,
+      id: 'PerfetFit',
       value: '80-100',
     },
   ];
@@ -66,14 +67,15 @@ export class ApplicantsComponent implements OnInit {
   selectedStatus: any;
   totalCountOfEmployees: any;
   pageIndex = 1;
-  pageSize = 20;
+  pageSize = 32;
 
   constructor(
     public api: ServerService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
-    public route: Router
+    public route: Router,
+    private loadSpinner: LoadSpinnerService
   ) {
     this.bankFilterCtrl.valueChanges.subscribe((value) => {
       console.log('bankFilterCtrl', value);
@@ -85,6 +87,7 @@ export class ApplicantsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.evaluation_DropdwonForm.setValue(); // Initialize evaluation dropdown value
     this.getAllRolesData();
     this.statusLevelDropDown();
     this.getDepartmentDropDown();
@@ -184,6 +187,8 @@ export class ApplicantsComponent implements OnInit {
   }
 
   getAllCandidatesData() {
+    this.loadSpinner.setLoading(true);
+
     const obj = {
       email: this.loginEmail,
       orgCode: this.organizationCode,
@@ -199,6 +204,7 @@ export class ApplicantsComponent implements OnInit {
         next: (response: any) => {
           this.allEmployeesData = response.data;
           this.totalCountOfEmployees = response.total_count;
+          this.loadSpinner.setLoading(false);
 
           // Manually trigger change detection
           this.cdr.detectChanges();
@@ -318,7 +324,8 @@ export class ApplicantsComponent implements OnInit {
 
   // ***********SEARCH FILTER*************
   searchFilter() {
-    console.log('search filter');
+    this.loadSpinner.setLoading(true);
+    // console.log('search filter', this.evaluation_DropdwonForm);
     console.log('DEPARTMENTVLAUE FORM:', this.evaluation_DropdwonForm);
     let obj = {
       email: this.loginEmail,
@@ -329,7 +336,7 @@ export class ApplicantsComponent implements OnInit {
       userType: 'candidate',
       department: this.department_DropdownForm.value,
       roleIdArray: this.filterSelectedRoles,
-      scale: this.evaluation_DropdwonForm.value,
+      scale: this.evaluation_DropdwonForm.value?.value,
       status: this.selectedStatus,
     };
     console.log('SEARCH FILTER:', obj);
@@ -342,6 +349,8 @@ export class ApplicantsComponent implements OnInit {
           this.totalCountOfEmployees = response.data.length;
           console.log('SEARCH FILTER RESPONSE:', response);
           if (response.code === 200) {
+            this.loadSpinner.setLoading(false);
+            this.cdr.detectChanges();
             console.log('SEARCH FILTER RESPONSE:', response.data);
             // this.responseSuccess(response);
           } else if (response.code === 400) {

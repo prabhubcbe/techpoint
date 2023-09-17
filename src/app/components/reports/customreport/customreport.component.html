@@ -15,8 +15,8 @@
         </div>
       </div>
       <p class="sub_title">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-        eirmod tempor invidunt ut labore
+        Create your own reports and save them for future use. You can also share
+        them with other users.
       </p>
     </div>
   </div>
@@ -112,16 +112,19 @@
               <th>FUNCTION</th>
               <th>RANK</th>
             </tr>
-            <tr class="table_row" *ngFor="let employee of topEmployeesInEachFunction">
+            <tr
+              class="table_row"
+              *ngFor="let employee of topEmployeesInEachFunction"
+            >
               <td class="table_td">
                 <img
                   class="profile_icn"
                   src="../../../../assets/icons/red_profile_iocn.svg"
                 />
-                {{employee.user_name}}
+                {{ employee.user_name }}
               </td>
-              <td class="table_td">{{employee.department}}</td>
-              <td class="table_td">{{employee.score | number : '1.2-2'}}</td>
+              <td class="table_td">{{ employee.department }}</td>
+              <td class="table_td">{{ employee.score | number : "1.2-2" }}</td>
             </tr>
           </table>
         </mat-card>
@@ -184,10 +187,10 @@
                   class="profile_icn"
                   src="../../../../assets/icons/red_profile_iocn.svg"
                 />
-                {{employee.user_name}}
+                {{ employee.user_name }}
               </td>
-              <td class="table_td">{{employee.department}}</td>
-              <td class="table_td">{{employee.total_tasks_assigned}}</td>
+              <td class="table_td">{{ employee.department }}</td>
+              <td class="table_td">{{ employee.total_tasks_assigned }}</td>
             </tr>
           </table>
         </mat-card>

@@ -1,3 +1,4 @@
+<app-spinner></app-spinner>
 <div class="padding_100">
   <div class="Root_containerVariable">
     <div class="header_container">
@@ -26,9 +27,12 @@
               </button>
             </div>
           </div>
-          <p class="sub_txt_role">
+          <!-- <p class="sub_txt_role">
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
             nonumy eirmod tempor invidunt ut labore et
+          </p> -->
+          <p class="sub_txt_role">
+            {{ description }}
           </p>
 
           <div class="filters_container">
@@ -420,8 +424,8 @@
                 <p class="title p-o m-0">Recommended</p>
                 <p class="title p-1">Soft Skills Summary</p>
                 <p class="sub_title">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore
+                  Adjust values of soft skills based on your experience and
+                  requirements to filter out the candidates for this role.
                 </p>
                 <div class="adjust_btn">
                   <button *ngIf="hideAdjust" class="adjust_btn_txt">
@@ -514,10 +518,15 @@
         </div>
         <div>
           <div class="item1_filter">
-            <button class="generate_btn" (click)="createJobDescription()">
+            <!-- <b><u>Close</u></b> -->
+            <button class="convert_btn" (click)="saveJobDescription()">
+              SAVE
+            </button>
+            <!-- ********GENERATE DESCRIPTION************ -->
+            <!-- <button class="generate_btn" (click)="createJobDescription()">
               <img src="../../../../assets/icons/generate.svg" />GENERATE JOB
               DESCRIPTION
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
@@ -528,7 +537,7 @@
           name=""
           id=""
           cols="160"
-          rows="15"
+          rows="16"
           [(ngModel)]="generatedJobDescription"
         >
         </textarea>
@@ -536,12 +545,12 @@
       </div>
     </div>
 
-    <div class="role_dialog_btn_container pt-4">
+    <!-- <div class="role_dialog_btn_container pt-4">
       <b><u>Close</u></b>
       <button class="convert_btn" (click)="saveJobDescription()">
         <b>SAVE</b>
       </button>
-    </div>
+    </div> -->
   </div>
 </ng-template>
 

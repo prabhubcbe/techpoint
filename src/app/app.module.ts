@@ -27,6 +27,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { RouterModule } from '@angular/router';
 import { SearchFilterModule } from './shared/search-filter/search-filter.module';
 import { FooterModule } from './core/footer/footer/footer.module';
+import { SpinnerModuleModule } from './shared/spinner-module/spinner-module.module';
+// import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -57,9 +59,11 @@ import { FooterModule } from './core/footer/footer/footer.module';
     MatMenuModule,
     MatSnackBarModule,
     NgxSpinnerModule,
-    SearchFilterModule,FooterModule,
+    SearchFilterModule,
+    FooterModule,
 
     NgxSpinnerModule.forRoot({ type: 'ball-atom' }),
+    SpinnerModuleModule,
   ],
   exports: [NgxSpinnerModule],
   providers: [

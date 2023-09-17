@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { D3ChartsModule } from 'src/app/components/d3-charts/d3-charts.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FooterModule } from 'src/app/core/footer/footer/footer.module';
+import { SpinnerModuleModule } from 'src/app/shared/spinner-module/spinner-module.module';
+// import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -36,6 +38,7 @@ import { FooterModule } from 'src/app/core/footer/footer/footer.module';
     D3ChartsModule,
     MatCheckboxModule,
     FooterModule,
+    SpinnerModuleModule,
   ],
 })
 export class HomeModule {}

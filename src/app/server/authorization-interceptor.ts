@@ -7,14 +7,18 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, finalize } from 'rxjs';
 import { Router } from '@angular/router';
+import { LoadSpinnerService } from '../shared/load-spinner.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorizationInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private loadSpinner: LoadSpinnerService
+  ) {}
   env = environment;
   httpHeaders: HttpHeaders = new HttpHeaders();
 
@@ -36,17 +40,24 @@ export class AuthorizationInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const jwt = localStorage.getItem('TOKEN');
-
     if (!jwt) {
       // No token, navigate to login screen
       this.router.navigate(['/login']);
       return next.handle(httpRequest); // Stop the request
     }
+    this.loadSpinner.setLoading(true);
 
     const authRequest = httpRequest.clone({
       setHeaders: { Authorization: `Bearer ${jwt}` },
     });
 
-    return next.handle(authRequest);
+    //
+    return next.handle(authRequest).pipe(
+      finalize(() => {
+        setTimeout(() => {
+          this.loadSpinner.setLoading(false);
+        }, 4000);
+      })
+    );
   }
 }

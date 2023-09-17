@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
   emailSignInBtn: any;
   passwordSignInBtn: any;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
+  loginUsername: any;
   constructor(
     // public snackBar: MatSnackBar,
     public authApi: AuthserviceService,
@@ -137,6 +138,7 @@ export class LoginComponent implements OnInit {
         next: (response: any) => {
           console.log(response, 'otp verify');
           if (response.code == 200) {
+            localStorage.setItem('userName', response.data.user_name);
             localStorage.setItem('TOKEN', response.data.token);
             localStorage.setItem(
               'organization',

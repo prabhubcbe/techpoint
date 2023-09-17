@@ -22,15 +22,14 @@
     </div>
 
     <div class="tabs_content Root_containerVariable">
-      <mat-tab-group class="profile_note_tabs">
-        <mat-tab label="EMPLOYEE"></mat-tab>
+      <mat-tab-group class="profile_note_tabs" (selectedTabChange)="onTabChange($event)">
         <mat-tab label="ROLE">
           <!--************* ROLE CARDS********************* -->
           <div *ngIf="roles_onfirst">
             <div class="row p-0 m-0">
               <div class="col-9">
                 <div class="roles_container">
-                  <p class="role_head">ROLES(4)</p>
+                  <p class="role_head">ROLES({{jobRolesInReports.length}})</p>
                   <div class="search">
                     <input
                       type="text"
@@ -54,80 +53,115 @@
                   </div>
                 </div>
 
-                <!-- ************************ROLE CARDS******************* -->
-                <div class="role_cards_container">
+                      <!-- *****************TEAMS CARDS********************* -->
+      <div class="roles_cards_container">
+        <div class="row">
+          <div class="col-lg-4 col-md-4" *ngFor="let role of jobRolesInReports">
+            <mat-card class="roles_card" (click)="showRolesBaseline(role)">
+              <div class="cards_header">
+                <div class="actions_container">
+                  <!-- ************FAV ICON ***** -->
+                  <img
+                    class="fav_icon"
+                    src="../../../../assets/icons/black_fav.svg"
+                  />
+                  <mat-checkbox class="mat_checkbox_candidates"></mat-checkbox>
+                  <img
+                    class="burger_icon"
+                    src="../../../../assets/icons/black_vertical.svg"
+                  />
+                </div>
+                <div class="role_name">
+                  <p>{{ role.role_name }}</p>
+                </div>
+                <div class="recommend_graph_card">
                   <div class="row">
-                    <div class="col-lg-4">
-                      <mat-card class="role_card" (click)="showRolesBaseline()">
-                        <div class="container">
-                          <div class="role_card_header">
-                            <p class="role">ROLE</p>
-                            <button class="role_new_btn">New</button>
-                          </div>
-                          <h2 class="role_title">
-                            Front End Engineer - Senior
-                          </h2>
-                          <mat-divider></mat-divider>
-                          <div class="role_actions_container">
-                            <mat-checkbox
-                              class="mat_checkbox_role"
-                            ></mat-checkbox>
-                            <div class="role_actions">
-                              <p class="role_date"><i> Sep 15 2022</i></p>
-                              <img
-                                src="../../../../assets/icons/verticalMenuProfile.svg"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </mat-card>
+                    <div class="col-7">
+                      <app-radial-stacked-chart
+                      id="2"
+                      [data]="role.chart_data"
+                    ></app-radial-stacked-chart>
                     </div>
-                    <div class="col-lg-4">
-                      <mat-card class="role_card">
-                        <div class="container">
-                          <p class="role">ROLE</p>
-                          <h2 class="role_title">
-                            Front End Engineer - Senior
-                          </h2>
-                          <mat-divider></mat-divider>
-                          <div class="role_actions_container">
-                            <mat-checkbox
-                              class="mat_checkbox_role"
-                            ></mat-checkbox>
-                            <div class="role_actions">
-                              <p class="role_date"><i> Sep 15 2022</i></p>
-                              <img
-                                src="../../../../assets/icons/verticalMenuProfile.svg"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </mat-card>
-                    </div>
-                    <div class="col-lg-4">
-                      <mat-card class="role_card">
-                        <div class="container">
-                          <p class="role">ROLE</p>
-                          <h2 class="role_title">
-                            Front End Engineer - Senior
-                          </h2>
-                          <mat-divider></mat-divider>
-                          <div class="role_actions_container">
-                            <mat-checkbox
-                              class="mat_checkbox_role"
-                            ></mat-checkbox>
-                            <div class="role_actions">
-                              <p class="role_date"><i> Sep 15 2022</i></p>
-                              <img
-                                src="../../../../assets/icons/verticalMenuProfile.svg"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </mat-card>
+                    <div class="col-5 m-0 p-1 align-self-center">
+                      <p class="title_details">NO.OF EMPLOYEES</p>
+                      <p class="result_details">
+                        {{
+                          role.employee_count &&
+                          role.employee_count != "null"
+                            ? role.employee_count
+                            : "-"
+                          }}
+                      </p>
+                      <p class="title_details">NO.OF ROLES</p>
+                      <p class="result_details">
+                        {{
+                          role.role_count &&
+                          role.role_count != "null"
+                            ? role.role_count
+                            : "-"
+                          }}
+                      </p>
                     </div>
                   </div>
                 </div>
+                <mat-divider class="divider_main"></mat-divider>
+                <div class="roles_actions">
+                  <p>{{role.date}}</p>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+                <!-- ************************ROLE CARDS******************* -->
+                <!-- <div class="row pt-5">
+                  <div class="col-9 Top_Five_Container">
+                    <div class="row">
+                      <div
+                        class="col-lg-4 col-md-6 col-sm-8 col-10 mx-auto cards_container_recommend"
+                        *ngFor="let role of jobRolesInReports"
+                      >
+                        <div class="cursor:pointer;">
+                          <mat-card class="recommend_graph_card" (click)="showRolesBaseline(role)">
+                            <div>
+                              <p class="title_details">{{role.role_name}}</p>
+                            </div>
+                            <div class="row m-0 p-0">
+                              <div class="col-7 p-0">
+                                <app-radial-stacked-chart
+                                [id]="role.role_count"
+                                [data]="role.chart_data"
+                                [svgHeight]="'200px'"
+                                [maxScore]="5">
+                                ></app-radial-stacked-chart>
+                              </div>
+                              <div class="col-5 m-0 p-1 align-self-center">
+                                <p class="title_details">NO.OF EMPLOYEES</p>
+                                <p class="result_details">
+                                  {{
+                                    role.employee_count &&
+                                    role.employee_count != "null"
+                                      ? role.employee_count
+                                      : "-"
+                                    }}
+                                </p>
+                                <p class="title_details">NO.OF ROLES</p>
+                                <p class="result_details">
+                                  {{
+                                    role.role_count &&
+                                    role.role_count != "null"
+                                      ? role.role_count
+                                      : "-"
+                                    }}
+                                </p>
+                              </div>
+                            </div>
+                          </mat-card>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
               </div>
               <div class="col-3"></div>
             </div>
@@ -137,13 +171,13 @@
             <div class="role_baseline">
               <div class="row p-o m-0">
                 <div class="col-9">
-                  <p (click)="showRolesBaseline()" class="head_txt">ROLES</p>
-                  <div class="header_baseline">
+                  <p class="head_txt">ROLES</p>
+                  <div class="header_baseline" (click)="showRolesBaseline(selectedRole)" >
                     <img
                       class="back_arrow_white"
                       src="../../../../assets/icons/baseline_back_whitebg.svg"
                     />
-                    <p class="role_txt_head">Software Engineering</p>
+                    <p class="role_txt_head">{{selectedRole.role_name.toUpperCase()}}</p>
                   </div>
                   <div class="row row_sub_text">
                     <div class="col-4">NO. OF EMPLOYEES</div>
@@ -151,9 +185,9 @@
                     <div class="col-4">LAST UPDATED BASELINE</div>
                   </div>
                   <div class="row row_sub_text">
-                    <div class="col-4"><p>60</p></div>
-                    <div class="col-4"><p>23</p></div>
-                    <div class="col-4"><p>08 August 2023</p></div>
+                    <div class="col-4"><p>{{selectedRole.employee_count}}</p></div>
+                    <div class="col-4"><p>{{selectedRole.role_count}}</p></div>
+                    <div class="col-4"><p>{{selectedRole.date}}</p></div>
                   </div>
                   <mat-divider style="margin: 20px 0 40px 0"></mat-divider>
                   <!-- *************Soft Skills and Aptitude**************** -->
@@ -168,7 +202,7 @@
                         <div class="graph_card_baseline">
                           <app-radial-stacked-chart
                             id="baseline-chart"
-                            [data]="chartData"
+                            [data]="rolesChartData"
                             [svgHeight]="'260px'"
                             [maxScore]="5">
                           </app-radial-stacked-chart>
@@ -205,8 +239,8 @@
                           </div>
                         </div>
                         <div class="row">
-                          <div class="col">
-                            <div class="slidecontainer" *ngFor="let baseline of baselineCol1Values">
+                          <div class="col" *ngIf="isFirstButtonActive">
+                            <div class="slidecontainer" *ngFor="let baseline of softSkillsBaseLineValues">
                               <div class="title_sill">
                                 <p class="p-0 m-0">{{baseline.category}}</p>
                                 <p class="rating_txt p-0 m-0">{{baseline.latest_value | number : '1.2-2'}} / 5</p>
@@ -221,8 +255,8 @@
                               </mat-slider>
                             </div>
                           </div>
-                          <div class="col sliders2column">
-                            <div class="slidecontainer" *ngFor="let baseline of baselineCol2Values">
+                          <div class="col sliders2column" *ngIf="!isFirstButtonActive">
+                            <div class="slidecontainer" *ngFor="let baseline of aptitudeBaseLineValues">
                               <div class="title_sill">
                                 <p class="p-0 m-0">{{baseline.category}}</p>
                                 <p class="rating_txt p-0 m-0">{{baseline.latest_value | number : '1.2-2'}} / 5</p>
@@ -278,7 +312,7 @@
                             src="../../../../assets/icons/current_level_white.svg"
                             alt=""
                           />
-                          <b class="m-0 p-0">Exisiting (16 )</b>
+                          <b class="m-0 p-0">Exisiting ({{(selectedRole.tools)?selectedRole.tools.length:0}})</b>
                         </div>
                         <div class="item2">
                           <img
@@ -298,7 +332,7 @@
                         >
                           <div
                             class="hard_skills_txt"
-                            *ngFor="let item of todo"
+                            *ngFor="let item of selectedRole.tools"
                             cdkDrag
                           >
                             {{ item }}
@@ -355,7 +389,7 @@
                           >
                             <div
                               class="hard_skills_txt"
-                              *ngFor="let item of done"
+                              *ngFor="let item of selectedRole.tools"
                               cdkDrag
                             >
                               {{ item }}
@@ -374,7 +408,7 @@
                             src="../../../../assets/icons/alert_red.svg"
                             alt=""
                           />
-                          <b class="p-0 m-0">Alert (5)</b>
+                          <b class="p-0 m-0">Alert ({{(selectedRole.work_preferences)?selectedRole.work_preferences.length:0}})</b>
                         </div>
                         <p class="alert_sub_txt">
                           Sets warning lorem ispum dolor sit, alerts if one of
@@ -382,11 +416,8 @@
                           or in the team.
                         </p>
 
-                        <div class="alert_badges">
-                          <p class="hard_skills_txt">hiii</p>
-                          <p class="hard_skills_txt">hiii</p>
-
-                          <p class="hard_skills_txt">hiii</p>
+                        <div class="alert_badges" *ngFor="let alert of selectedRole.work_preferences">
+                          <p class="hard_skills_txt">{{alert}}</p>
                         </div>
                       </div>
                     </div>
@@ -397,8 +428,71 @@
             </div>
           </div>
         </mat-tab>
-        <mat-tab label="DEPARTMENT"></mat-tab>
-        <mat-tab label="ORGANIZATION"></mat-tab>
+        <mat-tab label="DEPARTMENT">
+          <div *ngIf="departments_onSecond">
+            <div class="role_baseline">
+              <div class="row p-o m-0">
+                <div class="col-9">
+                  <!-- *************Soft Skills and Aptitude**************** -->
+                  <mat-card class="soft_skills_card">
+                    <div class="soft_skill_head">
+                      <p>All Departments In Reports</p>
+                    </div>
+
+                    <!-- *********MAIN_CONTAINER************* -->
+                    <div class="row main_container" >
+                      <div class="col-6"  *ngFor="let department of departmentsInReports">
+                        <div *ngIf="department.department">
+                          <strong>{{department.department.toUpperCase()}}</strong>
+                          <div>Employee Count : {{department.employee_count}}</div>
+                          <div>Role Count : {{department.role_count}}</div>
+                          <mat-card class="recommend_graph_card">
+                            <app-radial-stacked-chart
+                              [id]="department.department"
+                              [data]="department.chart_data"
+                              [svgHeight]="'260px'"
+                              [maxScore]="5">
+                            </app-radial-stacked-chart>
+                          </mat-card>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="ORGANIZATION">
+          <div *ngIf="organization_onSecond">
+            <div class="role_baseline">
+              <div class="row p-o m-0">
+                <div class="col-9">
+                  <!-- *************Soft Skills and Aptitude**************** -->
+                  <mat-card class="soft_skills_card">
+                    <div class="soft_skill_head">
+                      <p>Organization Details</p>
+                    </div>
+
+                    <!-- *********MAIN_CONTAINER************* -->
+                    <div class="row main_container" >
+                      <div class="col-12">
+                          <div class="graph_card_baseline">
+                            <app-radial-stacked-chart
+                              id="2"
+                              [data]="orgChartData"
+                              [svgHeight]="'270px'"
+                              [maxScore]="5">
+                            </app-radial-stacked-chart>
+                          </div>
+                      </div>
+                    </div>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
       </mat-tab-group>
     </div>
   </div>

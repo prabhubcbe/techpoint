@@ -19,7 +19,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { local } from 'd3';
 import { Router } from '@angular/router';
-
+import { LoadSpinnerService } from 'src/app/shared/load-spinner.service';
 
 @Component({
   selector: 'app-home',
@@ -85,7 +85,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     // private http: HttpClient,
     public snackBar: MatSnackBar,
-    public route: Router
+    public route: Router,
+    private loadSpinner: LoadSpinnerService
   ) {}
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -405,8 +406,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // console.log(this.organizationCode, 'organizationCode');
-    // console.log(this.organizationName, 'organizationName');
     this.getorgDetails();
     this.getRecentActivity();
     this.getAllEmployeesData();
@@ -418,6 +417,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getEmployeesInTeamOrgBubbleChartData();
     this.getCandidateOrgBubbleChartData();
     this.getEmployeeOrgBubbleChartData();
+
     this.promptText =
       'Enter prompt For example, show me the most creative people who joined in the last two years in our Asia marketing team.';
   }
@@ -477,6 +477,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getorgDetails() {
+    this.loadSpinner.setLoading(true);
     this.api
       .getOrgDetails(this.loginEmail)
       .pipe(takeUntil(this.ngUnsubscribe))
@@ -484,6 +485,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         next: (response: any) => {
           // console.log('ORG DETAILS:', response);
           // Manually trigger change detection
+          this.loadSpinner.setLoading(false);
           this.cdr.detectChanges();
         },
         error: (error: any) => {
@@ -493,6 +495,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   // ***************get organization counts********
   getorgDepartment() {
+    this.loadSpinner.setLoading(true);
+
     let obj = {
       email: this.loginEmail,
       orgCode: this.organizationCode,
@@ -505,6 +509,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (response: any) => {
           this.departmnetCount = response.data;
+          this.loadSpinner.setLoading(false);
           this.cdr.detectChanges();
           console.log('ORG DETAILS:', response);
           // Manually trigger change detection
@@ -516,6 +521,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getorgCandidates() {
+    this.loadSpinner.setLoading(true);
+
     let obj = {
       email: this.loginEmail,
       orgCode: this.organizationCode,
@@ -529,6 +536,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         next: (response: any) => {
           this.candidateCount = response.data;
           // Manually trigger change detection
+          this.loadSpinner.setLoading(false);
+
           this.cdr.detectChanges();
         },
         error: (error: any) => {
@@ -538,6 +547,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getorgEmployee() {
+    this.loadSpinner.setLoading(true);
+
     let obj = {
       email: this.loginEmail,
       orgCode: this.organizationCode,
@@ -551,6 +562,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         next: (response: any) => {
           this.EmployeeCount = response.data;
           // Manually trigger change detection
+          this.loadSpinner.setLoading(false);
+
           this.cdr.detectChanges();
         },
         error: (error: any) => {
@@ -560,6 +573,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getRecentActivity() {
+    this.loadSpinner.setLoading(true);
+
     let obj = {
       email: this.loginEmail,
       orgCode: this.organizationCode,
@@ -573,6 +588,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         next: (response: any) => {
           this.recentActivity = response.data;
           // Manually trigger change detection
+          this.loadSpinner.setLoading(false);
+
           this.cdr.detectChanges();
           if (response.code === 200) {
             // console.log('responserecentActivity', response);
@@ -588,6 +605,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // *********************RECENT ROLES************
   getRecentRoles() {
+    this.loadSpinner.setLoading(true);
     let obj = {
       email: this.loginEmail,
       orgCode: this.organizationCode,
@@ -598,8 +616,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: any) => {
-          this.recentRolesList = response.data;
-          this.cdr.detectChanges();
+          if (response.code === 200) {
+            this.recentRolesList = response.data;
+            this.loadSpinner.setLoading(false);
+            this.cdr.detectChanges();
+          }
         },
 
         error: (error: any) => {
@@ -675,6 +696,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   // setData(e: any) {}
 
   getAllEmployeesData() {
+    this.loadSpinner.setLoading(true);
+
     const obj = {
       email: this.loginEmail,
       orgCode: this.organizationCode,
@@ -690,8 +713,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         next: (response: any) => {
           this.allEmployeesData = response.data;
           // Manually trigger change detection
-          this.cdr.detectChanges();
           if (response.code === 200) {
+            this.loadSpinner.setLoading(false);
+            this.cdr.detectChanges();
+
             console.log('getAllEmployeesData', response.data);
             // Further operations with the response data can be performed here
 

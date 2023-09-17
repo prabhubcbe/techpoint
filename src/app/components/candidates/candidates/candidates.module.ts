@@ -27,6 +27,7 @@ import { FooterModule } from 'src/app/core/footer/footer/footer.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { SpinnerModuleModule } from 'src/app/shared/spinner-module/spinner-module.module';
 @NgModule({
   declarations: [
     CandidatesComponent,
@@ -58,6 +59,7 @@ import { MatInputModule } from '@angular/material/input';
     SearchFilterModule,
     FooterModule,
     MatDatepickerModule,
+    SpinnerModuleModule,
     MatNativeDateModule,
   ],
 })

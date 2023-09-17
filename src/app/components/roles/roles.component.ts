@@ -8,25 +8,19 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+// import { MatChipInputEvent } from '@angular/material/chips';
+// import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
-import {
-  Observable,
-  ReplaySubject,
-  Subject,
-  map,
-  startWith,
-  takeUntil,
-} from 'rxjs';
+import { ReplaySubject, Subject, takeUntil } from 'rxjs';
 import { SuccessdialogComponent } from 'src/app/shared/successdialog/successdialog.component';
 import { ServerService } from 'src/app/server/server.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { formatDate } from '@angular/common';
+import { LoadSpinnerService } from 'src/app/shared/load-spinner.service';
+// import { formatDate } from '@angular/common';
 
 export interface Fruit {
   name: string;
@@ -131,7 +125,8 @@ export class RolesComponent implements OnInit {
     public snackBar: MatSnackBar,
     private route: Router,
     private cdr: ChangeDetectorRef,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private loadSpinner: LoadSpinnerService
   ) {}
 
   // ******************
@@ -204,16 +199,15 @@ export class RolesComponent implements OnInit {
     console.log('formdata', formdata);
     if (
       formdata.roleName === '' &&
-      formdata.department === '' &&
-      formdata.level === '' &&
-      formdata.description === ''
+      formdata.department === ''
+      // formdata.level === '' &&
+      // formdata.description === ''
     ) {
-      this.snackBar.open('Please fill all the fields', 'x', {
+      this.snackBar.open('Please fill Rolename & Department', 'x', {
         panelClass: ['custom-style'],
         verticalPosition: 'top',
         duration: 6000,
       });
-      return;
     } else {
       let obj = {
         email: this.loginEmail,
@@ -239,11 +233,11 @@ export class RolesComponent implements OnInit {
               this.openSuccessDialog();
               this.getAllRoles();
               this.slectedEmployees = [];
-              this.snackBar.open(response.message, 'x', {
-                panelClass: ['custom-style'],
-                verticalPosition: 'top',
-                duration: 6000,
-              });
+              // this.snackBar.open(response.message, 'x', {
+              //   panelClass: ['custom-style'],
+              //   verticalPosition: 'top',
+              //   duration: 6000,
+              // });
               this.filteredBanksMulti.next(this.employeesNames.slice());
               console.log(this.rolesSavedCount, 'this.rolesSavedCount');
             }
@@ -275,15 +269,18 @@ export class RolesComponent implements OnInit {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: any) => {
+          this.rolesSavedCount = [response.data];
+          // console.log(this.rolesSavedCount, 'this.rolesSavedCount');
+          this.openSuccessDialog();
           console.log('createRoleFromScratch:', response);
           if (response.code === 200) {
-            this.snackBar.open(response.message, 'x', {
-              panelClass: ['custom-style'],
-              verticalPosition: 'top',
-              duration: 6000,
-            });
-            this.dialog.closeAll();
+            // this.snackBar.open(response.message, 'x', {
+            //   panelClass: ['custom-style'],
+            //   verticalPosition: 'top',
+            //   duration: 6000,
+            // });
             this.getAllRoles();
+            // this.dialog.closeAll();
           }
         },
         error: (error: any) => {
@@ -336,25 +333,52 @@ export class RolesComponent implements OnInit {
     });
   }
   // *******************roles questions *****************
-  openROLEQUESTIONDialog(templateRef: TemplateRef<any>, formdata: FormData) {
-    this.dialog.closeAll();
-    this.roleDetails = formdata;
+  openROLEQUESTIONDialog(templateRef: TemplateRef<any>, formdata: any) {
+    console.log(formdata, 'formdata');
+    if (
+      formdata.roleName !== '' &&
+      formdata.department !== ''
+      // formdata.level === '' &&
+      // formdata.description === ''
+    ) {
+      this.dialog.closeAll();
+      this.roleDetails = formdata;
 
-    this.dialog.open(templateRef, {
-      width: '1100px',
-    });
+      this.dialog.open(templateRef, {
+        width: '1100px',
+      });
+    } else {
+      this.snackBar.open('Please fill Rolename & Department', 'x', {
+        panelClass: ['custom-style'],
+        verticalPosition: 'top',
+        duration: 6000,
+      });
+    }
   }
 
   // ***************CREATING ROLE USING EMPLOYEES*************
   createNewRoleEmployee(templateRef: TemplateRef<any>) {
-    this.employeeRoleBtn = true;
-    this.scratchRoleBtn = false;
-    console.log('addRoleBasedOnEmployee');
-    this.dialog.open(templateRef, {
-      width: '900px',
-      // height: '450px',
-      panelClass: 'bg-color',
-    });
+    console.log(this.bankMultiCtrl, 'this.bankMultiCtrl');
+    if (
+      this.bankMultiCtrl.value === undefined ||
+      this.bankMultiCtrl.value === '' ||
+      this.bankMultiCtrl.value.length === 0
+    ) {
+      this.snackBar.open('Please select employees', 'x', {
+        panelClass: ['custom-style'],
+        verticalPosition: 'top',
+        duration: 2000,
+      });
+    } else {
+      this.employeeRoleBtn = true;
+      this.scratchRoleBtn = false;
+      console.log('addRoleBasedOnEmployee');
+      this.dialog.open(templateRef, {
+        width: '900px',
+        // height: '450px',
+        panelClass: 'bg-color',
+      });
+    }
   }
 
   // }*************************SUCCESS DIALOG******************
@@ -370,6 +394,21 @@ export class RolesComponent implements OnInit {
         {
           message: message,
           note: note,
+        },
+      ],
+    });
+  }
+
+  openglobalSuccessDialog(msg: any) {
+    const message = ` ${msg} `;
+    // const note = `Based on the employees selected, ${this.rolesSavedCount[0].role_name} roles have been created`;
+    this.dialog.closeAll();
+    this.dialog.open(SuccessdialogComponent, {
+      width: '900px',
+      data: [
+        {
+          message: message,
+          // note: note,
         },
       ],
     });
@@ -467,6 +506,8 @@ export class RolesComponent implements OnInit {
   }
   // *************ALL ROLES*************
   getAllRoles() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
+
     let obj = {
       email: this.loginEmail,
       orgCode: this.organizationCode,
@@ -484,6 +525,8 @@ export class RolesComponent implements OnInit {
           }));
           this.totalPages = Math.ceil(this.AllRoles.length / 16);
           // this.sizeOfAllRoles=response.data.length;
+          this.loadSpinner.setLoading(false); // Manually trigger the spinner
+
           this.cdr.detectChanges();
           console.log('ALL ROLES:', this.AllRoles);
         },
@@ -496,9 +539,11 @@ export class RolesComponent implements OnInit {
   // *************DEPARTMENT ROLES***************
 
   filterByDepartment(event: any) {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
+
     console.log('DEPARTMENT:', event);
     this.selectedDepartment = event.value;
-    if (this.selectedDepartment === 'All') {
+    if (this.selectedDepartment === 'ALL') {
       this.getAllRoles();
     } else {
       let obj = {
@@ -521,6 +566,8 @@ export class RolesComponent implements OnInit {
               }));
               this.totalPages = Math.ceil(this.AllRoles.length / 16);
               // this.sizeOfAllRoles=response.data.length;
+              this.loadSpinner.setLoading(false); // Manually trigger the spinner
+
               this.cdr.detectChanges();
               console.log('ALL ROLES:', this.AllRoles);
             }
@@ -533,6 +580,8 @@ export class RolesComponent implements OnInit {
   }
   // *************SORT FILTER ROLES*****************
   filterBySort(event: any) {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
+
     console.log('SORT:', event);
     this.selectedSortBy = event.value;
     let obj = {
@@ -554,6 +603,8 @@ export class RolesComponent implements OnInit {
             }));
             this.totalPages = Math.ceil(this.AllRoles.length / 16);
             // this.sizeOfAllRoles=response.data.length;
+            this.loadSpinner.setLoading(false); // Manually trigger the spinner
+
             this.cdr.detectChanges();
             console.log('ALL ROLES:', this.AllRoles);
           }
@@ -659,11 +710,12 @@ export class RolesComponent implements OnInit {
             this.dialog.closeAll();
             this.getAllRoles();
             this.checkAll = false;
-            this.snackBar.open(response.message, 'x', {
-              panelClass: ['custom-style'],
-              verticalPosition: 'top',
-              duration: 6000,
-            });
+            this.openglobalSuccessDialog(response.message);
+            // this.snackBar.open(response.message, 'x', {
+            //   panelClass: ['custom-style'],
+            //   verticalPosition: 'top',
+            //   duration: 6000,
+            // });
           }
           console.log('DELETE ROLE:', response);
         },
@@ -757,10 +809,10 @@ export class RolesComponent implements OnInit {
             this.cdr.detectChanges();
             console.log('generateJobDescription', response.data);
 
-            this.snackBar.open(response.message, '×', {
-              panelClass: ['custom-style'],
-              verticalPosition: 'top',
-            });
+            // this.snackBar.open(response.message, '×', {
+            //   panelClass: ['custom-style'],
+            //   verticalPosition: 'top',
+            // });
             // Further operations with the response data can be performed here
           } else if (response.code === 400) {
             console.error(
@@ -806,6 +858,8 @@ export class RolesComponent implements OnInit {
 
   // ***********SAVE JOB DESCRIPTION***********
   saveJobDescription() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
+
     let obj = {
       roleId: this.roleGenerationData.role_id,
       jobDescription: this.generatedJobDescription,
@@ -818,11 +872,14 @@ export class RolesComponent implements OnInit {
           if (response.code === 200) {
             this.dialog.closeAll();
             this.generatedJobDescription = '';
-            this.snackBar.open(response.message, '×', {
-              panelClass: ['custom-style'],
-              verticalPosition: 'top',
-            });
+            this.openglobalSuccessDialog(response.message);
+            // this.snackBar.open(response.message, '×', {
+            //   panelClass: ['custom-style'],
+            //   verticalPosition: 'top',
+            // });
             console.log('saveJobDescription', response);
+            this.loadSpinner.setLoading(false); // Manually trigger the spinner
+            this.cdr.detectChanges();
 
             // Further operations with the response data can be performed here
           } else if (response.code === 400) {

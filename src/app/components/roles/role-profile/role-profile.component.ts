@@ -18,6 +18,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
+import { LoadSpinnerService } from 'src/app/shared/load-spinner.service';
+import { SuccessdialogComponent } from 'src/app/shared/successdialog/successdialog.component';
 export interface Fruit {
   name: string;
 }
@@ -95,6 +97,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
 
   constructor(
     private location: Location,
+    private loadSpinner: LoadSpinnerService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     public api: ServerService,
@@ -362,6 +365,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   generateJobDescription() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
     let obj = {
       roleId: this.getRoleID,
     };
@@ -372,13 +376,14 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
         next: (response: any) => {
           if (response.code === 200) {
             this.generatedJobDescription = response.data[0].job_requirements;
+            this.loadSpinner.setLoading(false); // Manually trigger the spinner
             this.cdr.detectChanges();
             console.log('generateJobDescription', response.data);
 
-            this.snackBar.open(response.message, '×', {
-              panelClass: ['custom-style'],
-              verticalPosition: 'top',
-            });
+            // this.snackBar.open(response.message, '×', {
+            //   panelClass: ['custom-style'],
+            //   verticalPosition: 'top',
+            // });
             // Further operations with the response data can be performed here
           } else if (response.code === 400) {
             console.error(
@@ -401,6 +406,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
 
   // ******************Duplicate ROLE******************
   duplicateRole() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
     let obj = {
       roleId: this.getRoleID,
     };
@@ -410,10 +416,27 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
       .subscribe({
         next: (response: any) => {
           if (response.code === 200) {
-            this.snackBar.open(response.message, '×', {
-              panelClass: ['custom-style'],
-              verticalPosition: 'top',
+            this.loadSpinner.setLoading(false);
+
+            // ************************** SUCCESS DIALOG *********
+            const message = ` ${response.message} `;
+            // const note = `Based on the employees selected, ${this.rolesSavedCount[0].role_name} roles have been created`;
+            this.dialog.closeAll();
+            this.dialog.open(SuccessdialogComponent, {
+              width: '900px',
+              data: [
+                {
+                  message: message,
+                  // note: note,
+                },
+              ],
             });
+
+            this.cdr.detectChanges(); // Manually trigger the spinner
+            // this.snackBar.open(response.message, '×', {
+            //   panelClass: ['custom-style'],
+            //   verticalPosition: 'top',
+            // });
             console.log('duplicateRole', response.data);
 
             // Further operations with the response data can be performed here
@@ -431,6 +454,8 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
         },
       });
   }
+
+  // openGlobalSuccessDialog() {}
 
   // *************************Hide and show filter options*************************
   toggleFilter() {
@@ -473,6 +498,8 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   async getAllEmployeesData() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
+
     this.favFilledIcon = false;
     const obj = {
       email: this.loginEmail,
@@ -493,6 +520,8 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
             this.allEmployeesData = response.data;
             this.totalCountCandidates = response.total_count;
             // Manually trigger change detection
+            this.loadSpinner.setLoading(false); // Manually trigger the spinner
+
             this.cdr.detectChanges();
             // Further operations with the response data can be performed here
           } else {
@@ -523,6 +552,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   addFav(data: any) {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
     console.log(data, 'data');
     let obj = {
       roleId: this.getRoleID,
@@ -536,6 +566,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
           if (response.code === 200) {
             // this.getroleData();
             this.getAllEmployeesData();
+            this.loadSpinner.setLoading(false); // Manually trigger the spinner
             this.snackBar.open(response.message, '×', {
               panelClass: ['custom-style'],
               verticalPosition: 'top',
@@ -581,11 +612,15 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   async getroleData() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
+
     this.api
       .rolesById(this.getRoleID)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: any) => {
+          this.loadSpinner.setLoading(false); // Manually trigger the spinner
+
           // Manually trigger change detection
           this.roleCompleteDetails = response.data;
           // console.clear();
@@ -598,6 +633,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
           this.level = response.data.level;
           this.description = response.data.description;
           this.level = response.data.level;
+
           this.cdr.detectChanges();
           console.log(
             this.getRoleName,
@@ -624,6 +660,8 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
 
   // ***********SAVE JOB DESCRIPTION***********
   saveJobDescription() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
+
     let obj = {
       roleId: this.getRoleID,
       jobDescription: this.generatedJobDescription,
@@ -633,13 +671,17 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: any) => {
+          this.dialog.closeAll();
+          this.loadSpinner.setLoading(false);
+
           if (response.code === 200) {
-            this.dialog.closeAll();
             this.generatedJobDescription = '';
-            this.snackBar.open(response.message, '×', {
-              panelClass: ['custom-style'],
-              verticalPosition: 'top',
-            });
+            this.openGlobalSuccessDialog(response.message);
+            this.cdr.detectChanges(); // Manually trigger the spinner
+            // this.snackBar.open(response.message, '×', {
+            //   panelClass: ['custom-style'],
+            //   verticalPosition: 'top',
+            // });
             console.log('saveJobDescription', response.data);
 
             // Further operations with the response data can be performed here
@@ -689,14 +731,15 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
           if (response.code === 200) {
             this.getroleData();
             this.getAllEmployeesData();
+            this.openGlobalSuccessDialog(response.message);
             this.sliderValues.forEach((element: any) => {
               element.value = element.value / 2;
             });
             this.disableSlider = true;
-            this.snackBar.open(response.message, '×', {
-              panelClass: ['custom-style'],
-              verticalPosition: 'top',
-            });
+            // this.snackBar.open(response.message, '×', {
+            //   panelClass: ['custom-style'],
+            //   verticalPosition: 'top',
+            // });
             console.log('updatesSliders', response.data);
 
             // Further operations with the response data can be performed here
@@ -717,7 +760,20 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
         },
       });
   }
-
+  openGlobalSuccessDialog(msg: any) {
+    const message = `! ${msg}`;
+    // const note = `Based on the employees selected, ${this.rolesSavedCount[0].role_name} roles have been created`;
+    this.dialog.closeAll();
+    this.dialog.open(SuccessdialogComponent, {
+      width: '900px',
+      data: [
+        {
+          message: message,
+          // note: note,
+        },
+      ],
+    });
+  }
   ngOnDestroy(): void {
     console.log('role profile component destroyed');
     this.ngUnsubscribe.next();
@@ -833,6 +889,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   updatesSlidersDialog() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
     let obj;
 
     if (this.roleCompleteDetails.user_details) {
@@ -866,13 +923,15 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
           if (response.code === 200) {
             this.getroleData();
             this.getAllEmployeesData();
+            this.loadSpinner.setLoading(false); // Manually trigger the spinner
             this.dialog.closeAll();
             this.SkillSliderDialog = [];
-
-            this.snackBar.open(response.message, '×', {
-              panelClass: ['custom-style'],
-              verticalPosition: 'top',
-            });
+            this.openGlobalSuccessDialog(response.message);
+            this.cdr.detectChanges(); // Manually trigger the spinner
+            // this.snackBar.open(response.message, '×', {
+            //   panelClass: ['custom-style'],
+            //   verticalPosition: 'top',
+            // });
 
             console.log('updatesSliders', response.data);
 
@@ -925,6 +984,8 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
 
   // *************get shortlisted data**********
   getShortListed() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
+
     this.favFilledIcon = true;
     let obj = {
       roleId: this.getRoleID,
@@ -940,8 +1001,13 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
           if (res.code === 200) {
             this.allEmployeesData = res.data;
             this.totalCountCandidates = res.data.length;
+            this.loadSpinner.setLoading(false); // Manually trigger the spinner
+
             this.cdr.detectChanges();
           } else {
+            this.loadSpinner.setLoading(false); // Manually trigger the spinner
+
+            this.cdr.detectChanges();
             this.snackBar.open('something went wrong', '×', {
               panelClass: ['custom-style'],
               verticalPosition: 'top',

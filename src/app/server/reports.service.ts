@@ -50,9 +50,44 @@ export class ReportsService {
     );
   }
 
+  getAllJobRolesInReports(data: any) {
+    return this.http.post(
+      environment.url + environment.reportsPath + `/get_all_job_roles_in_reports`,
+      data
+    );
+  }
+
+  getAllDepartmentsInReports(data: any) {
+    return this.http.post(
+      environment.url + environment.reportsPath + `/get_all_departments_in_reports`,
+      data
+    );
+  }
+
+  getOrgChartData(data: any) {
+    return this.http.post(
+      environment.url + environment.reportsPath + `/get_org_chart_data`,
+      data
+    );
+  }
+
   getBaselineValues(data: any) {
     return this.http.post(
       environment.url + environment.reportsPath + `/get_baseline_values`,
+      data
+    );
+  }
+
+  updateBaselineValues(data: any) {
+    return this.http.post(
+      environment.url + environment.reportsPath + `/update_baseline_values`,
+      data
+    );
+  }
+
+  comparision(data: any) {
+    return this.http.post(
+      environment.url + environment.reportsPath + `/comparision`,
       data
     );
   }

@@ -1,3 +1,4 @@
+<app-spinner></app-spinner>
 <div class="padding_100">
   <div class="Root_containerVariable pl-2">
     <p class="title_candidates">CANDIDATES : roles</p>
@@ -354,8 +355,8 @@
         <p class="sub_txt1">ROLES : <b>CREATE NEW ROLE</b></p>
         <p class="sub_txt2">Help me create a New Role</p>
         <i class="sub_txt3"
-          >Define a new role by answering the questions as per your
-          requirements, Loren ipsum</i
+          >Define a new role by answering the questions as per your requirements
+          and experience for this role.</i
         >
       </div>
       <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
@@ -538,8 +539,8 @@
         <p class="sub_txt1">ROLES : <b>CREATE NEW ROLE : DESIGN MANAGER</b></p>
         <p class="sub_txt2">Help me create a New Role</p>
         <i class="sub_txt3"
-          >Define a new role by answering the questions as per your
-          requirements, Loren ipsum</i
+          >Define a new role by answering the questions as per your requirements
+          and experience for this role.</i
         >
       </div>
       <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
@@ -741,10 +742,13 @@
         </div>
         <div>
           <div class="item1_filter">
-            <button class="generate_btn" (click)="createJobDescription()">
+            <button class="convert_btn" (click)="saveJobDescription()">
+              SAVE
+            </button>
+            <!-- <button class="generate_btn" (click)="createJobDescription()">
               <img src="../../../../assets/icons/generate.svg" />GENERATE JOB
               DESCRIPTION
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
@@ -763,12 +767,12 @@
       </div>
     </div>
 
-    <div class="role_dialog_btn_container pt-4">
+    <!-- <div class="role_dialog_btn_container pt-4">
       <b><u>Close</u></b>
       <button class="convert_btn" (click)="saveJobDescription()">
         <b>SAVE</b>
       </button>
-    </div>
+    </div> -->
   </div>
 </ng-template>
 <app-footer></app-footer>

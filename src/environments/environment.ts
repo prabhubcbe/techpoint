@@ -1,8 +1,8 @@
 export const environment = {
   production: false,
-  url: 'https://mayamayaapi2.azurewebsites.net',
+  // url: 'https://mayamayaapi2.azurewebsites.net',
   // url: 'https://consoleapi.mayamaya.us/api',
-  // url: 'http://localhost:8080',
+  url: 'http://localhost:8080',
   skillPath: '/skill',
   employeePath: '/employee',
   managePath: '/manage',

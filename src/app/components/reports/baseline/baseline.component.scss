@@ -1,11 +1,14 @@
 @import "../../../../assets/styles/variable.scss";
+
 .bg_GreenGradient {
   background: $Primary_greenGradient;
   height: 330px;
   color: white;
 }
+
 .title_candidates {
   color: white;
+
   p {
     font-size: 13px;
     text-transform: uppercase;
@@ -13,38 +16,46 @@
     // font-weight: 700;
   }
 }
+
 // **************Header**************
 .header_container {
   padding-top: 20px;
   display: flex;
   gap: 20px;
+
   .item1 {
     flex-grow: 1;
     display: flex;
     gap: 20px;
     align-items: center;
+
     .item2 {
       align-items: start;
     }
   }
 }
+
 .back_btn {
   height: 38px;
   width: 38px;
 }
+
 .Analysis_txt {
   font-size: 43px;
   font-family: $Titillium_Bold;
 }
+
 .sub_title {
   padding-top: 15px;
   padding-left: 55px;
 }
+
 // ****************tabs ****************
 .tabs_content {
   //   padding-left: 55px;
   margin-top: 35px;
 }
+
 .profile_note_tabs {
   ::ng-deep .mat-mdc-tab-header {
     width: 70%;
@@ -54,10 +65,12 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     padding: 10px 10px 0 10px;
   }
+
   ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
     font-size: 13px;
     font-family: $Titillium_Regular;
   }
+
   ::ng-deep .mat-mdc-tab.mdc-tab .mdc-tab-indicator__content--underline {
     border-color: black !important;
     border-width: 7px;
@@ -65,6 +78,7 @@
     border-radius: 10px 10px 0 0;
     // padding-top: 10px;
   }
+
   ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
     color: black !important;
   }
@@ -73,6 +87,7 @@
     flex-grow: 0;
   }
 }
+
 // *************roles_container*************
 .roles_container {
   margin-top: 30px;
@@ -81,6 +96,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .role_head {
   font-size: 22px;
   font-family: $Titillium_Bold;
@@ -125,7 +141,7 @@
   letter-spacing: 1px;
 }
 
-.search__input:focus + .search__button {
+.search__input:focus+.search__button {
   background: none;
 }
 
@@ -141,11 +157,13 @@
   width: 1.3em;
   fill: #000000;
 }
+
 // ********************
 // <!-- ************************ROLE CARDS******************* -->
 .role_cards_container {
   color: black;
   padding-top: 35px;
+
   .role_card {
     background-color: $cards_Bg;
     border-radius: 5px;
@@ -153,10 +171,12 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 }
+
 .role_card_header {
   display: flex;
   justify-content: space-between;
 }
+
 .role_new_btn {
   height: 20px;
   width: 40px;
@@ -169,12 +189,14 @@
   outline: none;
   border: none;
 }
+
 .role {
   font-size: 11px;
   font-weight: 600;
   padding-top: 10px;
   margin-bottom: 0px;
 }
+
 // .role_title {
 //   font-size: 18px;
 //   font-weight: 700;
@@ -186,6 +208,7 @@
   font-family: $Titillium_Bold;
   margin-bottom: 6px;
 }
+
 @media only screen and (max-width: 1200px) {
   .role_title {
     font-size: 12px;
@@ -201,51 +224,43 @@
   display: flex;
   justify-content: space-between;
 }
+
 .role_actions {
   display: flex;
   justify-content: end;
   gap: 20px;
   padding-top: 10px;
+
   img {
     margin-bottom: 5px;
     height: 20px;
   }
 }
+
 .role_date {
   font-size: 12px;
 }
+
 // **************check box for role cards**************
 .mat_checkbox_role {
-  ::ng-deep
-    .mdc-checkbox
-    .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
-      [data-indeterminate="true"]
-    )
-    ~ .mdc-checkbox__background {
+  ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate="true"])~.mdc-checkbox__background {
     // border-color: $primary_checkBoxColor;
     width: 18px;
     height: 18px;
     border: 1px solid black;
   }
-  ::ng-deep
-    .mdc-checkbox
-    .mdc-checkbox__native-control:enabled:focus:checked
-    ~ .mdc-checkbox__background {
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:focus:checked~.mdc-checkbox__background {
     background-color: white;
     width: 18px;
     height: 18px;
   }
-  ::ng-deep
-    .mdc-checkbox
-    .mdc-checkbox__native-control:enabled
-    ~ .mdc-checkbox__background
-    .mdc-checkbox__checkmark {
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__checkmark {
     color: $primary_checkBoxColor;
   }
-  ::ng-deep
-    .mdc-checkbox
-    .mdc-checkbox__native-control:enabled:checked
-    ~ .mdc-checkbox__background {
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background {
     background-color: white;
     border-color: $primary_checkBoxColor;
     width: 18px;
@@ -257,36 +272,44 @@
     left: calc((var(--mdc-checkbox-state-layer-size) - 18px) / 2);
   }
 }
+
 // ****************ROLES PROFILE BASELINE CONTAINER***************
 .role_baseline {
   color: black;
   padding-top: 35px;
 }
+
 .head_txt {
   font-size: 22px;
   font-family: $Titillium_Bold;
 }
+
 .header_baseline {
   display: flex;
   align-items: center;
 }
+
 .role_txt_head {
   font-size: 24px;
 }
+
 .back_arrow_white {
   height: 60px;
 }
+
 // *************
 .row_sub_text {
   width: 50%;
   font-size: 10px;
   font-weight: 600;
   margin-left: 50px;
+
   p {
     font-size: 14px;
     font-weight: 600;
   }
 }
+
 // ****************************soft_skills_card******************
 .soft_skills_card {
   background: $Primary_greenGradient;
@@ -294,11 +317,13 @@
   // height: 500px;
   border-radius: 10px;
 }
+
 .soft_skill_head {
   background: $Primary_greenGradient;
   color: white;
   border-radius: 10px 10px 0px 0px;
   height: 60px;
+
   p {
     font-size: 18px;
     font-family: $Titillium_Bold;
@@ -306,11 +331,13 @@
     padding-top: 20px;
   }
 }
+
 // ****************
 .main_container {
   padding: 35px;
   color: white;
 }
+
 .graph_card_baseline {
   background: $cards_Bg;
   width: 100%;
@@ -318,12 +345,14 @@
   border-radius: 12px;
   color: black;
 }
+
 // ****************buttons for soft skills card****************
 .head_btn {
   display: flex;
   gap: 30px;
   color: white;
 }
+
 .base_head {
   padding: 15px 30px 15px 30px;
   border: none;
@@ -333,12 +362,14 @@
   font-weight: 600;
   background: transparent;
   color: white;
-  transition: background 0.3s; /* Adding a transition for smoother effect */
+  transition: background 0.3s;
+  /* Adding a transition for smoother effect */
 }
 
 .base_head.active {
   background: rgba(255, 255, 255, 0.2);
 }
+
 // **************
 .softskill_subtxt {
   padding-top: 25px;
@@ -346,6 +377,7 @@
   justify-content: space-between;
   font-size: 14px;
   font-family: $Titillium_Light;
+
   u {
     font-weight: 700;
     font-size: 12px;
@@ -357,14 +389,17 @@
 .sliders2column {
   padding-right: 0;
 }
+
 .slidecontainer {
   width: 95%;
+
   .slider_skill {
     width: 95%;
     margin: 0;
     height: 10px;
     margin-top: 5px;
   }
+
   .title_sill {
     width: 95%;
     display: flex;
@@ -378,14 +413,17 @@
     // font-size: 0.9vw;
     // font-size: clamp(10px, 2vw, 16px);
   }
+
   .rating_txt {
     font-size: 11px;
     font-family: $Titillium_Light;
     padding-top: 20px;
   }
+
   ::ng-deep .mat-mdc-slider .mdc-slider__thumb-knob {
     display: none;
   }
+
   ::ng-deep .mat-mdc-slider .mdc-slider__track {
     background: $Primary_greenGrdientReverse;
     border-radius: 10px;
@@ -393,17 +431,20 @@
     border-bottom: 1px solid white;
     border-top: 1px solid black;
   }
+
   ::ng-deep .mat-mdc-slider .mdc-slider__track--inactive {
     background: $Primary_greenGrdientReverse;
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
     overflow: hidden;
     height: 6px;
   }
+
   ::ng-deep .mat-mdc-slider .mdc-slider__track--active {
     background: $Primary_greenGrdientReverse;
     overflow: hidden;
     height: 6px;
   }
+
   ::ng-deep .mat-mdc-slider .mdc-slider__track--active_fill {
     background: rgb(255, 255, 255);
     color: rgb(255, 255, 255);
@@ -411,34 +452,40 @@
     height: 6px;
     border-radius: 50px;
   }
+
   ::ng-deep .mat-mdc-slider-visual-thumb .mat-ripple {
     display: none;
   }
 }
+
 // **************alerts for soft skills card****************
 .alerts {
   padding-top: 50px;
   display: flex;
   justify-content: space-between;
   width: 70%;
+
   .item1 {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
   }
+
   .item2 {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
   }
+
   .item3 {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
   }
+
   p {
     font-size: 12px;
   }
@@ -452,11 +499,13 @@
   // height: 500px;
   border-radius: 10px;
 }
+
 .Technical_Skills_head {
   background: $Primary_RedGradient;
   color: white;
   border-radius: 10px 10px 0px 0px;
   height: 60px;
+
   p {
     font-size: 18px;
     font-family: $Titillium_Bold;
@@ -464,17 +513,21 @@
     padding-top: 20px;
   }
 }
+
 .content_technical_skills {
   padding: 35px;
 }
+
 .content_head_technical_skill {
   display: flex;
   justify-content: space-between;
+
   .item1 {
     display: flex;
     gap: 10px;
     align-items: center;
   }
+
   .item2 {
     display: flex;
     gap: 5px;
@@ -482,10 +535,12 @@
     font-size: 12px;
   }
 }
+
 // ****************
 .existing_content {
   padding-top: 20px;
 }
+
 .hard_skills_txt {
   font-family: $Titillium_Bold;
   background: $Primary_RedGradient;
@@ -496,6 +551,7 @@
   font-size: 13px;
   margin-left: 5px;
 }
+
 .divider_existing {
   margin-top: 20px;
 }
@@ -506,11 +562,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   .item1 {
     display: flex;
     gap: 10px;
     align-items: center;
   }
+
   .item2 {
     p {
       font-size: 12px;
@@ -519,42 +577,32 @@
     }
   }
 }
+
 // ******************checkbox****************
 .mat_checkbox_candidates_header {
-  ::ng-deep .mdc-form-field > label {
+  ::ng-deep .mdc-form-field>label {
     padding: 0;
   }
-  ::ng-deep
-    .mdc-checkbox
-    .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
-      [data-indeterminate="true"]
-    )
-    ~ .mdc-checkbox__background {
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate="true"])~.mdc-checkbox__background {
     border-color: $primary_checkBoxColor;
     width: 16px;
     height: 16px;
     border: 1px solid black;
     border-radius: 3px;
   }
-  ::ng-deep
-    .mdc-checkbox
-    .mdc-checkbox__native-control:enabled:focus:checked
-    ~ .mdc-checkbox__background {
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:focus:checked~.mdc-checkbox__background {
     background-color: white;
     width: 16px;
     height: 16px;
   }
-  ::ng-deep
-    .mdc-checkbox
-    .mdc-checkbox__native-control:enabled
-    ~ .mdc-checkbox__background
-    .mdc-checkbox__checkmark {
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__checkmark {
     color: $primary_checkBoxColor;
   }
-  ::ng-deep
-    .mdc-checkbox
-    .mdc-checkbox__native-control:enabled:checked
-    ~ .mdc-checkbox__background {
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background {
     background-color: white;
     border-color: $primary_checkBoxColor;
     width: 16px;
@@ -566,6 +614,7 @@
     left: calc((var(--mdc-checkbox-state-layer-size) - 16px) / 2);
   }
 }
+
 // *******************drag and drop ******************
 .border_dashed {
   border: 1px dashed #ccc;
@@ -574,14 +623,179 @@
   margin-top: 20px;
   height: 150px;
 }
+
 // *******************Alerts for Technical Skills******************
 .alert_head {
   padding-top: 30px;
   display: flex;
   gap: 10px;
 }
+
 .alert_sub_txt {
   font-size: 13px;
   padding-top: 15px;
   padding-left: 20px;
+}
+
+.Top_Five_Container {
+  .Top_Five_Txt {
+    font-size: 22px;
+    font-family: $Titillium_Bold; // Sets the font using $Titillium_Bold variable.scss
+  }
+
+  .tittle_container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .Top_Five_Card_Container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 14px 30px 14px 10px;
+  }
+
+  .icon_name {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.cards_container_recommend {
+  padding-top: 20px;
+}
+
+.recommend_card {
+  background: $Primary_RedGradient;
+  width: 100%;
+  height: 300px;
+  border-radius: 15px 15px 15px 15px;
+  overflow: hidden;
+}
+
+.recommend_card_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.candidate_profile_icon {
+  color: white;
+  font-size: 100px;
+  opacity: 0.2;
+}
+
+.roles_card {
+  margin-top: 30px;
+  background-color: $cards_Bg;
+  min-height: 26em;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.cards_header {
+  padding: 10px;
+}
+
+// **********************VERTICAL BURGER MENU **********************
+.fav_icon {
+  height: 30px;
+  // margin-top: 3%;
+}
+
+.burger_icon {
+  height: 22px;
+  // margin-top: 4%;
+  margin-left: 2%;
+}
+
+.image_overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.25) 25%,
+      rgba(0, 0, 0, 0.75) 75%);
+}
+
+.actions_container {
+  display: flex;
+  //   position: absolute;
+  z-index: 2;
+
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  padding-right: 20px;
+  padding-top: 10px;
+  gap: 10px;
+}
+
+.role_name {
+  font-size: 22px;
+  padding-top: 20px;
+  p {
+    text-align: center;
+    font-family: $Titillium_Bold;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+  }
+}
+
+.roles_graph {
+  height: 150px;
+}
+
+// ************* divider *************
+.divider_main {
+  margin-top: 50px;
+}
+
+.roles_actions {
+  display: flex;
+  padding-top: 10px;
+  font-style: italic;
+  justify-content: end;
+  gap: 15px;
+  color: black
+}
+
+.recommend_graph_card {
+  background: $cards_Bg;
+  width: 100%;
+  border-radius: 10px 15px 15px 15px;
+
+  .title_details {
+    text-transform: uppercase;
+    margin: 0px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #000000;
+    text-align: left;
+    letter-spacing: 1px;
+  }
+
+  .result_details {
+    font-family: $Titillium_Bold;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    line-height: 16px;
+    color: #000000;
+  }
 }

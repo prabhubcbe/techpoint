@@ -1,3 +1,5 @@
+<app-spinner></app-spinner>
+
 <div class="component_container">
   <div class="bg_GreenGradient padding_100">
     <div class="Root_containerVariable pl-2">
@@ -127,14 +129,14 @@
                       [removable]="true"
                       (removed)="onRemoveEvalvationDropdown()"
                     >
-                      {{ evaluation_DropdwonForm.value }}
+                      {{ evaluation_DropdwonForm.value?.id }}
                       <mat-icon matChipRemove>cancel</mat-icon>
                     </mat-chip>
                   </mat-chip-listbox>
                 </mat-select-trigger>
                 <mat-option
                   *ngFor="let list of evaluvation_datalist"
-                  [value]="list.value"
+                  [value]="list"
                   >{{ list.value }}</mat-option
                 >
               </mat-select>
@@ -193,8 +195,8 @@
               <div class="roles_text">
                 <h2>ROLES</h2>
                 <p>
-                  ….{{ AllRoles.length }} roles found in your organization,
-                  click on the roles to get matching results
+                  {{ AllRoles.length }} roles found in your organization, click
+                  on the roles to get matching results
                 </p>
               </div>
               <div class="Roles_filters_container">
@@ -333,6 +335,7 @@
         <div class="recommends">
           <div class="recommneds_container">
             <h2 class="recommend_txt m-0">MAYAMAYA RECOMMENDS</h2>
+
             <u
               class="viewAll_txt"
               routerLink="/candidates/applicants"
@@ -340,6 +343,10 @@
               >View all</u
             >
           </div>
+          <p>
+            Recommendation of candidates is based on selected roles from the
+            list.
+          </p>
           <!-- card -->
           <div class="row p-0 m-0">
             <div
@@ -356,7 +363,8 @@
                         class="fa-solid fa-user candidate_profile_icon"
                       ></i>
 
-                      <img  height="102%"
+                      <img
+                        height="102%"
                         *ngIf="employeeData.user_photo != null"
                         style="object-fit: cover"
                         width="100%"

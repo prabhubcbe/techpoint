@@ -25,6 +25,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { SearchFilterModule } from 'src/app/shared/search-filter/search-filter.module';
 import { FooterModule } from 'src/app/core/footer/footer/footer.module';
+import { SpinnerModuleModule } from 'src/app/shared/spinner-module/spinner-module.module';
 
 @NgModule({
   declarations: [RolesComponent, RoleProfileComponent],
@@ -54,6 +55,7 @@ import { FooterModule } from 'src/app/core/footer/footer/footer.module';
     ClipboardModule,
     SearchFilterModule,
     FooterModule,
+    SpinnerModuleModule,
   ],
 })
 export class RolesModule {}
