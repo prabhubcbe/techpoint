@@ -20,15 +20,15 @@
           <div class="col-9">
             <div class="vs_header">
               <div>
-                <p class="team_sub">TEAM</p>
-                <p class="team_title">Software Engineering</p>
+                <p class="team_sub">{{state.value1}}</p>
+                <p class="team_title">{{state.value1Role}}</p>
               </div>
               <div>
                 <p class="bg_vs">VS</p>
               </div>
               <div>
-                <p class="team_sub">INDIVIDUAL</p>
-                <p class="team_title">Josh Enigma</p>
+                <p class="team_sub">{{state.value2}}</p>
+                <p class="team_title">{{state.value2Role}}</p>
               </div>
             </div>
 
@@ -44,7 +44,7 @@
 
                       <!-- ************* COLUMN 2*************-->
                       <td class="main_content_table_sl2">
-                        <div>
+                        <div *ngIf="state.value1Role == 'employee'">
                           <mat-card class="recommend_card">
                             <div class="recommend_card_container">
                               <div class="image_overlay"></div>
@@ -65,41 +65,84 @@
                             </div>
                           </mat-card>
 
-                          <mat-card class="recommend_graph_card"
-                            >Grapsh card
-                            <!-- <app-radial-stacked-chart
+                          <mat-card class="recommend_graph_card">
+                            <app-radial-stacked-chart
                             id="2"
-                            [data]="employeeData.result_values"
-                          ></app-radial-stacked-chart> -->
+                            [data]="value1Data"
+                            ></app-radial-stacked-chart>
+                          </mat-card>
+                        </div>
+                        <div *ngIf="state.value1Role != 'employee'">
+                          <mat-card class="recommend_graph_card">
+                            <p class="title_txt">
+                              {{state.value1Role}}
+                            </p>
+                            <app-radial-stacked-chart
+                              id="2"
+                              [data]="value1Data"
+                              ></app-radial-stacked-chart>
                           </mat-card>
                         </div>
                       </td>
                       <td class="main_content_table_sl3">
-                        <!-- ************** -->
-                        <mat-card class="department_card"
-                          ><p class="title_txt">
-                            Software Engineering Team
-                          </p></mat-card
-                        >
+                        <div *ngIf="state.value1Role == 'employee'">
+                          <mat-card class="recommend_card">
+                            <div class="recommend_card_container">
+                              <div class="image_overlay"></div>
+                              <div class="candidateDummyImg">
+                                <img
+                                  style="object-fit: cover"
+                                  width="100%"
+                                  src="../../../../assets/images/male.jpg"
+                                />
+                              </div>
+                            </div>
+                            <div class="container">
+                              <p class="user_details_container">Josh Enigma</p>
+                              <div class="sprint_contiainer">
+                                <p>3 Sprints Latest Sep 24</p>
+                                <p>Active</p>
+                              </div>
+                            </div>
+                          </mat-card>
+
+                          <mat-card class="recommend_graph_card">
+                            <app-radial-stacked-chart
+                            id="2"
+                            [data]="value2Data"
+                            ></app-radial-stacked-chart>
+                          </mat-card>
+                        </div>
+                        <div *ngIf="state.value1Role != 'employee'">
+                          <mat-card class="recommend_graph_card">
+                            <p class="title_txt">
+                              {{state.value2Role}}
+                            </p>
+                            <app-radial-stacked-chart
+                              id="2"
+                              [data]="value2Data"
+                              ></app-radial-stacked-chart>
+                          </mat-card>
+                        </div>
                       </td>
                     </tr>
                     <!-- *****************ROW2******************** -->
                     <tr class="main_content_table_row2">
-                      <td class="main_content_table_sl2_1">Value</td>
-                      <td class="main_content_table_sl2_2">Value</td>
-                      <td class="main_content_table_sl2_3">Value</td>
+                      <td class="main_content_table_sl2_1">Name</td>
+                      <td class="main_content_table_sl2_2">{{state.value1Role}}</td>
+                      <td class="main_content_table_sl2_3">{{state.value2Role}}</td>
                     </tr>
                     <!-- *****************ROW3******************** -->
                     <tr class="main_content_table_row2">
-                      <td class="main_content_table_sl2_1">Value</td>
-                      <td class="main_content_table_sl2_2">Value</td>
-                      <td class="main_content_table_sl2_3">Value</td>
+                      <td class="main_content_table_sl2_1">Role</td>
+                      <td class="main_content_table_sl2_2">{{ value1Result.roleCount }}</td>
+                      <td class="main_content_table_sl2_3">{{ value2Result.roleCount }}</td>
                     </tr>
                     <!-- *****************ROW4******************** -->
                     <tr class="main_content_table_row2">
-                      <td class="main_content_table_sl2_1">Value</td>
-                      <td class="main_content_table_sl2_2">Value</td>
-                      <td class="main_content_table_sl2_3">Value</td>
+                      <td class="main_content_table_sl2_1">Sprints</td>
+                      <td class="main_content_table_sl2_2">{{value1Result.avgSprintsCount}}</td>
+                      <td class="main_content_table_sl2_3">{{value2Result.avgSprintsCount}}</td>
                     </tr>
                   </table>
                 </div>
@@ -111,8 +154,88 @@
                   <table class="main_content_table">
                     <tr class="main_content_table_row2">
                       <td class="main_content_table_sl2_1"></td>
-                      <td class="main_content_table_sl2_2">GRAPHS</td>
-                      <td class="main_content_table_sl2_3">GRAPHS</td>
+                      <td class="main_content_table_sl2_2">
+                        <div *ngIf="state.value1Role == 'employee'">
+                          <mat-card class="recommend_card">
+                            <div class="recommend_card_container">
+                              <div class="image_overlay"></div>
+                              <div class="candidateDummyImg">
+                                <img
+                                  style="object-fit: cover"
+                                  width="100%"
+                                  src="../../../../assets/images/male.jpg"
+                                />
+                              </div>
+                            </div>
+                            <div class="container">
+                              <p class="user_details_container">Josh Enigma</p>
+                              <div class="sprint_contiainer">
+                                <p>3 Sprints Latest Sep 24</p>
+                                <p>Active</p>
+                              </div>
+                            </div>
+                          </mat-card>
+
+                          <mat-card class="recommend_graph_card">
+                            <app-radial-stacked-chart
+                            id="2"
+                            [data]="value1Data"
+                            ></app-radial-stacked-chart>
+                          </mat-card>
+                        </div>
+                        <div *ngIf="state.value1Role != 'employee'">
+                          <mat-card class="recommend_graph_card">
+                            <p class="title_txt">
+                              {{state.value1Role}}
+                            </p>
+                            <app-radial-stacked-chart
+                              id="2"
+                              [data]="value1Data"
+                              ></app-radial-stacked-chart>
+                          </mat-card>
+                        </div>
+                      </td>
+                      <td class="main_content_table_sl2_3">
+                        <div *ngIf="state.value1Role == 'employee'">
+                          <mat-card class="recommend_card">
+                            <div class="recommend_card_container">
+                              <div class="image_overlay"></div>
+                              <div class="candidateDummyImg">
+                                <img
+                                  style="object-fit: cover"
+                                  width="100%"
+                                  src="../../../../assets/images/male.jpg"
+                                />
+                              </div>
+                            </div>
+                            <div class="container">
+                              <p class="user_details_container">Josh Enigma</p>
+                              <div class="sprint_contiainer">
+                                <p>3 Sprints Latest Sep 24</p>
+                                <p>Active</p>
+                              </div>
+                            </div>
+                          </mat-card>
+
+                          <mat-card class="recommend_graph_card">
+                            <app-radial-stacked-chart
+                            id="2"
+                            [data]="value2Data"
+                            ></app-radial-stacked-chart>
+                          </mat-card>
+                        </div>
+                        <div *ngIf="state.value1Role != 'employee'">
+                          <mat-card class="recommend_graph_card">
+                            <p class="title_txt">
+                              {{state.value2Role}}
+                            </p>
+                            <app-radial-stacked-chart
+                              id="2"
+                              [data]="value2Data"
+                              ></app-radial-stacked-chart>
+                          </mat-card>
+                        </div>
+                      </td>
                     </tr>
                   </table>
                 </div>
@@ -125,30 +248,18 @@
                   <table class="main_content_table">
                     <tr class="main_content_table_row2">
                       <td class="main_content_table_sl2_1">Skills</td>
-                      <td class="main_content_table_sl2_2">16</td>
-                      <td class="main_content_table_sl2_3">16</td>
+                      <td class="main_content_table_sl2_2">{{value1Result.skills?value1Result.skills.length:0}}</td>
+                      <td class="main_content_table_sl2_3">{{value2Result.skills?value2Result.skills.length:0}}</td>
                     </tr>
 
                     <!-- **************** -->
                     <tr class="main_content_table_row2">
                       <td class="main_content_table_sl2_1"></td>
                       <td class="main_content_table_sl2_2">
-                        <p class="hard_skills_txt">PHP</p>
-                        <p class="hard_skills_txt">Project Management</p>
-                        <p class="hard_skills_txt">SiteCore</p>
-                        <p class="hard_skills_txt">Back-End</p>
-                        <p class="hard_skills_txt">UI Development</p>
-                        <p class="hard_skills_txt">Javascript</p>
-                        <p class="hard_skills_txt">UI Development</p>
+                        <p class="hard_skills_txt" *ngFor="let role of value1Result.skills">{{role}}</p>
                       </td>
                       <td class="main_content_table_sl2_3">
-                        <p class="hard_skills_txt">PHP</p>
-                        <p class="hard_skills_txt">Project Management</p>
-                        <p class="hard_skills_txt">SiteCore</p>
-                        <p class="hard_skills_txt">Back-End</p>
-                        <p class="hard_skills_txt">UI Development</p>
-                        <p class="hard_skills_txt">Javascript</p>
-                        <p class="hard_skills_txt">UI Development</p>
+                        <p class="hard_skills_txt" *ngFor="let role of value2Result.skills">{{role}}</p>
                       </td>
                     </tr>
                   </table>

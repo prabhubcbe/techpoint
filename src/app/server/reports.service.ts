@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ReportsService {
   env = environment;
 
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient) { }
 
   // t =
   //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtyaXNobmFrYXJyaTExMUBnbWFpbC5jb20iLCJpYXQiOjE2OTIxODAzMjIsImV4cCI6MTY5MjI2NjcyMn0.-fsHO7Py6ZFON9XOZ7Pz6S2hYIriQUCb841IXRqR37E';
@@ -87,8 +88,32 @@ export class ReportsService {
 
   comparision(data: any) {
     return this.http.post(
-      environment.url + environment.reportsPath + `/comparision`,
+      environment.url + environment.reportsPath + `/comparison`,
       data
     );
+  }
+
+  getRoles(value: any, obj: any) {
+    if (value === 'department') {
+      return this.http.get(
+        environment.url + environment.candidatePath + `/get_department_values`
+      );
+    } else if (value === 'employee') {
+      return this.http.post(
+        environment.url + environment.employeePath + `/get_all_employees`,
+        obj
+      );
+    } else if (value === 'role') {
+      return this.http.post(
+        environment.url + environment.candidatePath + `/get_all_job_roles`,
+        obj
+      );
+    } else if (value === 'organization') {
+      return of({code: 200, data: [{
+        id: obj.orgCode,
+        name: obj.organization
+      }] })
+    }
+    return of([]);
   }
 }

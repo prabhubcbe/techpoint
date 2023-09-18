@@ -59,35 +59,32 @@
                   <mat-form-field class="evaluation_DropdwonFilterFile">
                     <mat-select
                       panelClass="evaluation_select_panel"
-                      class="evaluation_select"
                       placeholder="Select dept/role/te..."
+                      [(ngModel)]="value1"
+                      (ngModelChange)="this.deptUpdate.next({value: $event, rolesList: 1})"
                     >
-                      <mat-option> list.name </mat-option>
-                      <mat-option> list.name </mat-option>
-                      <mat-option> list.name </mat-option>
+                    <mat-option *ngFor="let item of valueList"
+                    [value]="item.value" >{{ item.name }}</mat-option>
                     </mat-select>
                   </mat-form-field>
 
                   <!-- ************SEARCH BOX ********** -->
                   <div class="role_search__button">
-                    <input
-                      type="text"
-                      class="role_search_input"
-                      placeholder="Search Roles"
-                    />
-
-                    <!-- search icon -->
-                    <svg
-                      class="role_search__icon"
-                      aria-hidden="true"
-                      viewBox="0 0 24 24"
-                    >
-                      <g>
-                        <path
-                          d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
-                        ></path>
-                      </g>
-                    </svg>
+                    <mat-form-field class="evaluation_DropdwonFilterFile">
+                      <mat-select placeholder="Search Roles"
+                      [(ngModel)]="value1Role"
+                      panelClass="evaluation_select_panel"
+                      >
+                        <input
+                        type="text"
+                        class="role_search_input"
+                        placeholder="Search Roles"
+                        (keyup)="onKey($event, 1)"
+                      />
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let role of filteredRoles1List" [value]="role.id">{{role.name}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
                   </div>
                 </div>
                 <!--  -->
@@ -101,7 +98,7 @@
                     src="../../../../assets/icons/add_group.svg"
                     class="analysis_add_icon"
                   />
-                  <p class="add_txt">Add Value 1</p>
+                  <p class="add_txt">Add Value 2</p>
                 </div>
 
                 <!-- ****************** -->
@@ -109,35 +106,32 @@
                   <mat-form-field class="evaluation_DropdwonFilterFile">
                     <mat-select
                       panelClass="evaluation_select_panel"
-                      class="evaluation_select"
                       placeholder="Select dept/role/te..."
+                      [(ngModel)]="value2"
+                      (ngModelChange)="this.deptUpdate.next({value: $event, rolesList: 2})"
                     >
-                      <mat-option> list.name </mat-option>
-                      <mat-option> list.name </mat-option>
-                      <mat-option> list.name </mat-option>
+                    <mat-option *ngFor="let item of valueList"
+                    [value]="item.value" >{{ item.name }}</mat-option>
                     </mat-select>
                   </mat-form-field>
 
                   <!-- ************SEARCH BOX ********** -->
                   <div class="role_search__button">
-                    <input
-                      type="text"
-                      class="role_search_input"
-                      placeholder="Search Roles"
-                    />
-
-                    <!-- search icon -->
-                    <svg
-                      class="role_search__icon"
-                      aria-hidden="true"
-                      viewBox="0 0 24 24"
-                    >
-                      <g>
-                        <path
-                          d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
-                        ></path>
-                      </g>
-                    </svg>
+                    <mat-form-field class="evaluation_DropdwonFilterFile">
+                      <mat-select placeholder="Search Roles"
+                      [(ngModel)]="value2Role"
+                      panelClass="evaluation_select_panel"
+                      >
+                        <input
+                        type="text"
+                        class="role_search_input"
+                        placeholder="Search Roles"
+                        (keyup)="onKey($event, 2)"
+                      />
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let role of filteredRoles2List" [value]="role.id">{{role.name}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
                   </div>
                 </div>
                 <!--  -->

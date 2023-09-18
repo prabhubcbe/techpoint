@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ReportsService } from 'src/app/server/reports.service';
 import { Subject, takeUntil } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-comparsion',
@@ -19,6 +20,24 @@ export class ComparsionComponent {
   gaugeValue = 70;
   guageSizethick = 27;
   gaugeAppendText = '%';
+  softSKillsColValues = [
+    { name: 'ADAPTABILITY', key: 'adaptability' },
+    { name: 'COMMUNICATION', key: 'communication' },
+    { name: 'LEADERSHIP', key: 'leadership' },
+    { name: 'TEAM WORK', key: 'teamwork' },
+    { name: 'TIME MANAGEMENT', key: 'timemanagement' },
+    { name: 'CREATIVITIY', key: 'creativity' },
+    { name: 'ATTENTION TO DETAIL', key: 'attentiontodetail' },
+    { name: 'INTERPERSONAL SKILLS', key: 'interpersonalskills' },
+    { name: 'PROBLEM SOLVING', key: 'problemsolving' },
+    { name: 'WORK EHTIC', key: 'workethic' }
+  ];
+  aptitudeColValues = [
+    { name: 'REWARD', key: 'reward' },
+    { name: 'PROFESSION', key: 'profession' },
+    { name: 'SPIRIT', key: 'spirit' },
+    { name: 'PURPOSE', key: 'purpose' }
+  ];
 
   gaugecolor = '#2e585b';
   evaluvation_datalist = [
@@ -46,15 +65,23 @@ export class ComparsionComponent {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   comparisionResponse: any[] = [];
+  value1Data: any;
+  value2Data: any;
+  value1Result: any;
+  value2Result: any;
+  state: any;
 
   constructor(public api: ReportsService,
     private cdr: ChangeDetectorRef,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
-    private route: Router) {
+    private route: Router,
+    private location:Location) {
   }
 
   ngOnInit(): void {
+    console.log(this.location.getState());
+    this.state = this.location.getState();
     this.comparision();
   }
 
@@ -63,12 +90,12 @@ export class ComparsionComponent {
       orgCode: this.organizationCode,
       // TODO - Below values need to correct and pass dynamically
       value1: {
-        type: "department",
-        value: "IT"
+        type: this.state.value1,
+        value: this.state.value1Role
       },
       value2: {
-        type: "organization",
-        value: "CAT-1000"
+        type: this.state.value2,
+        value: this.state.value2Role
       }
     };
     this.api
@@ -77,6 +104,10 @@ export class ComparsionComponent {
       .subscribe({
         next: (response: any) => {
           this.comparisionResponse = response.data;
+          this.value1Result = response.data[0].result;
+          this.value2Result = response.data[1].result;
+          this.value1Data = this.transformChartData(response.data[0].result.chartData);
+          this.value2Data = this.transformChartData(response.data[1].result.chartData);
           // Manually trigger change detection
           this.cdr.detectChanges();
           if (response.code === 200) {
@@ -142,5 +173,54 @@ export class ComparsionComponent {
         duration: 6000,
       });
     }
+  }
+
+  departmentChartData(chart_data: any) {
+    let chartData: any[] = [];
+    if (chart_data && chart_data.adaptability) {
+      Object.keys(chart_data).forEach((key: any) => {
+        const skill1 = this.softSKillsColValues.find((s: any) => s.key.toLowerCase() === key.toLowerCase());
+        const skill2 = this.aptitudeColValues.find((s: any) => s.key.toLowerCase() === key.toLowerCase());
+        if (skill1 && chart_data[key]) {
+          chartData.push({
+            category: skill1.name,
+            latest_value: parseInt(chart_data[key]) / 2,
+            org_value: parseInt(chart_data[key]) / 2
+          });
+        }
+        if (skill2 && chart_data[key]) {
+          chartData.push({
+            category: skill2.name,
+            latest_value: parseInt(chart_data[key]) / 2,
+            org_value: parseInt(chart_data[key]) / 2
+          });
+        }
+      });
+    }
+    return chartData;
+  }
+
+  transformChartData(response: any) {
+      let softSkillsBaseLineValues: any[] = [];
+      let aptitudeBaseLineValues: any[] = [];
+      Object.keys(response).forEach((key: any) => {
+        const skill1 = this.softSKillsColValues.find((s: any) => s.key.toLowerCase() === key.toLowerCase());
+        const skill2 = this.aptitudeColValues.find((s: any) => s.key.toLowerCase() === key.toLowerCase());
+        if (skill1) {
+          softSkillsBaseLineValues.push({
+            category: skill1.name,
+            latest_value: parseInt(response[key]) / 2,
+            org_value: parseInt(response[key]) / 2
+          });
+        }
+        if (skill2) {
+          aptitudeBaseLineValues.push({
+            category: skill2.name,
+            latest_value: parseInt(response[key]) / 2,
+            org_value: parseInt(response[key]) / 2
+          });
+        }
+      });
+      return [...softSkillsBaseLineValues, ...aptitudeBaseLineValues];
   }
 }
