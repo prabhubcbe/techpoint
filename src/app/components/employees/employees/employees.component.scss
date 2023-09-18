@@ -674,7 +674,24 @@
   font-family: $Titillium_Regular;
   margin-bottom: 1px;
 }
+.notes_input {
+  width: 97.5%;
+  height: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
 
+  outline: none;
+
+  border: 1px solid #707070;
+  padding: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(172, 172, 172, 0.2),
+    rgba(233, 228, 223, 0.2)
+  );
+  font-size: 15px;
+}
 .circle_icons_shortlist {
   margin-left: -10px;
 
@@ -682,3 +699,20 @@
     font-size: 9px;
   }
 }
+.resources_dropDown {
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    background: linear-gradient(
+      90deg,
+      rgba(172, 172, 172, 0.2),
+      rgba(233, 228, 223, 0.2)
+    );
+    font-size: 15px;
+  }
+  ::ng-deep .mdc-notched-outline__leading {
+    border-radius: 0px !important;
+  }
+  ::ng-deep .mdc-notched-outline__trailing {
+    border-radius: 0px !important;
+  }
+}
+

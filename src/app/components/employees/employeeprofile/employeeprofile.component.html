@@ -1,3 +1,4 @@
+<!-- <app-spinner></app-spinner> -->
 <div class="component_container">
   <div class="bg_GreenGradient padding_100">
     <div class="Root_containerVariable pl-2">
@@ -73,15 +74,53 @@
                     </p>
                   </div>
                 </mat-tab>
-
                 <mat-tab>
                   <ng-template mat-tab-label>
                     <img src="../../../../assets/icons/sticky-note.svg" />
                     <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
                     <p class="tab_title1">Notes</p>
                   </ng-template>
-                  <div class="mat_tab_content"><p>content2</p></div>
+                  <div class="mat_tab_content">
+                    <p class="" *ngFor="let note of notesAdded">
+                      {{ note.notes }}
+                    </p>
+                  </div>
                 </mat-tab>
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <img
+                      width="23px"
+                      src="../../../../assets/icons/chat_black.svg"
+                    />
+                    <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
+                    <p class="tab_title1">Messages</p>
+                  </ng-template>
+                  <div class="mat_tab_content">
+                    <p class="" *ngFor="let msg of messagesRecived">
+                      {{ msg.message }}
+                    </p>
+                  </div>
+                </mat-tab>
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <i
+                      class="fa-solid fa-clipboard-list"
+                      style="font-size: 23px; color: black"
+                    ></i>
+                    <!-- <img
+                      width="23px"
+                      src="../../../../assets/icons/chat_black.svg"
+                    /> -->
+                    <!-- <mat-icon class="example-tab-icon">thumb_up</mat-icon> -->
+                    <p class="tab_title1">Tasks</p>
+                  </ng-template>
+                  <div class="mat_tab_content">
+                    <p class="" *ngFor="let task of actionsData">
+                      {{ task.task_desc }}-{{ task.due_date }}
+                    </p>
+                  </div>
+                </mat-tab>
+                
               </mat-tab-group>
             </mat-card>
             <!-- **************************SKILLS AND HUMAN SKILLS*************** -->
@@ -134,26 +173,35 @@
                 <p class="button_txt">DOWNLOAD REPORT</p>
               </div>
               <hr class="dotted_line" />
-              <div class="button_container">
+              <div 
+                class="button_container" 
+                (click)="addMsgDilaog(addMessages)"
+                style="cursor: pointer;"
+              >
                 <img src="../../../../assets/icons/messageProfile.svg" /><P
                   class="button_txt"
                   >SEND A MESSAGE</P
                 >
               </div>
-              <div class="notes_container">
-                <div class="img_border">
-                  <img src="../../../../assets/icons/tasksProfile.svg" />
-                </div>
-                <P class="button_txt">SEND A NOTES</P>
-              </div>
-              <div class="notes_container">
+              <div class="notes_container"
+                (click)="addTaskDilaog(addTask)"
+                style="cursor: pointer;">                
                 <div class="img_border">
                   <img src="../../../../assets/icons/addnotesProfile.svg" />
                 </div>
                 <P class="button_txt">SET A TASK</P>
               </div>
-              <div class="notes_container">
+              <div class="notes_container"  
+                (click)="addNotesDilaog(addNotes)"
+                style="cursor: pointer">
                 <div class="img_border">
+                  <img src="../../../../assets/icons/tasksProfile.svg" />
+                </div>
+                <P class="button_txt">ADD A NOTES</P>
+              </div>
+              
+              <div class="notes_container">
+                <div class="img_border" >
                   <img
                     src="../../../../assets/icons/convert_role_profile.svg"
                   />
@@ -495,3 +543,147 @@
     </div>
   </div>
 </div>
+<!-- ***************************DIALOGS**************************** -->
+
+<ng-template #addNotes>
+  <div class="bg-dailog1">
+    
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1" *ngIf="!roleIdHandler">
+          Candidates : applicants : Search : {{ candateDetails?.user_name }}
+        </p>
+        <p class="sub_txt1" *ngIf="roleIdHandler">
+          Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
+        </p>
+        <p class="sub_txt2">Add a Notes</p>
+      </div>
+      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+        <img src="../../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="containerDialog">
+    <b class="addNoteText">Add Notes</b>
+    <div class="row">
+      <textarea
+        [(ngModel)]="notesEntered"
+        placeholder="Enter detail"
+        class="notes_input1"
+      ></textarea>
+    </div>
+    <div class="role_dialog_btn_container1 pt-4">
+      <b><u>Close</u></b>
+      <button class="convert_btn1" (click)="saveNotes()">
+        <b>SAVE</b>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- **********************MESSAGES ********************** -->
+<ng-template #addMessages>
+  <div class="bg-dailog1"><!--options_container, bg-dailog -->
+    
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1" *ngIf="!roleIdHandler">
+          Candidates : applicants : Search : {{ candateDetails?.user_name }}
+        </p>
+        <p class="sub_txt1" *ngIf="roleIdHandler">
+          Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
+        </p>
+        <p class="sub_txt2">Add a Message</p>
+      </div>
+      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+        <img src="../../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="containerDialog">
+    <b class="addNoteText1">Add Message</b>
+    <div class="row">
+      <textarea
+        [(ngModel)]="MsgEntered"
+        placeholder="Enter Message"
+        class="notes_input1"
+      ></textarea>
+    </div>
+    <div class="role_dialog_btn_container1 pt-4">
+      <b><u>Close</u></b>
+      <button class="convert_btn1" (click)="saveMessage()">
+        <b>SAVE</b>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- **********************AADD TASKS ********************** -->
+<ng-template #addTask>
+  <div class="bg-dailog1">
+    
+    <div class="row p-0 m-0 dialogheader_container">
+      <div class="col-9 dialog_col">
+        <p class="sub_txt1" *ngIf="!roleIdHandler">
+          Candidates : applicants : Search : {{ candateDetails?.user_name }}
+        </p>
+        <p class="sub_txt1" *ngIf="roleIdHandler">
+          Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
+        </p>
+        <p class="sub_txt2">Add a Task</p>
+      </div>
+      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+        <img src="../../../../assets/icons/closeDialog.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="containerDialog">
+    <b class="addNoteText">Add Task description</b>
+    <div class="row">
+      <textarea
+        placeholder="Enter Message"
+        class="notes_input1"
+        [(ngModel)]="taskEntered"
+      ></textarea>
+    </div>
+    <div class="row pt-4">
+      <div class="col-6">
+        <p class="Pick Date"><b>Pick Resource</b></p>
+
+        <mat-form-field appearance="outline" class="resources_dropDown w-100">
+          <mat-select
+            [(ngModel)]="selecteResorce"
+            placeholder="select resource"
+          >
+            <mat-option *ngFor="let val of resourcesData" [value]="val">{{
+              val
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <p class="Pick Date"><b>Pick Date</b></p>
+        <mat-form-field appearance="outline" class="resources_dropDown w-100">
+          <mat-label>Input disabled</mat-label>
+          <input matInput [matDatepicker]="dp3" [(ngModel)]="dateActions" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="dp3"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    
+    <div class="role_dialog_btn_container1 pt-4">
+      <b><u>Close</u></b>
+      <button class="convert_btn1" (click)="savetask()">
+        <b>SAVE</b>
+      </button>
+    </div>
+  </div>
+</ng-template>

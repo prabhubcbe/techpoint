@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +24,9 @@ import { IndividualComponent } from '../individual/individual.component';
 
 import { D3ChartsModule } from '../../d3-charts/d3-charts.module';
 import { SearchFilterModule } from "../../../shared/search-filter/search-filter.module";
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
     declarations: [
@@ -50,7 +54,11 @@ import { SearchFilterModule } from "../../../shared/search-filter/search-filter.
         NgxGaugeModule,
         MatCardModule,
         D3ChartsModule,
-        SearchFilterModule
+        SearchFilterModule,
+        MatDialogModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatInputModule
     ]
 })
 export class EmployeesModule {}
