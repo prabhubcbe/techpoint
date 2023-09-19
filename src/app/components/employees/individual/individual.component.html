@@ -308,7 +308,7 @@
           <!-- <img src="../../../../../assets/icons/search.svg" alt="" /> -->
           <!-- *search icon -->
           <form role="search" method="get" id="searchform" action="">
-            <label for="s">
+            <label for="s">ssss
               <i
                 style="font-size: 20px"
                 class="fa-solid fa-magnifying-glass"
@@ -338,13 +338,11 @@
           <!-- <img src="../../../../../assets/icons/filter.svg" alt="filter" class="filter_Icon" /> -->
           <!-- **********************************filter icon****************** -->
           <div
-            [ngClass]="
-              FilterpanelIsOpen ? 'filter_icon_block_show' : 'filter_icon_block'
-            "
+            [ngClass]="FilterpanelIsOpen ? 'filter_icon_block_show1' : 'filter_icon_block1'"
           >
             <svg
               (click)="toggleFilter()"
-              class="filter_Icon_white"
+              class="filter_Icon_white1"
               width="29"
               height="27"
               viewBox="0 0 29 27"
@@ -382,7 +380,7 @@
                 [(ngModel)]="selectedStatus"
                 placeholder="Applicants"
                 value="value"
-                (click)="searchFilter()"
+                (selectionChange)="searchFilter()"
               >
                 <mat-option
                   *ngFor="let status of statusData"
@@ -514,7 +512,8 @@
             *ngFor="let employeeData of allEmployeesData"
           >
             <div class="cards_container_recommend">
-              <mat-card class="recommend_card">
+              <mat-card class="recommend_card"
+                (click)="employeeProfileRoute(employeeData)">
                 <div class="recommend_card_container">
                   <div class="image_overlay"></div>
                   <div class="candidateDummyImg">
@@ -565,15 +564,31 @@
               </mat-card>
             </div>
           </div>
+          <!-- paginator -->
+      <div class="paginator_roles">
+        <p class="paginator-info">
+          Page {{ paginator.pageIndex + 1 }} of
+          {{ totalCountOfEmployees }}
+        </p>
+        <mat-paginator
+          #paginator
+          [length]="totalCountOfEmployees"
+          [pageSize]="32"
+          class="page1"
+          (page)="getuserresultsViewAll($event)"
+        >
+        </mat-paginator>
+      </div>
         </div>
 
         <!-- card -->
       </div>
-      <div class="load_more">
+      <!-- <div class="load_more">
         <u
           ><i><p>Load More</p></i></u
         >
-      </div>
+      </div> -->
     </div>
+    <app-footer></app-footer>
   </div>
 </div>

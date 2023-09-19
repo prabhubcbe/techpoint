@@ -275,14 +275,39 @@
 .filter_icon_container {
   padding-top: 15px;
   display: flex;
-  justify-content: end;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  // gap: 20px;
   img {
     width: 24px;
     height: 24px;
   }
 }
+.filterContainer_icons {
+  display: flex;
+  gap: 20px;
+}
+.slectedFilter {
+  display: flex;
+  gap: 10rem;
+}
+.scale_loopTxt {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+// .scale_txt {
 
+// }
+.selectedRoles {
+  font-size: 13px;
+  background: $Primary_greenGrdientReverse;
+  border-radius: 50px;
+  padding: 7px 13px 7px 13px;
+  color: white;
+}
+// .selectedEvalution {
+// }
 .filter_icon_block_show {
   width: 32px;
   height: 32px;
@@ -727,3 +752,87 @@
   padding-top: 30px;
   font-size: 18px;
 }
+// *******************paginator**************************
+.paginator_roles {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  place-items: end;
+  p {
+    font-size: 15px;
+    font-family: $Titillium_Bold;
+  }
+}
+.page1 {
+  background: transparent;
+  color: #000;
+  padding-top: 10px;
+  ::ng-deep .mat-mdc-paginator-page-size {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-paginator-icon {
+    background: #fff;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+  }
+  ::ng-deep .mat-mdc-paginator-range-label {
+    display: none;
+    // font-weight: 500;
+    // margin: 12px 0px 0 24px;
+    // font-size: 15px;
+    // word-spacing: -1.5px;
+  }
+
+  ::ng-deep
+    .mat-mdc-icon-button:hover
+    .mat-mdc-button-persistent-ripple::before {
+    display: none !important;
+  }
+
+  ::ng-deep
+    .mat-mdc-icon-button:active
+    .mat-mdc-button-persistent-ripple::before {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-button-persistent-ripple .mdc-icon-button__ripple {
+    display: none import !important;
+  }
+}
+.filter_icon_block_show1 {
+  width: 32px;
+  height: 32px;
+  background: $Primary_Blue;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .filter_Icon_white1 {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    path {
+      stroke: white;
+    }
+  }
+}
+.filter_icon_block1 {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .filter_Icon_white1 {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    path {
+      stroke: black;
+    }
+  }
+}
+

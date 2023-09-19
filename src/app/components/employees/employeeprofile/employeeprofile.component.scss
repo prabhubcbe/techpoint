@@ -28,68 +28,7 @@
   }
 }
 
-// ***********************Profile container***********************
-.profile_container {
-  padding-top: 50px;
-  color: white;
-  .profile_image_card {
-    width: 100%;
-    height: 450px;
-    border-radius: 10px 10px 0 0;
-    background: $Primary_RedGradient;
-  }
-  .candidate_profile_icon {
-    text-align: center;
-    font-size: 300px;
-    padding-top: 50px;
-    opacity: 0.1;
-    position: relative;
-  }
-  .candidate_name_container {
-    padding-left: 67px;
-    position: absolute;
-    top: 230px;
-    .name {
-      font-size: 44px;
-      font-family: $Titillium_Bold;
-    }
-    .sprints {
-      font-size: 16px;
-      padding-top: 8px;
-    }
-  }
-  .details_container {
-    padding-left: 67px;
-  }
-  .title_details {
-    text-transform: uppercase;
-    margin: 0px;
-    font-family: Titillium Web;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 18px;
-    letter-spacing: 0em;
-    text-align: left;
 
-  }
-  .result_details {
-    font-family: Titillium Web;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-  }
-  .result_details_status {
-    background-color: white;
-    width: 60%;
-    height: 40px;
-    border-radius: 10px;
-    color: black;
-    text-align: center;
-    padding-top: 10px;
-  }
-}
 // *************************PROFILES AND NOTES CONTAINER*************************
 .profile_notes_container {
   // height: 500px;
@@ -770,5 +709,72 @@
   gap: 37px;
   u {
     font-family: $Titillium_Bold;
+  }
+}
+// ***********************Profile container***********************
+.profile_container {
+  padding-top: 50px;
+  color: white;
+  .profile_image_card {
+    width: 100%;
+    height: 450px;
+    border-radius: 10px 10px 0 0;
+    background: $Primary_RedGradient;
+  }
+  .candidate_profile_icon {
+    text-align: center;
+    font-size: 300px;
+    padding-top: 50px;
+    opacity: 0.1;
+    position: relative;
+  }
+  .candidate_name_container {
+    padding-left: 67px;
+    position: absolute;
+    top: 230px;
+    .name {
+      font-size: 44px;
+      font-family: $Titillium_Bold;
+    }
+    .sprints {
+      font-size: 16px;
+      padding-top: 8px;
+    }
+  }  
+  .details_container {
+    z-index: 5;
+
+    padding-left: 67px;
+    position: absolute;
+    top: 22rem;
+    width: 100%;
+  }
+  .title_details {
+    text-transform: uppercase;
+    margin: 0px;
+    font-family: Titillium Web;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+
+  }
+  .result_details {
+    font-family: Titillium Web;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .result_details_status {
+    background-color: white;
+    width: 60%;
+    height: 40px;
+    border-radius: 10px;
+    color: black;
+    text-align: center;
+    padding-top: 10px;
   }
 }

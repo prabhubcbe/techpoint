@@ -82,6 +82,8 @@ export class IndividualComponent implements OnInit {
   filteredToppingList: string[] = []; // Array of filtered toppings
   searchPanelIsOpen = false;
   allEmployeesData: any;
+  pageIndex = 1;
+  pageSize = 8;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(private router: Router, public api: ServerService, private cdr: ChangeDetectorRef, private http: HttpClient, public snackBar: MatSnackBar)    {
@@ -91,12 +93,16 @@ export class IndividualComponent implements OnInit {
     });
     this.filteredToppingList = this.toppingList; // Initialize filtered toppings list with all toppings
     //this.getAllEmployeesData();
+    // this.pageIndex=1;
+    // this.pageSize=10;
   }
   ngOnInit(): void {
     this.getAllEmployeesData()
     this.getDepartmentDropDown();
     this.getAllRolesData();
     this.statusLevelDropDown();
+    console.log("FilterpanelIsOpen###");
+    console.log(this.FilterpanelIsOpen);
   }
 
   onToppingRemoved(topping: string) {
@@ -215,8 +221,8 @@ export class IndividualComponent implements OnInit {
       "email": this.loginEmail,
       "orgCode": this.organizationCode,
       "organization": this.organizationName,
-      "pageNo": 1,
-      "pageSize": 5
+      "pageNo": this.pageIndex,
+      "pageSize": this.pageSize
     };
 
     this.api
@@ -225,6 +231,7 @@ export class IndividualComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           this.allEmployeesData = response.data;
+          this.totalCountOfEmployees = this.allEmployeesData?.length;// get the total_count value from api, for now the api has to modify to get this value for setting pagination.
           // Manually trigger change detection
           this.cdr.detectChanges();
           if (response.code === 200) {
@@ -243,6 +250,21 @@ export class IndividualComponent implements OnInit {
           // Handle the error here, for example, display an error message
         },
       });
+  }
+  // ********************EMPLOYEE PROFILE ROUTE********************
+  employeeProfileRoute(data: any){
+    this.router.navigate(['/employees/employeeprofile'], {
+      queryParams: {
+        userId: data.user_id,
+      },
+    });
+  }
+  getuserresultsViewAll(event: any) {
+    console.log(event, 'event');
+    this.pageIndex = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+
+    this.getAllEmployeesData();
   }
   // ***********RESPONSE NO DATA*************
   responseNoData(response: any) {

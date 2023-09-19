@@ -223,4 +223,7 @@ export class ComparsionComponent {
       });
       return [...softSkillsBaseLineValues, ...aptitudeBaseLineValues];
   }
+  truncate(num:any, places: any){
+    return Math.trunc(num * Math.pow(10,places)) / Math.pow(10, places);
+  }
 }

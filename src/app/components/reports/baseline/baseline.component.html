@@ -416,8 +416,8 @@
                           or in the team.
                         </p>
 
-                        <div class="alert_badges" *ngFor="let alert of selectedRole.work_preferences">
-                          <p class="hard_skills_txt">{{alert}}</p>
+                        <div class="alert_badges" *ngFor="let alert of selectedRole.work_preferences" cdkDrag><!--class="alert_badges" hard_skills_txt-->
+                          {{ alert}}
                         </div>
                       </div>
                     </div>

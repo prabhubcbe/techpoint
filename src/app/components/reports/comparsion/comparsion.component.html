@@ -74,7 +74,7 @@
                         </div>
                         <div *ngIf="state.value1Role != 'employee'">
                           <mat-card class="recommend_graph_card">
-                            <p class="title_txt">
+                            <p class="title_txt" style="text-align: center;">
                               {{state.value1Role}}
                             </p>
                             <app-radial-stacked-chart
@@ -115,7 +115,7 @@
                         </div>
                         <div *ngIf="state.value1Role != 'employee'">
                           <mat-card class="recommend_graph_card">
-                            <p class="title_txt">
+                            <p class="title_txt" style="text-align: center;">
                               {{state.value2Role}}
                             </p>
                             <app-radial-stacked-chart
@@ -141,8 +141,8 @@
                     <!-- *****************ROW4******************** -->
                     <tr class="main_content_table_row2">
                       <td class="main_content_table_sl2_1">Sprints</td>
-                      <td class="main_content_table_sl2_2">{{value1Result.avgSprintsCount}}</td>
-                      <td class="main_content_table_sl2_3">{{value2Result.avgSprintsCount}}</td>
+                      <td class="main_content_table_sl2_2">{{ truncate(value2Result.avgSprintsCount,2) }}</td>
+                      <td class="main_content_table_sl2_3">{{ truncate(value2Result.avgSprintsCount,2) }}</td>
                     </tr>
                   </table>
                 </div>

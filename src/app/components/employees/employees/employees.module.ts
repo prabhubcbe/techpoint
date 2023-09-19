@@ -27,6 +27,7 @@ import { SearchFilterModule } from "../../../shared/search-filter/search-filter.
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { FooterModule } from "../../../core/footer/footer/footer.module";
 
 @NgModule({
     declarations: [
@@ -58,7 +59,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatDialogModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        MatInputModule
+        MatInputModule,
+        FooterModule
     ]
 })
 export class EmployeesModule {}

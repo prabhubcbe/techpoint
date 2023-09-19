@@ -143,7 +143,7 @@ export class BaselineComponent {
       email: 'karthik@catenate.io',
       organization: this.organizationName,
       pageNo: 1,
-      pageSize: 3
+      pageSize: 9
     };
     this.api
       .getAllJobRolesInReports(obj)
