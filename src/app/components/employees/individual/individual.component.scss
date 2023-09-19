@@ -663,7 +663,6 @@
     line-height: 18px;
     letter-spacing: 0em;
     text-align: left;
-
   }
   .result_details {
     font-family: Titillium Web;
@@ -836,3 +835,57 @@
   }
 }
 
+#searchform {
+  display: inline;
+  font-size: 1em;
+  // border-radius: 8em;
+  // border: 0.1em solid rgba(218, 208, 190, 1);
+  // box-shadow: 0 0 0.3em rgba(60, 60, 60, 0.4);
+  // padding: 0.3em;
+  // background: white;
+  height: 40px;
+
+  input[type="text"] {
+    top: -5px;
+    padding: 6px 0 0 35px;
+
+    // left: 15px;
+    position: relative;
+  }
+  ::placeholder {
+    position: relative;
+    padding-top: 5px;
+  }
+
+  label {
+    padding-left: 1px;
+    display: inline-block;
+    margin-top: 0.3em;
+    // color: rgba(218, 208, 190, 1);
+    text-shadow: 0 0 0.1em rgba(60, 60, 60, 0.3);
+    position: relative;
+    left: 2.2em;
+    z-index: 999;
+  }
+}
+#s {
+  transition: all 0.2s ease-out;
+  width: 1px;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  margin: 0;
+  padding-bottom: 10px !important;
+  border: 0;
+  background-color: transparent;
+  opacity: 0;
+}
+#s:focus {
+  width: 14em;
+  border-radius: 8em;
+  border: 0.1em solid rgba(218, 208, 190, 1);
+  // box-shadow: 0 0 0.3em rgba(60, 60, 60, 0.4);
+  padding: 0.3em;
+  background: white;
+  opacity: 1;
+}

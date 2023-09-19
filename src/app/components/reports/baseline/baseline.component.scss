@@ -458,6 +458,56 @@
   }
 }
 
+// *******************paginator**************************
+.paginator_roles {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  place-items: end;
+  p {
+    font-size: 15px;
+    font-family: $Titillium_Bold;
+  }
+}
+.page1 {
+  background: transparent;
+  color: #000;
+  padding-top: 10px;
+  ::ng-deep .mat-mdc-paginator-page-size {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-paginator-icon {
+    background: #fff;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+  }
+  ::ng-deep .mat-mdc-paginator-range-label {
+    display: none;
+    // font-weight: 500;
+    // margin: 12px 0px 0 24px;
+    // font-size: 15px;
+    // word-spacing: -1.5px;
+  }
+
+  ::ng-deep
+    .mat-mdc-icon-button:hover
+    .mat-mdc-button-persistent-ripple::before {
+    display: none !important;
+  }
+
+  ::ng-deep
+    .mat-mdc-icon-button:active
+    .mat-mdc-button-persistent-ripple::before {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-button-persistent-ripple .mdc-icon-button__ripple {
+    display: none import !important;
+  }
+}
+
 // **************alerts for soft skills card****************
 .alerts {
   padding-top: 50px;

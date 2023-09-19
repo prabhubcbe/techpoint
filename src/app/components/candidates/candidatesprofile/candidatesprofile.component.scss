@@ -724,3 +724,137 @@
     border-radius: 0px !important;
   }
 }
+
+.slidecontainer {
+  width: 95%;
+
+  .slider_skill {
+    width: 95%;
+    margin: 0;
+    height: 10px;
+    margin-top: 5px;
+  }
+
+  .title_sill {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // font-family: $Titillium_Bold;
+    font-weight: 700;
+    padding-top: 20px;
+    font-size: 13px;
+
+    // font-size: 0.9vw;
+    // font-size: clamp(10px, 2vw, 16px);
+  }
+
+  .rating_txt {
+    font-size: 11px;
+    font-family: $Titillium_Light;
+    padding-top: 20px;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__thumb-knob {
+    display: none;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__track {
+    background: $Primary_greenGrdientReverse;
+    border-radius: 10px;
+    height: 6px;
+    border-bottom: 1px solid white;
+    border-top: 1px solid black;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__track--inactive {
+    background: $Primary_greenGrdientReverse;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    overflow: hidden;
+    height: 6px;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__track--active {
+    background: $Primary_greenGrdientReverse;
+    overflow: hidden;
+    height: 6px;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__track--active_fill {
+    background: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border: none;
+    height: 6px;
+    border-radius: 50px;
+  }
+
+  ::ng-deep .mat-mdc-slider-visual-thumb .mat-ripple {
+    display: none;
+  }
+}
+
+.slidecontainer {
+  width: 95%;
+
+  .slider_skill {
+    width: 95%;
+    margin: 0;
+    height: 10px;
+    margin-top: 5px;
+  }
+
+  .title_sill {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // font-family: $Titillium_Bold;
+    font-weight: 700;
+    padding-top: 20px;
+    font-size: 13px;
+    color: black;
+  }
+
+  .rating_txt {
+    font-size: 11px;
+    font-family: $Titillium_Light;
+    padding-top: 20px;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__thumb-knob {
+    display: none;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__track {
+    background: $Primary_greenGrdientReverse;
+    border-radius: 10px;
+    height: 6px;
+    border-bottom: 1px solid white;
+    border-top: 1px solid black;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__track--inactive {
+    background: $Primary_greenGrdientReverse;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    overflow: hidden;
+    height: 6px;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__track--active {
+    background: $Primary_greenGrdientReverse;
+    overflow: hidden;
+    height: 6px;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__track--active_fill {
+    background: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border: none;
+    height: 6px;
+    border-radius: 50px;
+  }
+
+  ::ng-deep .mat-mdc-slider-visual-thumb .mat-ripple {
+    display: none;
+  }
+}

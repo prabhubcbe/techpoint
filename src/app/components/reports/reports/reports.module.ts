@@ -14,6 +14,7 @@ import { BaselineComponent } from '../baseline/baseline.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -45,6 +46,7 @@ import { D3ChartsModule } from "../../d3-charts/d3-charts.module";
         MatTabsModule,
         MatCheckboxModule,
         MatSliderModule,
+        MatPaginatorModule,
         DragDropModule,
         MatChipsModule,
         FormsModule,

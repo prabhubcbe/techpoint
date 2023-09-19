@@ -56,7 +56,7 @@
                       <!-- *****************TEAMS CARDS********************* -->
       <div class="roles_cards_container">
         <div class="row">
-          <div class="col-lg-4 col-md-4" *ngFor="let role of jobRolesInReports">
+          <div class="col-lg-4 col-md-4" *ngFor="let role of jobRolesInReportsPerPage">
             <mat-card class="roles_card" (click)="showRolesBaseline(role)">
               <div class="cards_header">
                 <div class="actions_container">
@@ -111,6 +111,21 @@
               </div>
             </mat-card>
           </div>
+          <!-- paginator -->
+      <div class="paginator_roles">
+        <p>
+          Page {{ rolePaginator.pageIndex + 1 }} of
+          {{ _math.ceil(jobRolesInReports.length / defaultRecords ) }}
+        </p>
+        <mat-paginator
+          #rolePaginator
+          [length]="jobRolesInReports.length"
+          [pageSize]="defaultRecords"
+          class="page1"
+          (page)="onRolePaginateChange($event)"
+        >
+        </mat-paginator>
+      </div>
         </div>
       </div>
                 <!-- ************************ROLE CARDS******************* -->
@@ -441,7 +456,7 @@
 
                     <!-- *********MAIN_CONTAINER************* -->
                     <div class="row main_container" >
-                      <div class="col-6"  *ngFor="let department of departmentsInReports">
+                      <div class="col-6"  *ngFor="let department of departmentsInReportsPerPage">
                         <div *ngIf="department.department">
                           <strong>{{department.department.toUpperCase()}}</strong>
                           <div>Employee Count : {{department.employee_count}}</div>
@@ -455,6 +470,20 @@
                             </app-radial-stacked-chart>
                           </mat-card>
                         </div>
+                      </div>
+                      <div class="paginator_roles">
+                        <p>
+                          Page {{ paginator.pageIndex + 1 }} of
+                          {{ _math.ceil(departmentsInReports.length / defaultRecords) }}
+                        </p>
+                        <mat-paginator
+                          #paginator
+                          [length]="departmentsInReports.length"
+                          [pageSize]="defaultRecords"
+                          class="page1"
+                          (page)="onPaginateChange($event)"
+                        >
+                        </mat-paginator>
                       </div>
                     </div>
                   </mat-card>

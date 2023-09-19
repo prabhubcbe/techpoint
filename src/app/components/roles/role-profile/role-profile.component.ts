@@ -761,7 +761,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
       });
   }
   openGlobalSuccessDialog(msg: any) {
-    const message = `! ${msg}`;
+    const message = `${msg}`;
     // const note = `Based on the employees selected, ${this.rolesSavedCount[0].role_name} roles have been created`;
     this.dialog.closeAll();
     this.dialog.open(SuccessdialogComponent, {
@@ -816,6 +816,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
 
   // *********EMPLOYEES NAMES DROP DOWN************
   async EmployeesDropDown() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
     let obj = {
       email: this.loginEmail,
       orgCode: this.organizationCode,
@@ -835,7 +836,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
           );
 
           this.bankMultiCtrl.setValue(selectedRoles);
-
+          this.loadSpinner.setLoading(false); // Manually trigger the spinner
           this.cdr.detectChanges();
         },
         error: (error: any) => {

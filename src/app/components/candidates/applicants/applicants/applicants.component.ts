@@ -14,6 +14,7 @@ import { ServerService } from 'src/app/server/server.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSelectChange } from '@angular/material/select';
 import { LoadSpinnerService } from 'src/app/shared/load-spinner.service';
+
 @Component({
   selector: 'app-applicants',
   templateUrl: './applicants.component.html',
@@ -25,7 +26,7 @@ export class ApplicantsComponent implements OnInit {
   loginEmail = localStorage.getItem('loginEmail');
   FilterpanelIsOpen = false;
   searchText = '';
-  toppingsControl = new FormControl<string[]>([]); // Form control for toppings selection
+  toppingsControl = new FormControl(); // Form control for toppings selection
   evaluation_DropdwonForm = new FormControl(); // Form control for evaluation dropdown selection
   department_DropdownForm = new FormControl([]); // Form control for department dropdown selection
   bankFilterCtrl = new FormControl(); // Form control for bank filter
@@ -49,7 +50,7 @@ export class ApplicantsComponent implements OnInit {
       value: '60-80',
     },
     {
-      id: 'PerfetFit',
+      id: 'PerfectFit',
       value: '80-100',
     },
   ];
@@ -62,12 +63,15 @@ export class ApplicantsComponent implements OnInit {
   // EvalutionFunctioList: any;
   departmentsDataList: any;
   RolesDataList: any;
+
   filterSelectedRoles: any[] = [];
   filteredRolesDataList: any;
   selectedStatus: any;
   totalCountOfEmployees: any;
   pageIndex = 1;
   pageSize = 32;
+  selectedRolenamesEvent: any[] = [];
+  roles: { role_name: string; role_id: number }[] = [];
 
   constructor(
     public api: ServerService,
@@ -95,39 +99,6 @@ export class ApplicantsComponent implements OnInit {
     // console.log('filteredRolesDataList:', this.filteredRolesDataList);
   }
 
-  // onToppingRemoved(topping: string) {
-  //   console.log('onToppingRemoved', topping);
-  //   const toppings = this.toppingsControl.value as string[];
-
-  //   for (let i = 0; i < this.RolesDataList.length; i++) {
-  //     if (topping.includes(this.RolesDataList[i].role_name)) {
-  //       let indexinSelectedRole = this.filterSelectedRoles.findIndex(
-  //         (role: any) => role === this.RolesDataList[i].role_id
-  //       );
-
-  //       this.filterSelectedRoles.splice(indexinSelectedRole, 1);
-  //     }
-  //   }
-  //   this.removeFirst(toppings, topping); // Remove the first occurrence of the topping
-  //   this.toppingsControl.setValue(toppings); // Update the selected toppings
-  // }
-
-  onToppingRemoved(topping: string) {
-    //  Find role IDs associated with the removed topping
-    const selectedRoleIds = this.RolesDataList.filter((role: any) =>
-      topping.includes(role.role_name)
-    ) // Filter roles by matching topping
-      .map((role: any) => role.role_id); // Extract role IDs
-    //  Filter out role IDs that are associated with the removed topping
-    this.filterSelectedRoles = this.filterSelectedRoles.filter(
-      (roleId) => !selectedRoleIds.includes(roleId)
-    ); // Keep only roles not in selectedRoleIds
-    //  Update the selected toppings in the form control
-    const toppings = this.toppingsControl.value as string[];
-    this.removeFirst(toppings, topping); // Remove the first occurrence of the topping
-    this.toppingsControl.setValue(toppings); // Update the selected toppings
-  }
-
   private removeFirst<T>(array: T[], toRemove: T): void {
     console.log('removeFirst', array, toRemove);
     const index = array.indexOf(toRemove); // Find the index of the item to remove
@@ -137,6 +108,8 @@ export class ApplicantsComponent implements OnInit {
   }
 
   searchFilterLevel(event: any) {
+    console.log(event, 'event');
+    console.log(this.toppingsControl, 'toppingsControl');
     const filterValue = event.target.value.toLowerCase(); // Get the entered filter value
     this.filteredRolesDataList = this.RolesDataList.filter((role: any) =>
       role.role_name.toLowerCase().includes(filterValue)
@@ -307,25 +280,43 @@ export class ApplicantsComponent implements OnInit {
       });
   }
 
+  onToppingRemoved(topping: any) {
+    console.log('onToppingRemoved', topping);
+    const roleIdToRemove = topping.role_id;
+    this.filterSelectedRoles = this.filterSelectedRoles.filter(
+      (roleId) => roleId !== roleIdToRemove
+    );
+    this.selectedRolenamesEvent = this.selectedRolenamesEvent.filter(
+      (roleId) => roleId !== roleIdToRemove
+    );
+    const toppings = this.roles.filter(
+      (role) => role.role_id !== roleIdToRemove
+    );
+    this.toppingsControl.setValue(toppings);
+    this.roles = this.toppingsControl.value;
+  }
+
   // *************ON ROLE CHANGE************
+
   onRoleChange(event: any) {
-    console.log('ON ROLE CHANGE', event);
-    this.filterSelectedRoles = [];
-    // Iterate through each role in the RolesDataList array
-    for (let i = 0; i < this.RolesDataList.length; i++) {
-      // Check if the role_name from the RolesDataList is included in the selected roles (event.value)
-      if (event.value.includes(this.RolesDataList[i].role_name)) {
-        // If the current role_name is selected, push its role_id into the filterSelectedRoles array
-        this.filterSelectedRoles.push(this.RolesDataList[i].role_id);
-      }
-    }
-    console.log(this.filterSelectedRoles, 'filterSelectedRoles');
+    this.roles = this.toppingsControl.value as {
+      role_name: string;
+      role_id: number;
+    }[]; // Add this line
+
+    this.selectedRolenamesEvent = [];
+    this.selectedRolenamesEvent = this.roles.map((role: any) => role.role_id);
+    console.log('selectedRolenamesEvent', this.selectedRolenamesEvent);
+
+    this.toppingsControl.setValue(this.roles);
+
+    console.log(this.toppingsControl, 'toppingsControl');
   }
 
   // ***********SEARCH FILTER*************
   searchFilter() {
     this.loadSpinner.setLoading(true);
-    // console.log('search filter', this.evaluation_DropdwonForm);
+
     console.log('DEPARTMENTVLAUE FORM:', this.evaluation_DropdwonForm);
     let obj = {
       email: this.loginEmail,
@@ -335,7 +326,7 @@ export class ApplicantsComponent implements OnInit {
       pageSize: 102,
       userType: 'candidate',
       department: this.department_DropdownForm.value,
-      roleIdArray: this.filterSelectedRoles,
+      roleIdArray: this.selectedRolenamesEvent,
       scale: this.evaluation_DropdwonForm.value?.value,
       status: this.selectedStatus,
     };
@@ -348,8 +339,8 @@ export class ApplicantsComponent implements OnInit {
           this.allEmployeesData = response.data;
           this.totalCountOfEmployees = response.data.length;
           console.log('SEARCH FILTER RESPONSE:', response);
+          this.loadSpinner.setLoading(false);
           if (response.code === 200) {
-            this.loadSpinner.setLoading(false);
             this.cdr.detectChanges();
             console.log('SEARCH FILTER RESPONSE:', response.data);
             // this.responseSuccess(response);
@@ -376,6 +367,7 @@ export class ApplicantsComponent implements OnInit {
     this.snackBar.open(response.message, '×', {
       panelClass: ['custom-style'],
       verticalPosition: 'top',
+      duration: 3000,
     });
     // this.getAllCandidatesData();
   }

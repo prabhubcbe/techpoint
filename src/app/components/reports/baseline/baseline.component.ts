@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ReportsService } from 'src/app/server/reports.service';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-baseline',
@@ -19,6 +20,10 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
   styleUrls: ['./baseline.component.scss'],
 })
 export class BaselineComponent {
+  @ViewChild('paginator')
+  paginator!: MatPaginator;
+  @ViewChild('rolePaginator')
+  rolePaginator!: MatPaginator;
   isFirstButtonActive: boolean = true;
   roles_onfirst = true;
   roles_onSecond = false;
@@ -34,7 +39,10 @@ export class BaselineComponent {
   aptitudeBaseLineValues: any[] = [];
   rolesChartData: any[] = [];
   jobRolesInReports: any[] = [];
+  jobRolesInReportsPerPage: any[] = [];
   departmentsInReports: any[] = [];
+  departmentsInReportsPerPage: any[] = [];
+  pageEvent: any;
   orgChartData: any[] = [];
   softSKillsColValues = [
     { name: 'ADAPTABILITY', key: 'adaptability' },
@@ -54,6 +62,9 @@ export class BaselineComponent {
     { name: 'SPIRIT', key: 'spirit' },
     { name: 'PURPOSE', key: 'purpose' }
   ];
+  defaultRecords: any = 5;
+  _math = Math;
+
   organizationCode = localStorage.getItem('org-code');
   organizationName = localStorage.getItem('organization');
   loginEmail = localStorage.getItem('loginEmail');
@@ -71,6 +82,16 @@ export class BaselineComponent {
   ngOnInit(): void {
     this.getAllJobRolesInReports();
     this.getBaselineValues();
+  }
+
+  onPaginateChange(data: any) {
+    const start = data.pageIndex * data.pageSize;
+    this.departmentsInReportsPerPage = this.departmentsInReports.slice(start,  start + data.pageSize);
+  }
+
+  onRolePaginateChange(data: any) {
+    const start = data.pageIndex * data.pageSize;
+    this.jobRolesInReportsPerPage = this.jobRolesInReports.slice(start,  start + data.pageSize);
   }
 
   onTabChange(event: MatTabChangeEvent) {
@@ -138,6 +159,7 @@ export class BaselineComponent {
   }
 
   getAllJobRolesInReports() {
+    this.rolePaginator.firstPage();
     const obj = {
       orgCode: this.organizationCode,
       email: 'karthik@catenate.io',
@@ -154,6 +176,7 @@ export class BaselineComponent {
           this.jobRolesInReports.map(role => {
             role.chart_data = this.departmentChartData(role.chart_data);
           })
+          this.jobRolesInReportsPerPage = this.jobRolesInReports.slice(0, this.defaultRecords);
           // Manually trigger change detection
           this.cdr.detectChanges();
           if (response.code === 200) {
@@ -174,6 +197,7 @@ export class BaselineComponent {
   }
 
   getAllDepartmentsInReports() {
+    this.paginator.firstPage();
     const obj = {
       orgCode: this.organizationCode,
       pageNo: 1,
@@ -188,6 +212,7 @@ export class BaselineComponent {
           this.departmentsInReports.map(department => {
             department.chart_data = this.departmentChartData(department.chart_data);
           })
+          this.departmentsInReportsPerPage = this.departmentsInReports.slice(0, this.defaultRecords);
           // Manually trigger change detection
           this.cdr.detectChanges();
           if (response.code === 200) {

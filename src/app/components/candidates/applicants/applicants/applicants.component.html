@@ -87,11 +87,14 @@
                 <mat-select-trigger>
                   <mat-chip-listbox>
                     <mat-chip
-                      *ngFor="let topping of toppingsControl.value?.slice(0, 1)"
+                      *ngFor="
+                        let topping of toppingsControl.value?.slice(0, 1);
+                        let i = index
+                      "
                       [removable]="true"
                       (removed)="onToppingRemoved(topping)"
                     >
-                      {{ topping }}
+                      {{ topping.role_name }}
                       <mat-icon matChipRemove>cancel</mat-icon>
                     </mat-chip>
                     <mat-chip
@@ -106,10 +109,11 @@
                 </mat-select-trigger>
                 <mat-option
                   *ngFor="let roles of filteredRolesDataList; let i = index"
-                  [value]="roles.role_name"
+                  [value]="roles"
                 >
                   {{ roles.role_name }}
                 </mat-option>
+                <!-- [value]="roles.role_name" -->
               </mat-select>
             </mat-form-field>
           </div>
@@ -193,16 +197,17 @@
             <div class="scale_loopTxt">
               <p
                 class="selectedRoles"
-                *ngFor="let role of toppingsControl.value | slice : 0 : 6"
+                *ngFor="let role of roles | slice : 0 : 6; let i = index"
               >
-                {{ role }}
-
+                {{ role?.role_name }}
                 <b
                   style="margin-left: 8px; cursor: pointer; font-size: 14px"
                   (click)="onToppingRemoved(role)"
-                  >x</b
                 >
+                  x
+                </b>
               </p>
+
               <mat-chip
                 *ngIf="
                   toppingsControl.value != null &&
@@ -216,7 +221,7 @@
           <div class="scale" *ngIf="evaluation_DropdwonForm.value">
             <b class="scale_txt">SCALE</b>
             <p class="selectedRoles">
-              {{ evaluation_DropdwonForm.value
+              {{ evaluation_DropdwonForm.value?.id
               }}<b
                 style="margin-left: 8px; cursor: pointer; font-size: 14px"
                 (click)="onRemoveEvalvationDropdown()"

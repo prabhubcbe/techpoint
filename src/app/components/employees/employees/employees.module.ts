@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FooterModule } from "../../../core/footer/footer/footer.module";
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
     declarations: [
@@ -60,7 +61,8 @@ import { FooterModule } from "../../../core/footer/footer/footer.module";
         MatDatepickerModule,
         MatNativeDateModule,
         MatInputModule,
-        FooterModule
+        FooterModule,
+        MatSliderModule
     ]
 })
 export class EmployeesModule {}

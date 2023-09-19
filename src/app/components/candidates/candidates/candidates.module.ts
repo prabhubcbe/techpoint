@@ -28,6 +28,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { SpinnerModuleModule } from 'src/app/shared/spinner-module/spinner-module.module';
+import { MatSliderModule } from '@angular/material/slider';
 @NgModule({
   declarations: [
     CandidatesComponent,
@@ -61,6 +62,7 @@ import { SpinnerModuleModule } from 'src/app/shared/spinner-module/spinner-modul
     MatDatepickerModule,
     SpinnerModuleModule,
     MatNativeDateModule,
+    MatSliderModule
   ],
 })
 export class CandidatesModule {}

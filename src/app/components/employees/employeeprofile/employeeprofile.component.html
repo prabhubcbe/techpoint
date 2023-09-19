@@ -129,7 +129,7 @@
                     </p>
                   </div>
                 </mat-tab>
-                
+
               </mat-tab-group>
             </mat-card>
             <!-- **************************SKILLS AND HUMAN SKILLS*************** -->
@@ -141,12 +141,40 @@
               </p>
             </mat-card>
             <!-- *******************GRAPH****************************** -->
-            <mat-card class="graph_conatiner">
-              <app-radial-stacked-chart
-                id="2"
-                [data]="employeeDetails?.result_values"
-                [svgHeight]="'500px'"
-              ></app-radial-stacked-chart>
+            <mat-card class="mat_tab_content">
+              <div class="row">
+                <div class="col">
+                  <div class="slidecontainer" *ngFor="let skill of employeeDetails?.result_values; index as i">
+                    <div class="title_sill" *ngIf="i < 7">
+                      <p class="p-0 m-0">{{skill.category}}</p>
+                      <p class="rating_txt p-0 m-0">{{skill.latest_value | number : '1.2-2'}} / 10</p>
+                    </div>
+                    <mat-slider class="slider_skill" *ngIf="i < 7">
+                      <input
+                        width="100%"
+                        matSliderThumb
+                        [disabled]="false"
+                        [value]="skill.latest_value * 10"
+                      />
+                    </mat-slider>
+                  </div>
+                </div>
+                <div class="col sliders2column">
+                  <div class="slidecontainer" *ngFor="let skill of employeeDetails?.result_values; index as i">
+                    <div class="title_sill" *ngIf="i > 6">
+                      <p class="p-0 m-0">{{skill.category}}</p>
+                      <p class="rating_txt p-0 m-0">{{skill.latest_value | number : '1.2-2'}} / 10</p>
+                    </div>
+                    <mat-slider class="slider_skill" *ngIf="i > 6">
+                      <input
+                        matSliderThumb
+                        [disabled]="false"
+                        [value]="skill.latest_value * 10"
+                      />
+                    </mat-slider>
+                  </div>
+                </div>
+              </div>
             </mat-card>
             <!-- ****************FULL REPORT******************************************* -->
             <mat-card class="FULL_REPORT">
@@ -182,8 +210,8 @@
                 <p class="button_txt">DOWNLOAD REPORT</p>
               </div>
               <hr class="dotted_line" />
-              <div 
-                class="button_container" 
+              <div
+                class="button_container"
                 (click)="addMsgDilaog(addMessages)"
                 style="cursor: pointer;"
               >
@@ -194,13 +222,13 @@
               </div>
               <div class="notes_container"
                 (click)="addTaskDilaog(addTask)"
-                style="cursor: pointer;">                
+                style="cursor: pointer;">
                 <div class="img_border">
                   <img src="../../../../assets/icons/addnotesProfile.svg" />
                 </div>
                 <P class="button_txt">SET A TASK</P>
               </div>
-              <div class="notes_container"  
+              <div class="notes_container"
                 (click)="addNotesDilaog(addNotes)"
                 style="cursor: pointer">
                 <div class="img_border">
@@ -208,7 +236,7 @@
                 </div>
                 <P class="button_txt">ADD A NOTES</P>
               </div>
-              
+
               <div class="notes_container" style="pointer-events:none;">
                 <div class="img_border" >
                   <img
@@ -557,7 +585,7 @@
 
 <ng-template #addNotes>
   <div class="bg-dailog1">
-    
+
     <div class="row p-0 m-0 dialogheader_container">
       <div class="col-9 dialog_col">
         <p class="sub_txt1" *ngIf="!roleIdHandler">
@@ -595,7 +623,7 @@
 <!-- **********************MESSAGES ********************** -->
 <ng-template #addMessages>
   <div class="bg-dailog1"><!--options_container, bg-dailog -->
-    
+
     <div class="row p-0 m-0 dialogheader_container">
       <div class="col-9 dialog_col">
         <p class="sub_txt1" *ngIf="!roleIdHandler">
@@ -633,7 +661,7 @@
 <!-- **********************AADD TASKS ********************** -->
 <ng-template #addTask>
   <div class="bg-dailog1">
-    
+
     <div class="row p-0 m-0 dialogheader_container">
       <div class="col-9 dialog_col">
         <p class="sub_txt1" *ngIf="!roleIdHandler">
@@ -688,7 +716,7 @@
         </mat-form-field>
       </div>
     </div>
-    
+
     <div class="role_dialog_btn_container1 pt-4">
       <b><u>Close</u></b>
       <button class="convert_btn1" (click)="savetask()">

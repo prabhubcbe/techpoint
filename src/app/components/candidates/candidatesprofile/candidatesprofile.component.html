@@ -82,7 +82,7 @@
                           class="evaluation_select_option"
                           *ngIf="candateDetails?.stage_level === null"
                           value="null"
-                          >Assig Status</mat-option
+                          >Assign Status</mat-option
                         >
 
                         <mat-option
@@ -184,12 +184,56 @@
               </p>
             </mat-card>
             <!-- *******************GRAPH****************************** -->
-            <mat-card class="graph_conatiner">
-              <app-radial-stacked-chart
-                id="2"
-                [data]="candateDetails?.result_values"
-                [svgHeight]="'500px'"
-              ></app-radial-stacked-chart>
+            <mat-card class="mat_tab_content">
+              <div class="row">
+                <div class="col">
+                  <div
+                    class="slidecontainer"
+                    *ngFor="
+                      let skill of candateDetails?.result_values;
+                      index as i
+                    "
+                  >
+                    <div class="title_sill" *ngIf="i < 7">
+                      <p class="p-0 m-0">{{ skill.category }}</p>
+                      <p class="rating_txt p-0 m-0">
+                        {{ skill.latest_value | number : "1.2-2" }} / 10
+                      </p>
+                    </div>
+                    <mat-slider class="slider_skill" *ngIf="i < 7">
+                      <input
+                        width="100%"
+                        matSliderThumb
+                        [disabled]="false"
+                        [value]="skill.latest_value * 10"
+                      />
+                    </mat-slider>
+                  </div>
+                </div>
+                <div class="col sliders2column">
+                  <div
+                    class="slidecontainer"
+                    *ngFor="
+                      let skill of candateDetails?.result_values;
+                      index as i
+                    "
+                  >
+                    <div class="title_sill" *ngIf="i > 6">
+                      <p class="p-0 m-0">{{ skill.category }}</p>
+                      <p class="rating_txt p-0 m-0">
+                        {{ skill.latest_value | number : "1.2-2" }} / 10
+                      </p>
+                    </div>
+                    <mat-slider class="slider_skill" *ngIf="i > 6">
+                      <input
+                        matSliderThumb
+                        [disabled]="false"
+                        [value]="skill.latest_value * 10"
+                      />
+                    </mat-slider>
+                  </div>
+                </div>
+              </div>
             </mat-card>
             <!-- ****************FULL REPORT******************************************* -->
             <mat-card class="FULL_REPORT">
