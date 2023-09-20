@@ -207,7 +207,7 @@
               </div>
               <div class="button_container" style="cursor: not-allowed">
                 <img src="../../../../assets/icons/downloadProfile.svg" />
-                <p class="button_txt">DOWNLOAD REPORT</p>
+                <p class="button_txt" style="cursor: not-allowed">DOWNLOAD REPORT</p>
               </div>
               <hr class="dotted_line" />
               <div
@@ -403,8 +403,8 @@
               </p>
               <mat-paginator
                 #paginator
-                [length]="employeeRoles.length"
-                [pageSize]="5"
+                [length]="5"
+                [pageSize]="employeeRoles.length"
                 class="page1"
                 (page)="pageEvent = $event"
               >
