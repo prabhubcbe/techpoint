@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   OnInit,
@@ -19,6 +20,7 @@ import { LoadSpinnerService } from 'src/app/shared/load-spinner.service';
   selector: 'app-applicants',
   templateUrl: './applicants.component.html',
   styleUrls: ['./applicants.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApplicantsComponent implements OnInit {
   organizationCode = localStorage.getItem('org-code');
@@ -316,7 +318,6 @@ export class ApplicantsComponent implements OnInit {
   // ***********SEARCH FILTER*************
   searchFilter() {
     this.loadSpinner.setLoading(true);
-
     console.log('DEPARTMENTVLAUE FORM:', this.evaluation_DropdwonForm);
     let obj = {
       email: this.loginEmail,
@@ -340,8 +341,8 @@ export class ApplicantsComponent implements OnInit {
           this.totalCountOfEmployees = response.data.length;
           console.log('SEARCH FILTER RESPONSE:', response);
           this.loadSpinner.setLoading(false);
+          this.cdr.detectChanges();
           if (response.code === 200) {
-            this.cdr.detectChanges();
             console.log('SEARCH FILTER RESPONSE:', response.data);
             // this.responseSuccess(response);
           } else if (response.code === 400) {

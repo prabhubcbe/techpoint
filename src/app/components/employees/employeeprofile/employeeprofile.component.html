@@ -129,7 +129,6 @@
                     </p>
                   </div>
                 </mat-tab>
-
               </mat-tab-group>
             </mat-card>
             <!-- **************************SKILLS AND HUMAN SKILLS*************** -->
@@ -144,10 +143,18 @@
             <mat-card class="mat_tab_content">
               <div class="row">
                 <div class="col">
-                  <div class="slidecontainer" *ngFor="let skill of employeeDetails?.result_values; index as i">
+                  <div
+                    class="slidecontainer"
+                    *ngFor="
+                      let skill of employeeDetails?.result_values;
+                      index as i
+                    "
+                  >
                     <div class="title_sill" *ngIf="i < 7">
-                      <p class="p-0 m-0">{{skill.category}}</p>
-                      <p class="rating_txt p-0 m-0">{{skill.latest_value | number : '1.2-2'}} / 10</p>
+                      <p class="p-0 m-0">{{ skill.category }}</p>
+                      <p class="rating_txt p-0 m-0">
+                        {{ skill.latest_value | number : "1.2-2" }} / 10
+                      </p>
                     </div>
                     <mat-slider class="slider_skill" *ngIf="i < 7">
                       <input
@@ -160,10 +167,18 @@
                   </div>
                 </div>
                 <div class="col sliders2column">
-                  <div class="slidecontainer" *ngFor="let skill of employeeDetails?.result_values; index as i">
+                  <div
+                    class="slidecontainer"
+                    *ngFor="
+                      let skill of employeeDetails?.result_values;
+                      index as i
+                    "
+                  >
                     <div class="title_sill" *ngIf="i > 6">
-                      <p class="p-0 m-0">{{skill.category}}</p>
-                      <p class="rating_txt p-0 m-0">{{skill.latest_value | number : '1.2-2'}} / 10</p>
+                      <p class="p-0 m-0">{{ skill.category }}</p>
+                      <p class="rating_txt p-0 m-0">
+                        {{ skill.latest_value | number : "1.2-2" }} / 10
+                      </p>
                     </div>
                     <mat-slider class="slider_skill" *ngIf="i > 6">
                       <input
@@ -189,7 +204,9 @@
                   diam
                 </p> -->
                 <div class="search_Btn">
-                  <button class="searchbtn" style="cursor: not-allowed">DOWNLOAD REPORT</button>
+                  <button class="searchbtn" style="cursor: not-allowed">
+                    DOWNLOAD REPORT
+                  </button>
                 </div>
               </div>
             </mat-card>
@@ -207,30 +224,36 @@
               </div>
               <div class="button_container" style="cursor: not-allowed">
                 <img src="../../../../assets/icons/downloadProfile.svg" />
-                <p class="button_txt" style="cursor: not-allowed">DOWNLOAD REPORT</p>
+                <p class="button_txt" style="cursor: not-allowed">
+                  DOWNLOAD REPORT
+                </p>
               </div>
               <hr class="dotted_line" />
               <div
                 class="button_container"
                 (click)="addMsgDilaog(addMessages)"
-                style="cursor: pointer;"
+                style="cursor: pointer"
               >
                 <img src="../../../../assets/icons/messageProfile.svg" /><P
                   class="button_txt"
                   >SEND A MESSAGE</P
                 >
               </div>
-              <div class="notes_container"
+              <div
+                class="notes_container"
                 (click)="addTaskDilaog(addTask)"
-                style="cursor: pointer;">
+                style="cursor: pointer"
+              >
                 <div class="img_border">
                   <img src="../../../../assets/icons/addnotesProfile.svg" />
                 </div>
                 <P class="button_txt">SET A TASK</P>
               </div>
-              <div class="notes_container"
+              <div
+                class="notes_container"
                 (click)="addNotesDilaog(addNotes)"
-                style="cursor: pointer">
+                style="cursor: pointer"
+              >
                 <div class="img_border">
                   <img src="../../../../assets/icons/tasksProfile.svg" />
                 </div>
@@ -238,76 +261,71 @@
               </div>
 
               <div class="notes_container" style="cursor: not-allowed">
-                <div class="img_border" >
+                <div class="img_border">
                   <img
                     src="../../../../assets/icons/convert_role_profile.svg"
                   />
                 </div>
                 <P class="button_txt">CONVERT TO A ROLE</P>
-              </div>
-            </div>
-            <!-- ***********************ROLE MATCH ******************** -->
-            <div class="roles_match_container">
-              <mat-card class="role_match">
-                <div class=" ">
-                  <p class="head_title">ROLE MATCH</p>
-                  <p>This candidate matches the role and is a good fit!</p>
-                  <div class="guage_container">
-                    <!-- (window:resize)="onResize($event)" -->
-                    <ngx-gauge
-                      style="height: 100px"
-                      class="guage_Chart"
-                      [thick]="guageSizethick"
-                      [type]="gaugeType"
-                      [value]="matchDetails[0]?.overall_score"
-                      [foregroundColor]="gaugecolor"
-                    >
-                      <ngx-gauge-value class="guage_value">
-                        {{ matchDetails[0]?.overall_score | number }}%
-                      </ngx-gauge-value>
-                      <p>hiiiiii</p>
-                    </ngx-gauge>
-                  </div>
-                  <mat-divider
-                    style="border-right-width: 1px; color: rgb(209, 206, 206)"
-                  ></mat-divider>
-                  <p class="calculated_txt">% Value calculated basis on</p>
+                <mat-card class="role_match">
+                  <div class=" ">
+                    <p>This candidate matches the role and is a good fit!</p>
+                    <div class="guage_container">
+                      <!-- (window:resize)="onResize($event)" -->
+                      <ngx-gauge
+                        style="height: 100px"
+                        class="guage_Chart"
+                        [thick]="guageSizethick"
+                        [type]="gaugeType"
+                        [value]="matchDetails[0]?.overall_score"
+                        [foregroundColor]="gaugecolor"
+                      >
+                        <ngx-gauge-value class="guage_value">
+                          {{ matchDetails[0]?.overall_score | number }}%
+                        </ngx-gauge-value>
+                        <p>hiiiiii</p>
+                      </ngx-gauge>
+                    </div>
+                    <mat-divider
+                      style="border-right-width: 1px; color: rgb(209, 206, 206)"
+                    ></mat-divider>
+                    <p class="calculated_txt">% Value calculated basis on</p>
 
-                  <div class="soft_skills_container">
-                    <div class="soft_skill">
-                      <p class="soft_skill_title">Technical Skills</p>
-                      <img
-                        class="soft_skill_icon"
-                        src="../../../../assets/icons/circle.svg"
-                      />
-                      <b class="soft_skill_result">{{
-                        matchDetails[0]?.tech_skill_match_score
-                      }}</b>
-                    </div>
-                    <div class="soft_skill">
-                      <p class="soft_skill_title">Soft Skills</p>
-                      <img
-                        class="soft_skill_icon"
-                        src="../../../../assets/icons/circle.svg"
-                      />
-                      <b class="soft_skill_result">{{
-                        matchDetails[0]?.soft_skill_match_score
-                      }}</b>
-                    </div>
-                    <div class="soft_skill">
-                      <p class="soft_skill_title">Education</p>
-                      <img
-                        class="soft_skill_icon"
-                        src="../../../../assets/icons/circle.svg"
-                      />
-                      <b class="soft_skill_result">{{
-                        matchDetails[0]?.degree ==
-                        "Degree was matched(100% Match)"
-                          ? "100%"
-                          : "0%"
-                      }}</b>
-                    </div>
-                    <!-- <div class="soft_skill">
+                    <div class="soft_skills_container">
+                      <div class="soft_skill">
+                        <p class="soft_skill_title">Technical Skills</p>
+                        <img
+                          class="soft_skill_icon"
+                          src="../../../../assets/icons/circle.svg"
+                        />
+                        <b class="soft_skill_result">{{
+                          matchDetails[0]?.tech_skill_match_score
+                        }}</b>
+                      </div>
+                      <div class="soft_skill">
+                        <p class="soft_skill_title">Soft Skills</p>
+                        <img
+                          class="soft_skill_icon"
+                          src="../../../../assets/icons/circle.svg"
+                        />
+                        <b class="soft_skill_result">{{
+                          matchDetails[0]?.soft_skill_match_score
+                        }}</b>
+                      </div>
+                      <div class="soft_skill">
+                        <p class="soft_skill_title">Education</p>
+                        <img
+                          class="soft_skill_icon"
+                          src="../../../../assets/icons/circle.svg"
+                        />
+                        <b class="soft_skill_result">{{
+                          matchDetails[0]?.degree ==
+                          "Degree was matched(100% Match)"
+                            ? "100%"
+                            : "0%"
+                        }}</b>
+                      </div>
+                      <!-- <div class="soft_skill">
                       <p class="soft_skill_title">Technical Skills</p>
                       <img
                         class="soft_skill_icon"
@@ -323,251 +341,273 @@
                       />
                       <b class="soft_skill_result">95%</b>
                     </div> -->
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+              <!-- ***************************MAYAMAYA RECOMMENDS*************** -->
+
+              <mat-card class="role_match_recommend">
+                <div class="container">
+                  <p class="recommend_title">MAYAMAYA RECOMMENDED JOBS</p>
+                  <!--MAYAMAYA RECOMMENDED JOBS--><!--employeeRoles-->
+                  <div
+                    class="recommended_roles"
+                    *ngFor="
+                      let jobs of recommendJobs
+                        | slice
+                          : paginator.pageIndex * paginator.pageSize
+                          : (paginator.pageIndex + 1) * paginator.pageSize
+                        | slice : 0 : 5;
+                      let i = index
+                    "
+                    (click)="sendRoleMatch(jobs)"
+                  >
+                    <p>{{ jobs?.role_name }}</p>
+                    <b>{{ jobs?.overall_score }}%</b>
+                  </div>
+
+                  <!-- paginator -->
+                  <div class="paginator_roles">
+                    <p class="paginator-info">
+                      <!--recommendJobs-->
+                      Page {{ paginator.pageIndex + 1 }} of
+                      {{ recommendJobs.length }}
+                    </p>
+                    <!--recommendJobs-->
+                    <mat-paginator
+                      #paginator
+                      [length]="recommendJobs.length"
+                      [pageSize]="6"
+                      class="page1"
+                      (page)="pageEvent = $event"
+                    >
+                    </mat-paginator>
                   </div>
                 </div>
               </mat-card>
-            </div>
-
-            <!-- ***************************MAYAMAYA RECOMMENDS*************** -->
-
-            <mat-card class="role_match_recommend">
-              <div class="container">
-                <p class="recommend_title">MAYAMAYA RECOMMENDED JOBS</p>
-                <!--MAYAMAYA RECOMMENDED JOBS--><!--employeeRoles-->
-                <div
-                  class="recommended_roles"
-                  *ngFor="
-                    let jobs of recommendJobs
-                      | slice
-                        : paginator.pageIndex * paginator.pageSize
-                        : (paginator.pageIndex + 1) * paginator.pageSize
-                      | slice : 0 : 5;
-                    let i = index
-                  "
-                  (click)="sendRoleMatch(jobs)"
-                >
-                  <p>{{ jobs?.role_name }}</p>
-                  <b>{{ jobs?.overall_score }}%</b>
-                </div>
-
-                <!-- paginator -->
-                <div class="paginator_roles">
-                  <p class="paginator-info">
-                    <!--recommendJobs-->
-                    Page {{ paginator.pageIndex + 1 }} of
-                    {{ recommendJobs.length }}
-                  </p>
-                  <!--recommendJobs-->
-                  <mat-paginator
-                    #paginator
-                    [length]="recommendJobs.length"
-                    [pageSize]="6"
-                    class="page1"
-                    (page)="pageEvent = $event"
-                  >
-                  </mat-paginator>
-                </div>
-              </div>
-            </mat-card>
-            <!-- ***********************Similar roles************** -->
-            <div class="roles_head">
-              <p>Roles</p>
-              <u
+              <!-- ***********************Similar roles************** -->
+              <div class="roles_head">
+                <p>Roles</p>
+                <u
                   (click)="routeRoles()"
                   style="padding-top: 5px; cursor: pointer"
                   ><i>View all</i></u
                 >
-            </div>
+              </div>
 
-            <div *ngFor="let role of RolesDataList">
-              <div class="roles_card mb-2">
-                <div class="container">
-                  <p class="role">ROLE</p>
-                  <h2 class="role_title">{{ role?.role_name }}</h2>
-                  <mat-divider></mat-divider>
-                  <div class="role_actions">
-                    <p class="role_date">
-                      <i> {{ role?.date }}</i>
-                    </p>
-                    <img
-                      src="../../../../assets/icons/verticalMenuProfile.svg"
-                    />
+              <div *ngFor="let role of RolesDataList">
+                <div class="roles_card mb-2">
+                  <div class="container">
+                    <p class="role">ROLE</p>
+                    <h2 class="role_title">{{ role?.role_name }}</h2>
+                    <mat-divider></mat-divider>
+                    <div class="role_actions">
+                      <p class="role_date">
+                        <i> {{ role?.date }}</i>
+                      </p>
+                      <img
+                        src="../../../../assets/icons/verticalMenuProfile.svg"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="paginator_roles">
-              <p class="paginator-info">
-                Page {{ paginator.pageIndex + 1 }} of
-                {{ employeeRoles.length }}
-              </p>
-              <mat-paginator
-                #paginator
-                [length]="5"
-                [pageSize]="employeeRoles.length"
-                class="page1"
-                (page)="pageEvent = $event"
-              >
-              </mat-paginator>
+              <div class="paginator_roles">
+                <p class="paginator-info">
+                  Page {{ paginator.pageIndex + 1 }} of
+                  {{ employeeRoles.length }}
+                </p>
+                <mat-paginator
+                  #paginator
+                  [length]="5"
+                  [pageSize]="employeeRoles.length"
+                  class="page1"
+                  (page)="pageEvent = $event"
+                >
+                </mat-paginator>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="col-9">
-            <mat-card class="Bio_card">
-              <div class="row Bio_container">
-                <p class="bio_title">Bio</p>
-                <p class="bio_txt">
-                  {{ bio === "" ? "-" : bio }}
-                </p>
-              </div>
-              <mat-divider
-                style="border-right-width: 1.5px; border-color: black"
-              ></mat-divider>
-              <div class="row edu_hardskills_container">
-                <div class="col-6">
-                  <p class="edu_title">Education</p>
-                  <div
-                    class="row pb-3"
-                    *ngFor="let item of employeBio.education"
-                  >
-                    <p class="university_title">{{ item.university }}</p>
-                    <p class="mb-0">{{ item.degree }}</p>
-                    <i class="">{{ item.year }}</i>
-                  </div>
+          <div class="row">
+            <div class="col-9">
+              <mat-card class="Bio_card">
+                <div class="row Bio_container">
+                  <p class="bio_title">Bio</p>
+                  <p class="bio_txt">
+                    {{ bio === "" ? "-" : bio }}
+                  </p>
                 </div>
-                <!-- <div class="col-6">
+                <mat-divider
+                  style="border-right-width: 1.5px; border-color: black"
+                ></mat-divider>
+                <div class="row edu_hardskills_container">
+                  <div class="col-6">
+                    <p class="edu_title">Education</p>
+                    <div
+                      class="row pb-3"
+                      *ngFor="let item of employeBio.education"
+                    >
+                      <p class="university_title">{{ item.university }}</p>
+                      <p class="mb-0">{{ item.degree }}</p>
+                      <i class="">{{ item.year }}</i>
+                    </div>
+                  </div>
+                  <!-- <div class="col-6">
                   <p class="edu_title">Hard Skills</p>
                   <p class="hard_skills_txt" *ngFor="let item of employeBio.skills">{{item}}</p>
                 </div> -->
-                <div class="col-6">
-                  <p class="edu_title">Hard Skills</p>
-                  <p
-                    class="hard_skills_txt"
-                    *ngFor="let hard of employeBio.skills | slice : 0 : 18"
-                  >
-                    {{ hard === "" ? "-" : hard }}
-                  </p>
-                  <p *ngIf="employeBio.skills?.length" class="hard_skills_txt">
+                  <div class="col-6">
+                    <p class="edu_title">Hard Skills</p>
+                    <p
+                      class="hard_skills_txt"
+                      *ngFor="let hard of employeBio.skills | slice : 0 : 18"
+                    >
+                      {{ hard === "" ? "-" : hard }}
+                    </p>
+                    <!-- <p *ngIf="employeBio.skills?.length" class="hard_skills_txt">
                     +{{ employeBio.skills?.length - 18 }}
-                  </p>
-                  <!-- <p class="hard_skills_txt">Lorem dolor sit</p>
+                  </p> -->
+                    <p
+                      *ngIf="employeBio.skills?.length > 18"
+                      class="hard_skills_txt"
+                    >
+                      +{{ employeBio.skills?.length - 18 }}
+                    </p>
+                    <!-- <p class="hard_skills_txt">Lorem dolor sit</p>
                   <p class="hard_skills_txt">dolor sit</p>
                   <p class="hard_skills_txt">Lorem ipsum dolor</p> -->
-                </div>
-              </div>
-              <mat-divider
-                style="border-right-width: 1.5px; border-color: black"
-              ></mat-divider>
-              <div class="row experience_conatiner">
-                <div class="row">
-                  <p class="Experience_header">Experience</p>
-                  <div class="col-4" *ngFor="let item of employeBio.experience">
-                    <p class="company_title">{{ item.company_location }}</p>
-                    <p class="mb-0">{{ item.position }}</p>
-                    <i>{{ item.years }}</i>
                   </div>
                 </div>
-              </div>
-            </mat-card>
+                <mat-divider
+                  style="border-right-width: 1.5px; border-color: black"
+                ></mat-divider>
+                <div class="row experience_conatiner">
+                  <div class="row">
+                    <p class="Experience_header">Experience</p>
+                    <div
+                      class="col-4"
+                      *ngFor="let item of employeBio.experience"
+                    >
+                      <p class="company_title">{{ item.company_location }}</p>
+                      <p class="mb-0">{{ item.position }}</p>
+                      <i>{{ item.years }}</i>
+                    </div>
+                  </div>
+                </div>
+              </mat-card>
 
-            <div class="Suggested_tasks">
-              <div class="header_title">
-                <p>Suggested Tasks (16)</p>
-                <u><i>View All</i></u>
-              </div>
-              <div class="suggesions_cards_container">
-                <div class="row">
-                  <div class="col-4">
-                    <mat-card class="suggestion_card">
-                      <div class="container pt-3">
-                        <p class="sugestion_name">
-                          Certification on Brand Strategy, name of the task
-                          comes here in 1-2 lines
-                        </p>
-                        <mat-divider class="suggest_task_divider"></mat-divider>
-                        <b class="created_txt">CREATED</b>
-                        <div class="actions_container">
-                          <div class="actions">
-                            <div class="item1">
-                              <img
-                                class="user_icons"
-                                src="../../../../assets/icons/user.svg"
-                              />
-                              <p>Employee/Manager</p>
-                            </div>
-                            <div class="item2">
-                              <i>Sep 15 2022</i>
-                              <img
-                                src="../../../../assets/icons/editRole.svg"
-                              />
-                              <img src="../../../../assets/icons/Delete.svg" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </mat-card>
-                  </div>
-                  <div class="col-4">
-                    <mat-card class="suggestion_card">
-                      <div class="container pt-3">
-                        <p class="sugestion_name">
-                          Certification on Brand Strategy, name of the task
-                          comes here in 1-2 lines
-                        </p>
-                        <mat-divider class="suggest_task_divider"></mat-divider>
-                        <b class="created_txt">CREATED</b>
-                        <div class="actions_container">
-                          <div class="actions">
-                            <div class="item1">
-                              <img
-                                class="user_icons"
-                                src="../../../../assets/icons/user.svg"
-                              />
-                              <p>Employee/Manager</p>
-                            </div>
-                            <div class="item2">
-                              <i>Sep 15 2022</i>
-                              <img
-                                src="../../../../assets/icons/editRole.svg"
-                              />
-                              <img src="../../../../assets/icons/Delete.svg" />
+              <div class="Suggested_tasks">
+                <div class="header_title">
+                  <p>Suggested Tasks (16)</p>
+                  <u><i>View All</i></u>
+                </div>
+                <div class="suggesions_cards_container">
+                  <div class="row">
+                    <div class="col-4">
+                      <mat-card class="suggestion_card">
+                        <div class="container pt-3">
+                          <p class="sugestion_name">
+                            Certification on Brand Strategy, name of the task
+                            comes here in 1-2 lines
+                          </p>
+                          <mat-divider
+                            class="suggest_task_divider"
+                          ></mat-divider>
+                          <b class="created_txt">CREATED</b>
+                          <div class="actions_container">
+                            <div class="actions">
+                              <div class="item1">
+                                <img
+                                  class="user_icons"
+                                  src="../../../../assets/icons/user.svg"
+                                />
+                                <p>Employee/Manager</p>
+                              </div>
+                              <div class="item2">
+                                <i>Sep 15 2022</i>
+                                <img
+                                  src="../../../../assets/icons/editRole.svg"
+                                />
+                                <img
+                                  src="../../../../assets/icons/Delete.svg"
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </mat-card>
-                  </div>
-                  <div class="col-4">
-                    <mat-card class="suggestion_card">
-                      <div class="container pt-3">
-                        <p class="sugestion_name">
-                          Certification on Brand Strategy, name of the task
-                          comes here in 1-2 lines
-                        </p>
-                        <mat-divider class="suggest_task_divider"></mat-divider>
-                        <b class="created_txt">CREATED</b>
-                        <div class="actions_container">
-                          <div class="actions">
-                            <div class="item1">
-                              <img
-                                class="user_icons"
-                                src="../../../../assets/icons/user.svg"
-                              />
-                              <p>Employee/Manager</p>
-                            </div>
-                            <div class="item2">
-                              <i>Sep 15 2022</i>
-                              <img
-                                src="../../../../assets/icons/editRole.svg"
-                              />
-                              <img src="../../../../assets/icons/Delete.svg" />
+                      </mat-card>
+                    </div>
+                    <div class="col-4">
+                      <mat-card class="suggestion_card">
+                        <div class="container pt-3">
+                          <p class="sugestion_name">
+                            Certification on Brand Strategy, name of the task
+                            comes here in 1-2 lines
+                          </p>
+                          <mat-divider
+                            class="suggest_task_divider"
+                          ></mat-divider>
+                          <b class="created_txt">CREATED</b>
+                          <div class="actions_container">
+                            <div class="actions">
+                              <div class="item1">
+                                <img
+                                  class="user_icons"
+                                  src="../../../../assets/icons/user.svg"
+                                />
+                                <p>Employee/Manager</p>
+                              </div>
+                              <div class="item2">
+                                <i>Sep 15 2022</i>
+                                <img
+                                  src="../../../../assets/icons/editRole.svg"
+                                />
+                                <img
+                                  src="../../../../assets/icons/Delete.svg"
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </mat-card>
+                      </mat-card>
+                    </div>
+                    <div class="col-4">
+                      <mat-card class="suggestion_card">
+                        <div class="container pt-3">
+                          <p class="sugestion_name">
+                            Certification on Brand Strategy, name of the task
+                            comes here in 1-2 lines
+                          </p>
+                          <mat-divider
+                            class="suggest_task_divider"
+                          ></mat-divider>
+                          <b class="created_txt">CREATED</b>
+                          <div class="actions_container">
+                            <div class="actions">
+                              <div class="item1">
+                                <img
+                                  class="user_icons"
+                                  src="../../../../assets/icons/user.svg"
+                                />
+                                <p>Employee/Manager</p>
+                              </div>
+                              <div class="item2">
+                                <i>Sep 15 2022</i>
+                                <img
+                                  src="../../../../assets/icons/editRole.svg"
+                                />
+                                <img
+                                  src="../../../../assets/icons/Delete.svg"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </mat-card>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -575,151 +615,156 @@
           </div>
         </div>
       </div>
+      <app-footer></app-footer>
     </div>
-    <app-footer></app-footer>
   </div>
+  <!-- ***************************DIALOGS**************************** -->
+
+  <ng-template #addNotes>
+    <div class="bg-dailog1">
+      <div class="row p-0 m-0 dialogheader_container">
+        <div class="col-9 dialog_col">
+          <p class="sub_txt1" *ngIf="!roleIdHandler">
+            Candidates : applicants : Search : {{ candateDetails?.user_name }}
+          </p>
+          <p class="sub_txt1" *ngIf="roleIdHandler">
+            Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
+          </p>
+          <p class="sub_txt2">Add a Notes</p>
+        </div>
+        <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+          <img src="../../../../assets/icons/closeDialog.svg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="containerDialog">
+      <b class="addNoteText">Add Notes</b>
+      <div class="row">
+        <textarea
+          [(ngModel)]="notesEntered"
+          placeholder="Enter detail"
+          class="notes_input1"
+        ></textarea>
+      </div>
+      <div class="role_dialog_btn_container1 pt-4">
+        <div style="cursor: pointer" (click)="closeDialog()">
+          <b><u>Close</u></b>
+        </div>
+        <button class="convert_btn1" (click)="saveNotes()">
+          <b>SAVE</b>
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- **********************MESSAGES ********************** -->
+  <ng-template #addMessages>
+    <div class="bg-dailog1">
+      <!--options_container, bg-dailog -->
+
+      <div class="row p-0 m-0 dialogheader_container">
+        <div class="col-9 dialog_col">
+          <p class="sub_txt1" *ngIf="!roleIdHandler">
+            Candidates : applicants : Search : {{ candateDetails?.user_name }}
+          </p>
+          <p class="sub_txt1" *ngIf="roleIdHandler">
+            Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
+          </p>
+          <p class="sub_txt2">Add a Message</p>
+        </div>
+        <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+          <img src="../../../../assets/icons/closeDialog.svg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="containerDialog">
+      <b class="addNoteText1">Add Message</b>
+      <div class="row">
+        <textarea
+          [(ngModel)]="MsgEntered"
+          placeholder="Enter Message"
+          class="notes_input1"
+        ></textarea>
+      </div>
+      <div class="role_dialog_btn_container1 pt-4">
+        <div style="cursor: pointer" (click)="closeDialog()">
+          <b><u>Close</u></b>
+        </div>
+        <button class="convert_btn1" (click)="saveMessage()">
+          <b>SAVE</b>
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- **********************AADD TASKS ********************** -->
+  <ng-template #addTask>
+    <div class="bg-dailog1">
+      <div class="row p-0 m-0 dialogheader_container">
+        <div class="col-9 dialog_col">
+          <p class="sub_txt1" *ngIf="!roleIdHandler">
+            Candidates : applicants : Search : {{ candateDetails?.user_name }}
+          </p>
+          <p class="sub_txt1" *ngIf="roleIdHandler">
+            Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
+          </p>
+          <p class="sub_txt2">Add a Task</p>
+        </div>
+        <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
+          <img src="../../../../assets/icons/closeDialog.svg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="containerDialog">
+      <b class="addNoteText">Add Task description</b>
+      <div class="row">
+        <textarea
+          placeholder="Enter Message"
+          class="notes_input1"
+          [(ngModel)]="taskEntered"
+        ></textarea>
+      </div>
+      <div class="row pt-4">
+        <div class="col-6">
+          <p class="Pick Date"><b>Pick Resource</b></p>
+
+          <mat-form-field appearance="outline" class="resources_dropDown w-100">
+            <mat-select
+              [(ngModel)]="selecteResorce"
+              placeholder="select resource"
+            >
+              <mat-option *ngFor="let val of resourcesData" [value]="val">{{
+                val
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <p class="Pick Date"><b>Pick Date</b></p>
+          <mat-form-field appearance="outline" class="resources_dropDown w-100">
+            <mat-label>Input disabled</mat-label>
+            <input matInput [matDatepicker]="dp3" [(ngModel)]="dateActions" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="dp3"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="role_dialog_btn_container1 pt-4">
+        <div style="cursor: pointer" (click)="closeDialog()">
+          <b><u>Close</u></b>
+        </div>
+        <button class="convert_btn1" (click)="savetask()">
+          <b>SAVE</b>
+        </button>
+      </div>
+    </div>
+  </ng-template>
 </div>
-<!-- ***************************DIALOGS**************************** -->
-
-<ng-template #addNotes>
-  <div class="bg-dailog1">
-
-    <div class="row p-0 m-0 dialogheader_container">
-      <div class="col-9 dialog_col">
-        <p class="sub_txt1" *ngIf="!roleIdHandler">
-          Candidates : applicants : Search : {{ candateDetails?.user_name }}
-        </p>
-        <p class="sub_txt1" *ngIf="roleIdHandler">
-          Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
-        </p>
-        <p class="sub_txt2">Add a Notes</p>
-      </div>
-      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
-        <img src="../../../../assets/icons/closeDialog.svg" alt="" />
-      </div>
-    </div>
-  </div>
-
-  <div class="containerDialog">
-    <b class="addNoteText">Add Notes</b>
-    <div class="row">
-      <textarea
-        [(ngModel)]="notesEntered"
-        placeholder="Enter detail"
-        class="notes_input1"
-      ></textarea>
-    </div>
-    <div class="role_dialog_btn_container1 pt-4">
-      <div style="cursor: pointer;" (click)="closeDialog()"><b><u>Close</u></b></div>
-      <button class="convert_btn1" (click)="saveNotes()">
-        <b>SAVE</b>
-      </button>
-    </div>
-  </div>
-</ng-template>
-
-<!-- **********************MESSAGES ********************** -->
-<ng-template #addMessages>
-  <div class="bg-dailog1"><!--options_container, bg-dailog -->
-
-    <div class="row p-0 m-0 dialogheader_container">
-      <div class="col-9 dialog_col">
-        <p class="sub_txt1" *ngIf="!roleIdHandler">
-          Candidates : applicants : Search : {{ candateDetails?.user_name }}
-        </p>
-        <p class="sub_txt1" *ngIf="roleIdHandler">
-          Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
-        </p>
-        <p class="sub_txt2">Add a Message</p>
-      </div>
-      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
-        <img src="../../../../assets/icons/closeDialog.svg" alt="" />
-      </div>
-    </div>
-  </div>
-
-  <div class="containerDialog">
-    <b class="addNoteText1">Add Message</b>
-    <div class="row">
-      <textarea
-        [(ngModel)]="MsgEntered"
-        placeholder="Enter Message"
-        class="notes_input1"
-      ></textarea>
-    </div>
-    <div class="role_dialog_btn_container1 pt-4">
-      <div style="cursor: pointer;" (click)="closeDialog()"><b><u>Close</u></b></div>
-      <button class="convert_btn1" (click)="saveMessage()">
-        <b>SAVE</b>
-      </button>
-    </div>
-  </div>
-</ng-template>
-
-<!-- **********************AADD TASKS ********************** -->
-<ng-template #addTask>
-  <div class="bg-dailog1">
-
-    <div class="row p-0 m-0 dialogheader_container">
-      <div class="col-9 dialog_col">
-        <p class="sub_txt1" *ngIf="!roleIdHandler">
-          Candidates : applicants : Search : {{ candateDetails?.user_name }}
-        </p>
-        <p class="sub_txt1" *ngIf="roleIdHandler">
-          Candidates : {{ roleName }} : {{ candateDetails?.user_name }}
-        </p>
-        <p class="sub_txt2">Add a Task</p>
-      </div>
-      <div class="col-3 close_icon_dialog" [mat-dialog-close]="true">
-        <img src="../../../../assets/icons/closeDialog.svg" alt="" />
-      </div>
-    </div>
-  </div>
-
-  <div class="containerDialog">
-    <b class="addNoteText">Add Task description</b>
-    <div class="row">
-      <textarea
-        placeholder="Enter Message"
-        class="notes_input1"
-        [(ngModel)]="taskEntered"
-      ></textarea>
-    </div>
-    <div class="row pt-4">
-      <div class="col-6">
-        <p class="Pick Date"><b>Pick Resource</b></p>
-
-        <mat-form-field appearance="outline" class="resources_dropDown w-100">
-          <mat-select
-            [(ngModel)]="selecteResorce"
-            placeholder="select resource"
-          >
-            <mat-option *ngFor="let val of resourcesData" [value]="val">{{
-              val
-            }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-6">
-        <p class="Pick Date"><b>Pick Date</b></p>
-        <mat-form-field appearance="outline" class="resources_dropDown w-100">
-          <mat-label>Input disabled</mat-label>
-          <input matInput [matDatepicker]="dp3" [(ngModel)]="dateActions" />
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="dp3"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-        </mat-form-field>
-      </div>
-    </div>
-
-    <div class="role_dialog_btn_container1 pt-4">
-      <div style="cursor: pointer;" (click)="closeDialog()"><b><u>Close</u></b></div>
-      <button class="convert_btn1" (click)="savetask()">
-        <b>SAVE</b>
-      </button>
-    </div>
-  </div>
-</ng-template>

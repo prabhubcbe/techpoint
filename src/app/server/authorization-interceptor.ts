@@ -56,7 +56,7 @@ export class AuthorizationInterceptor implements HttpInterceptor {
       finalize(() => {
         setTimeout(() => {
           this.loadSpinner.setLoading(false);
-        }, 4000);
+        }, 2000);
       })
     );
   }

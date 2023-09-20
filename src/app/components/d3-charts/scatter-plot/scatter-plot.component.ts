@@ -50,11 +50,11 @@ export class ScatterPlotComponent implements OnChanges {
     const midYValue = d3.max(this.data, d => d.count) / 2;
 
     var x = d3.scaleLinear()
-      .domain([100, 0])
+      .domain([0, 100])
       .range([0, width])
 
     Svg.append("g")
-      .attr("transform", "translate(10," + (height) + ")")
+      .attr("transform", "translate(0," + (height) + ")")
       .style("font-weight", "700")
       .style("font-size", "16px")
       .call(d3.axisBottom(x).tickSize(-height).ticks(5).tickFormat(d => `${this.data.find(i => i.key === d) ? this.data.find(i => i.key === d)?.count : ''}`))
@@ -63,7 +63,7 @@ export class ScatterPlotComponent implements OnChanges {
 
 
     Svg.append("g")
-      .attr("transform", `translate(10, -10)`)
+      .attr("transform", `translate(0, -10)`)
       .attr("class", "topTick")
       .style("font-weight", "700")
       .style("font-size", "16px")
@@ -83,7 +83,7 @@ export class ScatterPlotComponent implements OnChanges {
     Svg.append("line")
       .attr("x1", "10")
       .attr("y1", y(midYValue))
-      .attr("x2", width + 10)
+      .attr("x2", width)
       .attr("y2", y(midYValue))
       .attr("stroke", "#0C141D")
       .attr("stroke-width", 2)
@@ -101,7 +101,7 @@ export class ScatterPlotComponent implements OnChanges {
 
     Svg.selectAll(".topTick line").attr("stroke", "none")
 
-    Svg.selectAll(".tick text").attr("x", "80px")
+    Svg.selectAll(".tick text").attr("x", `-${circles * 10}`)
 
     this.data?.map(d => {
       const maxXValue = x(d3.max(d.records, r => r.score));

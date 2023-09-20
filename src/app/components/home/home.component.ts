@@ -4,20 +4,15 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  // ViewChild,
 } from '@angular/core';
 
-import { Observable, Subject, range, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { ServerService } from 'src/app/server/server.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import {
-  BubbleChartModel,
-  DataModel,
-  // RadialDataModel,
-} from 'src/app/components/d3-charts/data/data.model';
-import { HttpClient } from '@angular/common/http';
+import { BubbleChartModel } from 'src/app/components/d3-charts/data/data.model';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { local } from 'd3';
+
 import { Router } from '@angular/router';
 import { LoadSpinnerService } from 'src/app/shared/load-spinner.service';
 
