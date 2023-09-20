@@ -11,6 +11,7 @@
           <div class="evaluation_DropdwonFilter">
             <mat-form-field class="evaluation_DropdwonFilterFile">
               <mat-select
+              (selectionChange)="onDepartmentChange($event)"
                 panelClass="evaluation_select_panel"
                 class="evaluation_select"
                 [formControl]="department_DropdownForm"
@@ -109,8 +110,8 @@
                 </mat-select-trigger>
                 <mat-option
                   *ngFor="let list of evaluvation_datalist"
-                  [value]="list.value"
-                  >{{ list.value }}</mat-option
+                  [value]="list.id"
+                  >{{ list.id }}</mat-option
                 >
               </mat-select>
             </mat-form-field>
@@ -306,7 +307,11 @@
         <div class="recommends">
           <div class="recommneds_container">
             <h2 class="recommend_txt">MAYAMAYA RECOMMENDS</h2>
-            <u class="viewAll_txt">View all</u>
+            <u 
+              style="padding-top: 5px; cursor: pointer"
+              routerLink="/employees/individual"
+              routerLinkActive="Active"
+            >View all</u>
           </div>
           <p>
             Recommendation of employees is based on selected roles from the

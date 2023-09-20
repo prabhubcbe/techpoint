@@ -43,23 +43,23 @@ export class IndividualComponent implements OnInit {
   evaluvation_datalist = [
     // Array of evaluation options
     {
-      id: 1,
+      id: 'Unfit',
       value: '0-20',
     },
     {
-      id: 2,
+      id: 'Poorfit',
       value: '20-40',
     },
     {
-      id: 3,
+      id: 'Neutral',
       value: '40-60',
     },
     {
-      id: 4,
+      id: 'Goodfit',
       value: '60-80',
     },
     {
-      id: 5,
+      id: 'PerfectFit',
       value: '80-100',
     },
   ];
@@ -116,6 +116,37 @@ export class IndividualComponent implements OnInit {
     if (index !== -1) {
       array.splice(index, 1); // Remove the item from the array
     }
+  }
+  // *************ON DEPARTMNET CHANGE************
+  onDepartmentChange(event: any) {
+    console.log('onDepartmentChange', event);
+    let obj = {
+      email: this.loginEmail,
+      organization: this.organizationName,
+      department: event.value,
+    };
+    this.api
+      .getRolesbyDepartment(obj)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response: any) => {
+          if (response.code === 200) {
+            this.RolesDataList = response.data;
+
+            this.filteredRolesDataList = this.RolesDataList;
+            this.cdr.detectChanges();
+            console.log('ROLES DATA:', this.RolesDataList);
+          } else if (response.code === 400) {
+            this.snackBar.open(response.message, '×', {
+              panelClass: ['custom-style'],
+              verticalPosition: 'top',
+            });
+          }
+        },
+        error: (error: any) => {
+          this.handleComponentError(error);
+        },
+      });
   }
   onRemoveDepartmentDropdown() {
     this.department_DropdownForm.setValue([]); // Clear the selected department options
@@ -230,8 +261,8 @@ export class IndividualComponent implements OnInit {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: any) => {
-          this.allEmployeesData = response.data;
-          this.totalCountOfEmployees = this.allEmployeesData?.length;// get the total_count value from api, for now the api has to modify to get this value for setting pagination.
+          this.allEmployeesData = response?.data;
+          this.totalCountOfEmployees = response?.total_count;// get the total_count value from api, for now the api has to modify to get this value for setting pagination.
           // Manually trigger change detection
           this.cdr.detectChanges();
           if (response.code === 200) {

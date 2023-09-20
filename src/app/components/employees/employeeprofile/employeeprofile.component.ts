@@ -18,6 +18,7 @@ export class EmployeeprofileComponent implements OnInit{
   @ViewChild('paginator') paginator: MatPaginator | undefined;
   employeeDetails: any = { user_id: '' };
   employeBio: any = {};
+  bio: any = '';
   employeeHighlights: any = {}
   suggestedTask: any = []
   employeeRoles: any[] = [];
@@ -161,6 +162,7 @@ export class EmployeeprofileComponent implements OnInit{
       .subscribe({
         next: (response: any) => {
           this.employeBio = response.data;
+          this.bio = response?.data?.summary;
           console.log('HARDSKILLS:', response);
         },
         error: (error: any) => {
@@ -483,6 +485,13 @@ addTaskDilaog(templateRef: TemplateRef<any>) {
     panelClass: 'custom-dialog-container',
   });
 }
+closeDialog(){
+  this.dialog.closeAll();
+}
+// **********ROUTING TO ROLES WHEN ADD ROLE********
+routeRoles() {
+  this.route.navigate(['/roles']);
+}
 savetask() {
   let obj = {
     email: this.loginEmail,
@@ -499,6 +508,7 @@ savetask() {
       next: (response: any) => {
         console.log('NOTES ADDED:', response);
         if (response.code === 200) {
+          this.dateActions=this.selecteResorce=this.taskEntered='';
           this.dialog.closeAll();
           this.snackBar.open(response.message, '×', {
             panelClass: ['custom-style'],

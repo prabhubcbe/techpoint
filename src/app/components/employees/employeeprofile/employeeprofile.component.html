@@ -189,7 +189,7 @@
                   diam
                 </p> -->
                 <div class="search_Btn">
-                  <button class="searchbtn">DOWNLOAD REPORT</button>
+                  <button class="searchbtn" style="cursor: not-allowed">DOWNLOAD REPORT</button>
                 </div>
               </div>
             </mat-card>
@@ -197,15 +197,15 @@
 
           <div class="col-3">
             <div class="options_container">
-              <div class="button_container" style="pointer-events: none;">
+              <div class="button_container" style="cursor: not-allowed">
                 <img src="../../../../assets/icons/shareProfile.svg" />
                 <p class="button_txt">Share</p>
               </div>
-              <div class="button_container" style="pointer-events:none;">
+              <div class="button_container" style="cursor: not-allowed">
                 <img src="../../../../assets/icons/bookmark_employee.svg" />
                 <p class="button_txt" disabled>BOOKMARK</p>
               </div>
-              <div class="button_container" style="pointer-events:none;">
+              <div class="button_container" style="cursor: not-allowed">
                 <img src="../../../../assets/icons/downloadProfile.svg" />
                 <p class="button_txt">DOWNLOAD REPORT</p>
               </div>
@@ -237,7 +237,7 @@
                 <P class="button_txt">ADD A NOTES</P>
               </div>
 
-              <div class="notes_container" style="pointer-events:none;">
+              <div class="notes_container" style="cursor: not-allowed">
                 <div class="img_border" >
                   <img
                     src="../../../../assets/icons/convert_role_profile.svg"
@@ -372,7 +372,11 @@
             <!-- ***********************Similar roles************** -->
             <div class="roles_head">
               <p>Roles</p>
-              <u><i>View More</i></u>
+              <u
+                  (click)="routeRoles()"
+                  style="padding-top: 5px; cursor: pointer"
+                  ><i>View all</i></u
+                >
             </div>
 
             <div *ngFor="let role of RolesDataList">
@@ -400,7 +404,7 @@
               <mat-paginator
                 #paginator
                 [length]="employeeRoles.length"
-                [pageSize]="6"
+                [pageSize]="5"
                 class="page1"
                 (page)="pageEvent = $event"
               >
@@ -415,14 +419,8 @@
               <div class="row Bio_container">
                 <p class="bio_title">Bio</p>
                 <p class="bio_txt">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam
+                  {{ bio === "" ? "-" : bio }}
                 </p>
-                <p class="bio_txt">
-                  nonumy eirmod tempor invidunt ut labore et dolore aka lorem
-                  ispum
-                </p>
-                <p class="bio_txt">short text</p>
               </div>
               <mat-divider
                 style="border-right-width: 1.5px; border-color: black"
@@ -612,7 +610,7 @@
       ></textarea>
     </div>
     <div class="role_dialog_btn_container1 pt-4">
-      <b><u>Close</u></b>
+      <div style="cursor: pointer;" (click)="closeDialog()"><b><u>Close</u></b></div>
       <button class="convert_btn1" (click)="saveNotes()">
         <b>SAVE</b>
       </button>
@@ -650,7 +648,7 @@
       ></textarea>
     </div>
     <div class="role_dialog_btn_container1 pt-4">
-      <b><u>Close</u></b>
+      <div style="cursor: pointer;" (click)="closeDialog()"><b><u>Close</u></b></div>
       <button class="convert_btn1" (click)="saveMessage()">
         <b>SAVE</b>
       </button>
@@ -718,7 +716,7 @@
     </div>
 
     <div class="role_dialog_btn_container1 pt-4">
-      <b><u>Close</u></b>
+      <div style="cursor: pointer;" (click)="closeDialog()"><b><u>Close</u></b></div>
       <button class="convert_btn1" (click)="savetask()">
         <b>SAVE</b>
       </button>

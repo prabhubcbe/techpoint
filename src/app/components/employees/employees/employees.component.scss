@@ -455,22 +455,7 @@
     display: none import !important;
   }
 }
-// <!-- **********************MAYAMAYA RECOMMENDS************************ -->
-.recommneds_container {
-  padding-top: 50px;
-  display: flex;
-  justify-content: space-between;
-}
 
-.viewAll_txt {
-  font-family: $Titillium_Extra_Light;
-  font-weight: 600;
-  margin-top: 5px;
-}
-.recommend_txt {
-  font-size: 22px;
-  font-weight: 700;
-}
 // **********************RECOMMENDS CARDS************************
 
 .cards_container_recommend {
@@ -769,3 +754,20 @@
   background: white;
   opacity: 1;
 }
+// <!-- **********************MAYAMAYA RECOMMENDS************************ -->
+.recommneds_container {
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.viewAll_txt {
+  font-family: $Titillium_Extra_Light;
+  font-weight: 600;
+  margin-top: 5px;
+}
+.recommend_txt {
+  font-size: 22px;
+  font-weight: 700;
+}
+
