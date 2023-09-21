@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -19,7 +19,7 @@ import { MatPaginator } from '@angular/material/paginator';
   templateUrl: './baseline.component.html',
   styleUrls: ['./baseline.component.scss'],
 })
-export class BaselineComponent {
+export class BaselineComponent implements OnInit{
   @ViewChild('paginator')
   paginator!: MatPaginator;
   @ViewChild('rolePaginator')
@@ -99,6 +99,7 @@ export class BaselineComponent {
     console.log(tab);
     if (tab === "ROLE") {
       this.getAllJobRolesInReports();
+      this.getBaselineValues();
     } else if (tab === 'DEPARTMENT') {
       this.getAllDepartmentsInReports();
     } else if (tab === 'ORGANIZATION') {
@@ -159,10 +160,10 @@ export class BaselineComponent {
   }
 
   getAllJobRolesInReports() {
-    this.rolePaginator.firstPage();
+    this.rolePaginator && this.rolePaginator.firstPage();
     const obj = {
       orgCode: this.organizationCode,
-      email: 'karthik@catenate.io',
+      email: this.loginEmail,
       organization: this.organizationName,
       pageNo: 1,
       pageSize: 9
@@ -197,7 +198,7 @@ export class BaselineComponent {
   }
 
   getAllDepartmentsInReports() {
-    this.paginator.firstPage();
+    this.paginator && this.paginator.firstPage();
     const obj = {
       orgCode: this.organizationCode,
       pageNo: 1,

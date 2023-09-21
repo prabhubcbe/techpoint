@@ -196,7 +196,6 @@
 .recommend_graph_card {
   background: $cards_Bg;
   width: 300px;
-  border-radius: 0 0 20px 20px;
   .title_details {
     text-transform: uppercase;
     margin: 0px;
@@ -233,7 +232,7 @@
 // ***************table row 2 **************
 .main_content_table_row2 {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   border-bottom: 1px solid #d7d1ca;
 }
 .main_content_table_sl2_1 {
@@ -244,12 +243,14 @@
   padding-bottom: 35px;
 }
 .main_content_table_sl2_2 {
+  text-align: center;
   border-right: 1px solid #d7d1ca;
   padding-bottom: 35px;
   width: 39%;
   padding-top: 40px;
 }
 .main_content_table_sl2_3 {
+  text-align: center;
   width: 39%;
   padding-top: 40px;
   padding-bottom: 35px;
@@ -444,4 +445,72 @@
   font-family: $Titillium_Bold;
   padding-top: 10px;
   padding-left: 10px;
+}
+
+.slidecontainer {
+  width: 95%;
+
+  .slider_skill {
+    width: 95%;
+    margin: 0;
+    height: 10px;
+    margin-top: 5px;
+  }
+
+  .title_sill {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // font-family: $Titillium_Bold;
+    font-weight: 700;
+    padding-top: 20px;
+    font-size: 13px;
+
+    // font-size: 0.9vw;
+    // font-size: clamp(10px, 2vw, 16px);
+  }
+
+  .rating_txt {
+    font-size: 11px;
+    font-family: $Titillium_Light;
+    padding-top: 20px;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__thumb-knob {
+    display: none;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__track {
+    background: $Primary_greenGrdientReverse;
+    border-radius: 10px;
+    height: 6px;
+    border-bottom: 1px solid white;
+    border-top: 1px solid black;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__track--inactive {
+    background: $Primary_greenGrdientReverse;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    overflow: hidden;
+    height: 6px;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__track--active {
+    background: $Primary_greenGrdientReverse;
+    overflow: hidden;
+    height: 6px;
+  }
+
+  ::ng-deep .mat-mdc-slider .mdc-slider__track--active_fill {
+    background: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border: none;
+    height: 6px;
+    border-radius: 50px;
+  }
+
+  ::ng-deep .mat-mdc-slider-visual-thumb .mat-ripple {
+    display: none;
+  }
 }

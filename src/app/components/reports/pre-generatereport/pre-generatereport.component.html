@@ -30,22 +30,26 @@
           <div class="employees_card_header">
             <div>
               <mat-form-field class="status_filter" appearance="outline">
-                <mat-select placeholder="Function : All" value="value">
-                  <mat-option value="1">122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
+                <mat-select placeholder="Function : All"
+                [(ngModel)]="value1"
+                >
+                <input
+                        type="text"
+                        class="role_search_input"
+                        placeholder="Search Roles"
+                        (keyup)="onKey($event, 1)"
+                      />
+                <mat-option *ngFor="let role of filteredRoles1List" [value]="role.id">
+                  {{role.name}}
+                </mat-option>
                 </mat-select>
               </mat-form-field>
 
               <mat-form-field class="period_filter" appearance="outline">
-                <mat-select placeholder="Period : Q1| Jan - Mar" value="value">
-                  <mat-option value="1">122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
+                <mat-select placeholder="Period : Q1| Jan - Mar" value="QValue1">
+                  <mat-option *ngFor="let quarter of quarters" [value]="quarter.id">
+                    {{quarter.id}} | {{quarter.name}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -99,22 +103,26 @@
           <div class="employees_card_header">
             <div>
               <mat-form-field class="status_filter" appearance="outline">
-                <mat-select placeholder="Function : All" value="value">
-                  <mat-option value="1">122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
+                <mat-select placeholder="Function : All"
+                [(ngModel)]="value2"
+                >
+                <input
+                        type="text"
+                        class="role_search_input"
+                        placeholder="Search Roles"
+                        (keyup)="onKey($event, 2)"
+                      />
+                <mat-option *ngFor="let role of filteredRoles2List" [value]="role.id">
+                  {{role.name}}
+                </mat-option>
                 </mat-select>
               </mat-form-field>
 
               <mat-form-field class="period_filter" appearance="outline">
-                <mat-select placeholder="Period : Q1| Jan - Mar" value="value">
-                  <mat-option value="1">122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
+                <mat-select placeholder="Period : Q1| Jan - Mar" value="QValue2">
+                  <mat-option *ngFor="let quarter of quarters" [value]="quarter.id">
+                    {{quarter.id}} | {{quarter.name}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -169,22 +177,26 @@
           <div class="benchmark_card_header">
             <div class="benchmark_item1">
               <mat-form-field class="status_filter" appearance="outline">
-                <mat-select placeholder="Function : All" value="value">
-                  <mat-option value="1">122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
+                <mat-select placeholder="Function : All"
+                [(ngModel)]="value3"
+                >
+                <input
+                        type="text"
+                        class="role_search_input"
+                        placeholder="Search Roles"
+                        (keyup)="onKey($event, 3)"
+                      />
+                <mat-option *ngFor="let role of filteredRoles3List" [value]="role.id">
+                  {{role.name}}
+                </mat-option>
                 </mat-select>
               </mat-form-field>
 
               <mat-form-field class="period_filter" appearance="outline">
-                <mat-select placeholder="Period : Q1| Jan - Mar" value="value">
-                  <mat-option value="1">122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
+                <mat-select placeholder="Period : Q1| Jan - Mar" value="QValue3">
+                  <mat-option *ngFor="let quarter of quarters" [value]="quarter.id">
+                    {{quarter.id}} | {{quarter.name}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -248,22 +260,26 @@
           <div class="benchmark_card_header">
             <div class="benchmark_item1">
               <mat-form-field class="status_filter" appearance="outline">
-                <mat-select placeholder="Function : All" value="value">
-                  <mat-option value="1">122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
+                <mat-select placeholder="Function : All"
+                [(ngModel)]="value4"
+                >
+                <input
+                        type="text"
+                        class="role_search_input"
+                        placeholder="Search Roles"
+                        (keyup)="onKey($event, 4)"
+                      />
+                <mat-option *ngFor="let role of filteredRoles4List" [value]="role.id">
+                  {{role.name}}
+                </mat-option>
                 </mat-select>
               </mat-form-field>
 
               <mat-form-field class="period_filter" appearance="outline">
-                <mat-select placeholder="Period : Q1| Jan - Mar" value="value">
-                  <mat-option value="1">122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
-                  <mat-option>122222</mat-option>
+                <mat-select placeholder="Period : Q1| Jan - Mar" value="QValue4">
+                  <mat-option *ngFor="let quarter of quarters" [value]="quarter.id">
+                    {{quarter.id}} | {{quarter.name}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>

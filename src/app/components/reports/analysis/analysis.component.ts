@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
@@ -9,7 +9,12 @@ import { ReportsService } from 'src/app/server/reports.service';
   templateUrl: './analysis.component.html',
   styleUrls: ['./analysis.component.scss'],
 })
-export class AnalysisComponent {
+export class AnalysisComponent implements OnInit{
+
+  ngOnInit(): void {
+
+  }
+  
   roles1List: any = [];
   roles2List: any = [];
   value1: any;

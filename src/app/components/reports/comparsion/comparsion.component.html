@@ -155,84 +155,72 @@
                     <tr class="main_content_table_row2">
                       <td class="main_content_table_sl2_1"></td>
                       <td class="main_content_table_sl2_2">
-                        <div *ngIf="state.value1Role == 'employee'">
-                          <mat-card class="recommend_card">
-                            <div class="recommend_card_container">
-                              <div class="image_overlay"></div>
-                              <div class="candidateDummyImg">
-                                <img
-                                  style="object-fit: cover"
-                                  width="100%"
-                                  src="../../../../assets/images/male.jpg"
-                                />
-                              </div>
-                            </div>
-                            <div class="container">
-                              <p class="user_details_container">Josh Enigma</p>
-                              <div class="sprint_contiainer">
-                                <p>3 Sprints Latest Sep 24</p>
-                                <p>Active</p>
-                              </div>
-                            </div>
-                          </mat-card>
-
-                          <mat-card class="recommend_graph_card">
-                            <app-radial-stacked-chart
-                            id="2"
-                            [data]="value1Data"
-                            ></app-radial-stacked-chart>
-                          </mat-card>
-                        </div>
                         <div *ngIf="state.value1Role != 'employee'">
                           <mat-card class="recommend_graph_card">
                             <p class="title_txt">
                               {{state.value1Role}}
                             </p>
-                            <app-radial-stacked-chart
-                              id="2"
-                              [data]="value1Data"
-                              ></app-radial-stacked-chart>
+                            <div class="row">
+                              <div class="col">
+                                <div
+                                  class="slidecontainer"
+                                  *ngFor="
+                                    let skill of value1Data;
+                                    index as i
+                                  "
+                                >
+                                  <div class="title_sill">
+                                    <p class="p-0 m-0">{{ skill.category }}</p>
+                                    <p class="rating_txt p-0 m-0">
+                                      {{ skill.latest_value | number : "1.2-2" }} / 10
+                                    </p>
+                                  </div>
+                                  <mat-slider class="slider_skill">
+                                    <input
+                                      width="100%"
+                                      matSliderThumb
+                                      [disabled]="true"
+                                      [value]="skill.latest_value * 10"
+                                    />
+                                  </mat-slider>
+                                </div>
+                              </div>
+                            </div>
                           </mat-card>
                         </div>
                       </td>
                       <td class="main_content_table_sl2_3">
-                        <div *ngIf="state.value1Role == 'employee'">
-                          <mat-card class="recommend_card">
-                            <div class="recommend_card_container">
-                              <div class="image_overlay"></div>
-                              <div class="candidateDummyImg">
-                                <img
-                                  style="object-fit: cover"
-                                  width="100%"
-                                  src="../../../../assets/images/male.jpg"
-                                />
-                              </div>
-                            </div>
-                            <div class="container">
-                              <p class="user_details_container">Josh Enigma</p>
-                              <div class="sprint_contiainer">
-                                <p>3 Sprints Latest Sep 24</p>
-                                <p>Active</p>
-                              </div>
-                            </div>
-                          </mat-card>
-
-                          <mat-card class="recommend_graph_card">
-                            <app-radial-stacked-chart
-                            id="2"
-                            [data]="value2Data"
-                            ></app-radial-stacked-chart>
-                          </mat-card>
-                        </div>
                         <div *ngIf="state.value1Role != 'employee'">
                           <mat-card class="recommend_graph_card">
                             <p class="title_txt">
                               {{state.value2Role}}
                             </p>
-                            <app-radial-stacked-chart
-                              id="2"
-                              [data]="value2Data"
-                              ></app-radial-stacked-chart>
+                            <div class="row">
+                              <div class="col">
+                                <div
+                                  class="slidecontainer"
+                                  *ngFor="
+                                    let skill of value2Data;
+                                    index as i
+                                  "
+                                >
+                                  <div class="title_sill">
+                                    <p class="p-0 m-0">{{ skill.category }}</p>
+                                    <p class="rating_txt p-0 m-0">
+                                      {{ skill.latest_value | number : "1.2-2" }} / 10
+                                    </p>
+                                  </div>
+                                  <mat-slider class="slider_skill">
+                                    <input
+                                      width="100%"
+                                      matSliderThumb
+                                      [disabled]="true"
+                                      [value]="skill.latest_value * 10"
+                                    />
+                                  </mat-slider>
+                                </div>
+                              </div>
+                            </div>
                           </mat-card>
                         </div>
                       </td>
