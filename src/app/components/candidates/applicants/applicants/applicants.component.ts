@@ -252,17 +252,19 @@ export class ApplicantsComponent implements OnInit {
 
   // *************ON DEPARTMNET CHANGE************
   onDepartmentChange(event: any) {
+    this.loadSpinner.setLoading(true);
     console.log('onDepartmentChange', event);
     let obj = {
       email: this.loginEmail,
       organization: this.organizationName,
-      department: event.value,
+      department: [event.value],
     };
     this.api
       .getRolesbyDepartment(obj)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: any) => {
+          this.loadSpinner.setLoading(false);
           if (response.code === 200) {
             this.RolesDataList = response.data;
 
@@ -511,5 +513,13 @@ export class ApplicantsComponent implements OnInit {
         duration: 6000,
       });
     }
+  }
+
+  // **********************SHOW DISABLED MESSAGES**********
+  showDisabled() {
+    this.snackBar.open('This feature is coming soon..', '×', {
+      panelClass: ['custom-style'],
+      verticalPosition: 'top',
+    });
   }
 }

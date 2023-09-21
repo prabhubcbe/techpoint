@@ -210,12 +210,16 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   getHardSkillDataList() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
+
     this.api
       .getHardSkillsDropDown()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: any) => {
           this.hardSkillsDataList = response.data;
+          this.loadSpinner.setLoading(false);
+          this.cdr.detectChanges(); // Manually trigger the spinner
         },
         error: (error: any) => {
           this.handleComponentError(error);
@@ -459,6 +463,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
 
   // *************************Hide and show filter options*************************
   toggleFilter() {
+    // this.loadSpinner.setLoading(true); // Manually trigger the spinner
     this.FilterpanelIsOpen = !this.FilterpanelIsOpen;
     this.searchPanelIsOpen = false;
     this.getEthnicityDataList();
@@ -466,6 +471,7 @@ export class RoleProfileComponent implements OnInit, DoCheck, OnDestroy {
     this.getConsiderationDataList();
     this.getRegionDataList();
     this.getHardSkillDataList();
+    // this.loadSpinner.setLoading(false); // Manually trigger the spinner
     this.cdr.detectChanges();
   }
   toggleSearch() {

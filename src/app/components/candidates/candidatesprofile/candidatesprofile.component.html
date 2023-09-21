@@ -62,15 +62,15 @@
                   <div class="col-4">
                     <div class="edit_assigned">
                       <p class="title_details">ASSIGNED Status</p>
-                      <img
+                      <!-- <img
                         style="cursor: pointer"
                         (click)="editStage()"
                         src="../../../../assets/icons/edit_status_candidate.svg"
-                      />
+                      /> -->
                     </div>
+                    <!-- [disabled]="editStageFlag" -->
                     <mat-form-field class="status_filter" appearance="outline">
                       <mat-select
-                        [disabled]="editStageFlag"
                         (selectionChange)="updateStage()"
                         [(ngModel)]="statusLevel"
                         name="department"
@@ -185,10 +185,10 @@
             </mat-card>
             <!-- *******************GRAPH****************************** -->
             <mat-card class="mat_tab_content">
-              <div class="row">
-                <div class="col">
+              <div class="inner_content">
+                <div class="row">
                   <div
-                    class="slidecontainer"
+                    class="col-6 slidecontainer"
                     *ngFor="
                       let skill of candateDetails?.result_values;
                       index as i
@@ -204,15 +204,15 @@
                       <input
                         width="100%"
                         matSliderThumb
-                        [disabled]="false"
+                        [disabled]="true"
                         [value]="skill.latest_value * 10"
                       />
                     </mat-slider>
                   </div>
                 </div>
-                <div class="col sliders2column">
+                <div class="row">
                   <div
-                    class="slidecontainer"
+                    class="col-6 slidecontainer"
                     *ngFor="
                       let skill of candateDetails?.result_values;
                       index as i
@@ -226,8 +226,9 @@
                     </div>
                     <mat-slider class="slider_skill" *ngIf="i > 6">
                       <input
+                        width="100%"
                         matSliderThumb
-                        [disabled]="false"
+                        [disabled]="true"
                         [value]="skill.latest_value * 10"
                       />
                     </mat-slider>
@@ -247,8 +248,8 @@
                   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                   diam
                 </p> -->
-                <div class="search_Btn">
-                  <button style="cursor: not-allowed" class="searchbtn">
+                <div class="search_Btn" (click)="showDisabled()">
+                  <button style="cursor: pointer" class="searchbtn">
                     DOWNLOAD REPORT
                   </button>
                 </div>
@@ -258,7 +259,7 @@
 
           <div class="col-3">
             <div class="options_container">
-              <div class="button_container" style="cursor: not-allowed">
+              <div class="button_container" (click)="showDisabled()">
                 <img src="../../../../assets/icons/shareProfile.svg" />
                 <p class="button_txt">Share</p>
               </div>
@@ -283,7 +284,7 @@
                 <img src="../../../../assets/icons/shortlistProfile.svg" />
                 <p class="button_txt">SHORTLIST</p>
               </div>
-              <div class="button_container" style="cursor: not-allowed">
+              <div class="button_container" (click)="showDisabled()">
                 <img src="../../../../assets/icons/downloadProfile.svg" />
                 <p class="button_txt">DOWNLOAD REPORT</p>
               </div>

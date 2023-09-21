@@ -363,7 +363,11 @@
             </mat-checkbox>
 
             <!-- *********** -->
-            <mat-form-field class="Bulk_actions" appearance="outline">
+            <mat-form-field
+              class="Bulk_actions"
+              appearance="outline"
+              (click)="showDisabled()"
+            >
               <mat-select
                 [disabled]="true"
                 (openedChange)="handleOpen()"
@@ -536,7 +540,7 @@
       <div class="paginator_roles">
         <p class="paginator-info">
           Page {{ paginator.pageIndex + 1 }} of
-          {{ totalCountOfEmployees }}
+          {{ totalCountOfEmployees / 32 }}
         </p>
         <mat-paginator
           #paginator

@@ -569,4 +569,13 @@ export class CandidatesComponent implements OnInit {
       });
     }
   }
+
+  // ***********************UPCOMING FEATURES*******************
+  SearchFilter() {
+    this.snackBar.open('Search feature is coming soon', '×', {
+      panelClass: ['custom-style'],
+      verticalPosition: 'top',
+      duration: 3000,
+    });
+  }
 }

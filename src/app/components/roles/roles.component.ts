@@ -796,6 +796,7 @@ export class RolesComponent implements OnInit {
   }
 
   generateJobDescription() {
+    this.loadSpinner.setLoading(true); // Manually trigger the spinner
     let obj = {
       roleId: this.roleGenerationData.role_id,
     };
@@ -804,6 +805,7 @@ export class RolesComponent implements OnInit {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: any) => {
+          this.loadSpinner.setLoading(false); // Manually trigger the spinner
           if (response.code === 200) {
             this.generatedJobDescription = response.data[0].job_requirements;
             this.cdr.detectChanges();

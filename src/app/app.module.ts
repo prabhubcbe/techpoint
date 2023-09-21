@@ -28,6 +28,8 @@ import { RouterModule } from '@angular/router';
 import { SearchFilterModule } from './shared/search-filter/search-filter.module';
 import { FooterModule } from './core/footer/footer/footer.module';
 import { SpinnerModuleModule } from './shared/spinner-module/spinner-module.module';
+import { MyProfileComponent } from './core/my-profile/my-profile.component';
+// import { SettingsComponent } from './core/settings/settings.component';
 // import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 @NgModule({
@@ -39,6 +41,8 @@ import { SpinnerModuleModule } from './shared/spinner-module/spinner-module.modu
     LoginComponent,
     LayoutComponent,
     ForgotpasswordComponent,
+    MyProfileComponent,
+    // SettingsComponent,
   ],
   imports: [
     BrowserModule,

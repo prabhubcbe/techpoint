@@ -141,10 +141,10 @@
             </mat-card>
             <!-- *******************GRAPH****************************** -->
             <mat-card class="mat_tab_content">
-              <div class="row">
-                <div class="col">
+              <div class="inner_content">
+                <div class="row">
                   <div
-                    class="slidecontainer"
+                    class="col-6 slidecontainer"
                     *ngFor="
                       let skill of employeeDetails?.result_values;
                       index as i
@@ -160,15 +160,15 @@
                       <input
                         width="100%"
                         matSliderThumb
-                        [disabled]="false"
+                        [disabled]="true"
                         [value]="skill.latest_value * 10"
                       />
                     </mat-slider>
                   </div>
                 </div>
-                <div class="col sliders2column">
+                <div class="row">
                   <div
-                    class="slidecontainer"
+                    class="col-6 slidecontainer"
                     *ngFor="
                       let skill of employeeDetails?.result_values;
                       index as i
@@ -182,8 +182,9 @@
                     </div>
                     <mat-slider class="slider_skill" *ngIf="i > 6">
                       <input
+                        width="100%"
                         matSliderThumb
-                        [disabled]="false"
+                        [disabled]="true"
                         [value]="skill.latest_value * 10"
                       />
                     </mat-slider>

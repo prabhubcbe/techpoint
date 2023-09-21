@@ -28,7 +28,6 @@
   }
 }
 
-
 // *************************PROFILES AND NOTES CONTAINER*************************
 .profile_notes_container {
   // height: 500px;
@@ -91,6 +90,15 @@
       }
     }
   }
+}
+.inner_content {
+  width: 100%;
+  padding: 25px 0 40px 25px;
+  color: black;
+  display: flex;
+  // // justify-content: space-around;
+  // align-items: center;
+  // place-items: center;
 }
 // ******************************SKILLS AND HUMAN SKILLS***************
 .Skills_container {
@@ -421,7 +429,7 @@
     align-items: center;
     color: black;
   }
-}// *******************paginator**************************
+} // *******************paginator**************************
 .paginator_roles {
   display: flex;
   justify-content: end;
@@ -571,88 +579,92 @@
     }
   }
   // ******************* role_dialog_btn_container ******************
-.role_dialog_btn_container {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  margin-top: 20px;
-  // margin-bottom: 20px;
-  gap: 37px;
-  u {
+  .role_dialog_btn_container {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: 20px;
+    // margin-bottom: 20px;
+    gap: 37px;
+    u {
+      font-family: $Titillium_Bold;
+    }
+  }
+  // ******************* role_dialog_btn_container ******************
+  .role_dialog_btn_container {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: 20px;
+    // margin-bottom: 20px;
+    gap: 37px;
+    u {
+      font-family: $Titillium_Bold;
+    }
+  }
+  // *************button inside dialog box*************
+  .convert_btn {
+    background: $Primary_RedGradient; // Sets the  color using $Primary_greenGradient variable.scss
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+      rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+      rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+
+    border: none;
+    height: 46px;
+    width: 160px;
+    border-radius: 30px;
+    cursor: pointer;
+    //   padding: 10px 25px 10px 25px;
+    font-size: 13px;
+    i {
+      font-size: 16px;
+      padding-right: 5px;
+      padding-top: 3px;
+    }
+  }
+  .addNoteText {
+    font-size: 19px;
     font-family: $Titillium_Bold;
   }
-}
-// ******************* role_dialog_btn_container ******************
-.role_dialog_btn_container {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  margin-top: 20px;
-  // margin-bottom: 20px;
-  gap: 37px;
-  u {
-    font-family: $Titillium_Bold;
+
+  .notes_input {
+    width: 97.5%;
+    height: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+
+    outline: none;
+
+    border: 1px solid #707070;
+    padding: 10px;
+    background: linear-gradient(
+      90deg,
+      rgba(172, 172, 172, 0.2),
+      rgba(233, 228, 223, 0.2)
+    );
+    font-size: 15px;
   }
-}
-// *************button inside dialog box*************
-.convert_btn {
-  background: $Primary_RedGradient; // Sets the  color using $Primary_greenGradient variable.scss
-  color: white;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
-    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
-    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-
-  border: none;
-  height: 46px;
-  width: 160px;
-  border-radius: 30px;
-  cursor: pointer;
-  //   padding: 10px 25px 10px 25px;
-  font-size: 13px;
-  i {
-    font-size: 16px;
-    padding-right: 5px;
-    padding-top: 3px;
+  .notes_input {
+    width: 97.5%;
+    height: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    outline: none;
+    border: 1px solid #707070;
+    padding: 10px;
+    background: linear-gradient(
+      90deg,
+      rgba(172, 172, 172, 0.2),
+      rgba(233, 228, 223, 0.2)
+    );
+    font-size: 15px;
   }
-}
-.addNoteText {
-  font-size: 19px;
-  font-family: $Titillium_Bold;
-}
-
-.notes_input {
-  width: 97.5%;
-  height: 100px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 10px;
-
-  outline: none;
-
-  border: 1px solid #707070;
-  padding: 10px;
-  background: linear-gradient(
-    90deg,
-    rgba(172, 172, 172, 0.2),
-    rgba(233, 228, 223, 0.2)
-  );
-  font-size: 15px;
-}
-.notes_input {
-  width: 97.5%;
-  height: 100px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 10px;
-  outline: none;
-  border: 1px solid #707070;
-  padding: 10px;
-  background: linear-gradient(90deg, rgba(172, 172, 172, 0.2), rgba(233, 228, 223, 0.2));
-  font-size: 15px;
-}
-.evaluation_select_option {
-  font-size: 12.5px;
-}
+  .evaluation_select_option {
+    font-size: 12.5px;
+  }
   .suggest_task_divider {
     margin-bottom: 10px;
   }
@@ -758,7 +770,6 @@
     line-height: 18px;
     letter-spacing: 0em;
     text-align: left;
-
   }
   .result_details {
     font-family: Titillium Web;
@@ -828,14 +839,14 @@
   }
 
   ::ng-deep .mat-mdc-slider .mdc-slider__track--active {
-    background: $Primary_greenGrdientReverse;
+    background: rgb(205, 205, 205);
     overflow: hidden;
     height: 6px;
   }
 
   ::ng-deep .mat-mdc-slider .mdc-slider__track--active_fill {
-    background: rgb(255, 255, 255);
-    color: rgb(255, 255, 255);
+    background: $Primary_RedGradient;
+    // color: rgb(255, 255, 255);
     border: none;
     height: 6px;
     border-radius: 50px;
@@ -843,5 +854,8 @@
 
   ::ng-deep .mat-mdc-slider-visual-thumb .mat-ripple {
     display: none;
+  }
+  ::ng-deep .mat-mdc-slider.mdc-slider--disabled {
+    opacity: 1;
   }
 }

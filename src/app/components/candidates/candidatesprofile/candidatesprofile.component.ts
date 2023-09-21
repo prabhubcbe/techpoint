@@ -49,7 +49,7 @@ export class CandidatesprofileComponent implements OnInit {
   experienceDetails: any;
   highlights: any;
   roleIdHandler: any;
-  editStageFlag = true;
+  // editStageFlag = true;
 
   roleName: any;
   notesAdded: any;
@@ -227,7 +227,7 @@ export class CandidatesprofileComponent implements OnInit {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: any) => {
-          this.editStageFlag = true;
+          // this.editStageFlag = true;
           this.loadSpinner.setLoading(false);
           this.snackBar.open(response.message, '×', {
             panelClass: ['custom-style'],
@@ -268,9 +268,9 @@ export class CandidatesprofileComponent implements OnInit {
     console.log(this.matchDetails, 'matchDetails');
     console.log(this.recommendJobs);
   }
-  editStage() {
-    this.editStageFlag = false;
-  }
+  // editStage() {
+  //   this.editStageFlag = false;
+  // }
   getHardSkill() {
     let obj = {
       userId: this.userIdForProfile,
@@ -518,6 +518,7 @@ export class CandidatesprofileComponent implements OnInit {
         next: (response: any) => {
           console.log('NOTES ADDED:', response);
           if (response.code === 200) {
+            this.getActionsData();
             this.dialog.closeAll();
             this.snackBar.open(response.message, '×', {
               panelClass: ['custom-style'],
@@ -530,5 +531,13 @@ export class CandidatesprofileComponent implements OnInit {
           this.handleComponentError(error);
         },
       });
+  }
+
+   // **********************SHOW DISABLED MESSAGES**********
+   showDisabled() {
+    this.snackBar.open('This feature is coming soon..', '×', {
+      panelClass: ['custom-style'],
+      verticalPosition: 'top',
+    });
   }
 }
